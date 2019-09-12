@@ -1,0 +1,903 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>《Essence of Linear Algebra》系列笔记整理 | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="《Essence of Linear Algebra》系列笔记整理​	线性代数的本质这门课是我偶然发现的，主要从几何本质的的角度去理解香型代数，很形象，很容易去理解线性代数教材中的抽象概念，因此强推此系列课程用来辅助学习。我因为有其他安排，所以花了好几天，一天两个视频的看。其实，如果有时间，半天时间就能看完。简明...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">《Essence of Linear Algebra》系列笔记整理</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">《Essence of Linear Algebra》系列笔记整理</h1>
+        <p class="post-meta">
+            <time datetime="2019-08-07T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Aug 7, 2019</i>
+            </time>
+              |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Essential and Professional Course">Essential and Professional Course</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/08/07/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0/ class="leancloud-visitors" data-flag-title=《Essence of Linear Algebra》系列笔记整理>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="essence-of-linear-algebra系列笔记整理">《Essence of Linear Algebra》系列笔记整理</h1>
+
+<p>​	线性代数的本质这门课是我偶然发现的，主要从几何本质的的角度去理解香型代数，很形象，很容易去理解线性代数教材中的抽象概念，因此强推此系列课程用来辅助学习。我因为有其他安排，所以花了好几天，一天两个视频的看。其实，如果有时间，半天时间就能看完。简明而不简单！</p>
+
+<blockquote>
+  <p>原视频是YouTube大佬录制的，感谢3BlueBrown，他授权已经将此系列视频搬运到B站，需要的请自行检索</p>
+</blockquote>
+
+<h3 id="第00讲-序言">第00讲 序言</h3>
+
+<p>这一讲只是描述了线性代数的用途以及本课程的框架，没有实质的讲解，就当学英语了吧。</p>
+
+<blockquote>
+  <table>
+    <thead>
+      <tr>
+        <th>相关关键词</th>
+        <th>美式发音</th>
+        <th>中文翻译</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Linear Algebra</td>
+        <td>/’lɪnɪɚ  ældʒɪbrə/</td>
+        <td>线性代数</td>
+      </tr>
+      <tr>
+        <td>matrix multiplication</td>
+        <td>/’metrɪks  ‘mʌltəplə’keʃən/</td>
+        <td>矩阵乘法</td>
+      </tr>
+      <tr>
+        <td>deteminant</td>
+        <td>/dɪ’tɝmɪnənt/</td>
+        <td>行列式</td>
+      </tr>
+      <tr>
+        <td>cross product</td>
+        <td>/krɔs ‘prɑdʌkt/</td>
+        <td>叉积</td>
+      </tr>
+      <tr>
+        <td>eigenvalue</td>
+        <td>/’aɪgən,væljuː/</td>
+        <td>特征值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>应用学科</th>
+        <th>美式发音</th>
+        <th>中文翻译</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Computer Science</td>
+        <td>/kəm’pjutɚ  ‘saɪəns/</td>
+        <td>计算机科学</td>
+      </tr>
+      <tr>
+        <td>Physics</td>
+        <td>/’fɪzɪks/</td>
+        <td>物理学</td>
+      </tr>
+      <tr>
+        <td>Electrical Engineering</td>
+        <td>/ɪ’lɛktrɪkl ‘ɛndʒə’nɪrɪŋ/</td>
+        <td>电子工程</td>
+      </tr>
+      <tr>
+        <td>Mechanical Engineering</td>
+        <td>/mɪ’kænɪkəl ‘ɛndʒə’nɪrɪŋ/</td>
+        <td>机械工程</td>
+      </tr>
+      <tr>
+        <td>Statistics</td>
+        <td>/stə’tɪstɪks/</td>
+        <td>统计学</td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<h3 id="第01讲-向量究竟是什么">第01讲 向量究竟是什么</h3>
+
+<p>对于不同领域的学生有着不同的理解</p>
+
+<p><img src="/images/posts/2019-08-07/vectorstudent.png" alt="" /></p>
+
+<p>则向量的两个基本运算：向量加法、和数量积则是最基础，最重要的运算。</p>
+
+<blockquote>
+  <p>Two fundamental operations:vector addition and scalar multiplication.</p>
+</blockquote>
+
+<p>可形象的表示为</p>
+
+<blockquote>
+  <p>自己在ipad上画的。。。凑合吧</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-08-07/operation.png" alt="" /></p>
+
+<blockquote>
+  <p>数量积就更显而易见了，就没画。</p>
+</blockquote>
+
+<p>为什么<strong>v</strong>和<strong>w</strong>(加粗代表向量)要首尾相接才能相加？为什么不是尾端都在原点。</p>
+
+<p>可以把自己想象成一个人，先按照<strong>v</strong>走，走完站在原地再按照<strong>w</strong>走。就很容易理解了。</p>
+
+<h3 id="第02讲-线性组合张成的空间与基">第02讲 线性组合，张成的空间与基</h3>
+
+<p><strong>线性组合</strong>(Linear Combination)就很好理解了，即为两个向量线性相加</p>
+
+<p><img src="/images/posts/2019-08-07/linearcombinaton.png" alt="" /></p>
+
+<p><strong>基</strong>(basis of coordinate system)就是两个向量，可以是任何两个线性无关的向量。上图所示的即是其中最特殊的一个标准正交基。</p>
+
+<p><strong>向量空间</strong>（span）就是这两个基所有的 线性组合</p>
+
+<p>的集合</p>
+
+<blockquote>
+  <p>The “span” of <strong>v</strong> and <strong>w</strong> is the set of all their linear combination a<strong>v</strong>+b<strong>w</strong> ,let a,b vary over all real number.</p>
+</blockquote>
+
+<p><strong>线性相关</strong>（linear dependent）<strong>u</strong>=a<strong>v</strong>+b<strong>w</strong> for some values of a and b</p>
+
+<p><strong>线性无关</strong>（linear independent）<strong>u</strong>不等于a<strong>v</strong>+b<strong>w</strong> for all values of a and b</p>
+
+<h3 id="第03讲-矩阵与线性变换">第03讲 矩阵与线性变换</h3>
+
+<p>Linear Transformation 就相当于一个Input vector 通过一个函数运算输出一个Output vector</p>
+
+<p>线性变换有两个原则</p>
+
+<ul>
+  <li>Lines remain lines      坐标系从直线变到直线</li>
+  <li>origin remain fixed     原点位置不变</li>
+</ul>
+
+<p>下面就是一个线性变换的例子，从向量<strong>u</strong>变换到<strong>u’</strong>。</p>
+
+<p><img src="/images/posts/2019-08-07/transform.png" alt="" /></p>
+
+<p>其中坐标系的线性变换使基向量发生了线性变换，即变成了<strong>a</strong> 和<strong>b</strong>。按照原本的线性组合关系，<strong>u</strong>也变换到了<strong>u’</strong>。</p>
+
+<p>而由变换后的基向量组成的2*2的矩阵即叫做<strong>变换矩阵</strong></p>
+
+<p>下面这两个例子也是一样。</p>
+
+<p><img src="/images/posts/2019-08-07/transformexample.png" alt="" /></p>
+
+<p>通过这一讲就很好的理解了矩阵与向量相乘的本质，就是对其进行线性变换。</p>
+
+<h3 id="第04讲-矩阵乘法与线性变换复合">第04讲 矩阵乘法与线性变换复合</h3>
+
+<p>例：Composition of a rotation and a shear</p>
+
+<p><img src="/images/posts/2019-08-07/composition.png" alt="" /></p>
+
+<p>一个向量进行两次线性变换，即在前面乘以两个变换矩阵。也等于在前面乘以一个只变换一次的变换矩阵。</p>
+
+<p>则两个矩阵的乘法则就是两次线性变换的叠加。太神奇了！</p>
+
+<p>这样的话就很好解释了为什么矩阵乘法不适用交换律</p>
+
+<p><img src="/images/posts/2019-08-07/jiaohuanlv.png" alt="" /></p>
+
+<p>从二维的理解很快的很直观的就能推广到三维、四维等等。</p>
+
+<h3 id="第05讲-行列式">第05讲 行列式</h3>
+
+<p>行列式对于二维方阵来说就是向量围成的平行四边形的面积，对于三维来说就是围成的平行六面体的体积。</p>
+
+<p><img src="/images/posts/2019-08-07/deteminant.png" alt="" /></p>
+
+<h3 id="第06讲-逆矩阵列空间与零空间">第06讲 逆矩阵、列空间与零空间</h3>
+
+<p>一个变换矩阵的<strong>逆矩阵</strong>(inverse matrix)就是把这个线性变换反过来再变回来。</p>
+
+<p><img src="/images/posts/2019-08-07/inverse.png" alt="" /></p>
+
+<p><strong>秩</strong>(Rank)的含义</p>
+
+<ul>
+  <li>若经线性变换到直线，则称这个变换矩阵秩为1</li>
+  <li>若经线性变换到平面，则称这个变换矩阵秩为2</li>
+</ul>
+
+<p><strong>列空间</strong>(column space)：不管是一条直线，一个平面，还是三维空间等，所有可能的变换结果的集合就是列空间。</p>
+
+<blockquote>
+  <p>The colume space is the span of the columns of your matrix</p>
+
+  <p>The rank is the number of dimensions in the column space.</p>
+</blockquote>
+
+<p><strong>零空间</strong>（null space or kernel）经变换后落在原点的向量的集合</p>
+
+<h4 id="附注非方阵-nonsquare-matrices">附注：非方阵 nonsquare matrices</h4>
+
+<p><img src="/images/posts/2019-08-07/nonsquare.png" alt="" /></p>
+
+<h3 id="第07讲-点积与对偶性">第07讲 点积与对偶性</h3>
+
+<p><img src="/images/posts/2019-08-07/dot.png" alt="" /></p>
+
+<p>上面表明了点积的几何意义与和其对偶的一个线性变换，即将一个向量变换到一维上。</p>
+
+<h3 id="第08讲上-叉积的标准介绍">第08讲上 叉积的标准介绍</h3>
+
+<p>叉积也在二维上也等于平行四边形的面积，正负代表方向。</p>
+
+<p>叉积在二维上得到一个长度为平行四边形面积，方向垂直于两个向量。</p>
+
+<blockquote>
+  <p>这才叫灵魂画手！！！其实我想画右手定则的，哈哈哈哈</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-08-07/cross.png" alt="" /></p>
+
+<h3 id="第08讲下-以线性变换的眼光看待叉积">第08讲下 以线性变换的眼光看待叉积</h3>
+
+<p><img src="/images/posts/2019-08-07/cross2.png" alt="" /></p>
+
+<p>即利用线性变换与对偶性的思想，得到了叉积该有的样子。</p>
+
+<h3 id="第09讲-基变换">第09讲 基变换</h3>
+
+<p><img src="/images/posts/2019-08-07/basis.png" alt="" /></p>
+
+<p>即将基向量进行线性变换。主要看左下角的推导。</p>
+
+<p>这里有两组基向量，一个是Standard，一个是Jennifer（只是个人名，为了区分而已）,Jennifer的基向量即不互相垂直，也不是单位向量，所以在他的基础上进行线性变换很难。</p>
+
+<p>因此，先将Jennifer基向量通过线性变换到Standard标准基向量。然后再基向量坐标系下进行变换。变换完在变回Jennifer的基向量下。</p>
+
+<blockquote>
+  <p>有点绕，其实在视频里配合动画就很容易理解了</p>
+</blockquote>
+
+<p>这就得到了相似矩阵的定义啦，相似矩阵就是为了简化这么绕的变换而生的。</p>
+
+<h3 id="第10讲-特征向量与特征值">第10讲 特征向量与特征值</h3>
+
+<p><img src="/images/posts/2019-08-07/eigenvalue.png" alt="" /></p>
+
+<p>在一个线性变换中，可能有些向量方向不会发生变化，这个向量就叫特征向量，他的长度变化倍数就是特征值。太神奇了</p>
+
+<p>最重要的还是与上述基变换结合起来。</p>
+
+<p><img src="/images/posts/2019-08-07/ji.png" alt="" /></p>
+
+<p>其中换基向量的变换矩阵就是特征向量组成的矩阵。得到的对角矩阵就是特征值组成的，得到对角矩阵的话如果要算一个矩阵的10000次方也轻而易举了。</p>
+
+<h3 id="第11讲-抽象向量空间">第11讲 抽象向量空间</h3>
+
+<p>这一讲主要讲了抽象化的重要性。比如上述讲的所有东西都是基于二维或者三维矩阵的分析，怎么抽象为符号语言就是数学家干的事，其他领域的研究者则是使用这些符号语言（即公理Axioms）去进行计算。</p>
+
+<p><img src="/images/posts/2019-08-07/function.png" alt="" /></p>
+
+<h3 id="第12讲-克莱姆法则-cramers-rule">第12讲 克莱姆法则 Cramer’s rule</h3>
+
+<p>也是从线性变换的角度去理解克莱姆法则</p>
+
+<p><img src="/images/posts/2019-08-07/cramer.png" alt="" /></p>
+
+<p>x的求解亦然</p>
+
+<h3 id="学完的感想">学完的感想</h3>
+
+<p>听大佬说这些东西是高等代数里的知识，以后还是要学学高等代数。</p>
+
+<p>这个视频是英文版的，我看是听着英文，看着中英文字母尽量去听懂。但正因为他是英文版，可能语速太快有些细节我没有捕捉到，目前的理解也仅限于此，能够帮助理解很多线性代数里面的概念知识。我学习的时候也是听着自己想着去理解着，这个视频确实很不错，大佬用动画的方式非常形象的展示了向量的变化，非常有助于理解。</p>
+
+<p>这篇博客的目的也仅仅是我学习完了进行了一下系统复习，都是比较笼统的总结。</p>
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/07/31/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%BB%93%E8%AF%BE%E6%80%BB%E7%BB%93/" class="pre"><i class="icon-post-pre"> 中科大《文献管理与信息分析》结课总结</i></a>
+         
+        <a href="/2019/08/09/%E5%BC%A0%E5%AE%87%E7%BA%BF%E4%BB%A39%E8%AE%B2%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" class="next">张宇线代9讲核心知识点整理 <i
+                class="icon-post-next"></i></a>
+        
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (12)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#通识讲座">通识讲座 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#论文精读">论文精读 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OringinManuals">OringinManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (1)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>

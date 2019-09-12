@@ -1,0 +1,845 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>Python实用技巧(一) | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="Python实用技巧(一)  Python实用技巧(一)          1、print 打印带有颜色的信息      2、在Python中使用定时器      3、实现一个进度条      4、优雅的打印嵌套类型数据      1、print 打印带有颜色的信息def esc(code=0):    retu...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">Python实用技巧(一)</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Python实用技巧(一)</h1>
+        <p class="post-meta">
+            <time datetime="2019-08-19T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Aug 19, 2019</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
+            
+                <a href="/category/#PythonManuals">PythonManuals</a>
+            
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Python">Python</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/08/19/Python%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/ class="leancloud-visitors" data-flag-title=Python实用技巧(一)>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="python实用技巧一">Python实用技巧(一)</h1>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#python实用技巧一" id="markdown-toc-python实用技巧一">Python实用技巧(一)</a>    <ul>
+      <li><a href="#1print-打印带有颜色的信息" id="markdown-toc-1print-打印带有颜色的信息">1、print 打印带有颜色的信息</a></li>
+      <li><a href="#2在python中使用定时器" id="markdown-toc-2在python中使用定时器">2、在Python中使用定时器</a></li>
+      <li><a href="#3实现一个进度条" id="markdown-toc-3实现一个进度条">3、实现一个进度条</a></li>
+      <li><a href="#4优雅的打印嵌套类型数据" id="markdown-toc-4优雅的打印嵌套类型数据">4、优雅的打印嵌套类型数据</a></li>
+    </ul>
+  </li>
+</ul>
+<h2 id="1print-打印带有颜色的信息">1、print 打印带有颜色的信息</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">esc</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s">'</span><span class="se">\033</span><span class="s">[{code}m'</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="s">'1;31;43'</span><span class="p">)</span> <span class="o">+</span> <span class="s">'Error:'</span><span class="o">+</span><span class="n">esc</span><span class="p">()</span><span class="o">+</span><span class="s">'important'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>执行后会输出</p>
+
+<p><img src="/images/posts/2019-08-19/print.png" alt="" /></p>
+
+<p>其中最主要的就是f’\033[{code}m’部分的设置。</p>
+
+<p>这叫ANSI颜色序列格式，通过/033转义为控制颜色的命令。</p>
+
+<p>其标准形式为</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\033[n1 [;n2 [;…]] m
+</code></pre></div></div>
+
+<p>n1,n2,n3为设置的值。其含义为</p>
+
+<p>以下参考了博客<a href="https://www.cnblogs.com/crabxx/p/4046498.html">Linux终端和win32控制台文本颜色输出</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>编码</strong></th>
+      <th><strong>说明</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>关闭所有格式，还原为初始状态</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>粗体/高亮显示</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>模糊（<strong>※</strong>）</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>斜体（<strong>※</strong>）</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>下划线（单线）</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>闪烁（慢）</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>闪烁（快）（<strong>※</strong>）</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>交换背景色与前景色</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>隐藏（伸手不见五指，啥也看不见）（<strong>※</strong>）</td>
+    </tr>
+    <tr>
+      <td>30-37</td>
+      <td>前景色，即30+x，x表示不同的颜色（参见下面的“颜色表”）</td>
+    </tr>
+    <tr>
+      <td>40-47</td>
+      <td>背景色，即40+x，x表示不同的颜色（参见下面的“颜色表”）</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>注：（1）其中含有（※）标注的编码表示不是所有的终端仿真器都支持，只有少数仿真器支持。</p>
+
+  <p>​    （2）多个SGR参数可以组合使用，例如：echo -e “\x1b[31;4mRed Underline Text\e[0m”输出红色下划线字体“Red Underline Text”。</p>
+</blockquote>
+
+<p>颜色表：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>颜色值</strong>x</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>颜色</strong></td>
+      <td>黑</td>
+      <td>红</td>
+      <td>绿</td>
+      <td>黄</td>
+      <td>蓝</td>
+      <td>紫</td>
+      <td>青</td>
+      <td>白</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>这样的话<code class="highlighter-rouge">\033[1;31;43m</code>中1代表粗体高亮显示，31代表前景色为红色，43代表背景色为黄色。</p>
+
+<p>另外</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def esc(code=0):
+    return f'\033[{code}m'
+</code></pre></div></div>
+
+<p>是将其封装了起来，只需要填入控制颜色的数字字符串就行，比如<code class="highlighter-rouge">'1;31;43'</code></p>
+
+<blockquote>
+  <p>注：1、输入为字符串格式；2、每个数字之间用分号连接</p>
+</blockquote>
+
+<p>然后，<code class="highlighter-rouge">f'\033[{code}m'</code>是什么意思呢？</p>
+
+<blockquote>
+  <ul>
+    <li>字符串前加 u表示后面字符串以 Unicode 格式 进行编码，一般用在中文字符串前面，防止因为源码储存格式问题，导致再次使用时出现乱码。不过一般情况下Python默认编码是utf-8。支持中文字符，所以一般不用专门加u</li>
+    <li>字符串前加 r表示不使用转义字符，比如’\n‘就是’\n‘，不转义为换行了。</li>
+    <li>字符串前加 b，表示以bytes类型储存字符串。一般用来发送数据流。服务器和硬件开发可能用得到。</li>
+    <li>字符串前加 f表示在字符串内支持大括号内的python 表达式</li>
+  </ul>
+</blockquote>
+
+<p>所以<code class="highlighter-rouge">f'\033[{code}m'</code>表示先执行code会输出code表示的字符串，（code默认为0，输出为字符串0），然后与其他部分拼接到一块，形成<code class="highlighter-rouge">f'\033['1;31;43'm'</code></p>
+
+<h2 id="2在python中使用定时器">2、在Python中使用定时器</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">schedule</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">job</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"I'm working..."</span><span class="p">)</span>
+
+<span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">minutes</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span> <span class="c1">#每隔十分钟执行一次job
+</span><span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每隔十秒钟执行一次job
+</span>
+<span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">hour</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每隔十秒钟执行一次job
+</span><span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">day</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s">"10:30"</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每天10:30执行一次job
+</span><span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">monday</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每周一执行一次job
+</span><span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">wednesday</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s">"13:15"</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每周三13:15执行一次job
+</span><span class="n">schedule</span><span class="o">.</span><span class="n">every</span><span class="p">()</span><span class="o">.</span><span class="n">minute</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="s">":17"</span><span class="p">)</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">job</span><span class="p">)</span><span class="c1">#每分钟的第17秒执行一次job
+</span>
+
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">schedule</span><span class="o">.</span><span class="n">run_pending</span><span class="p">()</span><span class="c1">##执行到时间的任务
+</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="c1">#每隔一秒检测一次
+</span></code></pre></div></div>
+
+<h2 id="3实现一个进度条">3、实现一个进度条</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="n">percent</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">percent</span> <span class="o">//</span> <span class="mi">100</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">left</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">['</span><span class="p">,</span> <span class="s">'#'</span> <span class="o">*</span> <span class="n">left</span><span class="p">,</span> <span class="s">' '</span> <span class="o">*</span> <span class="n">right</span><span class="p">,</span> <span class="s">']'</span><span class="p">,</span><span class="c1">#\r是转义字符回车
+</span>          <span class="n">f</span><span class="s">' {percent:.0f}</span><span class="si">%</span><span class="s">'</span><span class="p">,</span>
+          <span class="n">sep</span><span class="o">=</span><span class="s">''</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="c1">#sep是分割字符(默认为空格)，end是结尾字符(默认为换行)flush是刷新控制台的字符，这是实现进度条的核心所在
+</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">101</span><span class="p">):</span>
+    <span class="n">progress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="c1">#从1%到100%
+</span>    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>默认 flush = False，不刷新，print 到 f 中的内容先存到内存中；而当 flush = True 时它会立即把内容刷新并输出。</p>
+
+  <p>之前在<a href="http://mp.weixin.qq.com/s?__biz=MzU0NDQ2OTkzNw==&amp;mid=2247484167&amp;idx=1&amp;sn=74fb621635a3d339f340ae0b2043ca2c&amp;chksm=fb7ae5d9cc0d6ccfb3ac76e09aad8bb6c45468a70190327d5bb0957d129c47e2b891648733c6&amp;scene=21#wechat_redirect">Python 下载夏目友人帐</a>中提到饿的 tqdm 模块，更好的实现一个进度条.（还有实现下载视频），抽空实现一下下载视频这种大文件。</p>
+</blockquote>
+
+<h2 id="4优雅的打印嵌套类型数据">4、优雅的打印嵌套类型数据</h2>
+
+<p>不一定用得到，就是为了好看而已。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#第一种实现方法
+</span><span class="kn">import</span> <span class="nn">json</span>
+<span class="n">my_mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s">'a'</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s">'c'</span><span class="p">:</span> <span class="mh">0xc0ffee</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">my_mapping</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="c1">#第二种实现方法
+</span><span class="kn">import</span> <span class="nn">pprint</span>
+<span class="n">my_mapping</span> <span class="o">=</span> <span class="p">[{</span><span class="s">'a'</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s">'c'</span><span class="p">:</span> <span class="mh">0xc0ffee</span><span class="p">},{</span><span class="s">'a'</span><span class="p">:</span> <span class="mi">231</span><span class="p">,</span> <span class="s">'b'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s">'c'</span><span class="p">:</span> <span class="mh">0xc0ffee</span><span class="p">}]</span>
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">my_mapping</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>本文主要参考了<a href="https://mp.weixin.qq.com/s?__biz=MzU0OTU5OTI4MA==&amp;mid=2247486980&amp;idx=1&amp;sn=2aa80bb9dbb46617e5bf9b96a1016b2e&amp;chksm=fbac2f5bccdba64d66ae35ed614659da20530753cda2e45d55624f8803d48480a311bd040b45&amp;mpshare=1&amp;scene=1&amp;srcid=&amp;sharer_sharetime=1566193013213&amp;sharer_shareid=89970315c44f2820655652f22c5827c2#rd">别再说学习无趣了，跟你分享这 8 条 Python 奇技淫巧！</a>,其他我觉得并没什么用。所以不做过多陈述了</p>
+
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/08/14/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E6%95%B4%E7%90%86/" class="pre"><i class="icon-post-pre"> 王道《计算机网络》思维导图整理</i></a>
+         
+        <a href="/2019/08/20/%E9%83%91%E5%90%9B%E9%87%8C%E4%BF%A1%E5%8F%B7%E4%B8%8E%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/" class="next">郑君里信号与系统知识点整理 <i
+                class="icon-post-next"></i></a>
+        
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (12)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#通识讲座">通识讲座 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#论文精读">论文精读 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OringinManuals">OringinManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (1)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>

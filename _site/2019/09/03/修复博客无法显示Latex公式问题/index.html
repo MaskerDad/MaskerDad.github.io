@@ -1,0 +1,655 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>修复博客无法显示LaTex公式的问题 | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="修复博客无法显示LaTex公式的问题在我现在使用的博客模板中，md文件中$...$或$$...$$中的公式均无法正常编译为网页。今天偶然想到这个问题，找到了一个解决方法。感谢大佬的文章写数学 Blog即在_includes/blog/header.html中加上&lt;!-- mathjax config sim...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">修复博客无法显示LaTex公式的问题</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">修复博客无法显示LaTex公式的问题</h1>
+        <p class="post-meta">
+            <time datetime="2019-09-03T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Sep 3, 2019</i>
+            </time>
+              |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Essential Skill">Essential Skill</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/09/03/%E4%BF%AE%E5%A4%8D%E5%8D%9A%E5%AE%A2%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BALatex%E5%85%AC%E5%BC%8F%E9%97%AE%E9%A2%98/ class="leancloud-visitors" data-flag-title=修复博客无法显示LaTex公式的问题>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="修复博客无法显示latex公式的问题">修复博客无法显示LaTex公式的问题</h1>
+
+<p>在我现在使用的博客模板中，md文件中<code class="highlighter-rouge">$...$</code>或<code class="highlighter-rouge">$$...$$</code>中的公式均无法正常编译为网页。今天偶然想到这个问题，找到了一个解决方法。感谢大佬的文章<a href="https://zhangnew.com/Typora-Hexo.html">写数学 Blog</a></p>
+
+<p>即在<code class="highlighter-rouge">_includes/blog/header.html</code>中加上</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
+<span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+  <span class="na">jax</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">input/TeX</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">output/HTML-CSS</span><span class="dl">"</span><span class="p">],</span>
+  <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">]</span> <span class="p">],</span>
+    <span class="na">displayMath</span><span class="p">:</span> <span class="p">[</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">$$</span><span class="dl">'</span><span class="p">]],</span>
+    <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">skipTags</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">noscript</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">textarea</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">pre</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">code</span><span class="dl">'</span><span class="p">]</span>
+  <span class="p">},</span>
+  <span class="na">messageStyle</span><span class="p">:</span> <span class="dl">"</span><span class="s2">none</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">preferredFont</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TeX</span><span class="dl">"</span><span class="p">,</span> <span class="na">availableFonts</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">STIX</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">TeX</span><span class="dl">"</span><span class="p">]</span> <span class="p">}</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+1
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>原理就是加载js渲染数学公式。</p>
+
+<blockquote>
+  <p>可能你的博客模板中不是<code class="highlighter-rouge">_includes/blog/header.html</code>，只需要找到head.html类似的定义HTML头部的文件即可。比如<code class="highlighter-rouge">/_includes/custom/head.html</code></p>
+
+  <p>然后将上述代码复制粘贴到最后面即可。</p>
+</blockquote>
+
+<p>便可正常看待数学公式，比如</p>
+
+<script type="math/tex; mode=display">x^2+y^2=1</script>
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/09/03/2019%E4%B8%96%E7%95%8C%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%A7%E4%BC%9A%E5%B1%95%E8%A7%88/" class="pre"><i class="icon-post-pre"> 2019世界人工智能大会展览</i></a>
+         
+        <a href="/2019/09/04/Origin%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%AA%97%E5%8F%A3%E7%BC%96%E8%BE%91/" class="next">Origin之数据窗口编辑 <i
+                class="icon-post-next"></i></a>
+        
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (12)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#通识讲座">通识讲座 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#论文精读">论文精读 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OringinManuals">OringinManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (1)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>

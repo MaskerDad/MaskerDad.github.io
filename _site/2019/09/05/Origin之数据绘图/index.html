@@ -1,0 +1,1886 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>Origin之数据绘图 | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="Origin系列教程——数据绘图  Origin系列教程——数据绘图          一、二维图形绘制                  1、选中列绘制                    二、Origin内置二维图概述                  WorkBook对应的二维图          第一类...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">Origin之数据绘图</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Origin之数据绘图</h1>
+        <p class="post-meta">
+            <time datetime="2019-09-05T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Sep 5, 2019</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
+            
+                <a href="/category/#OriginManuals">OriginManuals</a>
+            
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Essential Skill">Essential Skill</a>
+            
+                <a href="/tags/#Science Paper">Science Paper</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/09/05/Origin%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE/ class="leancloud-visitors" data-flag-title=Origin之数据绘图>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="origin系列教程数据绘图">Origin系列教程——数据绘图</h1>
+
+<ul class="toc" id="markdown-toc">
+  <li><a href="#origin系列教程数据绘图" id="markdown-toc-origin系列教程数据绘图">Origin系列教程——数据绘图</a>    <ul>
+      <li><a href="#一二维图形绘制" id="markdown-toc-一二维图形绘制">一、二维图形绘制</a>        <ul>
+          <li><a href="#1选中列绘制" id="markdown-toc-1选中列绘制">1、选中列绘制</a></li>
+        </ul>
+      </li>
+      <li><a href="#二origin内置二维图概述" id="markdown-toc-二origin内置二维图概述">二、Origin内置二维图概述</a>        <ul>
+          <li><a href="#workbook对应的二维图" id="markdown-toc-workbook对应的二维图">WorkBook对应的二维图</a></li>
+          <li><a href="#第一类-线图line" id="markdown-toc-第一类-线图line">第一类 线图(Line)</a>            <ul>
+              <li><a href="#1普通线图line" id="markdown-toc-1普通线图line">1、普通线图(Line)</a></li>
+              <li><a href="#2水平阶梯图horizontal-step与垂直阶梯图vertical-step" id="markdown-toc-2水平阶梯图horizontal-step与垂直阶梯图vertical-step">2、水平阶梯图(Horizontal Step)与垂直阶梯图(Vertical Step)</a></li>
+              <li><a href="#3样条线图spline" id="markdown-toc-3样条线图spline">3、样条线图（Spline）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第二类-符号图symbol" id="markdown-toc-第二类-符号图symbol">第二类 符号图(Symbol)</a>            <ul>
+              <li><a href="#1散点图scatter" id="markdown-toc-1散点图scatter">1、散点图(Scatter)</a></li>
+              <li><a href="#2y误差线图y-error" id="markdown-toc-2y误差线图y-error">2、Y误差线图（Y Error）</a></li>
+              <li><a href="#3xy误差线图xy-error" id="markdown-toc-3xy误差线图xy-error">3、XY误差线图（XY Error）</a></li>
+              <li><a href="#4垂线图vertical-drop-line" id="markdown-toc-4垂线图vertical-drop-line">4、垂线图（Vertical Drop Line）</a></li>
+              <li><a href="#5气泡图bubble" id="markdown-toc-5气泡图bubble">5、气泡图（Bubble）</a></li>
+              <li><a href="#6颜色映射图color-mapped" id="markdown-toc-6颜色映射图color-mapped">6、颜色映射图（Color Mapped）</a></li>
+              <li><a href="#7气泡和颜色映射图bubblecolor-mapped" id="markdown-toc-7气泡和颜色映射图bubblecolor-mapped">7、气泡和颜色映射图（Bubble+Color Mapped）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第三类-线符号图line-symbol" id="markdown-toc-第三类-线符号图line-symbol">第三类 线符号图（Line +Symbol）</a>            <ul>
+              <li><a href="#1普通线图linesymbol" id="markdown-toc-1普通线图linesymbol">1、普通线图（Line+Symbol）</a></li>
+              <li><a href="#2线序列图line-series" id="markdown-toc-2线序列图line-series">2、线序列图(Line Series)</a></li>
+              <li><a href="#3两点线段图2-point-segment" id="markdown-toc-3两点线段图2-point-segment">3、两点线段图（2 Point Segment）</a></li>
+              <li><a href="#4三点线段图3-point-segment" id="markdown-toc-4三点线段图3-point-segment">4、三点线段图（3 Point Segment）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第四类-柱条图columnsbar" id="markdown-toc-第四类-柱条图columnsbar">第四类 柱条图（Columns|Bar）</a>            <ul>
+              <li><a href="#1柱形图column" id="markdown-toc-1柱形图column">1、柱形图（Column）</a></li>
+              <li><a href="#2条状图bar" id="markdown-toc-2条状图bar">2、条状图（Bar）</a></li>
+              <li><a href="#3堆叠柱状图stack-column" id="markdown-toc-3堆叠柱状图stack-column">3、堆叠柱状图（Stack Column）</a></li>
+              <li><a href="#3堆叠条状图stack-bar" id="markdown-toc-3堆叠条状图stack-bar">3、堆叠条状图（Stack Bar）</a></li>
+              <li><a href="#5浮动柱状图floating-column" id="markdown-toc-5浮动柱状图floating-column">5、浮动柱状图（Floating Column）</a></li>
+              <li><a href="#6浮动条状图floating-bar" id="markdown-toc-6浮动条状图floating-bar">6、浮动条状图（Floating Bar）</a></li>
+              <li><a href="#7饼图pie" id="markdown-toc-7饼图pie">7、饼图（Pie）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第五类-多曲线图multi-curve" id="markdown-toc-第五类-多曲线图multi-curve">第五类 多曲线图（Multi-Curve）</a>            <ul>
+              <li><a href="#1双y轴图double-y" id="markdown-toc-1双y轴图double-y">1、双Y轴图（Double-Y）</a></li>
+              <li><a href="#2y偏移的堆叠线图stack-lines-by-y-offsets" id="markdown-toc-2y偏移的堆叠线图stack-lines-by-y-offsets">2、Y偏移的堆叠线图（Stack Lines by Y Offsets）</a></li>
+              <li><a href="#3瀑布图waterfall" id="markdown-toc-3瀑布图waterfall">3、瀑布图（Waterfall）</a></li>
+              <li><a href="#4垂直两屏排列图vertical-2-panel" id="markdown-toc-4垂直两屏排列图vertical-2-panel">4、垂直两屏排列图（Vertical 2 Panel）</a></li>
+              <li><a href="#5水平两屏排列图horizontal-2-panel" id="markdown-toc-5水平两屏排列图horizontal-2-panel">5、水平两屏排列图（Horizontal 2 Panel）</a></li>
+              <li><a href="#6四屏排列图4-panel" id="markdown-toc-6四屏排列图4-panel">6、四屏排列图（4 Panel）</a></li>
+              <li><a href="#7九屏排列图9-panel" id="markdown-toc-7九屏排列图9-panel">7、九屏排列图（9 Panel）</a></li>
+              <li><a href="#8堆叠图stack" id="markdown-toc-8堆叠图stack">8、堆叠图（Stack）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第六类-统计图statistics" id="markdown-toc-第六类-统计图statistics">第六类 统计图（Statistics）</a>            <ul>
+              <li><a href="#1箱图box-chart" id="markdown-toc-1箱图box-chart">1、箱图（Box Chart）</a></li>
+              <li><a href="#2直方图histogram" id="markdown-toc-2直方图histogram">2、直方图（Histogram）</a></li>
+              <li><a href="#3直方概率图histogramprobabilities" id="markdown-toc-3直方概率图histogramprobabilities">3、直方概率图（Histogram+Probabilities）</a></li>
+              <li><a href="#4堆叠直方图stacked-histograms" id="markdown-toc-4堆叠直方图stacked-histograms">4、堆叠直方图（Stacked Histograms）</a></li>
+              <li><a href="#5qc质量控制图qcx-bar-rchart" id="markdown-toc-5qc质量控制图qcx-bar-rchart">5、QC质量控制图（QC（X bar R）Chart）</a></li>
+              <li><a href="#6分散矩阵图scatter-martrix" id="markdown-toc-6分散矩阵图scatter-martrix">6、分散矩阵图（Scatter Martrix）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第七类-面积图area" id="markdown-toc-第七类-面积图area">第七类 面积图（Area）</a>            <ul>
+              <li><a href="#1面积图area" id="markdown-toc-1面积图area">1、面积图（Area）</a></li>
+              <li><a href="#2填充面积图fill-area" id="markdown-toc-2填充面积图fill-area">2、填充面积图（Fill Area）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第八类-等高线图contour" id="markdown-toc-第八类-等高线图contour">第八类 等高线图（Contour）</a>            <ul>
+              <li><a href="#1xyz直角坐标等高线图xyz-contour" id="markdown-toc-1xyz直角坐标等高线图xyz-contour">1、XYZ直角坐标等高线图（XYZ Contour）</a></li>
+              <li><a href="#2rtheta-z极坐标等高线图rx-thetay-z-polar-contour" id="markdown-toc-2rtheta-z极坐标等高线图rx-thetay-z-polar-contour">2、$r\theta Z$极坐标等高线图(r(X) theta(Y) Z Polar Contour)</a></li>
+            </ul>
+          </li>
+          <li><a href="#第九类-特殊图形specialized" id="markdown-toc-第九类-特殊图形specialized">第九类 特殊图形(Specialized)</a>            <ul>
+              <li><a href="#1极坐标图polar-rx-thetay" id="markdown-toc-1极坐标图polar-rx-thetay">1、极坐标图（Polar r(X) theta(Y)）</a></li>
+              <li><a href="#2三角图ternary" id="markdown-toc-2三角图ternary">2、三角图（Ternary）</a></li>
+              <li><a href="#3史密斯图smith-chart" id="markdown-toc-3史密斯图smith-chart">3、史密斯图（Smith Chart）</a></li>
+              <li><a href="#4高低图high-low-close" id="markdown-toc-4高低图high-low-close">4、高低图（High-Low-Close）</a></li>
+              <li><a href="#5xyam矢量图vector-xyam" id="markdown-toc-5xyam矢量图vector-xyam">5、XYAM矢量图（Vector XYAM）</a></li>
+              <li><a href="#6xyxy矢量图vector-xyxy" id="markdown-toc-6xyxy矢量图vector-xyxy">6、XYXY矢量图（Vector XYXY）</a></li>
+              <li><a href="#7缩放图zoom" id="markdown-toc-7缩放图zoom">7、缩放图（Zoom）</a></li>
+            </ul>
+          </li>
+          <li><a href="#matrix对应的二维图" id="markdown-toc-matrix对应的二维图">Matrix对应的二维图</a></li>
+          <li><a href="#第一类-统计图statistics" id="markdown-toc-第一类-统计图statistics">第一类 统计图（Statistics）</a>            <ul>
+              <li><a href="#1直方图histogram" id="markdown-toc-1直方图histogram">1、直方图（Histogram）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第二类-等高线图contour" id="markdown-toc-第二类-等高线图contour">第二类 等高线图（Contour）</a>            <ul>
+              <li><a href="#1等高线图contour--bw-lines-" id="markdown-toc-1等高线图contour--bw-lines-">1、等高线图（Contour -B/W Lines+ …）</a></li>
+              <li><a href="#2灰度映射等高线图gray-scale-map" id="markdown-toc-2灰度映射等高线图gray-scale-map">2、灰度映射等高线图（Gray Scale Map）</a></li>
+              <li><a href="#3颜色填充等高线图contour---color" id="markdown-toc-3颜色填充等高线图contour---color">3、颜色填充等高线图（Contour - Color）</a></li>
+              <li><a href="#4剖面图profiles" id="markdown-toc-4剖面图profiles">4、剖面图（Profiles）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第三类-影像图image" id="markdown-toc-第三类-影像图image">第三类 影像图（Image）</a>            <ul>
+              <li><a href="#1影像图image-plot" id="markdown-toc-1影像图image-plot">1、影像图（Image Plot）</a></li>
+              <li><a href="#2剖面图" id="markdown-toc-2剖面图">2、剖面图</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#三绘图细节设置" id="markdown-toc-三绘图细节设置">三、绘图细节设置</a>        <ul>
+          <li><a href="#图形窗口属性设置" id="markdown-toc-图形窗口属性设置">图形窗口属性设置</a>            <ul>
+              <li><a href="#1版面规格设置printdimensions" id="markdown-toc-1版面规格设置printdimensions">1、版面规格设置（Print/Dimensions）</a></li>
+              <li><a href="#2杂项设置miscellaneous" id="markdown-toc-2杂项设置miscellaneous">2、杂项设置（Miscellaneous）</a></li>
+              <li><a href="#3显示设置display" id="markdown-toc-3显示设置display">3、显示设置（Display）</a></li>
+              <li><a href="#4图例标题设置legendstitles" id="markdown-toc-4图例标题设置legendstitles">4、图例标题设置（Legends/Titles）</a></li>
+            </ul>
+          </li>
+          <li><a href="#当前图层属性设置" id="markdown-toc-当前图层属性设置">当前图层属性设置</a>            <ul>
+              <li><a href="#1背景边框设置background" id="markdown-toc-1背景边框设置background">1、背景边框设置(Background)</a></li>
+              <li><a href="#2尺寸加速设置sizespeed" id="markdown-toc-2尺寸加速设置sizespeed">2、尺寸加速设置(Size/Speed)</a></li>
+              <li><a href="#3显示设置display-1" id="markdown-toc-3显示设置display-1">3、显示设置（Display）</a></li>
+              <li><a href="#4堆叠设置stack" id="markdown-toc-4堆叠设置stack">4、堆叠设置（Stack）</a></li>
+              <li><a href="#5链接坐标轴比例设置link-axes-scales" id="markdown-toc-5链接坐标轴比例设置link-axes-scales">5、链接坐标轴比例设置（Link Axes Scales）</a></li>
+            </ul>
+          </li>
+          <li><a href="#图形设置" id="markdown-toc-图形设置">图形设置</a>            <ul>
+              <li><a href="#1点线图线设置line" id="markdown-toc-1点线图线设置line">1、点线图——线设置（Line）</a></li>
+              <li><a href="#2点线图符号设置symbol" id="markdown-toc-2点线图符号设置symbol">2、点线图——符号设置（Symbol）</a></li>
+              <li><a href="#3点线图引线设置drop-lines" id="markdown-toc-3点线图引线设置drop-lines">3、点线图——引线设置（Drop Lines）</a></li>
+              <li><a href="#4点线图组设置group" id="markdown-toc-4点线图组设置group">4、点线图——组设置（Group）</a></li>
+              <li><a href="#5误差线图误差柱设置error-bar" id="markdown-toc-5误差线图误差柱设置error-bar">5、误差线图——误差柱设置（Error Bar）</a></li>
+              <li><a href="#6气泡颜色映射图颜色映射设置color-map" id="markdown-toc-6气泡颜色映射图颜色映射设置color-map">6、气泡颜色映射图——颜色映射设置（Color Map）</a></li>
+              <li><a href="#7气泡颜色映射图数值格式numeric-formats" id="markdown-toc-7气泡颜色映射图数值格式numeric-formats">7、气泡颜色映射图——数值格式（Numeric Formats）</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#四坐标轴设置" id="markdown-toc-四坐标轴设置">四、坐标轴设置</a>        <ul>
+          <li><a href="#坐标轴刻度线的有关设置" id="markdown-toc-坐标轴刻度线的有关设置">坐标轴刻度线的有关设置</a>            <ul>
+              <li><a href="#1样式设置scale" id="markdown-toc-1样式设置scale">1、样式设置（Scale）</a></li>
+              <li><a href="#2标题格式设置titleformat" id="markdown-toc-2标题格式设置titleformat">2、标题格式设置（Title&amp;Format）</a></li>
+              <li><a href="#3网格线设置grid-lines" id="markdown-toc-3网格线设置grid-lines">3、网格线设置（Grid Lines）</a></li>
+              <li><a href="#4断点设置break" id="markdown-toc-4断点设置break">4、断点设置（Break）</a></li>
+            </ul>
+          </li>
+          <li><a href="#坐标轴刻度线标签设置" id="markdown-toc-坐标轴刻度线标签设置">坐标轴刻度线标签设置</a>            <ul>
+              <li><a href="#5标签格式tick-lables" id="markdown-toc-5标签格式tick-lables">5、标签格式（Tick Lables）</a></li>
+              <li><a href="#6副刻度线标签minor-tick-label" id="markdown-toc-6副刻度线标签minor-tick-label">6、副刻度线标签（Minor Tick Label）</a></li>
+              <li><a href="#7自定义轴标记custom-tick-label" id="markdown-toc-7自定义轴标记custom-tick-label">7、自定义轴标记（Custom Tick Label）</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#五图例文本设置" id="markdown-toc-五图例文本设置">五、图例文本设置</a>        <ul>
+          <li><a href="#1图例设置-右键-properties" id="markdown-toc-1图例设置-右键-properties">1、图例设置 右键-&gt;Properties</a>            <ul>
+              <li><a href="#01格式代码" id="markdown-toc-01格式代码">01.格式代码</a></li>
+              <li><a href="#02地址代码" id="markdown-toc-02地址代码">02.地址代码</a></li>
+              <li><a href="#03指代代码" id="markdown-toc-03指代代码">03.指代代码</a></li>
+            </ul>
+          </li>
+          <li><a href="#2程序控制-右键-properties" id="markdown-toc-2程序控制-右键-properties">2、程序控制 右键-&gt;Properties</a></li>
+        </ul>
+      </li>
+      <li><a href="#六多图层图形绘制" id="markdown-toc-六多图层图形绘制">六、多图层图形绘制</a>        <ul>
+          <li><a href="#1新建图层" id="markdown-toc-1新建图层">1、新建图层</a></li>
+          <li><a href="#2设置图层位置" id="markdown-toc-2设置图层位置">2、设置图层位置</a></li>
+          <li><a href="#3在新建的图层里绘制图形" id="markdown-toc-3在新建的图层里绘制图形">3、在新建的图层里绘制图形</a></li>
+          <li><a href="#4分解混合图层" id="markdown-toc-4分解混合图层">4、分解/混合图层</a></li>
+          <li><a href="#5图层管理" id="markdown-toc-5图层管理">5、图层管理</a>            <ul>
+              <li><a href="#01新建图层add" id="markdown-toc-01新建图层add">01.新建图层（Add）</a></li>
+              <li><a href="#02图层排列arrange" id="markdown-toc-02图层排列arrange">02.图层排列（Arrange）</a></li>
+              <li><a href="#03尺寸位置sizeposition" id="markdown-toc-03尺寸位置sizeposition">03.尺寸位置（Size/position）</a></li>
+              <li><a href="#04图层连接link" id="markdown-toc-04图层连接link">04.图层连接（Link）</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#七图层工具的使用" id="markdown-toc-七图层工具的使用">七、图层工具的使用</a>        <ul>
+          <li><a href="#1tools工具栏" id="markdown-toc-1tools工具栏">1、Tools工具栏</a></li>
+          <li><a href="#2graph工具栏" id="markdown-toc-2graph工具栏">2、Graph工具栏</a></li>
+          <li><a href="#3mask工具栏" id="markdown-toc-3mask工具栏">3、Mask工具栏</a></li>
+          <li><a href="#4object-edit工具栏" id="markdown-toc-4object-edit工具栏">4、Object Edit工具栏</a></li>
+        </ul>
+      </li>
+      <li><a href="#八主题绘图和模板绘图" id="markdown-toc-八主题绘图和模板绘图">八、主题绘图和模板绘图</a>        <ul>
+          <li><a href="#1主题绘图-tool-theme-organizer" id="markdown-toc-1主题绘图-tool-theme-organizer">1、主题绘图 Tool-&gt;Theme Organizer…</a></li>
+          <li><a href="#3模板绘图" id="markdown-toc-3模板绘图">3、模板绘图</a></li>
+        </ul>
+      </li>
+      <li><a href="#九excel窗口绘图" id="markdown-toc-九excel窗口绘图">九、Excel窗口绘图</a></li>
+      <li><a href="#十函数窗口绘图" id="markdown-toc-十函数窗口绘图">十、函数窗口绘图</a></li>
+      <li><a href="#十一建立矩阵文件" id="markdown-toc-十一建立矩阵文件">十一、建立矩阵文件</a>        <ul>
+          <li><a href="#1set-dimensions" id="markdown-toc-1set-dimensions">1、Set Dimensions…</a></li>
+          <li><a href="#2set-properties" id="markdown-toc-2set-properties">2、Set Properties…</a></li>
+          <li><a href="#3set-values" id="markdown-toc-3set-values">3、Set Values…</a></li>
+          <li><a href="#4矩阵窗口和工作表窗口的数据转换" id="markdown-toc-4矩阵窗口和工作表窗口的数据转换">4、矩阵窗口和工作表窗口的数据转换</a>            <ul>
+              <li><a href="#--工作表窗口-矩阵窗口" id="markdown-toc---工作表窗口-矩阵窗口">- 工作表窗口-&gt;矩阵窗口</a></li>
+              <li><a href="#01-直接转换direct" id="markdown-toc-01-直接转换direct">01. 直接转换（Direct）</a></li>
+              <li><a href="#02扩展转换expand" id="markdown-toc-02扩展转换expand">02.扩展转换（Expand）</a></li>
+              <li><a href="#03xyz网格转换" id="markdown-toc-03xyz网格转换">03.XYZ网格转换</a></li>
+              <li><a href="#--矩阵窗口-工作表窗口" id="markdown-toc---矩阵窗口-工作表窗口">- 矩阵窗口-&gt;工作表窗口</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#十二origin内置三维图形概述" id="markdown-toc-十二origin内置三维图形概述">十二、Origin内置三维图形概述</a>        <ul>
+          <li><a href="#workbook对应的三维图" id="markdown-toc-workbook对应的三维图">WorkBook对应的三维图</a></li>
+          <li><a href="#第一类-3dxyy图3d-xyy" id="markdown-toc-第一类-3dxyy图3d-xyy">第一类 3DXYY图（3D XYY）</a>            <ul>
+              <li><a href="#13d瀑布图3d-waterfall" id="markdown-toc-13d瀑布图3d-waterfall">1、3D瀑布图（3D Waterfall）</a></li>
+              <li><a href="#23d墙壁图3d-walls" id="markdown-toc-23d墙壁图3d-walls">2、3D墙壁图（3D Walls）</a></li>
+              <li><a href="#33d带状图3d-ribbons" id="markdown-toc-33d带状图3d-ribbons">3、3D带状图（3D Ribbons）</a></li>
+              <li><a href="#43d条状图3d-bars" id="markdown-toc-43d条状图3d-bars">4、3D条状图（3D Bars）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第二类-3dxyz图3d-xyz" id="markdown-toc-第二类-3dxyz图3d-xyz">第二类 3DXYZ图（3D XYZ）</a>            <ul>
+              <li><a href="#13d散点图3d-scatter" id="markdown-toc-13d散点图3d-scatter">1、3D散点图（3D Scatter）</a></li>
+              <li><a href="#23d轨迹图3d-trajectory" id="markdown-toc-23d轨迹图3d-trajectory">2、3D轨迹图（3D Trajectory）</a></li>
+            </ul>
+          </li>
+          <li><a href="#matrix对应的三维图" id="markdown-toc-matrix对应的三维图">Matrix对应的三维图</a></li>
+          <li><a href="#第一类-3d表面图3d-surface" id="markdown-toc-第一类-3d表面图3d-surface">第一类 3D表面图（3D Surface）</a>            <ul>
+              <li><a href="#1颜色填充表面图color-fill-surface" id="markdown-toc-1颜色填充表面图color-fill-surface">1、颜色填充表面图（Color FIll Surface）</a></li>
+              <li><a href="#2x常量基线表面图x-constant-with-base" id="markdown-toc-2x常量基线表面图x-constant-with-base">2、X常量基线表面图（X Constant with Base）</a></li>
+              <li><a href="#2y常量基线表面图y-constant-with-base" id="markdown-toc-2y常量基线表面图y-constant-with-base">2、Y常量基线表面图（Y Constant with Base）</a></li>
+              <li><a href="#3颜色映射表面图color-map-surface" id="markdown-toc-3颜色映射表面图color-map-surface">3、颜色映射表面图（Color Map Surface）</a></li>
+            </ul>
+          </li>
+          <li><a href="#第二类-3d线条图3d-wires-and-bars" id="markdown-toc-第二类-3d线条图3d-wires-and-bars">第二类 3D线条图（3D Wires and Bars）</a>            <ul>
+              <li><a href="#1框架图wire-frame" id="markdown-toc-1框架图wire-frame">1、框架图（Wire Frame）</a></li>
+              <li><a href="#2线面图wire-surface" id="markdown-toc-2线面图wire-surface">2、线面图（Wire Surface）</a></li>
+              <li><a href="#3条图bars" id="markdown-toc-3条图bars">3、条图（Bars）</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#十三三维图形的绘图细节设置" id="markdown-toc-十三三维图形的绘图细节设置">十三、三维图形的绘图细节设置</a>        <ul>
+          <li><a href="#图层绘图设置" id="markdown-toc-图层绘图设置">图层绘图设置</a>            <ul>
+              <li><a href="#1杂项设置miscellaneous" id="markdown-toc-1杂项设置miscellaneous">1、杂项设置（Miscellaneous）</a></li>
+              <li><a href="#2坐标轴设置axis" id="markdown-toc-2坐标轴设置axis">2、坐标轴设置（Axis）</a></li>
+              <li><a href="#3平面设置plans" id="markdown-toc-3平面设置plans">3、平面设置（Plans）</a></li>
+            </ul>
+          </li>
+          <li><a href="#图形本身的图形细节设置" id="markdown-toc-图形本身的图形细节设置">图形本身的图形细节设置</a>            <ul>
+              <li><a href="#1边墙设置slide-walls" id="markdown-toc-1边墙设置slide-walls">1、边墙设置（Slide Walls）</a></li>
+              <li><a href="#2栅格设置grids" id="markdown-toc-2栅格设置grids">2、栅格设置（Grids）</a></li>
+              <li><a href="#3表面投影设置surfaceprojections" id="markdown-toc-3表面投影设置surfaceprojections">3、表面/投影设置（Surface/Projections）</a></li>
+            </ul>
+          </li>
+          <li><a href="#3d旋转工具栏3d-rotation" id="markdown-toc-3d旋转工具栏3d-rotation">3D旋转工具栏（3D Rotation）</a></li>
+          <li><a href="#加速模式设置speed" id="markdown-toc-加速模式设置speed">加速模式设置（Speed）</a></li>
+        </ul>
+      </li>
+      <li><a href="#十四页面布局与出图" id="markdown-toc-十四页面布局与出图">十四、页面布局与出图</a>        <ul>
+          <li><a href="#1页面布局layout" id="markdown-toc-1页面布局layout">1、页面布局（Layout）</a></li>
+          <li><a href="#2出图" id="markdown-toc-2出图">2、出图</a>            <ul>
+              <li><a href="#01ole技术共享" id="markdown-toc-01ole技术共享">01.OLE技术共享</a></li>
+              <li><a href="#02导出图片file--export-graph" id="markdown-toc-02导出图片file--export-graph">02.导出图片（File -&gt;Export Graph…）</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h2 id="一二维图形绘制">一、二维图形绘制</h2>
+
+<h3 id="1选中列绘制">1、选中列绘制</h3>
+
+<p><strong>绘制一个Workbook中的数据</strong></p>
+
+<p><img src="/images/posts/2019-09-05/line1.png" alt="" /></p>
+
+<blockquote>
+  <p>注意这里选中的两列的属性均为Y，所以直接使用X属性的A列作为X轴</p>
+</blockquote>
+
+<p>得到</p>
+
+<p><img src="/images/posts/2019-09-05/line1res.png" alt="" /></p>
+
+<blockquote>
+  <p>这里数据都是随机生成的</p>
+</blockquote>
+
+<p><strong>如果再加一个另外一个WorkBook中的一列数据呢？</strong></p>
+
+<p><img src="/images/posts/2019-09-05/line2.png" alt="" /></p>
+
+<blockquote>
+  <p>注意这里鼠标箭头用截图软件捕捉不到，自己试一下就可以看到了</p>
+</blockquote>
+
+<p>拖拽之后会弹出弹框</p>
+
+<p><img src="/images/posts/2019-09-05/line2res.png" alt="" /></p>
+
+<p>### 2、Plot-&gt;Line-&gt;Line图形设置对话框</p>
+
+<p>如果不提前选中需要绘制的列，便会弹出图形设置对话框</p>
+
+<p><img src="/images/posts/2019-09-05/line3.png" alt="" /></p>
+
+<p>要绘制图形的话</p>
+
+<p><img src="/images/posts/2019-09-05/line4.png" alt="" /></p>
+
+<p>然后点击确定即可，得到的图形与上面选中列绘制的结果完全相同</p>
+
+<blockquote>
+  <p>注意图层列表中可以设置Recale和show</p>
+</blockquote>
+
+<h2 id="二origin内置二维图概述">二、Origin内置二维图概述</h2>
+
+<h3 id="workbook对应的二维图">WorkBook对应的二维图</h3>
+
+<h3 id="第一类-线图line">第一类 线图(Line)</h3>
+
+<h4 id="1普通线图line">1、普通线图(Line)</h4>
+
+<p>适合大部分具有模拟域特征的数据作图</p>
+
+<p><img src="/images/posts/2019-09-05/fig1.png" alt="" /></p>
+
+<h4 id="2水平阶梯图horizontal-step与垂直阶梯图vertical-step">2、水平阶梯图(Horizontal Step)与垂直阶梯图(Vertical Step)</h4>
+
+<p>适合大部分具有数字域特征的数据作图</p>
+
+<blockquote>
+  <p>水平阶梯图相当于上升边触发器</p>
+
+  <p>垂直阶梯图相当于下降边触发器</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-09-05/fig2.png" alt="" /></p>
+
+<h4 id="3样条线图spline">3、样条线图（Spline）</h4>
+
+<p>数据之间过度较为平滑</p>
+
+<p><img src="/images/posts/2019-09-05/fig3.png" alt="" /></p>
+
+<h3 id="第二类-符号图symbol">第二类 符号图(Symbol)</h3>
+
+<h4 id="1散点图scatter">1、散点图(Scatter)</h4>
+
+<p>适用于所有离散特征的数据作图</p>
+
+<p><img src="/images/posts/2019-09-05/symbol1.png" alt="" /></p>
+
+<h4 id="2y误差线图y-error">2、Y误差线图（Y Error）</h4>
+
+<p>用来标注Y方向的误差限，相当于置信区间</p>
+
+<p><img src="/images/posts/2019-09-05/symbol2.png" alt="" /></p>
+
+<h4 id="3xy误差线图xy-error">3、XY误差线图（XY Error）</h4>
+
+<p>用来同时标注XY方向上的误差限</p>
+
+<p><img src="/images/posts/2019-09-05/symbol3.png" alt="" /></p>
+
+<h4 id="4垂线图vertical-drop-line">4、垂线图（Vertical Drop Line）</h4>
+
+<p>多用来表示数据频度的图形上</p>
+
+<p><img src="/images/posts/2019-09-05/symbol4.png" alt="" /></p>
+
+<h4 id="5气泡图bubble">5、气泡图（Bubble）</h4>
+
+<p>需要两个Y列，一个X列，基于样式的平面三维图形，第一个Y列构成曲线，第二个Y列构成气泡大小。这样便可以给出三个维度的信息</p>
+
+<p><img src="/images/posts/2019-09-05/symbol5.png" alt="" /></p>
+
+<h4 id="6颜色映射图color-mapped">6、颜色映射图（Color Mapped）</h4>
+
+<p>也是基于样式的平面三维图形，这时第二个Y列是以颜色变化来显示的。</p>
+
+<p><img src="/images/posts/2019-09-05/symbol6.png" alt="" /></p>
+
+<h4 id="7气泡和颜色映射图bubblecolor-mapped">7、气泡和颜色映射图（Bubble+Color Mapped）</h4>
+
+<p>基于样式的平面四维图形，需要一个X和三个Y列，其中，X列和第一个Y列构成平面曲线，第二个Y列以气泡大小表示，第三个Y列以颜色变化表示</p>
+
+<p><img src="/images/posts/2019-09-05/symbol7.png" alt="" /></p>
+
+<h3 id="第三类-线符号图line-symbol">第三类 线符号图（Line +Symbol）</h3>
+
+<h4 id="1普通线图linesymbol">1、普通线图（Line+Symbol）</h4>
+
+<p>只是普通线图加散点图的组合，数据点用散点图给出，相邻两数据点用直线连接</p>
+
+<p><img src="/images/posts/2019-09-05/line+symbol1.png" alt="" /></p>
+
+<h4 id="2线序列图line-series">2、线序列图(Line Series)</h4>
+
+<p>需要两个或三个Y列，不需要X列，用来表示两列或散列数据的匹配一致性的。（将处于同一行的数据用直线连接）</p>
+
+<p><img src="/images/posts/2019-09-05/line+symbol2.png" alt="" /></p>
+
+<p><img src="/images/posts/2019-09-05/line+symbol2_2.png" alt="" /></p>
+
+<h4 id="3两点线段图2-point-segment">3、两点线段图（2 Point Segment）</h4>
+
+<p>两个一组用直线连接</p>
+
+<p><img src="/images/posts/2019-09-05/line+symbol3.png" alt="" /></p>
+
+<h4 id="4三点线段图3-point-segment">4、三点线段图（3 Point Segment）</h4>
+
+<p><img src="/images/posts/2019-09-05/line+symbol4.png" alt="" /></p>
+
+<h3 id="第四类-柱条图columnsbar">第四类 柱条图（Columns|Bar）</h3>
+
+<p>一般都用来表示数据频度</p>
+
+<h4 id="1柱形图column">1、柱形图（Column）</h4>
+
+<p><img src="/images/posts/2019-09-05/columnsbar1.png" alt="" /></p>
+
+<h4 id="2条状图bar">2、条状图（Bar）</h4>
+
+<p>竖轴为X轴，横轴为Y轴</p>
+
+<p><img src="/images/posts/2019-09-05/columnsbar2.png" alt="" /></p>
+
+<h4 id="3堆叠柱状图stack-column">3、堆叠柱状图（Stack Column）</h4>
+
+<p>至少两列Y列，各个Y列之间产生堆叠效果</p>
+
+<p><img src="/images/posts/2019-09-05/columnsbar3.png" alt="" /></p>
+
+<h4 id="3堆叠条状图stack-bar">3、堆叠条状图（Stack Bar）</h4>
+
+<p><img src="/images/posts/2019-09-05/columnsbar4.png" alt="" /></p>
+
+<h4 id="5浮动柱状图floating-column">5、浮动柱状图（Floating Column）</h4>
+
+<p>需要一个X列和两个Y列，第一个Y列确定柱的起点，第二个Y列确定柱的终点</p>
+
+<p><img src="/images/posts/2019-09-05/columnsbar5.png" alt="" /></p>
+
+<h4 id="6浮动条状图floating-bar">6、浮动条状图（Floating Bar）</h4>
+
+<p><img src="/images/posts/2019-09-05/columnsbar6.png" alt="" /></p>
+
+<h4 id="7饼图pie">7、饼图（Pie）</h4>
+
+<p>表示数据的相对比例大小</p>
+
+<p>只能选择一个X列一个Y列，X表示数据元素，仅表示数据名称，Y列是对应元素的相对比例</p>
+
+<p><img src="/images/posts/2019-09-05/columnsbar7.png" alt="" /></p>
+
+<h3 id="第五类-多曲线图multi-curve">第五类 多曲线图（Multi-Curve）</h3>
+
+<p>建立在多个图层之上，实现更丰富的变化</p>
+
+<h4 id="1双y轴图double-y">1、双Y轴图（Double-Y）</h4>
+
+<p>绘制两个独立Y轴的图形，两个图像分别位于不同的图层，两个样式通过一个X轴联系起来</p>
+
+<p><img src="/images/posts/2019-09-05/multicurve1.png" alt="" /></p>
+
+<h4 id="2y偏移的堆叠线图stack-lines-by-y-offsets">2、Y偏移的堆叠线图（Stack Lines by Y Offsets）</h4>
+
+<p>平行重复的实验数据，或者单因素水平变化的实验数据比较适合这种方式</p>
+
+<p><img src="/images/posts/2019-09-05/multicurve2.png" alt="" /></p>
+
+<h4 id="3瀑布图waterfall">3、瀑布图（Waterfall）</h4>
+
+<p>与Y偏移的堆叠线图类似，但它也对X轴进行了偏移</p>
+
+<p><img src="/images/posts/2019-09-05/multicurve3.png" alt="" /></p>
+
+<h4 id="4垂直两屏排列图vertical-2-panel">4、垂直两屏排列图（Vertical 2 Panel）</h4>
+
+<p><img src="/images/posts/2019-09-05/multicurve4.png" alt="" /></p>
+
+<h4 id="5水平两屏排列图horizontal-2-panel">5、水平两屏排列图（Horizontal 2 Panel）</h4>
+
+<p><img src="/images/posts/2019-09-05/multicurve5.png" alt="" /></p>
+
+<h4 id="6四屏排列图4-panel">6、四屏排列图（4 Panel）</h4>
+
+<p><img src="/images/posts/2019-09-05/multicurve6.png" alt="" /></p>
+
+<h4 id="7九屏排列图9-panel">7、九屏排列图（9 Panel）</h4>
+
+<p><img src="/images/posts/2019-09-05/multicurve7.png" alt="" /></p>
+
+<h4 id="8堆叠图stack">8、堆叠图（Stack）</h4>
+
+<p>图形紧密的排成一列</p>
+
+<p><img src="/images/posts/2019-09-05/multicurve8.png" alt="" /></p>
+
+<h3 id="第六类-统计图statistics">第六类 统计图（Statistics）</h3>
+
+<h4 id="1箱图box-chart">1、箱图（Box Chart）</h4>
+
+<p>只需要Y列，可以是一列，也可以是多列。表示样本统计信息和样本序列信息。</p>
+
+<p>图形的含义</p>
+
+<ul>
+  <li>最下面的小横线：此列数据的最小值（0%权重）</li>
+  <li>紧挨着小横线的叉形符号：1%权重的权位值</li>
+  <li>中间的方框：平均值（50%权重）</li>
+  <li>上面的叉形符号：99%权重的权位值</li>
+  <li>最上面的小横线：最大值（100%权重）</li>
+  <li>最下面的横线：$\frac{1}{4}$位数</li>
+  <li>中间的横线：中位数</li>
+  <li>上面的横线：$\frac{3}{4}$位数</li>
+</ul>
+
+<p><img src="/images/posts/2019-09-05/statistic1.png" alt="" /></p>
+
+<h4 id="2直方图histogram">2、直方图（Histogram）</h4>
+
+<p>用来给出数据的频率信息。只适用于Y列数据</p>
+
+<p><img src="/images/posts/2019-09-05/statistic2.png" alt="" /></p>
+
+<h4 id="3直方概率图histogramprobabilities">3、直方概率图（Histogram+Probabilities）</h4>
+
+<p>只能选择一列Y列进行绘图。上半部分是直方图，下半部分是概率图</p>
+
+<p>概率图纵坐标是相应的累加概率</p>
+
+<p><img src="/images/posts/2019-09-05/statistic3.png" alt="" /></p>
+
+<h4 id="4堆叠直方图stacked-histograms">4、堆叠直方图（Stacked Histograms）</h4>
+
+<p>以多个图层的方式将多个Y列的直方图绘制到一个图中</p>
+
+<p><img src="/images/posts/2019-09-05/statistic4.png" alt="" /></p>
+
+<h4 id="5qc质量控制图qcx-bar-rchart">5、QC质量控制图（QC（X bar R）Chart）</h4>
+
+<p>将Y列数据分为若干组，然后显示每组的统计信息。</p>
+
+<p>下半部分的柱状图是极差分布图</p>
+
+<ul>
+  <li>极差：一组数据中最大值与最小值的差</li>
+  <li>CL：所有极差的平均值-&gt;R  Bar值</li>
+  <li>LCL：下控制线-&gt;Range LCL</li>
+  <li>UCL：上控制线-&gt;Range UCL</li>
+</ul>
+
+<p>上半部分的柱状图是组均值分布图</p>
+
+<ul>
+  <li>组均值，每组的平均值</li>
+  <li>CL：组均值的平均值-&gt;X  Bar值</li>
+  <li>LCL、UCL：上下控制线</li>
+</ul>
+
+<p><img src="/images/posts/2019-09-05/statistic5.png" alt="" /></p>
+
+<h4 id="6分散矩阵图scatter-martrix">6、分散矩阵图（Scatter Martrix）</h4>
+
+<p>需要至少两列数据，列属性没有限制，将每一列依次轮换充当横坐标和纵坐标得到的矩阵</p>
+
+<p><img src="/images/posts/2019-09-05/statistic6.png" alt="" /></p>
+
+<h3 id="第七类-面积图area">第七类 面积图（Area）</h3>
+
+<h4 id="1面积图area">1、面积图（Area）</h4>
+
+<p>把曲线与X轴之间的区域进行填色</p>
+
+<p><img src="/images/posts/2019-09-05/area1.png" alt="" /></p>
+
+<h4 id="2填充面积图fill-area">2、填充面积图（Fill Area）</h4>
+
+<p>需要一个X列，两个Y列，对两条曲线之间的区域进行填色</p>
+
+<p><img src="/images/posts/2019-09-05/area2.png" alt="" /></p>
+
+<h3 id="第八类-等高线图contour">第八类 等高线图（Contour）</h3>
+
+<p>基于等高线的平面三维图形</p>
+
+<h4 id="1xyz直角坐标等高线图xyz-contour">1、XYZ直角坐标等高线图（XYZ Contour）</h4>
+
+<p>需要X，Y，Z三列数据，XY构成图形中的二维平面，Z默认根据数值大小分成8个区间</p>
+
+<p><img src="/images/posts/2019-09-05/contour1.png" alt="" /></p>
+
+<h4 id="2rtheta-z极坐标等高线图rx-thetay-z-polar-contour">2、$r\theta Z$极坐标等高线图(r(X) theta(Y) Z Polar Contour)</h4>
+
+<p>需要X，Y，Z三列数据，X对应极轴坐标，Y列对应极角坐标</p>
+
+<p><img src="/images/posts/2019-09-05/contour2.png" alt="" /></p>
+
+<h3 id="第九类-特殊图形specialized">第九类 特殊图形(Specialized)</h3>
+
+<h4 id="1极坐标图polar-rx-thetay">1、极坐标图（Polar r(X) theta(Y)）</h4>
+
+<p>需要一个X列和一个Y列，X对应极轴坐标，Y列对应极角坐标</p>
+
+<p><img src="/images/posts/2019-09-05/specialized1.png" alt="" /></p>
+
+<h4 id="2三角图ternary">2、三角图（Ternary）</h4>
+
+<p>需要X，Y，Z三列数据，要求每一行的数据都是归一化的（相加为1或100）</p>
+
+<p>常用于物理化学中表示三组分相变的三元相图上，三个顶点表示三个纯组分</p>
+
+<p><img src="/images/posts/2019-09-05/specialized2.png" alt="" /></p>
+
+<h4 id="3史密斯图smith-chart">3、史密斯图（Smith Chart）</h4>
+
+<p>需要1一个X列和一个Y列</p>
+
+<p>主要应用在微波射频电路中</p>
+
+<blockquote>
+  <p>X列相当于阻抗实数部分，Y列相当于阻抗虚数部分</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-09-05/specialized3.png" alt="" /></p>
+
+<h4 id="4高低图high-low-close">4、高低图（High-Low-Close）</h4>
+
+<p>需要一个X列和两个或三个Y列，第一个Y列是起点值，第二个Y列是终点值，第三个Y列是基线（短横线）</p>
+
+<p><img src="/images/posts/2019-09-05/specialized4.png" alt="" /></p>
+
+<h4 id="5xyam矢量图vector-xyam">5、XYAM矢量图（Vector XYAM）</h4>
+
+<p>需要一个X列，三个Y列，X列规定矢量的起点横坐标，第一个Y列规定矢量的终点纵坐标，第二个Y列规定矢量的幅角，第三个Y列规定矢量的幅度</p>
+
+<p><img src="/images/posts/2019-09-05/specialized5.png" alt="" /></p>
+
+<h4 id="6xyxy矢量图vector-xyxy">6、XYXY矢量图（Vector XYXY）</h4>
+
+<p>需要两个X列，两个Y列，第一组XY列规定矢量的起点坐标，第二组XY列规定矢量的终点坐标。</p>
+
+<p><img src="/images/posts/2019-09-05/specialized6.png" alt="" /></p>
+
+<h4 id="7缩放图zoom">7、缩放图（Zoom）</h4>
+
+<p>用来对图形的局部进行放大处理</p>
+
+<p><img src="/images/posts/2019-09-05/specialized7.png" alt="" /></p>
+
+<h3 id="matrix对应的二维图">Matrix对应的二维图</h3>
+
+<h3 id="第一类-统计图statistics">第一类 统计图（Statistics）</h3>
+
+<h4 id="1直方图histogram">1、直方图（Histogram）</h4>
+
+<p>给出矩阵元的频率信息，横坐标是矩阵元的区间，纵坐标是相应的频率</p>
+
+<p><img src="/images/posts/2019-09-05/Mstatistics.png" alt="" /></p>
+
+<h3 id="第二类-等高线图contour">第二类 等高线图（Contour）</h3>
+
+<blockquote>
+  <p>Matrix，行表头内嵌Y属性，列表头内嵌X属性，每个矩阵元相当于Z属性</p>
+
+  <p>右键-&gt;Set Matrix Dimensions可设置X和Y的范围</p>
+</blockquote>
+
+<h4 id="1等高线图contour--bw-lines-">1、等高线图（Contour -B/W Lines+ …）</h4>
+
+<p><img src="/images/posts/2019-09-05/Mcontour1.png" alt="" /></p>
+
+<h4 id="2灰度映射等高线图gray-scale-map">2、灰度映射等高线图（Gray Scale Map）</h4>
+
+<p><img src="/images/posts/2019-09-05/Mcontour2.png" alt="" /></p>
+
+<h4 id="3颜色填充等高线图contour---color">3、颜色填充等高线图（Contour - Color）</h4>
+
+<p><img src="/images/posts/2019-09-05/Mcontour3.png" alt="" /></p>
+
+<h4 id="4剖面图profiles">4、剖面图（Profiles）</h4>
+
+<p>在颜色填充等高线图的基础上给车XY两个方向的剖面图</p>
+
+<blockquote>
+  <p>Arbitrary Line设置从任意直线取剖面图</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-09-05/Mcontour4.png" alt="" /></p>
+
+<h3 id="第三类-影像图image">第三类 影像图（Image）</h3>
+
+<h4 id="1影像图image-plot">1、影像图（Image Plot）</h4>
+
+<p>矩阵元值直接映射为灰度值，类似于灰度映射等高线图，区别是这里是连续映射</p>
+
+<p><img src="/images/posts/2019-09-05/Mimage1.png" alt="" /></p>
+
+<h4 id="2剖面图">2、剖面图</h4>
+
+<p><img src="/images/posts/2019-09-05/Mimage2.png" alt="" /></p>
+
+<h2 id="三绘图细节设置">三、绘图细节设置</h2>
+
+<p>在图形界面双击便可打开图形细节设置对话框</p>
+
+<h3 id="图形窗口属性设置">图形窗口属性设置</h3>
+
+<h4 id="1版面规格设置printdimensions">1、版面规格设置（Print/Dimensions）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetail1.png" alt="" /></p>
+
+<blockquote>
+  <p>Cropmarks标记注释出不适合在打印页面打印的区域</p>
+</blockquote>
+
+<h4 id="2杂项设置miscellaneous">2、杂项设置（Miscellaneous）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetail2.png" alt="" /></p>
+
+<blockquote>
+  <p>重绘阈值指的是当这个图形窗口不在前显示的时候，数据修改超过的百分之多少才进行重绘，这个值越小，重绘越频繁</p>
+</blockquote>
+
+<h4 id="3显示设置display">3、显示设置（Display）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetail3.png" alt="" /></p>
+
+<h4 id="4图例标题设置legendstitles">4、图例标题设置（Legends/Titles）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetail4.png" alt="" /></p>
+
+<h3 id="当前图层属性设置">当前图层属性设置</h3>
+
+<h4 id="1背景边框设置background">1、背景边框设置(Background)</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetaillayer1.png" alt="" /></p>
+
+<h4 id="2尺寸加速设置sizespeed">2、尺寸加速设置(Size/Speed)</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetaillayer2.png" alt="" /></p>
+
+<h4 id="3显示设置display-1">3、显示设置（Display）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetaillayer3.png" alt="" /></p>
+
+<h4 id="4堆叠设置stack">4、堆叠设置（Stack）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetaillayer4.png" alt="" /></p>
+
+<h4 id="5链接坐标轴比例设置link-axes-scales">5、链接坐标轴比例设置（Link Axes Scales）</h4>
+
+<p>这个设置只有当多个图层时，第二个及以后的图层会出现这个设置</p>
+
+<p><img src="/images/posts/2019-09-05/plotdetaillayer5.png" alt="" /></p>
+
+<h3 id="图形设置">图形设置</h3>
+
+<h4 id="1点线图线设置line">1、点线图——线设置（Line）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook1.png" alt="" /></p>
+
+<h4 id="2点线图符号设置symbol">2、点线图——符号设置（Symbol）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook2.png" alt="" /></p>
+
+<h4 id="3点线图引线设置drop-lines">3、点线图——引线设置（Drop Lines）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook3.png" alt="" /></p>
+
+<h4 id="4点线图组设置group">4、点线图——组设置（Group）</h4>
+
+<p>当多个图形在一个分组时，才有这个设置</p>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook4.png" alt="" /></p>
+
+<h4 id="5误差线图误差柱设置error-bar">5、误差线图——误差柱设置（Error Bar）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook5.png" alt="" /></p>
+
+<h4 id="6气泡颜色映射图颜色映射设置color-map">6、气泡颜色映射图——颜色映射设置（Color Map）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook6.png" alt="" /></p>
+
+<h4 id="7气泡颜色映射图数值格式numeric-formats">7、气泡颜色映射图——数值格式（Numeric Formats）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailbook7.png" alt="" /></p>
+
+<h2 id="四坐标轴设置">四、坐标轴设置</h2>
+
+<p>双击坐标轴线打开坐标轴设置对话框</p>
+
+<h3 id="坐标轴刻度线的有关设置">坐标轴刻度线的有关设置</h3>
+
+<h4 id="1样式设置scale">1、样式设置（Scale）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes1.png" alt="" /></p>
+
+<h4 id="2标题格式设置titleformat">2、标题格式设置（Title&amp;Format）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes2.png" alt="" /></p>
+
+<h4 id="3网格线设置grid-lines">3、网格线设置（Grid Lines）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes3.png" alt="" /></p>
+
+<h4 id="4断点设置break">4、断点设置（Break）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes4.png" alt="" /></p>
+
+<h3 id="坐标轴刻度线标签设置">坐标轴刻度线标签设置</h3>
+
+<h4 id="5标签格式tick-lables">5、标签格式（Tick Lables）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes5.png" alt="" /></p>
+
+<h4 id="6副刻度线标签minor-tick-label">6、副刻度线标签（Minor Tick Label）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes6.png" alt="" /></p>
+
+<h4 id="7自定义轴标记custom-tick-label">7、自定义轴标记（Custom Tick Label）</h4>
+
+<p><img src="/images/posts/2019-09-05/plotdetailaxes7.png" alt="" /></p>
+
+<h2 id="五图例文本设置">五、图例文本设置</h2>
+
+<h3 id="1图例设置-右键-properties">1、图例设置 右键-&gt;Properties</h3>
+
+<p><img src="/images/posts/2019-09-05/legend1.png" alt="" /></p>
+
+<p>这里要显示的文本设置主要用了几种代码表示</p>
+
+<h4 id="01格式代码">01.格式代码</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="se">\(</span>ASCII码<span class="o">)</span>          显示ASCII符号
+<span class="se">\a</span>b<span class="o">(</span>文本<span class="o">)</span>           上划线 
+<span class="se">\a</span>d<span class="o">(</span>文本<span class="o">)</span>           上点
+<span class="se">\b</span><span class="o">(</span>文本<span class="o">)</span>            加粗
+<span class="se">\c</span><span class="o">[</span>number]<span class="o">(</span>文本<span class="o">)</span>	  颜色（颜色序列中序列值number对应的颜色）
+<span class="se">\f</span><span class="o">[</span>font]<span class="o">(</span>文本<span class="o">)</span>      字体（字体名称font对应的字体）
+<span class="se">\g</span><span class="o">(</span>文本<span class="o">)</span>            希腊字母
+<span class="se">\i</span><span class="o">(</span>文本<span class="o">)</span>            倾斜
+<span class="se">\l</span><span class="o">(</span>图层.对象<span class="o">)</span>        显示对象属性              
+<span class="se">\p</span><span class="o">[</span>size]<span class="o">(</span>文本<span class="o">)</span>      字号（相对于原字号的比例，%）
+<span class="se">\s</span><span class="o">(</span>文本<span class="o">)</span>            中划线
+<span class="se">\u</span><span class="o">(</span>文本<span class="o">)</span>            下划线
+<span class="se">\v</span><span class="o">(</span>文本<span class="o">)</span>            文本
+<span class="se">\+</span><span class="o">(</span>文本<span class="o">)</span>            上标 
+<span class="se">\-</span><span class="o">(</span>文本<span class="o">)</span>            下标
+<span class="se">\=</span><span class="o">(</span>文本<span class="o">)</span>            上下标
+</code></pre></div></div>
+
+<h4 id="02地址代码">02.地址代码</h4>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@c       列短名称
+@d       工作表短名称_列短名称
+@l       列长名称
+@la      列长名称或列短名称
+@lc      列注释
+@ld[n]   第n个自定义列参数
+@lg      列长名称（单位）或列短名称（单位）
+@ll      列长名称
+@lm      列第一行注释或列长名称或列短名称
+@ln      列第一行注释（单位）或列长名称（单位）或列短名称（单位）
+@lp[n]   第n个列参数
+@lq[n]   第n个自定义列参数（单位）
+@1s      列短名称
+@lu      单位
+@r       数据范围
+@t       列短名称
+@u       列长名称（单位）
+@w       工作表短名称
+@wl      工作表长名称
+@ws      表单名称
+</code></pre></div></div>
+
+<h4 id="03指代代码">03.指代代码</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>%([工作表]表单,列号,行号)        数据值变量
+%(?坐标轴)                     坐标轴名称变量
+%(图层.对象,属性)               属性变量(属性变量使用上述地址代码)
+%c                            当前数组名称变量
+%d                            配置路径变量
+%e                            当前表单名称变量
+%g                            工程名称变量
+%h                            当剪窗口名称变量
+%x                            工程路径恋量
+%y                            配置路径变量
+</code></pre></div></div>
+
+<h3 id="2程序控制-右键-properties">2、程序控制 右键-&gt;Properties</h3>
+
+<p><img src="/images/posts/2019-09-05/legend2.png" alt="" /></p>
+
+<blockquote>
+  <p>注：如果选择了不可选或者不可见，则需要在Edit-&gt;Button Edit Mode中才能重新设置legend</p>
+</blockquote>
+
+<p>也可以Graph-&gt;Update Legend更新或重构图例，Graph-&gt;New Legend新建图例</p>
+
+<h2 id="六多图层图形绘制">六、多图层图形绘制</h2>
+
+<blockquote>
+  <p>一个图层相当于一张新图纸</p>
+</blockquote>
+
+<h3 id="1新建图层">1、新建图层</h3>
+
+<p>空白区域右键-&gt;New Layer (Axes)-&gt;Open Dialog或Graph-&gt;New Layer (Axes)-&gt;Open Dialog</p>
+
+<p><img src="/images/posts/2019-09-05/layer1.png" alt="" /></p>
+
+<h3 id="2设置图层位置">2、设置图层位置</h3>
+
+<p><img src="/images/posts/2019-09-05/layerset1.png" alt="" /></p>
+
+<p><img src="/images/posts/2019-09-05/layerset2.png" alt="" /></p>
+
+<p>然后按住Ctrl键加移动鼠标便可等比缩放图层了</p>
+
+<blockquote>
+  <p>网格线格点间距设置在Tool-&gt;Option-&gt;Page</p>
+
+  <p><img src="/images/posts/2019-09-05/layergridset.png" alt="" /></p>
+
+  <p>如果图层超过边界线，可以页面外处右键-&gt;Fit Page to Layers</p>
+</blockquote>
+
+<h3 id="3在新建的图层里绘制图形">3、在新建的图层里绘制图形</h3>
+
+<ul>
+  <li>
+    <p>双击图层标记打开Plot Setup 绘图设置对话框进行操作</p>
+  </li>
+  <li>
+    <p>直接拖拽数据到图层</p>
+  </li>
+  <li>
+    <p>在图层标记上右键</p>
+
+    <blockquote>
+      <p>不过我觉得这种方法不太方便，了解即可</p>
+
+      <p><img src="/images/posts/2019-09-05/layer2.png" alt="" /></p>
+    </blockquote>
+  </li>
+  <li>选中数据列，然后再Graph-&gt;Add Plot to Layer绘制</li>
+  <li>复制其他图层到这个图层</li>
+</ul>
+
+<h3 id="4分解混合图层">4、分解/混合图层</h3>
+
+<p><img src="/images/posts/2019-09-05/layer3.png" alt="" /></p>
+
+<p>其中将<strong>多窗口图形合并为单窗口多图层图形</strong>设置如下</p>
+
+<p><img src="/images/posts/2019-09-05/layer4.png" alt="" /></p>
+
+<h3 id="5图层管理">5、图层管理</h3>
+
+<h4 id="01新建图层add">01.新建图层（Add）</h4>
+
+<p>Graph-&gt; Layer Management</p>
+
+<p><img src="/images/posts/2019-09-05/layermanag1.png" alt="" /></p>
+
+<h4 id="02图层排列arrange">02.图层排列（Arrange）</h4>
+
+<p><img src="/images/posts/2019-09-05/layermanag2.png" alt="" /></p>
+
+<h4 id="03尺寸位置sizeposition">03.尺寸位置（Size/position）</h4>
+
+<p><img src="/images/posts/2019-09-05/layermanag3.png" alt="" /></p>
+
+<h4 id="04图层连接link">04.图层连接（Link）</h4>
+
+<p><img src="/images/posts/2019-09-05/layermanag4.png" alt="" /></p>
+
+<blockquote>
+  <p>注：右键图层层可以删除层，直接拖拽可以调整顺序（Reorder重新排序）</p>
+</blockquote>
+
+<h2 id="七图层工具的使用">七、图层工具的使用</h2>
+
+<p>在View-&gt; Tool Bars可以设置打开下列工具栏</p>
+
+<h3 id="1tools工具栏">1、Tools工具栏</h3>
+
+<blockquote>
+  <p>注意工具栏的位置可以自己设置，我的默认是在左边栏。可以自己拖拽改变位置</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-09-05/tool.png" alt="" /></p>
+
+<h3 id="2graph工具栏">2、Graph工具栏</h3>
+
+<p><img src="/images/posts/2019-09-05/graph.png" alt="" /></p>
+
+<h3 id="3mask工具栏">3、Mask工具栏</h3>
+
+<p><img src="/images/posts/2019-09-05/mask.png" alt="" /></p>
+
+<h3 id="4object-edit工具栏">4、Object Edit工具栏</h3>
+
+<p><img src="/images/posts/2019-09-05/objectedit.png" alt="" /></p>
+
+<h2 id="八主题绘图和模板绘图">八、主题绘图和模板绘图</h2>
+
+<h3 id="1主题绘图-tool-theme-organizer">1、主题绘图 Tool-&gt;Theme Organizer…</h3>
+
+<p>首先右击对话框可<code class="highlighter-rouge">Add New</code>新建一个Theme，双击名字可更改Name</p>
+
+<p><img src="/images/posts/2019-09-05/theme1.png" alt="" /></p>
+
+<p>然后右击此主题可进行编辑<code class="highlighter-rouge">Edit...</code></p>
+
+<p><img src="/images/posts/2019-09-05/theme2.png" alt="" /></p>
+
+<p>除此之外，还可在图形上对其格式进行复制、粘贴、设为模板。</p>
+
+<p><img src="/images/posts/2019-09-05/theme3.png" alt="" /></p>
+
+<h3 id="3模板绘图">3、模板绘图</h3>
+
+<p>绘制完某个样式的图形后可将其保存为模板。</p>
+
+<p>File-&gt;Save Template As…</p>
+
+<p><img src="/images/posts/2019-09-05/model.png" alt="" /></p>
+
+<p>保存完模板后便可在Template Library中使用这个模板</p>
+
+<p><img src="/images/posts/2019-09-05/model1.png" alt="" /></p>
+
+<p>点击绘制之后得到图形</p>
+
+<p><img src="/images/posts/2019-09-05/model2.png" alt="" /></p>
+
+<h2 id="九excel窗口绘图">九、Excel窗口绘图</h2>
+
+<p>Excel绘图与WorkSheet绘图的最大区别在于Excel没有列属性，必须在绘制的时候指定列属性</p>
+
+<p><img src="/images/posts/2019-09-05/excel1.png" alt="" /></p>
+
+<p>点击绘制便可得到</p>
+
+<p><img src="/images/posts/2019-09-05/excel2.png" alt="" /></p>
+
+<h2 id="十函数窗口绘图">十、函数窗口绘图</h2>
+
+<p><img src="/images/posts/2019-09-05/function.png" alt="" /></p>
+
+<h2 id="十一建立矩阵文件">十一、建立矩阵文件</h2>
+
+<p><img src="/images/posts/2019-09-05/matrix1.png" alt="" /></p>
+
+<h3 id="1set-dimensions">1、Set Dimensions…</h3>
+
+<p><img src="/images/posts/2019-09-05/matrix2.png" alt="" /></p>
+
+<p>上图就是将矩阵行列内嵌的值设为将[1,10]分成100份的值。</p>
+
+<blockquote>
+  <p>可在View-&gt;Show Column/Row显示行号列号，或者View-&gt;Show X/Y显示上述设置的内嵌值</p>
+</blockquote>
+
+<h3 id="2set-properties">2、Set Properties…</h3>
+
+<p><img src="/images/posts/2019-09-05/matrix3.png" alt="" /></p>
+
+<h3 id="3set-values">3、Set Values…</h3>
+
+<p><img src="/images/posts/2019-09-05/matrix4.png" alt="" /></p>
+
+<p>其中</p>
+
+<ul>
+  <li>i：行编号</li>
+  <li>j：列编号</li>
+  <li>x：行内嵌值</li>
+  <li>y：列内嵌值</li>
+</ul>
+
+<p>经过上述设置可得到矩阵窗口文件</p>
+
+<p><img src="/images/posts/2019-09-05/matrix5.png" alt="" /></p>
+
+<h3 id="4矩阵窗口和工作表窗口的数据转换">4、矩阵窗口和工作表窗口的数据转换</h3>
+
+<h4 id="--工作表窗口-矩阵窗口">- 工作表窗口-&gt;矩阵窗口</h4>
+
+<h4 id="01-直接转换direct">01. 直接转换（Direct）</h4>
+
+<p><img src="/images/posts/2019-09-05/exchange1.png" alt="" /></p>
+
+<h4 id="02扩展转换expand">02.扩展转换（Expand）</h4>
+
+<p><img src="/images/posts/2019-09-05/exchange2.png" alt="" /></p>
+
+<h4 id="03xyz网格转换">03.XYZ网格转换</h4>
+
+<p><img src="/images/posts/2019-09-05/exchange3.png" alt="" /></p>
+
+<h4 id="--矩阵窗口-工作表窗口">- 矩阵窗口-&gt;工作表窗口</h4>
+
+<p><img src="/images/posts/2019-09-05/exchage.png" alt="" /></p>
+
+<h2 id="十二origin内置三维图形概述">十二、Origin内置三维图形概述</h2>
+
+<h3 id="workbook对应的三维图">WorkBook对应的三维图</h3>
+
+<h3 id="第一类-3dxyy图3d-xyy">第一类 3DXYY图（3D XYY）</h3>
+
+<p>至少需要一个Y列。以下四种图形都是用来数据比较的</p>
+
+<h4 id="13d瀑布图3d-waterfall">1、3D瀑布图（3D Waterfall）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyy1.png" alt="" /></p>
+
+<h4 id="23d墙壁图3d-walls">2、3D墙壁图（3D Walls）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyy2.png" alt="" /></p>
+
+<h4 id="33d带状图3d-ribbons">3、3D带状图（3D Ribbons）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyy3.png" alt="" /></p>
+
+<h4 id="43d条状图3d-bars">4、3D条状图（3D Bars）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyy4.png" alt="" /></p>
+
+<h3 id="第二类-3dxyz图3d-xyz">第二类 3DXYZ图（3D XYZ）</h3>
+
+<h4 id="13d散点图3d-scatter">1、3D散点图（3D Scatter）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyz1.png" alt="" /></p>
+
+<h4 id="23d轨迹图3d-trajectory">2、3D轨迹图（3D Trajectory）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dxyz2.png" alt="" /></p>
+
+<h3 id="matrix对应的三维图">Matrix对应的三维图</h3>
+
+<h3 id="第一类-3d表面图3d-surface">第一类 3D表面图（3D Surface）</h3>
+
+<h4 id="1颜色填充表面图color-fill-surface">1、颜色填充表面图（Color FIll Surface）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dsurface1.png" alt="" /></p>
+
+<h4 id="2x常量基线表面图x-constant-with-base">2、X常量基线表面图（X Constant with Base）</h4>
+
+<p>在图形表面添加X等于常数的曲线</p>
+
+<p><img src="/images/posts/2019-09-05/3dsurface2.png" alt="" /></p>
+
+<h4 id="2y常量基线表面图y-constant-with-base">2、Y常量基线表面图（Y Constant with Base）</h4>
+
+<p>在图形表面添加Y等于常数的曲线</p>
+
+<p><img src="/images/posts/2019-09-05/3dsurface3.png" alt="" /></p>
+
+<h4 id="3颜色映射表面图color-map-surface">3、颜色映射表面图（Color Map Surface）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dsurface4.png" alt="" /></p>
+
+<h3 id="第二类-3d线条图3d-wires-and-bars">第二类 3D线条图（3D Wires and Bars）</h3>
+
+<h4 id="1框架图wire-frame">1、框架图（Wire Frame）</h4>
+
+<p>无法清晰表达前后遮挡关系</p>
+
+<p><img src="/images/posts/2019-09-05/3dwb1.png" alt="" /></p>
+
+<h4 id="2线面图wire-surface">2、线面图（Wire Surface）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dwb2.png" alt="" /></p>
+
+<h4 id="3条图bars">3、条图（Bars）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dwb3.png" alt="" /></p>
+
+<h2 id="十三三维图形的绘图细节设置">十三、三维图形的绘图细节设置</h2>
+
+<p>一部分绘图细节与二维图形相似，下面只展示不相似的部分</p>
+
+<h3 id="图层绘图设置">图层绘图设置</h3>
+
+<h4 id="1杂项设置miscellaneous">1、杂项设置（Miscellaneous）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail1.png" alt="" /></p>
+
+<h4 id="2坐标轴设置axis">2、坐标轴设置（Axis）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail2.png" alt="" /></p>
+
+<h4 id="3平面设置plans">3、平面设置（Plans）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail3.png" alt="" /></p>
+
+<h3 id="图形本身的图形细节设置">图形本身的图形细节设置</h3>
+
+<h4 id="1边墙设置slide-walls">1、边墙设置（Slide Walls）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail4.png" alt="" /></p>
+
+<h4 id="2栅格设置grids">2、栅格设置（Grids）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail5.png" alt="" /></p>
+
+<blockquote>
+  <p>背面的栅格线颜色即为曲面内侧的栅格线颜色</p>
+</blockquote>
+
+<h4 id="3表面投影设置surfaceprojections">3、表面/投影设置（Surface/Projections）</h4>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail6.png" alt="" /></p>
+
+<h3 id="3d旋转工具栏3d-rotation">3D旋转工具栏（3D Rotation）</h3>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail7.png" alt="" /></p>
+
+<h3 id="加速模式设置speed">加速模式设置（Speed）</h3>
+
+<p>三维图绘制一般都默认采用了加速模式绘图，减少了绘图点，加速了绘图，但也让图形变的粗糙，所以需要自己设置关闭加速模式</p>
+
+<p><img src="/images/posts/2019-09-05/3dplotdetail8.png" alt="" /></p>
+
+<h2 id="十四页面布局与出图">十四、页面布局与出图</h2>
+
+<h3 id="1页面布局layout">1、页面布局（Layout）</h3>
+
+<p><img src="/images/posts/2019-09-05/export1.png" alt="" /></p>
+
+<h3 id="2出图">2、出图</h3>
+
+<h4 id="01ole技术共享">01.OLE技术共享</h4>
+
+<blockquote>
+  <p>OLE技术是在Windows平台下非常常用的对象共享技术。这种技术保留了Origin软件对对象的控制。在共享软甲中只需要双击对象就可以对图形进行就地编辑。但要求安装相同版本的Origin</p>
+</blockquote>
+
+<p>方法1：直接Cope Page，在Word中粘贴</p>
+
+<blockquote>
+  <p>打开就地OLE功能：Tool-&gt;Option-&gt;Graph-&gt; Enable OLE In-place Activa</p>
+</blockquote>
+
+<p>方法2：插入对象</p>
+
+<h4 id="02导出图片file--export-graph">02.导出图片（File -&gt;Export Graph…）</h4>
+
+<blockquote>
+  <p>文件格式：点阵图（位图）：png，tif，gif</p>
+
+  <p>​					矢量图：eps，emf，wmf</p>
+
+  <p>对于细节和颜色较少的图形推荐使用矢量图来保存</p>
+</blockquote>
+
+<p><img src="/images/posts/2019-09-05/export2.png" alt="" /></p>
+
+<blockquote>
+  <p>啊。。。终于把这一篇弄完了！！！零零星星历时一周吧，所有的截图都是我自己一个一个整理的。记是肯定记不住完的，就想整理一下以后用的时候查找方便！</p>
+</blockquote>
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/09/04/Origin%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%AA%97%E5%8F%A3%E7%BC%96%E8%BE%91/" class="pre"><i class="icon-post-pre"> Origin之数据窗口编辑</i></a>
+         
+        <a href="/2019/09/06/Python+ADB%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%8D%93%E8%AE%BE%E5%A4%87%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96/" class="next">Python+ADB实现安卓设备的自动化控制——以刷淘宝活动为例 <i
+                class="icon-post-next"></i></a>
+        
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (12)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#通识讲座">通识讲座 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#论文精读">论文精读 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OringinManuals">OringinManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (1)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>
