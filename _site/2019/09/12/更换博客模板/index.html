@@ -1,0 +1,1122 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统 | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="一直觉得之前用的博客模板有点怪，今天又想起来了，就又找了一个我觉得更好的模板。找模板的时候就是想找个简洁明了，有目录栏看着更方便的。碰着发现了我现在正在用的模板。右下角还能设置一个二次元看板娘，虽然我不是二次元圈的，但是觉得萌萌哒挺有意思的。郑重声明此模板源于oukohou，我在oukohou的基础上做了适量的改...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统</h1>
+        <p class="post-meta">
+            <time datetime="2019-09-12T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Sep 12, 2019</i>
+            </time>
+              |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Essential Skill">Essential Skill</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/09/12/%E6%9B%B4%E6%8D%A2%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/ class="leancloud-visitors" data-flag-title=更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <p>一直觉得之前用的博客模板有点怪，今天又想起来了，就又找了一个我觉得更好的模板。</p>
+
+<p>找模板的时候就是想找个简洁明了，有目录栏看着更方便的。碰着发现了我现在正在用的模板。</p>
+
+<p><img src="/images/posts/2019-09-12/blog.png" alt="" /></p>
+
+<p>右下角还能设置一个二次元看板娘，虽然我不是二次元圈的，但是觉得萌萌哒挺有意思的。</p>
+
+<h2 id="郑重声明">郑重声明</h2>
+
+<p>此模板源于<a href="https://www.oukohou.wang/">oukohou</a>，我在<a href="https://www.oukohou.wang/">oukohou</a>的基础上做了适量的改动，删减了我觉的没用的部分，修改了部分内容以符合我的要求。在此特别感谢<a href="https://www.oukohou.wang/">oukohou</a>和这个模板的创始人<a href="https://github.com/alafighting/maupassant-jekyll.git">maupassant-jekyll</a>。</p>
+
+<h2 id="新赠valine评论系统">新赠Valine评论系统</h2>
+
+<p>我觉得这个比之前用的Gitment等系统好用多了，这个系统评论的时候不需要用户注册，临时输入一个用户名即可，非常的方便。</p>
+
+<p><a href="https://valine.js.org/">Valine的官网</a>有非常详细的介绍和源代码设置，有兴趣的可以看一下，如果只是想用评论功能，移步到<a href="https://leancloud.app/">leancloud</a>云服务注册应用，Valine实现的评论功能就是基于在leancloud上保存评论信息。</p>
+
+<blockquote>
+  <p>注意：</p>
+
+  <p>一定要从上面的链接进leancloud，也就是https://leancloud.app/，这个是国际版的，个人能免费使用，如果在百度上搜会进国内版的，国内版的2019年10月1日之后必须绑定个人的域名才能正常使用。因为我是基于GitPage的，没有申请域名，国内版的用不成。</p>
+</blockquote>
+
+<p>1、点击网页右上角<code class="highlighter-rouge">Console</code>便可进行注册和新建应用</p>
+
+<p>2、新建应用之后如下图所示</p>
+
+<p><img src="/images/posts/2019-09-12/lean1.png" alt="" /></p>
+
+<p>3、点击进应用，然后打开<code class="highlighter-rouge">设置</code>-&gt;<code class="highlighter-rouge">应用Key</code>，找到<code class="highlighter-rouge">APP ID</code>和<code class="highlighter-rouge">APP Key</code></p>
+
+<p><img src="/images/posts/2019-09-12/lean2.png" alt="" /></p>
+
+<p>4、将<code class="highlighter-rouge">APP ID</code>和<code class="highlighter-rouge">APP Key</code>添加到<code class="highlighter-rouge">_config.yml</code>中，代码如下，在文件最后面。只将<code class="highlighter-rouge">APP ID</code>和<code class="highlighter-rouge">APP Key</code>两串字符复制粘贴过来即可</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">valine</span><span class="p">:</span>
+  <span class="nx">enable</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="nx">app_id</span><span class="p">:</span>  <span class="nx">yPxItE7bwrQBFHzHIQIfFXCG</span><span class="o">-****</span>
+  <span class="nx">app_key</span><span class="p">:</span> <span class="nx">rrUOPcAJyjIaA7iMYSIX</span><span class="o">****</span>
+  <span class="nx">notify</span><span class="p">:</span> <span class="kc">false</span> <span class="err">#</span> <span class="nx">mail</span> <span class="nx">notifier</span> <span class="p">,</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//github.com/xCss/Valine/wiki</span>
+  <span class="nx">verify</span><span class="p">:</span> <span class="kc">false</span> <span class="err">#</span> <span class="nx">Verification</span> <span class="nx">code</span>
+  <span class="nx">visitor</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="nx">avatar</span><span class="p">:</span> <span class="nx">retro</span>
+  <span class="nx">placeholder</span><span class="p">:</span> <span class="nx">say</span> <span class="nx">something</span><span class="o">~~</span><span class="err">\</span><span class="nx">n</span> <span class="o">-</span> <span class="err">昵称</span> <span class="err">为你所要显示的评论的</span><span class="nx">ID</span><span class="err">；\</span><span class="nx">n</span> <span class="o">-</span> <span class="err">邮箱</span> <span class="err">只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写</span><span class="p">;</span><span class="err">\</span><span class="nx">n</span> <span class="o">-</span> <span class="err">网址</span> <span class="err">为你的评论的昵称的超链接。\</span><span class="nx">n</span><span class="err">以上都可以不写，评论依然会显示……</span>
+  <span class="nx">guest_info</span><span class="p">:</span> <span class="nx">nick</span><span class="p">,</span><span class="nx">mail</span><span class="p">,</span><span class="nx">link</span>
+  <span class="nx">pageSize</span><span class="p">:</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<p>5、别人评论之后，就可以在后台看到储存的评论了。这些评论都会被加载到相应的博客后面。</p>
+
+<p><img src="/images/posts/2019-09-12/lean3.png" alt="" /></p>
+
+<h2 id="新赠live2d看板娘">新赠live2D看板娘</h2>
+
+<p>大佬的模板中已经设置好了，你可以修改自己想设置的二次元图像。<a href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll安装一个萌萌哒二次元看板娘</a>是原博主自己写的设置教程，其中包括了编译，但是对于只应用来说，不用那么复杂。</p>
+
+<p>如果想修改原博主默认设置的二次元形象的话往下看</p>
+
+<p>1、首先下载原博主提供的编译好的文件</p>
+
+<blockquote>
+  <p>原博主提供的百度网盘:
+链接：https://pan.baidu.com/s/1NrRkNR70X1jNN6aB3GS8EA
+提取码：8dy2</p>
+</blockquote>
+
+<p>下载完之后你会得到这么多个不同的看板娘</p>
+
+<p><img src="/images/posts/2019-09-12/2D1.png" alt="" /></p>
+
+<p>从中选一个即可，比如选择<code class="highlighter-rouge">live2dw_koharu</code></p>
+
+<p>2、进入<code class="highlighter-rouge">live2dw_koharu</code>文件夹，会看到<code class="highlighter-rouge">assets</code>和<code class="highlighter-rouge">lib</code>两个文件夹。</p>
+
+<p>复制这两个文件，再打开博客根目录下的<code class="highlighter-rouge">assets/live2dw</code>，你会发现也是<code class="highlighter-rouge">assets</code>和<code class="highlighter-rouge">lib</code>两个文件夹，将这两个删除，把刚才复制的那两个粘贴进来即可。</p>
+
+<p>3、打开<code class="highlighter-rouge">_layouts/base.html</code>，找到下面这一部分代码</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--live2d function--&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/assets/live2dw/lib/L2Dwidget.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span><span class="nx">L2Dwidget</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="dl">"</span><span class="s2">pluginRootPath</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">live2dw/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">pluginJsPath</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">lib/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">pluginModelPath</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">assets/</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">tagMode</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">debug</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">model</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">jsonPath</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/assets/live2dw/assets/nitychan.model.json</span><span class="dl">"</span><span class="p">},</span>
+    <span class="dl">"</span><span class="s2">display</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">position</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">right</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">width</span><span class="dl">"</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span> <span class="dl">"</span><span class="s2">height</span><span class="dl">"</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hOffset</span><span class="dl">"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="dl">"</span><span class="s2">vOffset</span><span class="dl">"</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,},</span>
+    <span class="dl">"</span><span class="s2">mobile</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span><span class="dl">"</span><span class="s2">show</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">scale</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,},</span>
+    <span class="dl">"</span><span class="s2">log</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">});</span><span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p>将其中的<code class="highlighter-rouge">"model": {"jsonPath": ""model": {"jsonPath": "/assets/live2dw/assets/nitychan.model.json"},"},</code>中的路径<code class="highlighter-rouge">/assets/live2dw/assets/nitychan.model.json</code>改为  <code class="highlighter-rouge">/assets/live2dw/assets/koharu.model.json</code></p>
+
+<p>即为如下图所示的<code class="highlighter-rouge">***..model.json</code>文件的路径。（不同二次元形象的文件名不一样，都需要改一下）</p>
+
+<p><img src="/images/posts/2019-09-12/2D2.png" alt="" /></p>
+
+<p>4、改完之后重新<code class="highlighter-rouge">jekyll serve</code>编译一下即可（之前说过在本地编译博客，不想在本地编译看效果也可以之前上传到remote看效果）</p>
+
+<p>看我右下角，是不是萌萌哒。</p>
+
+<p><img src="/images/posts/2019-09-12/blog.png" alt="" /></p>
+
+<p>5、需要的话可以再<code class="highlighter-rouge"> "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},</code>中修改二次元形象的位置和大小。</p>
+
+<h2 id="新赠多种侧边栏">新赠多种侧边栏</h2>
+
+<p>1、还是在<code class="highlighter-rouge">_layouts/base.html</code>文件中找到以下代码</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"pure-u-1-4"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"sidebar"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"search-form"</span> <span class="na">class=</span><span class="s">"search-form"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"query"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">placeholder=</span><span class="s">"Search"</span> <span class="na">class=</span><span class="s">"search-form-input"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">function</span> <span class="nx">find_posts</span><span class="p">(</span><span class="nx">words</span><span class="p">,</span> <span class="nx">posts_data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">matched_posts</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="nx">posts_data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">post</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">content</span> <span class="o">=</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">post</span><span class="p">[</span><span class="dl">"</span><span class="s2">title</span><span class="dl">"</span><span class="p">],</span> <span class="nx">post</span><span class="p">[</span><span class="dl">"</span><span class="s2">keywords</span><span class="dl">"</span><span class="p">])).</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">);</span>
+            <span class="nx">words</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">word</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">||</span> <span class="nx">word</span> <span class="o">===</span> <span class="kc">undefined</span> <span class="o">||</span> <span class="nx">word</span> <span class="o">==</span> <span class="dl">""</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span><span class="p">;</span>  <span class="c1">// continue</span>
+                <span class="p">}</span>
+                <span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">word</span><span class="p">,</span> <span class="dl">'</span><span class="s1">i</span><span class="dl">'</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">content</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regex</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">matched_posts</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">post</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="nx">matched_posts</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">show_posts</span><span class="p">(</span><span class="nx">posts</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">posts</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">posts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">post</span> <span class="o">=</span> <span class="nx">posts</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;div class="post"&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;h2 class="post-title"&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;a href="</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">"&gt;</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">&lt;/a&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;/h2&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;div class="post-meta"&gt;&lt;i class="icon-post-date"&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">date</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;/i&gt;&lt;/div&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;div class="post-content"&gt;</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">summary</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">&lt;/div&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;p class="readmore"&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;a href="</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">post</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">"&gt;阅读更多&lt;/a&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;/p&gt;</span><span class="dl">'</span><span class="p">;</span>
+                <span class="nx">html</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1">&lt;/div&gt;</span><span class="dl">'</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">html</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">&lt;h4&gt;Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~&lt;/h4&gt;</span><span class="dl">"</span>
+        <span class="p">}</span>
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.content_container</span><span class="dl">'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.content_container</span><span class="dl">'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#search-form</span><span class="dl">'</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#query</span><span class="dl">'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">words</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">"</span><span class="s2"> </span><span class="dl">"</span><span class="p">)</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#query</span><span class="dl">'</span><span class="p">).</span><span class="nx">blur</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">disabled</span><span class="dl">'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.content_container</span><span class="dl">'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+
+        <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+            <span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">/assets/data/posts.json</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">dataType</span><span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">timeout</span><span class="p">:</span> <span class="mi">6000</span><span class="p">,</span>  <span class="c1">// 6 sec</span>
+            <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">matched_posts</span> <span class="o">=</span> <span class="nx">find_posts</span><span class="p">(</span><span class="nx">words</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+                <span class="nx">show_posts</span><span class="p">(</span><span class="nx">matched_posts</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">#query</span><span class="dl">'</span><span class="p">).</span><span class="nx">blur</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="dl">'</span><span class="s1">disabled</span><span class="dl">'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+ <span class="c">&lt;!-- 搜索框 --&gt;</span>
+				
+                <span class="c">&lt;!-- &lt;div class="widget"&gt;
+    &lt;div class="widget-title"&gt;&lt;i class="icon-edit"&gt; 心情随笔&lt;/i&gt;&lt;/div&gt;&lt;ul&gt;&lt;/ul&gt;
+        我梦扬州,便想到扬州梦我。&lt;br&gt;
+
+        幸会。&lt;br&gt;&lt;br&gt;
+&lt;td style="text-align: center"&gt;&lt;a style="color: slategrey"&gt;&lt;/a&gt;
+
+        微信公众号:
+
+&lt;a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"&gt;&lt;u&gt;&lt;b&gt;璇珠杂俎&lt;/b&gt;&lt;/u&gt;&lt;/a&gt;
+            &lt;/td&gt;
+&lt;/div&gt;
+ --&gt;</span> <span class="c">&lt;!-- 个性签名 --&gt;</span>
+
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget-title"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"icon-category"</span><span class="nt">&gt;</span> 文章分类<span class="nt">&lt;/i&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"category-list"</span><span class="nt">&gt;</span>
+      
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"category-list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"category-list-link"</span> <span class="na">href=</span><span class="s">"/category/#文献管理与信息分析"</span><span class="nt">&gt;</span>文献管理与信息分析 (12)<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"category-list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"category-list-link"</span> <span class="na">href=</span><span class="s">"/category/#通识讲座"</span><span class="nt">&gt;</span>通识讲座 (1)<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"category-list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"category-list-link"</span> <span class="na">href=</span><span class="s">"/category/#PythonManuals"</span><span class="nt">&gt;</span>PythonManuals (2)<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"category-list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"category-list-link"</span> <span class="na">href=</span><span class="s">"/category/#论文精读"</span><span class="nt">&gt;</span>论文精读 (1)<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"category-list-item"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"category-list-link"</span> <span class="na">href=</span><span class="s">"/category/#OriginManuals"</span><span class="nt">&gt;</span>OriginManuals (2)<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+      
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="c">&lt;!-- 目录列表 --&gt;</span>
+
+                <span class="c">&lt;!--&lt;div class="widget"&gt;
+    &lt;div class="widget-title"&gt;&lt;i class="icon-star"&gt; 推荐文章&lt;/i&gt;&lt;/div&gt;
+    &lt;ul class="post-list"&gt;
+        &lt;li class="post-list-item"&gt;&lt;a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/"&gt;S3FD:Single Shot Scale-invariant Face Detector&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="post-list"&gt;
+        &lt;li class="post-list-item"&gt;&lt;a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/"&gt;给自己的jekyll博客安装live2D看板娘&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="post-list"&gt;
+        &lt;li class="post-list-item"&gt;&lt;a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/"&gt;博客搭建历程&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;ul class="post-list"&gt;
+        &lt;li class="post-list-item"&gt;&lt;a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/"&gt;寒事今牢落，人生亦有初&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+--&gt;&lt;!-- 推荐列表 --&gt;</span>
+				<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget-title"</span><span class="nt">&gt;</span>标签云<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"tagcloud"</span><span class="nt">&gt;</span>
+        
+    
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/tags/#Essential Skill"</span> <span class="na">rel=</span><span class="s">"nofollow"</span> <span class="na">style=</span><span class="s">"font-size: 12pt; color: #666;"</span><span class="nt">&gt;</span>Essential Skill<span class="nt">&lt;/a&gt;</span>
+    
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/tags/#Science Paper"</span> <span class="na">rel=</span><span class="s">"nofollow"</span> <span class="na">style=</span><span class="s">"font-size: 18pt; color: #000;"</span><span class="nt">&gt;</span>Science Paper<span class="nt">&lt;/a&gt;</span>
+    
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/tags/#Essential and Professional Course"</span> <span class="na">rel=</span><span class="s">"nofollow"</span> <span class="na">style=</span><span class="s">"font-size: 11.5pt; color: #777;"</span><span class="nt">&gt;</span>Essential and Professional Course<span class="nt">&lt;/a&gt;</span>
+    
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/tags/#Python"</span> <span class="na">rel=</span><span class="s">"nofollow"</span> <span class="na">style=</span><span class="s">"font-size: 10pt; color: #888;"</span><span class="nt">&gt;</span>Python<span class="nt">&lt;/a&gt;</span>
+    
+    
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/tags/#Broaden Horizons"</span> <span class="na">rel=</span><span class="s">"nofollow"</span> <span class="na">style=</span><span class="s">"font-size: 9pt; color: #999;"</span><span class="nt">&gt;</span>Broaden Horizons<span class="nt">&lt;/a&gt;</span>
+    
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+ <span class="c">&lt;!-- 标签词云 --&gt;</span>
+
+                <span class="c">&lt;!-- &lt;div class="widget"&gt;
+  &lt;div class="widget-title"&gt;&lt;i class="icon-code-hub"&gt; 代码仓库&lt;/i&gt;&lt;/div&gt;
+  &lt;ul class="codehub-list"&gt;
+  
+    &lt;li class="codehub-list-item"&gt;&lt;a href="" title="" target="_blank"&gt;&lt;/a&gt;&lt;/li&gt;
+  
+  &lt;/ul&gt;
+&lt;/div&gt;
+ --&gt;</span> <span class="c">&lt;!-- 代码仓库列表 --&gt;</span>
+
+                <span class="c">&lt;!--&lt;div class="widget"&gt;
+  &lt;div class="widget-title"&gt;&lt;i class="icon-link"&gt; 友情链接&lt;/i&gt;&lt;/div&gt;
+  &lt;ul class="link-list"&gt;
+  
+    &lt;li class="link-list-item"&gt;&lt;a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank"&gt;Jekyll blog system&lt;/a&gt;&lt;/li&gt;
+  
+  &lt;/ul&gt;
+&lt;/div&gt;
+--&gt;</span>  <span class="c">&lt;!-- 友情链接列表 --&gt;</span>
+
+                <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget post-toc hide"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"widget-title"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"icon-post-toc"</span><span class="nt">&gt;</span> 文章目录<span class="nt">&lt;/i&gt;&lt;/div&gt;&lt;ul&gt;&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="kd">function</span> <span class="nx">TOCize</span><span class="p">(</span><span class="nx">toc</span><span class="p">,</span> <span class="nx">content</span><span class="p">,</span> <span class="nx">matchHeightTo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">toc</span> <span class="o">&amp;&amp;</span> <span class="nx">content</span> <span class="o">&amp;&amp;</span> <span class="nx">matchHeightTo</span><span class="p">))</span> <span class="k">return</span> <span class="kc">false</span>
+
+    <span class="kd">var</span> <span class="nx">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">make</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tag</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tag</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">aniscroll</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">to</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">top</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">running</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+            <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">running</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">tick</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="na">target</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">running</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="na">getTop</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollY</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">pageYOffset</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="na">setTop</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="dl">'</span><span class="s1">scrollTo</span><span class="dl">'</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">scrollX</span><span class="p">,</span> <span class="nx">value</span><span class="p">))</span>
+        <span class="p">},</span>
+        <span class="na">tick</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">oldST</span> <span class="o">=</span> <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">getTop</span><span class="p">(),</span> <span class="nx">newST</span> <span class="o">=</span> <span class="o">~~</span><span class="p">((</span><span class="nx">oldST</span> <span class="o">+</span> <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+            <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">setTop</span><span class="p">(</span><span class="nx">newST</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">getTop</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">newST</span> <span class="o">||</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">newST</span> <span class="o">-</span> <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">setTop</span><span class="p">(</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+                <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">running</span><span class="p">)</span>
+                <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">running</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">scrollToHeader</span><span class="p">(</span><span class="nx">header</span><span class="p">,</span> <span class="nx">hash</span><span class="p">,</span> <span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">header</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span> <span class="o">+</span> <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">getTop</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">[</span><span class="dl">'</span><span class="s1">pushState</span><span class="dl">'</span><span class="p">])</span> <span class="p">{</span>
+            <span class="nb">window</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">pushState</span><span class="p">({},</span> <span class="nx">header</span><span class="p">.</span><span class="nx">textContent</span><span class="p">,</span> <span class="dl">"</span><span class="s2">#</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">hash</span><span class="p">);</span>
+            <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+            <span class="nx">ev</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">y2</span> <span class="o">=</span> <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">getTop</span><span class="p">();</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">setTop</span><span class="p">(</span><span class="nx">y2</span><span class="p">);</span>
+                <span class="nx">aniscroll</span><span class="p">.</span><span class="nx">to</span><span class="p">(</span><span class="nx">y</span><span class="p">);</span>
+            <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">generateLink</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="nx">make</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">cnt</span><span class="o">++</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">hash</span> <span class="o">=</span> <span class="p">(</span><span class="dl">'</span><span class="s1">generated-hash-</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">cnt</span><span class="p">);</span>
+            <span class="nx">h</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">hash</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">q</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">textContent</span><span class="p">;</span>
+        <span class="nx">q</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">href</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">hash</span> <span class="p">);</span>
+        <span class="nx">q</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">scrollToHeader</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">h</span><span class="p">,</span> <span class="nx">hash</span><span class="p">),</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">q</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">hs</span> <span class="o">=</span> <span class="nx">content</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">'</span><span class="s1">h1, h2, h3, h4, h5, h6</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">cul</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">plevel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">uls</span> <span class="o">=</span> <span class="p">[</span><span class="nx">make</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul</span><span class="dl">'</span><span class="p">)];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">hs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">level</span> <span class="o">=</span> <span class="o">+</span><span class="nx">hs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">tagName</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">hi</span> <span class="o">=</span> <span class="nx">hs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">ti</span> <span class="o">=</span> <span class="nx">make</span><span class="p">(</span><span class="dl">'</span><span class="s1">li</span><span class="dl">'</span><span class="p">);</span>
+        <span class="nx">ti</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">generateLink</span><span class="p">(</span><span class="nx">hi</span><span class="p">));</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">plevel</span> <span class="o">&lt;</span> <span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">do</span> <span class="p">{</span>
+                <span class="nx">uls</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">make</span><span class="p">(</span><span class="dl">'</span><span class="s1">ul</span><span class="dl">'</span><span class="p">));</span>
+                <span class="nx">uls</span><span class="p">[</span><span class="nx">uls</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">2</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">uls</span><span class="p">[</span><span class="nx">uls</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+            <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">++</span><span class="nx">plevel</span> <span class="o">&lt;</span> <span class="nx">level</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">plevel</span> <span class="o">&gt;</span> <span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">do</span> <span class="p">{</span>
+                <span class="nx">cul</span> <span class="o">=</span> <span class="nx">uls</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="nx">plevel</span> <span class="o">&gt;</span> <span class="nx">level</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">cul</span> <span class="o">=</span> <span class="nx">uls</span><span class="p">[</span><span class="nx">uls</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+        <span class="nx">cul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ti</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">chs</span> <span class="o">=</span> <span class="nx">uls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">children</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">chs</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">chs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">tagName</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">UL</span><span class="dl">'</span><span class="p">)</span>
+            <span class="nx">uls</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+        <span class="k">else</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cnt</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">scrolldummy</span><span class="o">=</span><span class="nx">make</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">toc</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">scrolldummy</span><span class="p">);</span>
+    <span class="nx">toc</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">uls</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="nx">toc</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">block</span><span class="dl">'</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">maxHeightTOC</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">ppc</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post</span><span class="dl">'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">s1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">scrollTop</span><span class="o">=</span><span class="nx">aniscroll</span><span class="p">.</span><span class="nx">getTop</span><span class="p">(),</span> <span class="nx">dummyClientTop</span><span class="o">=</span><span class="nx">scrolldummy</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">().</span><span class="nx">top</span><span class="p">,</span>
+            <span class="nx">margin</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span><span class="nx">c</span><span class="p">,</span><span class="nx">d</span><span class="p">;</span> <span class="c1">// c = dummyHeight, d = TOC.maxHeight (+'px')</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">c</span> <span class="o">=</span> <span class="o">-</span><span class="nx">dummyClientTop</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">wh</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span>
+                <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span>
+                <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">,</span>
+            <span class="nx">cbox</span> <span class="o">=</span> <span class="nx">matchHeightTo</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">(),</span>
+            <span class="nx">vq</span> <span class="o">=</span> <span class="nx">cbox</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="nx">dummyClientTop</span> <span class="o">-</span> <span class="nx">uls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">offsetHeight</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="o">&gt;</span><span class="nx">vq</span><span class="p">)</span> <span class="nx">c</span><span class="o">=</span><span class="nx">vq</span><span class="p">;</span>
+            <span class="nx">d</span> <span class="o">=</span> <span class="p">(</span><span class="nx">wh</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">px</span><span class="dl">'</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">d</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">d</span> <span class="o">!=</span> <span class="nx">maxHeightTOC</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//status lock.</span>
+            <span class="nx">maxHeightTOC</span> <span class="o">=</span> <span class="nx">d</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">uls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">'</span><span class="s1">style</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">max-height:</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">; width:</span><span class="dl">'</span> <span class="o">+</span> <span class="p">(</span><span class="nx">toc</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px</span><span class="dl">"</span> <span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">uls</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">style</span><span class="dl">"</span><span class="p">,</span><span class="dl">""</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">scrolldummy</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="p">(</span><span class="nx">c</span><span class="o">+</span><span class="dl">'</span><span class="s1">px</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">scroll</span><span class="dl">'</span><span class="p">,</span> <span class="nx">s1</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">s1</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">TOCize</span><span class="p">(</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-toc</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post-content</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">.post</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+ <span class="c">&lt;!-- 博客目录 --&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>这个就是设置侧边栏的，注意<code class="highlighter-rouge">&lt;!--******--&gt;</code>是注释内容，也就是不让他出现，也可以直接删了，但不轻易删代码是个好习惯，说不定以后就用得着了，直接取消注释就行，也是一种防止误删代码的方法。</p>
+
+<p>2、可以设置的侧边栏在<code class="highlighter-rouge">_include/widgets</code>文件夹中，将想要设置的侧边栏的文件名填入即可。也可以对这些文件进行修改，修改成你的标准。</p>
+
+<p><img src="/images/posts/2019-09-12/side1.png" alt="" /></p>
+
+<p>3、还是看我的效果，我是暂时只保留了，搜索栏，文章分类列表，标签词云，和打开博客后的目录。</p>
+
+<p><img src="/images/posts/2019-09-12/blog.png" alt="" /></p>
+
+<h2 id="修改了404界面">修改了404界面</h2>
+
+<p>这个纯属闲的没事，我觉得他的404不好看，（是腾讯公益寻找失踪人口的界面，好多网站的404都是链接的这个）。但我的个人博客就没几个人看，用这个404界面没用，我就找了个404界面源代码，放进了博客根目录下的<code class="highlighter-rouge">404.html</code>文件里，还是挺有意思的。是个会动的小狗狗——<a href="http://www.cssmoban.com/cssthemes/5620.shtml">蓝色个性可爱小狗404网页模板</a></p>
+
+<p><img src="/images/posts/2019-09-12/404.png" alt="" /></p>
+
+<h2 id="注意">注意！</h2>
+
+<p>在<code class="highlighter-rouge">_layouts/base.html</code>文件中</p>
+
+<p>有这么一段代码</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="p">(</span><span class="nx">adsbygoogle</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">adsbygoogle</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">push</span><span class="p">({</span>
+        <span class="na">google_ad_client</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ca-pub-3980406043325966</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">enable_page_level_ads</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p>这个事Google广告呀，应该是这个博客模板的创造者故意加进去的，所有使用这个模板的人的博客都成了他的广告流量来源，只要打开网页就相当于给他点了广告。</p>
+
+<p>这里，我也知道原作者非常辛苦的创作了这个模板，让他赚点钱是可以理解的，但在国内，加载一个这个脚本很慢的，是让整个博客的加载体验不好，所以再部署自己的博客的时候自己考虑是否把这一段注释或者删了</p>
+
+<p>还有多个文件中都存在的</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span> <span class="o">||</span> <span class="p">[];</span>
+
+    <span class="kd">function</span> <span class="nx">gtag</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">gtag</span><span class="p">(</span><span class="dl">'</span><span class="s1">js</span><span class="dl">'</span><span class="p">,</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">());</span>
+
+    <span class="nx">gtag</span><span class="p">(</span><span class="dl">'</span><span class="s1">config</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">UA-130856615-1</span><span class="dl">'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+<p>这个是统计网站访问情况的脚本，使用的Google Analysics。很多人搭建自己博客的应该都用，但是！这里是作者直接放在<code class="highlighter-rouge">base.html</code>中的，如果不一点一点的看根本看不到。</p>
+
+<blockquote>
+  <p>正常情况下是在<code class="highlighter-rouge">_config.yml</code>中的</p>
+
+  <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Google Analytics</span>
+ga_track_id: <span class="c">#'UA-130856615-1'            # Format: UA-xxxxxx-xx</span>
+ga_domain: <span class="c">#www.oukohou.wang              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto</span>
+</code></pre></div>  </div>
+
+  <p>设置自己的 <code class="highlighter-rouge">ga_track_id</code></p>
+</blockquote>
+
+<p>但是这里直接设置了一个ga_track_id，<code class="highlighter-rouge">UA-130856615-1</code>,</p>
+
+<p>也就是说，所有使用这个模板的人的博客的访问情况都会被作者的Google Analysics账号收集，有种隐私泄露的感觉，这个并不能为作者带来收益呀，不知道他为什么要收集这个信息。还是自行考虑部署自己的博客的时候自己考虑是否把这一段注释或者删了。</p>
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/09/06/Python+ADB%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%8D%93%E8%AE%BE%E5%A4%87%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96/" class="pre"><i class="icon-post-pre"> Python+ADB实现安卓设备的自动化控制——以刷淘宝活动为例</i></a>
+         
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (12)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#通识讲座">通识讲座 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#论文精读">论文精读 (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (2)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 12pt; color: #666;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 11.5pt; color: #777;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>
