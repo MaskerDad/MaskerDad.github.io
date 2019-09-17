@@ -2,7 +2,7 @@
 layout: post
 title: "How to Write Your First Reserach Paper精读"
 description: ""
-categories: [论文精读]
+categories: [PaperReview]
 tags: [Science Paper]
 redirect_from:
   - /2019/08/21/
