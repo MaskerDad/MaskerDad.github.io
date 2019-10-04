@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+      <loc>http://localhost:4000/2019/09/30/Convex-Optimization_convexset/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-30</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:4000/2019/09/19/Convex-Optimization_Introduction/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-19</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:4000/2019/09/19/.Recommended-software_%E6%AC%A7%E9%99%86%E8%AF%8D%E5%85%B8/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-19</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:4000/2019/09/17/%E5%B7%A5%E4%BD%9C%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98+%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-17</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:4000/2019/09/17/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E5%AE%9E%E6%88%98-%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1%E5%A4%A9%E7%BA%BF-%E5%9C%B0%E9%9D%A2%E7%AB%AF/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-17</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
+      <loc>http://localhost:4000/2019/09/15/Latex+Beamer+Google-File-System-to-slides/</loc>
+      <changefreq>daily</changefreq>
+      <lastmod>2019-09-15</lastmod>
+      <priority>1.0</priority>
+    </url>
+    
+    <url>
       <loc>http://localhost:4000/2019/09/12/%E6%9B%B4%E6%8D%A2%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/</loc>
       <changefreq>daily</changefreq>
       <lastmod>2019-09-12</lastmod>
@@ -198,6 +240,12 @@
     </url>
     
 
+    
+    
+    
+    
+    
+    
     
     
     

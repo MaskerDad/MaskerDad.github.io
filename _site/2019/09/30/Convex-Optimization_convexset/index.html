@@ -1,0 +1,1221 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>Convex Optimization: Convex set | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="Affine and convex sets仿射集合和凸集1. Lines and line segments$y=\theta x_1+(1-\theta)x_2$，$x_1 \ne x_2$。      if $\theta \in R$，y就是个line        if $0\le \theta \le...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">Convex Optimization: Convex set</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Convex Optimization: Convex set</h1>
+        <p class="post-meta">
+            <time datetime="2019-09-30T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Sep 30, 2019</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
+            
+                <a href="/category/#ConvexOptimization">ConvexOptimization</a>
+            
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Essential and Professional Course">Essential and Professional Course</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/09/30/Convex-Optimization_convexset/ class="leancloud-visitors" data-flag-title=Convex Optimization: Convex set>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="affine-and-convex-sets">Affine and convex sets</h1>
+
+<p>仿射集合和凸集</p>
+
+<h2 id="1-lines-and-line-segments">1. Lines and line segments</h2>
+
+<p>$y=\theta x_1+(1-\theta)x_2$，$x_1 \ne x_2$。</p>
+
+<ul>
+  <li>
+    <p>if $\theta \in R$，y就是个line</p>
+  </li>
+  <li>
+    <p>if $0\le \theta \le1$，y就是line segments</p>
+  </li>
+</ul>
+
+<p><img src="/images/posts/2019-09-30/line.png" alt="" /></p>
+
+<h2 id="2-affine-set--仿射集">2. Affine set  （仿射集）</h2>
+
+<p>A set $C \in ^n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.</p>
+
+<p>对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$\theta \in R$都成立，则C就叫仿射集。</p>
+
+<p><strong>Affine combination (仿射组合)：</strong>$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k=1$) 就是点$x_1,..,x_k$的仿射组合</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Subspace (子空间)：</strong> $V=C-x_0={x-x_0</td>
+      <td>x \in C }$   (C is a affine set)</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Affine hull (仿射包)</strong>  <strong>aff</strong> $C={\theta_1x_1+…+\theta_kx_k</td>
+      <td>x_1,..,x_k \in C,\theta_1+…+\theta_k=1}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>The affine hull is the smallest affine set tha contains $C$</li>
+  <li><strong>Affine dimension (仿射维度)：</strong> the affine dimension of a set $C$ is the dimension of its affine hull.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>relative interior (相对内部)：</strong> if the affine dimension of a set $C  \subseteq R^n$ is less than $n$, then the affine set <strong>aff</strong> $C \ne R^n$. so the relative interior of the set $C$ is **relint **$C={x \in C</td>
+          <td>B(x,r) \cap \rm{aff} C \subseteq C\rm{\ for\ some\ }r &gt;0 }$, where $B(x,r)={y</td>
+          <td>\left|y-x \right| \le r}$.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li><strong>relative boubdary (相对边界)：</strong> <strong>cl</strong> $C$ is the closure of $C$</li>
+</ul>
+
+<h2 id="3-convex-sets-凸集">3. Convex sets (凸集)</h2>
+
+<p>A set $C$ is <em>convex</em> if the line segment between any two points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  any $0\le\theta \le1$, we have $\theta x_1+(1-\theta)x_2 \in C$.</p>
+
+<p>对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$0\le\theta \le1$都成立，则C就叫凸集。</p>
+
+<p><img src="/images/posts/2019-09-30/convexset.png" alt="" /></p>
+
+<p><strong>Convex combination (凸组合)：</strong>$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k=1$， $\theta_i \ge 0,i=1,…,k$) 就是点$x_1,..,x_k$的凸组合</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Convex hull (凸包):</strong> <strong>conv</strong> $C={\theta_1x_1+…+\theta_kx_k</td>
+      <td>x_1,..,x_k \in C,\theta_1+…+\theta_k=1,\theta_i\ge0,i=1,…,k}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/images/posts/2019-09-30/convexhull.png" alt="" /></p>
+
+<blockquote>
+  <p><em>Left.</em> 阴影部分就是那15个点形成的凸包</p>
+
+  <p><em>Right.</em> 阴影部分是Kidney shaped set的凸包</p>
+</blockquote>
+
+<h1 id="cones---锥">Cones   (锥)</h1>
+
+<p><strong>Convex cone  (凸锥):</strong> $\theta_1x_1+\theta_2x_2 \in C$ ,for any $x_1,x_2 \in C$ and $\theta_1,\theta_2\ge0$</p>
+
+<p><img src="/images/posts/2019-09-30/convexcone.png" alt="" /></p>
+
+<p><strong>Conic combination (锥组合)：</strong>$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k\ge1$) 就是点$x_1,..,x_k$的锥组合(or nonnegation linear combination)</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Conic hull (锥包)：</strong>${\theta_1x_1+…+\theta_kx_k</td>
+      <td>x_1,..,x_k \in C,\theta_i\ge0,i=1,…,k}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>下图就是两个集合的锥包</p>
+
+  <p><img src="/images/posts/2019-09-30/conichull.png" alt="" /></p>
+</blockquote>
+
+<h1 id="some-important-examples">Some important examples</h1>
+
+<h2 id="1-hyperplane-and-halfspace">1. Hyperplane and halfspace</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>**Hyperplane (超平面): **${x</td>
+      <td>a^Tx=b}$, where $a\in R^n,a\ne0,b\in R$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>$a$: normal vector (法线)</li>
+  <li>$b$ determines the offset of the hyperplane from the origin</li>
+  <li>hyperplanes are affine and convex</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>${x</td>
+          <td>a^T(x-x_0)=0}$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><img src="/images/posts/2019-09-30/hyperplane.png" alt="" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Halfspace (半平面)：</strong>${x</td>
+      <td>a^Tx \le b}$, where $a\ne0$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>halfspaces are convex, but not affine.</li>
+  <li>$a$ is the outward normal vector.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>open halfspace</strong>: ${x</td>
+          <td>a^Tx &lt; b}$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><img src="/images/posts/2019-09-30/halfspace.png" alt="" /></p>
+
+<h2 id="2-euclidean-ball-and-ellipsoideuclidean-球和椭球">2. Euclidean ball and ellipsoid（Euclidean 球和椭球）</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>**Euclidean ball: **$B(x_c,r)={x</td>
+      <td>\left| x-x_c \right|_2 \le r}={x</td>
+      <td>(x-x_c)^T (x-x_c)\le r^2}={x_c+ru</td>
+      <td>\left| u\right |_2 \le 1}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>$\left |   \cdot \right|$ denotes the Euclidean norm</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Ellipsoid:</strong> $\cal E={x</td>
+      <td>(x-x_c)^TP^{-1}(x-x_c)\le1}$ where$P=P^T\succ0$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>$P$ is symmtric and positive definite (对称，正定)。</li>
+  <li>a ball is an ellipsoid with $P=r^2I$</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$\cal E={x_c+Au</td>
+          <td>\left | u\right |_2 \le 1}$ where A is square and nonsingular (非奇异的方阵)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="3-norm-balls-and-norm-cones">3. Norm balls and norm cones</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>**Norm ball (范数球): ** ${x</td>
+      <td>\left|x-x_c \right |\le r}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>**Norm cone (范数锥): ** $C={(x,t)</td>
+      <td>\left|x \right |\le t} \sube R^{n+1}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>norm balls and cones are convex</li>
+</ul>
+
+<p><img src="/images/posts/2019-09-30/normcone.png" alt="" /></p>
+
+<h2 id="4-polyhedra">4. Polyhedra</h2>
+
+<p><strong>Polyhedron (多面体):</strong> ${\cal P}={a_j^Tx \le b_j,j=1,…,m,c_j^Tx=d_j,j=1,…,p}$</p>
+
+<blockquote>
+  <p>Polyhedra是Polyhedron的复数</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>$Ax \preceq b$, $Cx=d$, where $A \in R^{m \times n}, C \in R^{p \times n}$</p>
+  </li>
+  <li>
+    <p>$\preceq$ is componentwise inequality (分量不等式)</p>
+
+    <blockquote>
+      <p>也就是前面矩阵按照每个元素小于等于后面矩阵的对应元素。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>* Simplexes 单纯形</p>
+  </li>
+  <li>
+    <p>* Convex hull description of polyhedra</p>
+  </li>
+</ul>
+
+<p><strong>Polytope (多胞形)：</strong>A bounded polyhedron is sometimes called a polytope.</p>
+
+<blockquote>
+  <p>Polyhedron和polytope有的教材会翻过来定义。不用太追究就好。</p>
+</blockquote>
+
+<h2 id="5-the-positive-semidefinite-cone-半正定锥">5. The positive semidefinite cone （半正定锥）</h2>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$S^n$ denotes symmetric $n \times n$ matrix, $S^n={X\in R^{n\times n}</td>
+          <td>X=X^T}$, which is a vector space with dimension $n(n+1)/2$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p>这里向量空间维度为什么是$n(n+1)/2$呢？</p>
+
+      <p>比如矩阵$X = \left[ {\begin{array}{*{20}{c}}x&amp;y\y&amp;z\end{array}} \right]\in S^n$。因为要保持对称，所以副对角线的元素都是$y$, 因此对于$n=2$的向量空间维度为3。</p>
+
+      <p>再如果$X\in S_+^n$是一个半正定对称矩阵的话。</p>
+
+      <p>则满足$x\ge 0,z\ge0,xz\ge y^2$。所以可得到一个<strong>Positive semidefinite cone</strong>.</p>
+
+      <p><img src="/images/posts/2019-09-30/positivesemidefinite.png" alt="" /></p>
+
+    </blockquote>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$S_+^n$ denotes the set of symmetric positive semidefinite matrix, $S_+^n={X\in S^n</td>
+          <td>X\succeq0 }$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$S_{++}^n$ denotes the set of symmetric positive definite matrix,  $S_+^n={X\in S^n</td>
+          <td>X\succ 0 }$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="remark1-positive-definite-matrices-and-positive-semidefinite-matrices">Remark1: Positive definite matrices and Positive semidefinite matrices</h2>
+
+<p>参考有人总结的文章<a href="https://zhuanlan.zhihu.com/p/44860862">浅谈「正定矩阵」和「半正定矩阵」</a></p>
+
+<p>【定义1】给定一个大小为$n \times n$ 的实对称矩阵$A$，若对于任意长度为$n$的非零向量$x$，有$x^TAx&gt;0$恒成立，则矩阵 $A$是一个正定矩阵。</p>
+
+<p>【定义1】给定一个大小为$n \times n$ 的实对称矩阵$A$，若对于任意长度为$n$的非零向量$x$，有$x^TAx \ge0$恒成立，则矩阵 $A$是一个半正定矩阵。</p>
+
+<p><strong>正定矩阵和半正定矩阵的直观解释</strong></p>
+
+<p>若给定任意一个正定矩阵$A\in \cal R^{n \times n}$和一个非零向量 $x\in \cal R^{n}$ ，则两者相乘得到的向量$y=Ax\in \cal R^n$与向量$x$角恒小于$\frac{\pi}{2}$ . (等价于: $x^TAx&gt;0$)</p>
+
+<p>若给定任意一个正定矩阵$A\in \cal R^{n \times n}$和一个非零向量 $x\in \cal R^{n}$ ，则两者相乘得到的向量$y=Ax\in \cal R^n$与向量$x$角恒小于或等于$\frac{\pi}{2}$ . (等价于: $x^TAx\ge0$)</p>
+
+<p>根据上面的理解，在结合之前在<a href="https://zpyang.gitee.io/2019/08/07/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0/">Essence of Linear Algebra系列笔记整理</a>的学习中对线性代数的理解。</p>
+
+<p>将向量$x$作变换矩阵为$A$的线性变换，得到向量新的向量$Ax$, 则$\vec {Ax}$与原来$\vec x$的夹角则决定了变换矩阵$A$是正定的还是半正定的。</p>
+
+<p><strong>正定矩阵的性质</strong></p>
+
+<ul>
+  <li>
+    <p><strong>正定矩阵的行列式恒为正；</strong></p>
+  </li>
+  <li>
+    <p>实对称矩阵$A$正定当且仅当$A$与单位矩阵合同；</p>
+
+    <blockquote>
+      <p>合同变换（congruent transformation）是指在平面到自身的一一变换下，任意线段的长和它的像的长总相等，这种变换也叫做全等变换，或称合同变换。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>两个正定矩阵的和是正定矩阵；</p>
+  </li>
+  <li>
+    <p>正实数与正定矩阵的乘积是正定矩阵。</p>
+  </li>
+</ul>
+
+<p><strong>正定矩阵的等价命题</strong></p>
+
+<ol>
+  <li>$A$是正定矩阵；</li>
+  <li>$A$的一切顺序主子式均为正；</li>
+  <li>$A$的一切主子式均为正；</li>
+  <li><strong>$A$的特征值均为正；</strong></li>
+  <li>存在实可逆矩阵$C$，使$A=C’C$；</li>
+  <li>存在秩为$n$的$m\times n$实矩阵$B$，使$A=B’B$；</li>
+  <li>存在主对角线元素全为正的实三角矩阵$R$，使$A=R’R$</li>
+</ol>
+
+<h2 id="remark-2--various-norms">Remark 2:  Various norms</h2>
+
+<p>此部分主要参考了<a href="https://zhuanlan.zhihu.com/p/29663013">0范数，1范数，2范数的区别</a></p>
+
+<p><strong>向量范数</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>1-范数</strong>：$\left | x\right |<em>1=\sum\limits</em>{i = 1}^N {\left</td>
+      <td>\right</td>
+      <td>}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>2-范数</strong>：$\left | x\right |<em>2=\sqrt{\sum\limits</em>{i = 1}^N  {x_i^2} }$ ，也叫Euclidean norm/distance</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>$\infty$-范数：</strong> $\left | x\right |_\infty=\mathop }\limits_i  {\left</td>
+      <td>\right</td>
+      <td>}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>$-\infty$-范数：</strong> $\left | x\right |_{-\infty}=\mathop }\limits_i  {\left</td>
+      <td>\right</td>
+      <td>}$</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>p-范数：</strong>$\left | x\right |<em>p=\left(\sum\limits</em>{i = 1}^N  {\left</td>
+      <td>x_i \right</td>
+      <td>^p}\right)^{\frac{1}{p}} $</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>矩阵范数</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>1-范数</strong>：$\left | A\right |<em>1=\mathop }\limits_j  \sum\limits</em>{i = 1}^m {\left</td>
+      <td>} \right</td>
+      <td>}$, 列和范数</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>2-范数</strong>：$\left | A\right |_2=\sqrt{\lambda_1}$ ，$\lambda_1$ 为$A^TA$的最大特征值，谱范数</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>$\infty$-范数</strong>：$\left | A\right |<em>\infty=\mathop }\limits_i  \sum\limits</em>{j = 1}^n {\left</td>
+      <td>} \right</td>
+      <td>}$ , 行和范数</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>F-范数</strong>：$\left | A\right |<em>F=\left(\sum\limits</em>{i = 1}^m \sum\limits_{j = 1}^n {\left</td>
+      <td>a_{i,j}\right</td>
+      <td>^2}\right)^{\frac{1}{p}} $, Frobenius范数</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>核范数</strong>：$\left | A\right |<em>*= \sum\limits</em>{i = 1}^n { \lambda_i }$, $\lambda_i$是矩阵$A$的奇异值</p>
+
+<p>一下是不同的norm对应的曲线。</p>
+
+<p><img src="/images/posts/2019-09-30/norm1.png" alt="" /></p>
+
+<p>上图中，可以明显看到一个趋势，即$q$越小，曲线越贴近坐标轴，$q$越大，曲线越远离坐标轴，并且棱角越明显。那么 $q=0 $和 $q=\infty$ 时极限情况如何呢？猜猜看。</p>
+
+<p><img src="/images/posts/2019-09-30/norm2.png" alt="" /></p>
+
+<p>答案就是十字架和正方形。除了图形上的直观形象，在数学公式的推导中，$q=0 $和 $q=\infty$时两种极限的行为可以简记为非零元的个数和最大项。即0范数对应向量或矩阵中非零元的个数，无穷范数对应向量或矩阵中最大的元素。</p>
+
+<h2 id="remark3-singular-matrix-and-nonsingular-matrix">Remark3: Singular matrix and Nonsingular matrix</h2>
+
+<p><strong>Singular matrix (奇异矩阵)</strong>: 行列式为0的矩阵</p>
+
+<p><strong>Nonsingular matrix (非奇异矩阵)</strong>: 行列式不为0 的矩阵</p>
+
+<ul>
+  <li>一个矩阵非奇异当且仅当它的行列式不为零。</li>
+  <li>一个矩阵非奇异当且仅当它代表的线性变换是个自同构。</li>
+  <li>一个矩阵半正定当且仅当它的每个特征值大于或等于零。</li>
+  <li>一个矩阵正定当且仅当它的每个特征值都大于零。</li>
+  <li>一个矩阵非奇异当且仅当它的秩为n</li>
+</ul>
+
+<h2 id="remark4-singular-value-decompositionsvd">Remark4 :Singular Value Decomposition（SVD）</h2>
+
+<p>奇异值分解这部分主要参考了<a href="https://zhuanlan.zhihu.com/p/29846048">奇异值分解（SVD）</a></p>
+
+<p><strong>1. 回顾特征值和特征向量</strong></p>
+
+<p>$Ax=\lambda x$</p>
+
+<p>where $A\in R^{n\times n}, x\in R^n$. hence, $\lambda$ is its eigenvalue, $x$ is the eigenvector of $\lambda$.</p>
+
+<p>求出特征值和特征向量有什么好处呢？ 就是我们可以将矩阵A特征分解。如果我们求出了矩阵$A$的$n$个特征值$\lambda_1 \le \lambda_2 \le …\le\lambda_n$，以及这$n$个特征值所对应的特征向量$w_1,w_2,…,w_n$.</p>
+
+<p>那么矩阵A就可以用下式的特征分解表示：</p>
+
+<p>$A=W\Sigma W^{-1}$</p>
+
+<p>其中$W$是这$n$个特征向量所张成的$n \times n$维矩阵,  而$\Sigma $为这$n$个特征值为主对角线的$n \times n$维矩阵。</p>
+
+<p>一般我们会把W的这n个特征向量标准化，即满足$\left | w_i\right |_2=1$ ，或者$ w_i^T w_i=1$ ，此时W的</p>
+
+<p>$n$个特征向量为标准正交基，满足$W^TW=I$, 即$W^T=W^{-1}$，也就是说$W$为酉矩阵。</p>
+
+<p>这样我们的特征分解表达式可以写成</p>
+
+<p>$A=W \Sigma W^{T}$</p>
+
+<p>注意到要进行特征分解，矩阵A必须为方阵。</p>
+
+<p>那么如果A不是方阵，即行和列不相同时，我们还可以对矩阵进行分解吗？答案是可以，此时我们的SVD登场了。</p>
+
+<p><strong>2. SVD的定义</strong></p>
+
+<p>SVD也是对矩阵进行分解，但是和特征分解不同，SVD并不要求要分解的矩阵为方阵。假设我们的矩阵$A$是一个$m \times n$的矩阵，那么我们定义矩阵$A$的SVD为：</p>
+
+<p>$A=U \Sigma V^T$</p>
+
+<p>其中$U$是一个$m \times m$的矩阵, $\Sigma$ 是一个$m \times n$的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值, $V$是一个$n \times n$ 的矩阵。$U$ 和$V$都是酉矩阵，即满足$U^TU=I, V^TV=I$ 。下图可以很形象的看出上面SVD的定义：</p>
+
+<p><img src="/images/posts/2019-09-30/svd.jpg" alt="" /></p>
+
+<p>那么我们如何求出SVD分解后的$U,\Sigma,V$这三个矩阵呢？</p>
+
+<p>如果我们将$A$的转置和$A$做矩阵乘法，那么会得到$n\times n$的一个方阵$A^TA$。既然$A^TA$是方阵，那么我们就可以进行特征分解，得到的特征值和特征向量满足下式：</p>
+
+<p>$(A^TA)v_i=\lambda_iv_i$</p>
+
+<p>这样我们就可以得到矩阵 $A^TA$ 的$n$个特征值和对应的$n$个特征向量$v$了。将 $A^TA$ 的所有特征向量张成一个$n \times n$的矩阵$V$，就是我们SVD公式里面的$V$矩阵了。一般我们将$V$中的每个特征向量叫做$A$的<strong>右奇异向量</strong>。</p>
+
+<p>如果我们将A和A的转置做矩阵乘法，那么会得到$m\times m$的一个方阵 $AA^T$ 。既然 $AA^T$ 是方阵，那么我们就可以进行特征分解，得到的特征值和特征向量满足下式：</p>
+
+<p>$(AA^T)u_i=\lambda_iu_i$</p>
+
+<p>这样我们就可以得到矩阵 $AA^T$ 的$m$个特征值和对应的$m$个特征向量$u$了。将 $AA^T$  的所有特征向量张成一个$m \times m$的矩阵$U$，就是我们SVD公式里面的$U$矩阵了。一般我们将$U$中的每个特征向量叫做$A$的<strong>左奇异向量</strong>。</p>
+
+<p>$U$和$V$我们都求出来了，现在就剩下奇异值矩阵$\Sigma$没有求出了.由于$\Sigma$除了对角线上是奇异值其他位置都是0，那我们只需要求出每个奇异值$\sigma$就可以了。我们注意到:</p>
+
+<p>$A=U \Sigma V^T \Rightarrow AV=U \Sigma V^TV \Rightarrow AV=U\Sigma \Rightarrow Av_i=\sigma_iu_i \Rightarrow \sigma_i=\frac{Av_i}{u_i}$</p>
+
+<p>这样我们可以求出我们的每个奇异值，进而求出奇异值矩阵$\Sigma$。</p>
+
+<p>$A=U \Sigma V^T \Rightarrow A^T=V \Sigma U^T \Rightarrow A^TA=V\Sigma U^TU \Sigma V^T=V\Sigma^2V^T$</p>
+
+<p>以看出我们的特征值矩阵等于奇异值矩阵的平方，也就是说特征值和奇异值满足如下关系：</p>
+
+<p>$\sigma_i=\sqrt{\lambda_i}$</p>
+
+<p><strong>3. SVD的一些性质</strong></p>
+
+<p>对于奇异值,它跟我们特征分解中的特征值类似，在奇异值矩阵中也是按照从大到小排列，而且奇异值的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上的比例。</p>
+
+<p>也就是说，我们也可以用最大的$k$个的奇异值和对应的左右奇异向量来近似描述矩阵。</p>
+
+<p>也就是说：</p>
+
+<p>$A_{m\times n}=U_{m\times m}\Sigma_{m\times n}V_{n\times n}^T \approx U_{m\times k}\Sigma_{k\times k}V_{k\times n}^T$</p>
+
+<p>其中$k$要比$n$小很多，也就是一个大的矩阵A可以用三个小的矩阵$U_{m\times k},\Sigma_{k\times k},V_{k\times n}^T$来表示。如下图所示，现在我们的矩阵$A$只需要灰色的部分的三个小矩阵就可以近似描述了。</p>
+
+<p><img src="/images/posts/2019-09-30/svd2.jpg" alt="" /></p>
+
+<p>由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪。也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐。同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。</p>
+
+<p>下面我们就对SVD用于PCA降维做一个介绍。</p>
+
+<p><strong>4. SVD用于PCA</strong></p>
+
+<p>PCA降维，需要找到样本协方差矩阵$X^TX$的最大的$d$个特征向量，然后用这最大的$d$个特征向量张成的矩阵来做低维投影降维。可以看出，在这个过程中需要先求出协方差矩阵$X^TX$，当样本数多样本特征数也多的时候，这个计算量是很大的。</p>
+
+<p>注意到我们的SVD也可以得到协方差矩阵$X^TX$最大的$d$个特征向量张成的矩阵，但是SVD有个好处，有一些SVD的实现算法可以不求先求出协方差矩阵$X^TX$，也能求出我们的右奇异矩阵$V$。也就是说，我们的PCA算法可以不用做特征分解，而是做SVD来完成。这个方法在样本量很大的时候很有效。实际上，scikit-learn的PCA算法的背后真正的实现就是用的SVD，而不是我们我们认为的暴力特征分解。</p>
+
+<p>另一方面，注意到PCA仅仅使用了我们SVD的右奇异矩阵，没有使用左奇异矩阵，那么左奇异矩阵有什么用呢？</p>
+
+<p>假设我们的样本是$m \times n$的矩阵$X$，如果我们通过SVD找到了矩阵$XX^T$最大的$d$个特征向量张成的$m\times d$维矩阵$U$，则我们如果进行如下处理：</p>
+
+<p>$X_{d \times n}^\prime =U_{d\times m}^TX_{m \times n}$</p>
+
+<p>可以得到一个$d\times n$的矩阵$X^\prime$,这个矩阵和我们原来的$m\times n$维样本矩阵$X$相比，行数从$m$减到了$d$，可见对行数进行了压缩。</p>
+
+<p><strong>左奇异矩阵可以用于行数的压缩。</strong></p>
+
+<p><strong>右奇异矩阵可以用于列数即特征维度的压缩，也就是我们的PCA降维。</strong></p>
+
+<blockquote>
+  <p>SVD作为一个很基本的算法，在很多机器学习算法中都有它的身影，特别是在现在的大数据时代，由于SVD可以实现并行化，因此更是大展身手。</p>
+
+  <p>SVD的缺点是<strong>分解出的矩阵解释性往往不强</strong>，有点黑盒子的味道，不过这不影响它的使用。</p>
+</blockquote>
+
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/09/19/Convex-Optimization_Introduction/" class="pre"><i class="icon-post-pre"> Convex Optimization: Introduction</i></a>
+         
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……\n这里支持MarkDown语法哦！回复前可以预览一下。',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (13)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#GeneralLecture">GeneralLecture (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PaperReview">PaperReview (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#LaTexManuals">LaTexManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#ConvexOptimization">ConvexOptimization (2)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 12pt; color: #666;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 12.5pt; color: #666;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Efficient Application" rel="nofollow" style="font-size: 9.5pt; color: #888;">Efficient Application</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    
+    <a href="/tags/#LaTex" rel="nofollow" style="font-size: 9pt; color: #999;">LaTex</a>
+    
+    
+    <a href="/tags/#Comprehensive Quality" rel="nofollow" style="font-size: 9pt; color: #999;">Comprehensive Quality</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>

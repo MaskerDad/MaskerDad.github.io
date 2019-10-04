@@ -5,9 +5,1259 @@
     <description>得之吾幸，失之我命。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 12 Sep 2019 15:15:41 -0700</pubDate>
-    <lastBuildDate>Thu, 12 Sep 2019 15:15:41 -0700</lastBuildDate>
+    <pubDate>Fri, 04 Oct 2019 08:45:43 -0700</pubDate>
+    <lastBuildDate>Fri, 04 Oct 2019 08:45:43 -0700</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>Convex Optimization: Convex set</title>
+        <description>&lt;h1 id=&quot;affine-and-convex-sets&quot;&gt;Affine and convex sets&lt;/h1&gt;
+
+&lt;p&gt;仿射集合和凸集&lt;/p&gt;
+
+&lt;h2 id=&quot;1-lines-and-line-segments&quot;&gt;1. Lines and line segments&lt;/h2&gt;
+
+&lt;p&gt;$y=\theta x_1+(1-\theta)x_2$，$x_1 \ne x_2$。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;if $\theta \in R$，y就是个line&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;if $0\le \theta \le1$，y就是line segments&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/line.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-affine-set--仿射集&quot;&gt;2. Affine set  （仿射集）&lt;/h2&gt;
+
+&lt;p&gt;A set $C \in ^n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.&lt;/p&gt;
+
+&lt;p&gt;对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$\theta \in R$都成立，则C就叫仿射集。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Affine combination (仿射组合)：&lt;/strong&gt;$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k=1$) 就是点$x_1,..,x_k$的仿射组合&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Subspace (子空间)：&lt;/strong&gt; $V=C-x_0={x-x_0&lt;/td&gt;
+      &lt;td&gt;x \in C }$   (C is a affine set)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Affine hull (仿射包)&lt;/strong&gt;  &lt;strong&gt;aff&lt;/strong&gt; $C={\theta_1x_1+…+\theta_kx_k&lt;/td&gt;
+      &lt;td&gt;x_1,..,x_k \in C,\theta_1+…+\theta_k=1}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The affine hull is the smallest affine set tha contains $C$&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Affine dimension (仿射维度)：&lt;/strong&gt; the affine dimension of a set $C$ is the dimension of its affine hull.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;relative interior (相对内部)：&lt;/strong&gt; if the affine dimension of a set $C  \subseteq R^n$ is less than $n$, then the affine set &lt;strong&gt;aff&lt;/strong&gt; $C \ne R^n$. so the relative interior of the set $C$ is **relint **$C={x \in C&lt;/td&gt;
+          &lt;td&gt;B(x,r) \cap \rm{aff} C \subseteq C\rm{\ for\ some\ }r &amp;gt;0 }$, where $B(x,r)={y&lt;/td&gt;
+          &lt;td&gt;\left|y-x \right| \le r}$.&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;relative boubdary (相对边界)：&lt;/strong&gt; &lt;strong&gt;cl&lt;/strong&gt; $C$ is the closure of $C$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-convex-sets-凸集&quot;&gt;3. Convex sets (凸集)&lt;/h2&gt;
+
+&lt;p&gt;A set $C$ is &lt;em&gt;convex&lt;/em&gt; if the line segment between any two points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  any $0\le\theta \le1$, we have $\theta x_1+(1-\theta)x_2 \in C$.&lt;/p&gt;
+
+&lt;p&gt;对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$0\le\theta \le1$都成立，则C就叫凸集。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/convexset.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Convex combination (凸组合)：&lt;/strong&gt;$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k=1$， $\theta_i \ge 0,i=1,…,k$) 就是点$x_1,..,x_k$的凸组合&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Convex hull (凸包):&lt;/strong&gt; &lt;strong&gt;conv&lt;/strong&gt; $C={\theta_1x_1+…+\theta_kx_k&lt;/td&gt;
+      &lt;td&gt;x_1,..,x_k \in C,\theta_1+…+\theta_k=1,\theta_i\ge0,i=1,…,k}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/convexhull.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;Left.&lt;/em&gt; 阴影部分就是那15个点形成的凸包&lt;/p&gt;
+
+  &lt;p&gt;&lt;em&gt;Right.&lt;/em&gt; 阴影部分是Kidney shaped set的凸包&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;cones---锥&quot;&gt;Cones   (锥)&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Convex cone  (凸锥):&lt;/strong&gt; $\theta_1x_1+\theta_2x_2 \in C$ ,for any $x_1,x_2 \in C$ and $\theta_1,\theta_2\ge0$&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/convexcone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conic combination (锥组合)：&lt;/strong&gt;$\theta_1x_1+…+\theta_kx_k$  (where $\theta_1+…+\theta_k\ge1$) 就是点$x_1,..,x_k$的锥组合(or nonnegation linear combination)&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Conic hull (锥包)：&lt;/strong&gt;${\theta_1x_1+…+\theta_kx_k&lt;/td&gt;
+      &lt;td&gt;x_1,..,x_k \in C,\theta_i\ge0,i=1,…,k}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;下图就是两个集合的锥包&lt;/p&gt;
+
+  &lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/conichull.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;some-important-examples&quot;&gt;Some important examples&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-hyperplane-and-halfspace&quot;&gt;1. Hyperplane and halfspace&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;**Hyperplane (超平面): **${x&lt;/td&gt;
+      &lt;td&gt;a^Tx=b}$, where $a\in R^n,a\ne0,b\in R$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$a$: normal vector (法线)&lt;/li&gt;
+  &lt;li&gt;$b$ determines the offset of the hyperplane from the origin&lt;/li&gt;
+  &lt;li&gt;hyperplanes are affine and convex&lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;${x&lt;/td&gt;
+          &lt;td&gt;a^T(x-x_0)=0}$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/hyperplane.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Halfspace (半平面)：&lt;/strong&gt;${x&lt;/td&gt;
+      &lt;td&gt;a^Tx \le b}$, where $a\ne0$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;halfspaces are convex, but not affine.&lt;/li&gt;
+  &lt;li&gt;$a$ is the outward normal vector.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;open halfspace&lt;/strong&gt;: ${x&lt;/td&gt;
+          &lt;td&gt;a^Tx &amp;lt; b}$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/halfspace.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-euclidean-ball-and-ellipsoideuclidean-球和椭球&quot;&gt;2. Euclidean ball and ellipsoid（Euclidean 球和椭球）&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;**Euclidean ball: **$B(x_c,r)={x&lt;/td&gt;
+      &lt;td&gt;\left| x-x_c \right|_2 \le r}={x&lt;/td&gt;
+      &lt;td&gt;(x-x_c)^T (x-x_c)\le r^2}={x_c+ru&lt;/td&gt;
+      &lt;td&gt;\left| u\right |_2 \le 1}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$\left |   \cdot \right|$ denotes the Euclidean norm&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Ellipsoid:&lt;/strong&gt; $\cal E={x&lt;/td&gt;
+      &lt;td&gt;(x-x_c)^TP^{-1}(x-x_c)\le1}$ where$P=P^T\succ0$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$P$ is symmtric and positive definite (对称，正定)。&lt;/li&gt;
+  &lt;li&gt;a ball is an ellipsoid with $P=r^2I$&lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$\cal E={x_c+Au&lt;/td&gt;
+          &lt;td&gt;\left | u\right |_2 \le 1}$ where A is square and nonsingular (非奇异的方阵)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-norm-balls-and-norm-cones&quot;&gt;3. Norm balls and norm cones&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;**Norm ball (范数球): ** ${x&lt;/td&gt;
+      &lt;td&gt;\left|x-x_c \right |\le r}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;**Norm cone (范数锥): ** $C={(x,t)&lt;/td&gt;
+      &lt;td&gt;\left|x \right |\le t} \sube R^{n+1}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;norm balls and cones are convex&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/normcone.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-polyhedra&quot;&gt;4. Polyhedra&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Polyhedron (多面体):&lt;/strong&gt; ${\cal P}={a_j^Tx \le b_j,j=1,…,m,c_j^Tx=d_j,j=1,…,p}$&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Polyhedra是Polyhedron的复数&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;$Ax \preceq b$, $Cx=d$, where $A \in R^{m \times n}, C \in R^{p \times n}$&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;$\preceq$ is componentwise inequality (分量不等式)&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;也就是前面矩阵按照每个元素小于等于后面矩阵的对应元素。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;* Simplexes 单纯形&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;* Convex hull description of polyhedra&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Polytope (多胞形)：&lt;/strong&gt;A bounded polyhedron is sometimes called a polytope.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Polyhedron和polytope有的教材会翻过来定义。不用太追究就好。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;5-the-positive-semidefinite-cone-半正定锥&quot;&gt;5. The positive semidefinite cone （半正定锥）&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$S^n$ denotes symmetric $n \times n$ matrix, $S^n={X\in R^{n\times n}&lt;/td&gt;
+          &lt;td&gt;X=X^T}$, which is a vector space with dimension $n(n+1)/2$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;这里向量空间维度为什么是$n(n+1)/2$呢？&lt;/p&gt;
+
+      &lt;p&gt;比如矩阵$X = \left[ {\begin{array}{*{20}{c}}x&amp;amp;y\y&amp;amp;z\end{array}} \right]\in S^n$。因为要保持对称，所以副对角线的元素都是$y$, 因此对于$n=2$的向量空间维度为3。&lt;/p&gt;
+
+      &lt;p&gt;再如果$X\in S_+^n$是一个半正定对称矩阵的话。&lt;/p&gt;
+
+      &lt;p&gt;则满足$x\ge 0,z\ge0,xz\ge y^2$。所以可得到一个&lt;strong&gt;Positive semidefinite cone&lt;/strong&gt;.&lt;/p&gt;
+
+      &lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/positivesemidefinite.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$S_+^n$ denotes the set of symmetric positive semidefinite matrix, $S_+^n={X\in S^n&lt;/td&gt;
+          &lt;td&gt;X\succeq0 }$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$S_{++}^n$ denotes the set of symmetric positive definite matrix,  $S_+^n={X\in S^n&lt;/td&gt;
+          &lt;td&gt;X\succ 0 }$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;remark1-positive-definite-matrices-and-positive-semidefinite-matrices&quot;&gt;Remark1: Positive definite matrices and Positive semidefinite matrices&lt;/h2&gt;
+
+&lt;p&gt;参考有人总结的文章&lt;a href=&quot;https://zhuanlan.zhihu.com/p/44860862&quot;&gt;浅谈「正定矩阵」和「半正定矩阵」&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;【定义1】给定一个大小为$n \times n$ 的实对称矩阵$A$，若对于任意长度为$n$的非零向量$x$，有$x^TAx&amp;gt;0$恒成立，则矩阵 $A$是一个正定矩阵。&lt;/p&gt;
+
+&lt;p&gt;【定义1】给定一个大小为$n \times n$ 的实对称矩阵$A$，若对于任意长度为$n$的非零向量$x$，有$x^TAx \ge0$恒成立，则矩阵 $A$是一个半正定矩阵。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;正定矩阵和半正定矩阵的直观解释&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;若给定任意一个正定矩阵$A\in \cal R^{n \times n}$和一个非零向量 $x\in \cal R^{n}$ ，则两者相乘得到的向量$y=Ax\in \cal R^n$与向量$x$角恒小于$\frac{\pi}{2}$ . (等价于: $x^TAx&amp;gt;0$)&lt;/p&gt;
+
+&lt;p&gt;若给定任意一个正定矩阵$A\in \cal R^{n \times n}$和一个非零向量 $x\in \cal R^{n}$ ，则两者相乘得到的向量$y=Ax\in \cal R^n$与向量$x$角恒小于或等于$\frac{\pi}{2}$ . (等价于: $x^TAx\ge0$)&lt;/p&gt;
+
+&lt;p&gt;根据上面的理解，在结合之前在&lt;a href=&quot;https://zpyang.gitee.io/2019/08/07/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8%E6%95%B4%E7%90%86%E7%AC%94%E8%AE%B0/&quot;&gt;Essence of Linear Algebra系列笔记整理&lt;/a&gt;的学习中对线性代数的理解。&lt;/p&gt;
+
+&lt;p&gt;将向量$x$作变换矩阵为$A$的线性变换，得到向量新的向量$Ax$, 则$\vec {Ax}$与原来$\vec x$的夹角则决定了变换矩阵$A$是正定的还是半正定的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;正定矩阵的性质&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;正定矩阵的行列式恒为正；&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;实对称矩阵$A$正定当且仅当$A$与单位矩阵合同；&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;合同变换（congruent transformation）是指在平面到自身的一一变换下，任意线段的长和它的像的长总相等，这种变换也叫做全等变换，或称合同变换。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;两个正定矩阵的和是正定矩阵；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;正实数与正定矩阵的乘积是正定矩阵。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;正定矩阵的等价命题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;$A$是正定矩阵；&lt;/li&gt;
+  &lt;li&gt;$A$的一切顺序主子式均为正；&lt;/li&gt;
+  &lt;li&gt;$A$的一切主子式均为正；&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;$A$的特征值均为正；&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;存在实可逆矩阵$C$，使$A=C’C$；&lt;/li&gt;
+  &lt;li&gt;存在秩为$n$的$m\times n$实矩阵$B$，使$A=B’B$；&lt;/li&gt;
+  &lt;li&gt;存在主对角线元素全为正的实三角矩阵$R$，使$A=R’R$&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;remark-2--various-norms&quot;&gt;Remark 2:  Various norms&lt;/h2&gt;
+
+&lt;p&gt;此部分主要参考了&lt;a href=&quot;https://zhuanlan.zhihu.com/p/29663013&quot;&gt;0范数，1范数，2范数的区别&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;向量范数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;1-范数&lt;/strong&gt;：$\left | x\right |&lt;em&gt;1=\sum\limits&lt;/em&gt;{i = 1}^N {\left&lt;/td&gt;
+      &lt;td&gt;\right&lt;/td&gt;
+      &lt;td&gt;}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;2-范数&lt;/strong&gt;：$\left | x\right |&lt;em&gt;2=\sqrt{\sum\limits&lt;/em&gt;{i = 1}^N  {x_i^2} }$ ，也叫Euclidean norm/distance&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;$\infty$-范数：&lt;/strong&gt; $\left | x\right |_\infty=\mathop }\limits_i  {\left&lt;/td&gt;
+      &lt;td&gt;\right&lt;/td&gt;
+      &lt;td&gt;}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;$-\infty$-范数：&lt;/strong&gt; $\left | x\right |_{-\infty}=\mathop }\limits_i  {\left&lt;/td&gt;
+      &lt;td&gt;\right&lt;/td&gt;
+      &lt;td&gt;}$&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;p-范数：&lt;/strong&gt;$\left | x\right |&lt;em&gt;p=\left(\sum\limits&lt;/em&gt;{i = 1}^N  {\left&lt;/td&gt;
+      &lt;td&gt;x_i \right&lt;/td&gt;
+      &lt;td&gt;^p}\right)^{\frac{1}{p}} $&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;矩阵范数&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;1-范数&lt;/strong&gt;：$\left | A\right |&lt;em&gt;1=\mathop }\limits_j  \sum\limits&lt;/em&gt;{i = 1}^m {\left&lt;/td&gt;
+      &lt;td&gt;} \right&lt;/td&gt;
+      &lt;td&gt;}$, 列和范数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;2-范数&lt;/strong&gt;：$\left | A\right |_2=\sqrt{\lambda_1}$ ，$\lambda_1$ 为$A^TA$的最大特征值，谱范数&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;$\infty$-范数&lt;/strong&gt;：$\left | A\right |&lt;em&gt;\infty=\mathop }\limits_i  \sum\limits&lt;/em&gt;{j = 1}^n {\left&lt;/td&gt;
+      &lt;td&gt;} \right&lt;/td&gt;
+      &lt;td&gt;}$ , 行和范数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;F-范数&lt;/strong&gt;：$\left | A\right |&lt;em&gt;F=\left(\sum\limits&lt;/em&gt;{i = 1}^m \sum\limits_{j = 1}^n {\left&lt;/td&gt;
+      &lt;td&gt;a_{i,j}\right&lt;/td&gt;
+      &lt;td&gt;^2}\right)^{\frac{1}{p}} $, Frobenius范数&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;核范数&lt;/strong&gt;：$\left | A\right |&lt;em&gt;*= \sum\limits&lt;/em&gt;{i = 1}^n { \lambda_i }$, $\lambda_i$是矩阵$A$的奇异值&lt;/p&gt;
+
+&lt;p&gt;一下是不同的norm对应的曲线。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/norm1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;上图中，可以明显看到一个趋势，即$q$越小，曲线越贴近坐标轴，$q$越大，曲线越远离坐标轴，并且棱角越明显。那么 $q=0 $和 $q=\infty$ 时极限情况如何呢？猜猜看。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/norm2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;答案就是十字架和正方形。除了图形上的直观形象，在数学公式的推导中，$q=0 $和 $q=\infty$时两种极限的行为可以简记为非零元的个数和最大项。即0范数对应向量或矩阵中非零元的个数，无穷范数对应向量或矩阵中最大的元素。&lt;/p&gt;
+
+&lt;h2 id=&quot;remark3-singular-matrix-and-nonsingular-matrix&quot;&gt;Remark3: Singular matrix and Nonsingular matrix&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Singular matrix (奇异矩阵)&lt;/strong&gt;: 行列式为0的矩阵&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nonsingular matrix (非奇异矩阵)&lt;/strong&gt;: 行列式不为0 的矩阵&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一个矩阵非奇异当且仅当它的行列式不为零。&lt;/li&gt;
+  &lt;li&gt;一个矩阵非奇异当且仅当它代表的线性变换是个自同构。&lt;/li&gt;
+  &lt;li&gt;一个矩阵半正定当且仅当它的每个特征值大于或等于零。&lt;/li&gt;
+  &lt;li&gt;一个矩阵正定当且仅当它的每个特征值都大于零。&lt;/li&gt;
+  &lt;li&gt;一个矩阵非奇异当且仅当它的秩为n&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;remark4-singular-value-decompositionsvd&quot;&gt;Remark4 :Singular Value Decomposition（SVD）&lt;/h2&gt;
+
+&lt;p&gt;奇异值分解这部分主要参考了&lt;a href=&quot;https://zhuanlan.zhihu.com/p/29846048&quot;&gt;奇异值分解（SVD）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. 回顾特征值和特征向量&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;$Ax=\lambda x$&lt;/p&gt;
+
+&lt;p&gt;where $A\in R^{n\times n}, x\in R^n$. hence, $\lambda$ is its eigenvalue, $x$ is the eigenvector of $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;求出特征值和特征向量有什么好处呢？ 就是我们可以将矩阵A特征分解。如果我们求出了矩阵$A$的$n$个特征值$\lambda_1 \le \lambda_2 \le …\le\lambda_n$，以及这$n$个特征值所对应的特征向量$w_1,w_2,…,w_n$.&lt;/p&gt;
+
+&lt;p&gt;那么矩阵A就可以用下式的特征分解表示：&lt;/p&gt;
+
+&lt;p&gt;$A=W\Sigma W^{-1}$&lt;/p&gt;
+
+&lt;p&gt;其中$W$是这$n$个特征向量所张成的$n \times n$维矩阵,  而$\Sigma $为这$n$个特征值为主对角线的$n \times n$维矩阵。&lt;/p&gt;
+
+&lt;p&gt;一般我们会把W的这n个特征向量标准化，即满足$\left | w_i\right |_2=1$ ，或者$ w_i^T w_i=1$ ，此时W的&lt;/p&gt;
+
+&lt;p&gt;$n$个特征向量为标准正交基，满足$W^TW=I$, 即$W^T=W^{-1}$，也就是说$W$为酉矩阵。&lt;/p&gt;
+
+&lt;p&gt;这样我们的特征分解表达式可以写成&lt;/p&gt;
+
+&lt;p&gt;$A=W \Sigma W^{T}$&lt;/p&gt;
+
+&lt;p&gt;注意到要进行特征分解，矩阵A必须为方阵。&lt;/p&gt;
+
+&lt;p&gt;那么如果A不是方阵，即行和列不相同时，我们还可以对矩阵进行分解吗？答案是可以，此时我们的SVD登场了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2. SVD的定义&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;SVD也是对矩阵进行分解，但是和特征分解不同，SVD并不要求要分解的矩阵为方阵。假设我们的矩阵$A$是一个$m \times n$的矩阵，那么我们定义矩阵$A$的SVD为：&lt;/p&gt;
+
+&lt;p&gt;$A=U \Sigma V^T$&lt;/p&gt;
+
+&lt;p&gt;其中$U$是一个$m \times m$的矩阵, $\Sigma$ 是一个$m \times n$的矩阵，除了主对角线上的元素以外全为0，主对角线上的每个元素都称为奇异值, $V$是一个$n \times n$ 的矩阵。$U$ 和$V$都是酉矩阵，即满足$U^TU=I, V^TV=I$ 。下图可以很形象的看出上面SVD的定义：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/svd.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;那么我们如何求出SVD分解后的$U,\Sigma,V$这三个矩阵呢？&lt;/p&gt;
+
+&lt;p&gt;如果我们将$A$的转置和$A$做矩阵乘法，那么会得到$n\times n$的一个方阵$A^TA$。既然$A^TA$是方阵，那么我们就可以进行特征分解，得到的特征值和特征向量满足下式：&lt;/p&gt;
+
+&lt;p&gt;$(A^TA)v_i=\lambda_iv_i$&lt;/p&gt;
+
+&lt;p&gt;这样我们就可以得到矩阵 $A^TA$ 的$n$个特征值和对应的$n$个特征向量$v$了。将 $A^TA$ 的所有特征向量张成一个$n \times n$的矩阵$V$，就是我们SVD公式里面的$V$矩阵了。一般我们将$V$中的每个特征向量叫做$A$的&lt;strong&gt;右奇异向量&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;如果我们将A和A的转置做矩阵乘法，那么会得到$m\times m$的一个方阵 $AA^T$ 。既然 $AA^T$ 是方阵，那么我们就可以进行特征分解，得到的特征值和特征向量满足下式：&lt;/p&gt;
+
+&lt;p&gt;$(AA^T)u_i=\lambda_iu_i$&lt;/p&gt;
+
+&lt;p&gt;这样我们就可以得到矩阵 $AA^T$ 的$m$个特征值和对应的$m$个特征向量$u$了。将 $AA^T$  的所有特征向量张成一个$m \times m$的矩阵$U$，就是我们SVD公式里面的$U$矩阵了。一般我们将$U$中的每个特征向量叫做$A$的&lt;strong&gt;左奇异向量&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;$U$和$V$我们都求出来了，现在就剩下奇异值矩阵$\Sigma$没有求出了.由于$\Sigma$除了对角线上是奇异值其他位置都是0，那我们只需要求出每个奇异值$\sigma$就可以了。我们注意到:&lt;/p&gt;
+
+&lt;p&gt;$A=U \Sigma V^T \Rightarrow AV=U \Sigma V^TV \Rightarrow AV=U\Sigma \Rightarrow Av_i=\sigma_iu_i \Rightarrow \sigma_i=\frac{Av_i}{u_i}$&lt;/p&gt;
+
+&lt;p&gt;这样我们可以求出我们的每个奇异值，进而求出奇异值矩阵$\Sigma$。&lt;/p&gt;
+
+&lt;p&gt;$A=U \Sigma V^T \Rightarrow A^T=V \Sigma U^T \Rightarrow A^TA=V\Sigma U^TU \Sigma V^T=V\Sigma^2V^T$&lt;/p&gt;
+
+&lt;p&gt;以看出我们的特征值矩阵等于奇异值矩阵的平方，也就是说特征值和奇异值满足如下关系：&lt;/p&gt;
+
+&lt;p&gt;$\sigma_i=\sqrt{\lambda_i}$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3. SVD的一些性质&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;对于奇异值,它跟我们特征分解中的特征值类似，在奇异值矩阵中也是按照从大到小排列，而且奇异值的减少特别的快，在很多情况下，前10%甚至1%的奇异值的和就占了全部的奇异值之和的99%以上的比例。&lt;/p&gt;
+
+&lt;p&gt;也就是说，我们也可以用最大的$k$个的奇异值和对应的左右奇异向量来近似描述矩阵。&lt;/p&gt;
+
+&lt;p&gt;也就是说：&lt;/p&gt;
+
+&lt;p&gt;$A_{m\times n}=U_{m\times m}\Sigma_{m\times n}V_{n\times n}^T \approx U_{m\times k}\Sigma_{k\times k}V_{k\times n}^T$&lt;/p&gt;
+
+&lt;p&gt;其中$k$要比$n$小很多，也就是一个大的矩阵A可以用三个小的矩阵$U_{m\times k},\Sigma_{k\times k},V_{k\times n}^T$来表示。如下图所示，现在我们的矩阵$A$只需要灰色的部分的三个小矩阵就可以近似描述了。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-30/svd2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于这个重要的性质，SVD可以用于PCA降维，来做数据压缩和去噪。也可以用于推荐算法，将用户和喜好对应的矩阵做特征分解，进而得到隐含的用户需求来做推荐。同时也可以用于NLP中的算法，比如潜在语义索引（LSI）。&lt;/p&gt;
+
+&lt;p&gt;下面我们就对SVD用于PCA降维做一个介绍。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;4. SVD用于PCA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;PCA降维，需要找到样本协方差矩阵$X^TX$的最大的$d$个特征向量，然后用这最大的$d$个特征向量张成的矩阵来做低维投影降维。可以看出，在这个过程中需要先求出协方差矩阵$X^TX$，当样本数多样本特征数也多的时候，这个计算量是很大的。&lt;/p&gt;
+
+&lt;p&gt;注意到我们的SVD也可以得到协方差矩阵$X^TX$最大的$d$个特征向量张成的矩阵，但是SVD有个好处，有一些SVD的实现算法可以不求先求出协方差矩阵$X^TX$，也能求出我们的右奇异矩阵$V$。也就是说，我们的PCA算法可以不用做特征分解，而是做SVD来完成。这个方法在样本量很大的时候很有效。实际上，scikit-learn的PCA算法的背后真正的实现就是用的SVD，而不是我们我们认为的暴力特征分解。&lt;/p&gt;
+
+&lt;p&gt;另一方面，注意到PCA仅仅使用了我们SVD的右奇异矩阵，没有使用左奇异矩阵，那么左奇异矩阵有什么用呢？&lt;/p&gt;
+
+&lt;p&gt;假设我们的样本是$m \times n$的矩阵$X$，如果我们通过SVD找到了矩阵$XX^T$最大的$d$个特征向量张成的$m\times d$维矩阵$U$，则我们如果进行如下处理：&lt;/p&gt;
+
+&lt;p&gt;$X_{d \times n}^\prime =U_{d\times m}^TX_{m \times n}$&lt;/p&gt;
+
+&lt;p&gt;可以得到一个$d\times n$的矩阵$X^\prime$,这个矩阵和我们原来的$m\times n$维样本矩阵$X$相比，行数从$m$减到了$d$，可见对行数进行了压缩。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;左奇异矩阵可以用于行数的压缩。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;右奇异矩阵可以用于列数即特征维度的压缩，也就是我们的PCA降维。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;SVD作为一个很基本的算法，在很多机器学习算法中都有它的身影，特别是在现在的大数据时代，由于SVD可以实现并行化，因此更是大展身手。&lt;/p&gt;
+
+  &lt;p&gt;SVD的缺点是&lt;strong&gt;分解出的矩阵解释性往往不强&lt;/strong&gt;，有点黑盒子的味道，不过这不影响它的使用。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Mon, 30 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/30/Convex-Optimization_convexset/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/30/Convex-Optimization_convexset/</guid>
+        
+        <category>Essential and Professional Course</category>
+        
+        
+        <category>ConvexOptimization</category>
+        
+      </item>
+    
+      <item>
+        <title>Convex Optimization: Introduction</title>
+        <description>&lt;h2 id=&quot;1-mathematical-optimization-数值优化&quot;&gt;1. Mathematical optimization 数值优化&lt;/h2&gt;
+
+&lt;h3 id=&quot;whats-mathematical-optimization-problem&quot;&gt;What’s mathematical optimization problem&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{array}{*{20}{c}}
+  }&amp; { { f_0}\left( x \right)} \\ 
+  }&amp; { { f_i}\left( x \right) \leqslant {b_i},i = 1,...,m} 
+\end{array} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;这里&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$x=(x_1,…,x_n)$: optimization variables  待优化变量&lt;/li&gt;
+  &lt;li&gt;${f_0}:^n} \to {\mathbf{R}}$: objective function  目标函数&lt;/li&gt;
+  &lt;li&gt;${f_i}:^n} \to {\mathbf{R}},i=1,…,m$: constraint function  约束函数&lt;/li&gt;
+  &lt;li&gt;Optimal solution $x^*$ has smallest value of $f_0$ among all vectors that satisfy the constraints.最优解对应着满足约束条件的优化变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;A. Everything is an optimization problem&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;B. We can’t realy solve most optimization problem&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;examples&quot;&gt;Examples&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Portfolio optimization 投资组合优化&lt;/li&gt;
+  &lt;li&gt;Device sizing in electronic circuits  电流环路的设备尺寸优化&lt;/li&gt;
+  &lt;li&gt;data fitting 数据拟合&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;solving-optimization-problem&quot;&gt;Solving optimization problem&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;general optimization problem&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;very difficult to solve&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;methords involve some compromise , e.g. very long compution time, or not always finding the solution. 这些方法牵扯到一些危害&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;exceptions: certain problem classes can be solved efficiently and reliably.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;least-squares problems 最小二乘问题&lt;/p&gt;
+
+            &lt;blockquote&gt;
+              &lt;p&gt;${\rm{minimize}}\left| x - {\rm{b}}} \right|_2^2$&lt;/p&gt;
+
+              &lt;p&gt;analytical solution: ${x^*} = {({A^T}A)^{ - 1}}{A^T}b$&lt;/p&gt;
+            &lt;/blockquote&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;linear programming problems  线性规划问题&lt;/p&gt;
+
+            &lt;blockquote&gt;
+              &lt;p&gt;$\begin{array}{l}
+{\rm{minimize\ }}^T}x&lt;br /&gt;
+{\rm{subject\ to\ }}a_i^Tx \le {b_i}{\rm{,\ }}i = 1,…,m
+\end{array}$&lt;/p&gt;
+
+              &lt;ul&gt;
+                &lt;li&gt;no analytical formula for solution&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/blockquote&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;convex optimization problem  凸优化问题。&lt;/p&gt;
+
+            &lt;blockquote&gt;
+              &lt;p&gt;$\begin{array}{l}
+{\rm{minimize\ }}{f_0}(x)&lt;br /&gt;
+{\rm{subject\ to\ }}{f_i}(x) \le {b_i}{\rm{, }}i = 1,…,m
+\end{array}$&lt;/p&gt;
+            &lt;/blockquote&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;convex-optimization-problem&quot;&gt;convex optimization problem&lt;/h3&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\begin{array}{l}
+{\rm{minimize\ }}{f_0}(x)\\
+{\rm{subject\ to\ }}{f_i}(x) \le {b_i}{\rm{, }}i = 1,...,m
+\end{array}&lt;/script&gt;
+
+&lt;h4 id=&quot;convex&quot;&gt;Convex:&lt;/h4&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;{f_i}(\alpha x + \beta y) \le \alpha {f_i}(x) + \beta {f_i}(y)&lt;/script&gt; , if $\alpha  + \beta  = 1,\ a \ge 0,\ \beta  \ge 0$&lt;/p&gt;
+
+&lt;p&gt;includes least-squares problems and liear problems as special cases. 最小二乘问题和线性规划问题都是凸优化问题的特殊情况。&lt;/p&gt;
+
+&lt;h3 id=&quot;couse-goals-and-topics&quot;&gt;Couse goals and topics&lt;/h3&gt;
+
+&lt;h4 id=&quot;goal&quot;&gt;goal&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;recognize/ formulate problems (such as illumination problem) as convex optimization problems.&lt;/li&gt;
+  &lt;li&gt;develop code for problems of moderate size(1000 lamps,5000 patches)&lt;/li&gt;
+  &lt;li&gt;characterize optimal solution (optimal power distribution ), give limits of performance, etc.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;topics&quot;&gt;topics&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;covex sets, functions, optimization problems.&lt;/li&gt;
+  &lt;li&gt;examples and applications&lt;/li&gt;
+  &lt;li&gt;algorithms&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Thu, 19 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/19/Convex-Optimization_Introduction/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/19/Convex-Optimization_Introduction/</guid>
+        
+        <category>Essential and Professional Course</category>
+        
+        
+        <category>ConvexOptimization</category>
+        
+      </item>
+    
+      <item>
+        <title>Recommended software: 欧陆词典</title>
+        <description>&lt;p&gt;之前再英语口语班里老师就推荐过&lt;code class=&quot;highlighter-rouge&quot;&gt;欧路词典&lt;/code&gt;。里面发音比较纯正，词典例句也很丰富。当时主要用来查单词音标。&lt;/p&gt;
+
+&lt;p&gt;然后买了iPad之后，很多人推荐使用&lt;code class=&quot;highlighter-rouge&quot;&gt;欧路词典&lt;/code&gt;，非常适合读英文文章，可以跨屏取词，直接copy就可以翻译。也使用了其中的生词本功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;提出需求&quot;&gt;提出需求&lt;/h2&gt;
+
+&lt;p&gt;昨天突然看到Chrome有的沙拉查词插件可以将收藏的单词同步到&lt;code class=&quot;highlighter-rouge&quot;&gt;扇贝单词&lt;/code&gt;，我就想到我经常阅读英文网站，查词只能解决当时问题，为何不用扇贝单词的生词本，将碰到的不认识的单词每天记忆一下。同时我在ipad上也经常读论文遇到不认识的单词，将这些单词同步到同一个平台岂不美哉。&lt;/p&gt;
+
+&lt;p&gt;所以我当时的需求就是&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Android、iPad、Windows端的不同软件的生词本都同步到一个软件里背诵&lt;/li&gt;
+  &lt;li&gt;全部自动化，不用自己手动转移。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;然后我就查到了扇贝单词有API可以往扇贝单词里导入单词，&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;如果你想用扇贝，可以参考&lt;a href=&quot;https://www.cnblogs.com/qidong/p/8378052.html&quot;&gt;C#导入有道词典单词本到扇贝&lt;/a&gt;，里面有扇贝单词API(不过现在好像打不开官网了，需要的自行寻找)的使用方法，用的C#编程实现的。可以自己用Python实现一下&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以我就想着将iPad欧陆词典生词本里的单词，Chrome沙拉查词的单词都更新到扇贝单词进行记忆。我花了一个小时研究一下网页端欧路词典。。。发现完全可行，写个爬虫获取欧陆词典生词本(会自动同步到网页端)里的生词和Chrome沙拉查词的生词，在通过API导入扇贝单词生词本。&lt;/p&gt;
+
+&lt;h2 id=&quot;重新发现欧陆&quot;&gt;重新发现欧陆&lt;/h2&gt;
+
+&lt;p&gt;但是！！！我突然想起来，Chrome里有没有欧陆的取词插件，能够直接同步到欧陆的生词本。然后。。。。我就发现了桌面版欧陆这个神奇的东西&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-19/oulu.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最重要的是他的屏幕取词的功能&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-19/get.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;不管是在网页端，还是其他应用程序里，只要是文本，鼠标悬停在单词上500ms他就能翻译。&lt;/p&gt;
+
+&lt;p&gt;比如pdf文件里&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-19/pdf.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;网页上&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-19/html.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;简直不要太神器！！！&lt;/p&gt;
+
+&lt;p&gt;最重要的，点击单词旁边的五角星就能收藏到单词本。&lt;strong&gt;登录账号之后全平台同步！！！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;欧陆词典全平台支持及官网下载&quot;&gt;欧陆词典全平台支持及官网下载&lt;/h2&gt;
+
+&lt;p&gt;所以基本在Windows，iPad，以及未来的mac上看论文什么的遇到的单词，都能在Android、iPhone端统一进行背诵！在这里下载各个平台的软件&lt;a href=&quot;https://www.eudic.net/v4/en/app/download&quot;&gt;欧路词典官网下载&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;简直完美，完全符合我的预期，要是早知道欧陆有Windows端，我还费什么心研究扇贝单词的同步啊。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意：我是为了平常积累单词使用的这个方法。不太适用于应试刷单词。知乎上有各个单词软件的评价，都分析的很好。但是都没说到我上面的需求。所以我才自己探索的。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;不过，这里也体现出了，在思考一个问题的过程中，不要被你第一个想法先入为主，我刚开始就只看到了别人扇贝单词提供API可以同步生词本。但是其实还有更好用的欧路词典。所以之后在思考问题的时候，不要被别人说的，或者你最先想到的解决方案束缚了。&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 19 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/19/.Recommended-software_%E6%AC%A7%E9%99%86%E8%AF%8D%E5%85%B8/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/19/.Recommended-software_%E6%AC%A7%E9%99%86%E8%AF%8D%E5%85%B8/</guid>
+        
+        <category>Efficient Application</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>三个工作面试问题+手机屏幕使用时间管理</title>
+        <description>&lt;h1 id=&quot;三个考验解决问题思维的工作面试问题&quot;&gt;三个考验解决问题思维的工作面试问题&lt;/h1&gt;
+
+&lt;p&gt;今天其实是听物光院推免情况的座谈会，刚开始老师讲了我们院推免人数，分配呀，推免系统报名呀这些基本情况。然后就一个物光院老师带着“政治认识”——推广物光院的研究生团队的任务给我们讲。讲物光院会给我们带来什么，比如他，从三本到西电硕士到国外常青藤高校博士，16年回西电教学。emmm。。。奋斗史很强。我也很佩服他的毅力。但是，好像并没什么干货。但是之后说到研究生重要的不是学知识，而是学做人。就聊到了工作面试HR问的问题。让我感觉受益颇深。&lt;/p&gt;
+
+&lt;h2 id=&quot;问题一如果你现在有特别多怎么做都做不完的工作你会怎么办&quot;&gt;问题一：如果你现在有特别多，怎么做都做不完的工作你会怎么办。&lt;/h2&gt;
+
+&lt;p&gt;​		这个问题，我第一个念头就是说怎么提高自己的效率，怎么分配自己的时间。但其实HR并不想要这个答案，题目中已经说了，你做不完的。HR就是想知道&lt;strong&gt;你遇到一个问题会以什么样的思路去解决问题，并不只是解决问题本身&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;​		所以老师说，应该先分析为什么会出现这个问题，首先可能是自己的问题，自己能力不足，没有用最高效率，或者说偷懒了才导致工作做不完，所以以后你要用心学习，提高自己的办事效率，提高自己的责任心去有计划的将工作做完，尽量避免怎么做都做不完的情况。其次，可能是团队的问题，如果你是一个Leader。可能你对团队成员的工作分配不恰当才导致团队效率不高，或者说你的工作不到位让团队成员工作积极性不高。所以以后就要发掘每个团队成员的长处合理分配岗位，让效率最大化，并且使用人性化的管理方法，多考虑团队成员的感受，从而提高他们的工作积极性。&lt;/p&gt;
+
+&lt;p&gt;​		这样虽然可能这个问题没有解决方案，但是你体现出了对这个问题的思考、分析。这不就是工作过程中所需要的东西吗？&lt;/p&gt;
+
+&lt;h2 id=&quot;问题二如果你的团队工作不能按时完成问hr要人hr说公司所有人都很忙没人你会怎么办&quot;&gt;问题二：如果你的团队工作不能按时完成，问HR要人，HR说公司所有人都很忙没人，你会怎么办？&lt;/h2&gt;
+
+&lt;p&gt;​		这个问题算是上个问题的衍生题，工作做不完，但是现在的重心在不能按时完成，HR又不给分配人。所以那些效率呀积极性呀，有点偏题。你的目的是找到人加速你的工作，而不是去压榨你们的精力。&lt;/p&gt;
+
+&lt;p&gt;​		所以该怎么找人呢？问公司要？HR说了，所有人都很忙。只能通过自己解决。这时候就要考验你的脑子灵活不灵活了。我们都知道类似于短板效应里的圆桶。一个项目(木桶)的最终完成不是靠某个团队(木板)做的多快(多长)。而是要靠所有的团队一起完成，才算完成，这时候肯定就有完成的先后了，如果有已经完成的了，就去找他们，帮忙允诺以后他们如果也遇到这种情况你们也会去帮忙。都没有完成就去找最慢的那个，也就是肯定不能按时完成的那个，给他们说反正你也不会按时完成，先来帮我，然后我们再去帮你或者下次遇到这种情况我去帮你。&lt;/p&gt;
+
+&lt;p&gt;​	上面那个答案是老师讲的，我觉得是一个思路，但是不是特别恰当。因为人家本来都做不完，还让人家来帮你，怎么可能。但是这也是一个思路，体现了面对一个问题的灵活处置。毕竟你已经不能按时完成了，还是以体现你的想法为主，而不是去只强调说效率，加班去按时完成。&lt;/p&gt;
+
+&lt;h2 id=&quot;问题三老生常谈的问题你妈和你女朋友掉河里了你先救谁&quot;&gt;问题三：老生常谈的问题，你妈和你女朋友掉河里了，你先救谁&lt;/h2&gt;
+
+&lt;p&gt;​		其实这个是一个非常严肃的考验一个人遇到两个非常重要的事撞到一块该怎么办的问题。只不过被很多人当做笑话了。&lt;/p&gt;
+
+&lt;p&gt;​		这种选择问题在工作、学习中也经常遇到。该怎么解决呢？首先就是最简单的，如果其中一个人会游泳，就去一起救另一个人。这时候绝对有人说，如果两个人都不会游泳呢，老师说，你可以说，“如果你今天录取我了，我明天就带着我妈/女朋友去学游泳”。&lt;/p&gt;
+
+&lt;p&gt;​		这个回答其实没有正面回答这个问题，但是，针对面试来说，这个也能体现出你对这个问题的态度了，首先就是考虑特殊情况下最优解，两个都得救。其次实在没办法，你也能巧妙的化解尴尬。&lt;/p&gt;
+
+&lt;p&gt;​		我又搜索了一下这个问题，发现。。。大部分都是在扯爱情。没意思，不符合今天的的主题。不过还是发现了一个很有用的解释。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;你妈和你女朋友（男朋友）掉河里你会救谁？&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;这个问题的全貌是这样的，今天我们在公司做了一个简单的讨论，是有关感性和理性所做的决定会事情的未来发展造成截然不同的结果，因此想请广大知友感同身受的参与这个社会调查假如在未来，因自然因素社会人口骤减，人类即将面临灭亡，这时候生育养育你的年迈的老母亲和一个刚认识不足半年的女朋友同时掉进河里，而你只能选择救其中一个，你会选择救谁？同类问题：与你创业10年的老员工在伴随公司成长过程中个人能力慢慢跟不上，并且公司面临资金环境等其他问题导致你不得不要在老员工与投资者之间做一个抉择的情况下，这时候你如何抉择（开掉还是不开掉）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;​		对呀，这也是一个感性和理性的问题呀&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;根据我国法律，如果女朋友和母亲同时溺水，对女朋友只有道义上而没有法律上的救助义务，如果先救其母，女友死亡的，不构成犯罪。反之，如果先救女友而导致母亲死亡的，构成不作为犯罪，这就意味着，当女女朋友和母亲只能救出一人时，国家要求救母亲&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;上面说的就比较理性的分析情况。但感性的人，只能说，两个都救，不救哪个都都不可能。或者说感觉哪个感情深就哪个，这样势必得罪另一个人。&lt;/p&gt;
+
+&lt;p&gt;​	所以，这个问题怎么回答，都不是最好的答案。真实中这种情况几乎不会出现，对于面试来说，只能从各个角度去分析一下了。&lt;/p&gt;
+
+&lt;h1 id=&quot;手机电脑使用时间管理&quot;&gt;手机/电脑使用时间管理&lt;/h1&gt;
+
+&lt;p&gt;​		这个跟上面无关，就是晚上突然刷到B站一个视频&lt;a href=&quot;https://www.bilibili.com/video/av47180907?share_medium=android&amp;amp;share_source=qq&amp;amp;bbid=NlUwCDpYYVBhUTIBfQF9infoc&amp;amp;ts=1568721959126&quot;&gt;【何同学】每天只看半小时手机，坚持一周后我有哪些变化？&lt;/a&gt;，有感而发。里面主要说了当代大学生大部分都是早上睁开眼开手机，晚上看着手机进入睡眠，没错跟我一模一样。之前没有紧急任务我没天手机使用时间达到了8个小时以上。真的是。。。。我太菜了。然后视频中UP主尝试了让自己每天限制使用半个小时手机，然后就学了很多东西，看了很多书。&lt;/p&gt;
+
+&lt;p&gt;​		这个问题我早就考虑过，但是一直没有有效的方法去解决，或者说，我没有足够的抵抗诱惑的毅力。当我没有紧急的事的时候总是想刷刷手机有没有最新消息。或者说刷B站视频。任何营养都没有，就是懒得动脑子，懒死了，让自己沉浸在堕落的世界里。然后让一直的学习状态不好。唉。这样还怎么成长啊。&lt;/p&gt;
+
+&lt;p&gt;​		看到了这个视频之后，又燃起了我想改掉刷手机视频、消息的习惯的心。所以借用这个视频里的方法，再战一次。&lt;/p&gt;
+
+&lt;h2 id=&quot;安卓端安装软件屏幕时间助手&quot;&gt;安卓端安装软件&lt;code class=&quot;highlighter-rouge&quot;&gt;屏幕时间助手&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;他能记录你所有应用的使用时间，并且可以设置限时。&lt;/p&gt;
+
+&lt;p&gt;下图就是截止到今天22.05我手机屏幕使用情况。惨不忍赌，让大家见笑了。&lt;/p&gt;
+
+&lt;p&gt;B站排第一。。。真的是。。。耗我流量，占我时间，废我生命&lt;/p&gt;
+
+&lt;p&gt;然后里面有快捷功能设置应用限额。我这设了每天90分钟，先尝试着，明天看看效果。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/screentime.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;还有时间记录工具&lt;/p&gt;
+
+&lt;h3 id=&quot;windows下安装manictime&quot;&gt;Windows下安装ManicTime&lt;/h3&gt;
+
+&lt;p&gt;付费的，我觉得免费版就完全够用了。我只需要记录每个应用使用时间的功能即可。&lt;/p&gt;
+
+&lt;p&gt;这个程序官网下载好像需要翻墙，我找了一个国内提供下载的&lt;a href=&quot;http://www.mydown.com/soft/37/473302537.shtml&quot;&gt;ManicTime下载最新版，正式版&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/manictime.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;macos下安装qbserve&quot;&gt;MacOS下安装Qbserve&lt;/h2&gt;
+&lt;p&gt;Qbserve：&lt;a href=&quot;https://link.zhihu.com/?target=http%3A//sspai.com/34422&quot;&gt;Qbserve，追踪你在 Mac 上的时间消耗 | App+1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;等着我以后买Mac吧&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/17/%E5%B7%A5%E4%BD%9C%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98+%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/17/%E5%B7%A5%E4%BD%9C%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98+%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/</guid>
+        
+        <category>Comprehensive Quality</category>
+        
+        
+        <category>GeneralLecture</category>
+        
+      </item>
+    
+      <item>
+        <title>中科大《文献管理与信息分析》实战——卫星通信天线（地面端）</title>
+        <description>&lt;p&gt;上周现代天线概论老师留了一个作业，让我们每个人都讲一种天线，我被分配到的是卫星通信天线（地面端）。然后花了大概三四天的时间找资料整理资料，形成ppt。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;当时中科大《文献管理与信息分析》课上老师是要求6个小时集中对一个题目进行调研。我这是三四天其中包括吃饭睡觉玩手机。如果不算这些的话，我大概找资料整理资料大概花了4个小时，做PPT花了大概8个小时以上。（第一次用LaTex+Beamer做，如果用Office PowerPoint做我应该两个小时就够了）&lt;/p&gt;
+
+  &lt;p&gt;这里我专门用LaTex+Beamer就是为了练练手，LaTex+Beamer确实做得Slides比Office PowerPoint做得PPT的学术感强很多，并且熟练之后效率会非常高，用一个模板，只需要注重内容即可。（Office PowerPoint也由学术感强的模板，这个看自己的使用情况吧，那个顺手用哪个）&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;接下来就开始记录一个这次我是怎么根据卫星通信天线（地面端）这个题目进行信息收集、整理的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在此之前我只学过天线原理，对卫星通信天线没有任何概念&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;一binggoogle-广泛搜索&quot;&gt;一、Bing+Google 广泛搜索&lt;/h2&gt;
+
+&lt;p&gt;就是很简单的用关键词检索，找自己感觉有用的信息。我先后用了&lt;code class=&quot;highlighter-rouge&quot;&gt;卫星天线&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;卫星通信天线&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;卫星通信天线 地面端&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;卫星通信&lt;/code&gt;等等关键词。这些都不是重点。重点是&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;注意将&lt;code class=&quot;highlighter-rouge&quot;&gt;卫星&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;天线&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;通信&lt;/code&gt;这些关键词更换组合方式，顺序多次检索。内容都不太一样。&lt;/li&gt;
+  &lt;li&gt;不要只看检索第一页！！！对于这个阶段的广泛搜索来说，你还不知道卫星通信天线到底是什么，所以目的性不要那么强，泛泛的看所有相关的网页，特别是新闻，一般都说的很通俗易懂。会让你快速了解这个题目是什么。&lt;/li&gt;
+  &lt;li&gt;记得保存好对你有用的网页，便于以后整理。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;二根据广泛的搜索结果精确关键词进行进一步搜索&quot;&gt;二、根据广泛的搜索结果，精确关键词，进行进一步搜索&lt;/h2&gt;
+
+&lt;p&gt;这里就是根据上面的了解，提炼出一些关键词比如&lt;code class=&quot;highlighter-rouge&quot;&gt;业余无线电&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;VAST卫星系统&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;Ka波段&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;抛物面天线&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;北斗卫星天线&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;反卫星通信系统&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;气象卫星通信&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;中信卫星&lt;/code&gt;、&lt;code class=&quot;highlighter-rouge&quot;&gt;平板天线&lt;/code&gt;等等&lt;/p&gt;
+
+&lt;p&gt;进行进一步搜索，检索对你有用的信息&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Google一般搜索的比Bing或百度更有用。（国内的Bing搜索结果跟百度一样，怀疑百度是不是国内版Bing的代理商）。但对于国内的信息，或者说中文搜索，Google并不是特别给力，意思是搜索结果并不广泛，但是给出的搜索结果都比较有用，短小而精悍的感觉。所以说要两个引擎配合着用，Bing或百度用来进行广泛搜索，Google用来精确搜索&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;注意配置好你的浏览器方便你使用&lt;/p&gt;
+
+      &lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/search.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;这里注意，合理使用英文搜索，说实话，很多学术前沿，都是用英文写的，刚才用的都是中文关键词搜索。如果你的英语能力比较强，一定不要忘了用英文检索整理。我这里时间有限，并且我看英文网页比较吃力，就没用英文关键词搜索。这里英文关键词建议使用&lt;a href=&quot;http://dict.cnki.net/&quot;&gt;CNKI翻译助手&lt;/a&gt;进行翻译，这个是知网提供的翻译，都是学术论文中用到的翻译，避免了你自己翻译的时候跟业界术语不一样，比如&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/cnki.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;记得保存好对你有用的网页，便于以后整理。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;三根据你的搜索结果进行头脑风暴&quot;&gt;三、根据你的搜索结果进行头脑风暴&lt;/h2&gt;
+
+&lt;h3 id=&quot;第一步先把刚才检索到的对你有用的信息全部罗列出来简单罗列即可&quot;&gt;第一步：先把刚才检索到的对你有用的信息全部罗列出来。简单罗列即可！&lt;/h3&gt;
+
+&lt;p&gt;大概就像这样，只需要把每个网页中最关键的主旨写出来即可。&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;我这里大概分了各类，其实也可以更乱一点。这是为了等会的头脑风暴做准备的&lt;/li&gt;
+  &lt;li&gt;记得保存好对应的网页链接，为以后方便查看具体内容做准备（Xmind有插入超链接的功能，将对应的网页链接插入到对应的节点即可，就像图中有些字后面有超链接的符号）&lt;/li&gt;
+  &lt;li&gt;把相关的主旨句都罗列好哦&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/brain1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;第二步面对刚才简单罗列的所有关键词进行头脑风暴整理出来你的思路&quot;&gt;第二步：面对刚才简单罗列的所有关键词进行头脑风暴，整理出来你的思路&lt;/h3&gt;
+
+&lt;p&gt;把Xmind设为专注模式（全屏模式），集中注意力对这些比较乱的知识点，找其中的联系，整理思路。&lt;/p&gt;
+
+&lt;p&gt;整理成如下所示。这样一个完整的思路就形成了。&lt;/p&gt;
+
+&lt;p&gt;注意：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;前提是你前面看了很多内容，对这个题目有所了解了，要不然有联系你也不知道&lt;/li&gt;
+  &lt;li&gt;提取出来有用的内容即可，这个只是一个思路。&lt;/li&gt;
+  &lt;li&gt;记得保存好对应的网页链接，为以后方便查看具体内容做准备&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-17/brain2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;四使用刚才形成的思路写总结paper或者展示slides&quot;&gt;四、使用刚才形成的思路，写总结paper或者展示slides&lt;/h2&gt;
+
+&lt;p&gt;我们老师要求先做Presentation讲这个题目，所以我就暂时只做了slides&lt;/p&gt;
+
+&lt;p&gt;刚才我也提到了，我用的LaTex+Beamer做的，这里也完全可以用PowerPoint。根据个人喜好即可。写的过程遇到的问题和总结在2019-09-15的&lt;code class=&quot;highlighter-rouge&quot;&gt;Latex+Beamer+Google File System Model to make slides&lt;/code&gt;这个文章里。这里不再赘述&lt;/p&gt;
+
+&lt;h2 id=&quot;五做presentation&quot;&gt;五、做Presentation&lt;/h2&gt;
+
+&lt;p&gt;就做昨天，我在全班人面前讲了我找到的问题。&lt;/p&gt;
+
+&lt;p&gt;我们班的人的评价是大佬级的作品，应该是全班讲的最好的了，哈哈哈，这话我爱听。&lt;/p&gt;
+
+&lt;p&gt;但确是导师怼了我几个地方。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;业余无线电部分，老师以为业余无线电玩的是短波通信，是借助的电离层反射，而不是卫星。然后我拿出来了我准备的视频里面的的一个业余无线电爱好者写的他用的SO-50业余无线电通信卫星。老师说他没想到业余无线电爱好者玩的是卫星通信。这一战，我胜，嘿嘿。&lt;/li&gt;
+  &lt;li&gt;他问我LNA是什么（Slides里面有，但没注明汉语），我说的是低频放大器，老师说他高看我了，说是低噪声放大器。然后我说，对对对，我说错了。其实我是真的说错了，事前我专门记了一下，就是口误了，老师一提醒我就想到我错了。这一战，我完败。&lt;/li&gt;
+  &lt;li&gt;她怼我找的一个外国人做的不是射电望远镜，因为这个做的视频标题就是射电望远镜，我就认为是射电望远镜了，（它能看到3.6万km处的卫星，并且用的射电信号得到的，咋就不是射电望远镜了）。老师说我概念不清，根本就不懂射电望远镜，我当然知道肯定不会这么简单，这个视频里面只是个人做的，我只是想表达咱们每个人都能做卫星天线的意思。然后我就说我没有深入了解。老师说，射电望远镜，就是望远的嘛。？？？？？纳尼？你就解释了个这个？3.6万km不算远？好吧，你是老师，你说啥就是啥。这一战我并不是特别服，只能说我具体例子是一个人做的，非常非常简单，但是不能说他不是射电望远镜呀。&lt;/li&gt;
+  &lt;li&gt;他问我，3.6万km是同步卫星还是非同步的，因为上面那个视频看到的卫星是会动的，相对地球运动，那就是非同步嘛，然后老师说是同步卫星轨道，然后我说应该是他这距离数字不准确。这一战又完败。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;他也就怼我这些地方了，老师怼的其实一点都没错，毕竟是老师，要不然他怎么教我们呢。我也承认，这些地方我存在问题，一些概念不是很清楚。所以以后还得&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一些基础概念尽量用心看一下，稍微记忆一下，不至于犯低级错误。这需要日常的积累。&lt;/li&gt;
+  &lt;li&gt;这次是时间不充裕，里面的概念我没时间全部都了如指掌。但以后如果要对写的论文做Presentation一定要保证提到的内容都要说出点一二三来。老师问了回答不出来，就会被疯狂怼。也就是不要给自己挖坑&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不过老师还是夸我查资料查的挺全面的，嘿嘿嘿！咿呀咿呀哟！&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 17 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/17/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E5%AE%9E%E6%88%98-%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1%E5%A4%A9%E7%BA%BF-%E5%9C%B0%E9%9D%A2%E7%AB%AF/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/17/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E5%AE%9E%E6%88%98-%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1%E5%A4%A9%E7%BA%BF-%E5%9C%B0%E9%9D%A2%E7%AB%AF/</guid>
+        
+        <category>Science Paper</category>
+        
+        
+        <category>文献管理与信息分析</category>
+        
+      </item>
+    
+      <item>
+        <title>Latex+Beamer+Google File System Model to make slides</title>
+        <description>&lt;p&gt;这是我第一次用LaTex+Beamer做slides&lt;/p&gt;
+
+&lt;h2 id=&quot;一挑选使用的beamer主题模板&quot;&gt;一、挑选使用的Beamer主题模板&lt;/h2&gt;
+
+&lt;p&gt;这里推荐&lt;a href=&quot;https://www.latexstudio.net/archives/category/tex-slides/beamer-theme-template&quot;&gt;LaTex开源小屋提供的模板&lt;/a&gt;，还是有一部分感觉很不错的。&lt;/p&gt;
+
+&lt;p&gt;我挑选了&lt;a href=&quot;https://www.latexstudio.net/archives/12234.html&quot;&gt;The Google File System的beamer主题&lt;/a&gt;，比较简洁，还是挺适合做学术类的Presentation的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-15/GFS.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;二直接拿着模板就是写&quot;&gt;二、直接拿着模板就是写&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;前提是安装好TexLive(各种LaTex编译器的集合版本)+TeXstudio(非常好用的LaTex IDE)。网上大把安装教程，并且安装TexLive时提供附带安装TeXstudio，注意勾选&lt;/p&gt;
+
+  &lt;p&gt;之前我安装好了，这里我就不重新安装去截图了。自行Google安装&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;普通的用法模板里都有，不再赘述，这里只记录我不会的内容&lt;/p&gt;
+
+&lt;h3 id=&quot;1在slides中插入视频mp4h264或flv格式的视频网络视频mp3&quot;&gt;1.在Slides中插入视频（MP4/H.264或FLV格式的视频+网络视频+Mp3）&lt;/h3&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;media9&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;%01、插入一个本地视频&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\includemedia&lt;/span&gt;[
+  width=1.0&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;,height=0.675&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;, &lt;span class=&quot;c&quot;&gt;% #视频的长和宽16:9&lt;/span&gt;
+  addresource=filename.mp4, &lt;span class=&quot;c&quot;&gt;%视频路径&lt;/span&gt;
+  transparent,&lt;span class=&quot;c&quot;&gt;%Indicates whether underlying page content is visible through transparent areas of theembedded media.&lt;/span&gt;
+  activate=pageopen,&lt;span class=&quot;c&quot;&gt;%怎么样激活这个Media&lt;/span&gt;
+  passcontext,&lt;span class=&quot;c&quot;&gt;%If set, user right-clicks are passed through to the context menu of theembedded Flash application, replacing the default Adobe Reader context menu&lt;/span&gt;
+  flashvars=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    source=filename.mp4&lt;span class=&quot;c&quot;&gt;%视频路径&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;autoPlay=true &lt;span class=&quot;c&quot;&gt;% start playing on activation 自动播放吗？&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;loop=true&lt;span class=&quot;c&quot;&gt;%循环播放吗？&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+]&lt;span class=&quot;p&quot;&gt;{}{&lt;/span&gt;VPlayer.swf&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%视频播放插件&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% 下面是两个按钮&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;%开始/暂停&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\mediabutton&lt;/span&gt;[
+  mediacommand=some&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;dice:playPause,
+  overface=&lt;span class=&quot;k&quot;&gt;\color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;blue&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\fbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\strut&lt;/span&gt; Play/Pause&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
+  downface=&lt;span class=&quot;k&quot;&gt;\color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;red&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\fbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\strut&lt;/span&gt; Play/Pause&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\fbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\strut&lt;/span&gt; Play/Pause&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;%Media标题，如果点击的话点开什么文件&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\mediabutton&lt;/span&gt;[
+  mediacommand=some&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;dice:setSource [(filename.mp4)]&lt;span class=&quot;c&quot;&gt;%这里再设置一个文件路径&lt;/span&gt;
+]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\fbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\strut&lt;/span&gt; Media Caption&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;%02、播放远程视频&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\includemedia&lt;/span&gt;[
+  width=0.6&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;,height=0.3375&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;,
+  activate=pageopen,
+  flashvars=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  modestbranding=1 &lt;span class=&quot;c&quot;&gt;% no YT logo in control bar&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;autohide=1 &lt;span class=&quot;c&quot;&gt;% controlbar autohide&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;showinfo=0 &lt;span class=&quot;c&quot;&gt;% no title and other info before start&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;rel=0 &lt;span class=&quot;c&quot;&gt;% no related videos after end&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\includegraphics&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[width=0.6\linewidth]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;048&lt;span class=&quot;p&quot;&gt;}}{&lt;/span&gt;https://www.youtube.com/v/g8Ejj0T0yG4?rel=0&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;%03、播放MP3&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\includemedia&lt;/span&gt;[
+  transparent,
+  passcontext,
+  addresource=SampleAudio.mp3,
+  flashvars=&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;source=SampleAudio.mp3&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;blue&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\framebox&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[0.4\linewidth][c]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Applause&lt;span class=&quot;p&quot;&gt;}}{&lt;/span&gt;APlayer.swf&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注意！！！&lt;/p&gt;
+
+  &lt;p&gt;1、媒体文件的播放使用Adobe Reader的内置Flash Player，所以必须用Adobe Reader才能正常打开PDF中的视频。这里提供一个下载链接&lt;a href=&quot;http://www.downxia.com/downinfo/3790.html&quot;&gt;Adobe Reader免安装版&lt;/a&gt;，免安装版可以放在U盘里，便于在别的电脑上用Slides做Presentation&lt;/p&gt;
+
+  &lt;p&gt;2、Media9必须用pdflatex编译，一般TexStdio默认编译器是xelatex，编译出来的pdf中的视频不能正常播放，所以要加上&lt;/p&gt;
+
+  &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;% !TeX TXS-program:compile = txs:///pdflatex/&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;% !BIB program = biber&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+
+  &lt;p&gt;然后允许本文档使用pdflatex构建即可。(这两行代码可以放在文件最前面，也可以放在其他任何位置，TexStudio会自动识别)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;2左右排版文字和图片&quot;&gt;2、左右排版文字和图片&lt;/h3&gt;
+
+&lt;p&gt;之前只用&lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;minifigure&lt;/code&gt;排版过多个图片，这次做Slides突然需要左边显示文字，右边显示图片的功能。网上没有找到现成的用法，本来尝试用&lt;code class=&quot;highlighter-rouge&quot;&gt;table&lt;/code&gt;的，类似于将屏幕分成$1 \times 2$的表格，左边放文字，右边放图片。但是没成功，总是出现错误，我觉得应该是可以的，只是我的姿势错了。&lt;/p&gt;
+
+&lt;p&gt;然后我无意间看到了用&lt;code class=&quot;highlighter-rouge&quot;&gt;figure&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;minifigure&lt;/code&gt;也可以排版文字。&lt;/p&gt;
+
+&lt;p&gt;所以&lt;/p&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;\begin{frame}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\frametitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;北斗卫星天线&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\framesubtitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;手持机天线——微带天线&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{figure}&lt;/span&gt;[] 
+	&lt;span class=&quot;nt&quot;&gt;\begin{minipage}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.45&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;\begin{itemize}&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt; 频率范围：Tx:L Rx:S
+			&lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt; 极化方式：Tx:LHCP Rx:RHCP
+			&lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt; 天线增益：Tx:4 dBi Rx:3.5 dBi
+			&lt;span class=&quot;k&quot;&gt;\item&lt;/span&gt; 配合手持设备使用的天线，该系列天线能满足手持设备高精度的要求，亦可配合各种OEM板卡使用。
+		&lt;span class=&quot;nt&quot;&gt;\end{itemize}&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;\end{minipage}&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;\begin{minipage}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.5&lt;span class=&quot;k&quot;&gt;\linewidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;\centering&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;\includegraphics&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;[scale=0.6]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;figures/bdsa6.jpg&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;\end{minipage}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{figure}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{frame}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;大功告成&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/2019-09-15/minifigure.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我也试了左边放表格，也是可以的。所以&lt;code class=&quot;highlighter-rouge&quot;&gt;minifigure&lt;/code&gt;不一定只能放图片哦！&lt;/p&gt;
+
+&lt;h3 id=&quot;3插入gif动图&quot;&gt;3、插入gif动图&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;情况1&lt;/strong&gt;、需要插入的gif是类似于视频的，只需要将他播放一遍就好。这样的话可以直接将gif转成mp4，然后用上面的插入mp4的方法插入即可。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;情况2&lt;/strong&gt;、需要控制播放速度，和逐帧播放的情况。请使用下面的方法。&lt;/p&gt;
+
+&lt;h4 id=&quot;第一步将gif文件分解为一帧一帧的多个图片&quot;&gt;第一步，将gif文件分解为一帧一帧的多个图片。&lt;/h4&gt;
+
+&lt;p&gt;方法1：使用在线分解，百度搜索&lt;code class=&quot;highlighter-rouge&quot;&gt;gif分解即可&lt;/code&gt;。这里放两个链接备用 &lt;a href=&quot;http://tool.chuanxincao.net/fenjie/&quot;&gt;动态图分解&lt;/a&gt;和&lt;a href=&quot;https://tu.sioe.cn/gj/fenjie/&quot;&gt;动态图分解&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;方法2：下载工具分解&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载&lt;a href=&quot;https://imagemagick.org/script/download.php&quot;&gt;ImageMagick&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;安装好后，进入安装目录，打开cmd窗口，输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;convert -coalesce 输入的gif文件的路径 输出的png文件的路径&lt;/code&gt;。或者直接将ImageMagick添加到环境变量，在gif文件的路径下打开cmd窗口输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;convert -coalesce test.gif test.png&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;然后会生成数个由test.gif分解来的test-[i].png文件（i为gif帧的个数）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;方法3：觉得上面都太麻烦，就用Python自己写个程序&lt;/p&gt;
+
+&lt;h4 id=&quot;第二步&quot;&gt;第二步&lt;/h4&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;graphicx&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%打开照片要用这个包&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\usepackage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;animate&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%播放多个gif&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;\begin{frame}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\frametitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;500米口径球面射电望远镜&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\framesubtitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;以下内容源自500米口径球面射电望远镜工程官网http://www.cas.cn/zt/kjzt/fast&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\centering&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\animategraphics&lt;/span&gt;[autoplay,loop,controls,&lt;span class=&quot;c&quot;&gt;%自动播放，循环播放，显示控制按钮&lt;/span&gt;
+scale=0.35&lt;span class=&quot;c&quot;&gt;%也可以用  width,height控制大小&lt;/span&gt;
+]&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;0.5&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;figures/fast&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;3&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%以每秒0.5张的速度播放fast1到fast3的图片(注意图片名字除了最后面的数字，前面都要一样)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{frame}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;注 :用PDFLaTex或XeLaTex编译。要用adobe reader等支持javascript的阅读器才能正常播放（福昕不行）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;以上就是这次做Slides中遇到的问题和解决方法啦。&lt;/p&gt;
+
+&lt;p&gt;这次是老师让我们根据一个题目做一个Presentation，我被分到的是卫星通信天线(地面端)。找资料和整理资料其实就加起来花了几个小时，但做Slides用了我两天时间。简直丧心病狂。一方面是我没有全神贯注的做，另一方面就是我第一次用Beamer做Slides，其中遇到了很多问题，每解决一个问题都要排查好久。不过最终每个问题都让我解决了，还不不错的。加深了对Latex的理解。&lt;/p&gt;
+
+&lt;p&gt;最后记忆一个很有用的命令，在cmd窗口执行（前提是texlive/bin/win32路径已经被添加到环境变量了）&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;texdoc package名
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;就是查看Package的帮助文档，非常有用哦，很多情况下百度都不能详细的帮助你，而帮助文档却是对某个命令最详细的解释。&lt;/p&gt;
+
+&lt;p&gt;比如&lt;code class=&quot;highlighter-rouge&quot;&gt;texdoc media9&lt;/code&gt;去看看添加视频的命令还有什么可以详细设置的地方吧&lt;/p&gt;
+
+&lt;h3 id=&quot;4表格过大或过小的调整方法&quot;&gt;4、表格过大(或过小)的调整方法&lt;/h3&gt;
+
+&lt;p&gt;这里借鉴了&lt;a href=&quot;https://blog.csdn.net/wbl90/article/details/52597429&quot;&gt;Latex 表格过大(或过小)的调整方法&lt;/a&gt;，感谢大佬。&lt;/p&gt;
+
+&lt;h4 id=&quot;01表格过窄&quot;&gt;01.表格过窄&lt;/h4&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;\setlength{\tabcolsep}{7mm}{XXXX}&lt;/code&gt;调整表格宽度, 效果为”按页面宽度调整表格“&lt;/p&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\setlength&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\tabcolsep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;7mm&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{tabular}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;cccccc&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\toprule&lt;/span&gt;
+Models  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\hline&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 12.4089  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.5169  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 18.6986  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -6.6157  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 14.8586  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4991  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 19.5421  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -7.0717  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.2183  &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 3.06302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.41266  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.11725  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 1.24089  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.51691  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.83605  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -0.66157  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 1.48586  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.49906  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.95609  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -0.70717  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.02183  &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\bottomrule&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{tabular}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;02表格宽过宽&quot;&gt;02.表格宽过宽&lt;/h4&gt;
+
+&lt;p&gt;用&lt;code class=&quot;highlighter-rouge&quot;&gt;\resizebox{\textwidth}{15mm}{XXXX}&lt;/code&gt;调整表格宽度, 效果为”按内容调整表格”.&lt;/p&gt;
+
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;\resizebox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\textwidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;15mm&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\begin{tabular}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;cccccccccccc&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\toprule&lt;/span&gt;
+Models  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; Models  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\alpha&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\hat\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;\hline&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -&lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 12.4089  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.5169  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 18.6986  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -6.6157  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 14.8586  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4991  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 19.5421  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -7.0717  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.2183 &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 3.06302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.41266  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.11725  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 1.24089  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.51691  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.83605  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -0.66157  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 1.48586  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.49906  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.95609  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; -0.70717  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.02183  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; model  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 30.6302  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 0.4127  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; 9.4257  &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt; - &lt;span class=&quot;k&quot;&gt;\\&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;\bottomrule&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;\end{tabular}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sun, 15 Sep 2019 00:00:00 -0700</pubDate>
+        <link>http://localhost:4000/2019/09/15/Latex+Beamer+Google-File-System-to-slides/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/09/15/Latex+Beamer+Google-File-System-to-slides/</guid>
+        
+        <category>LaTex</category>
+        
+        
+        <category>LaTexManuals</category>
+        
+      </item>
     
       <item>
         <title>更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统</title>
@@ -222,11 +1472,11 @@ target=&quot;_blank&quot; title=&quot;点击直达微信公众号～～&quot;&am
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
       
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#文献管理与信息分析&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;文献管理与信息分析 (12)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#文献管理与信息分析&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;文献管理与信息分析 (13)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
       
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#通识讲座&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;通识讲座 (1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#GeneralLecture&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;GeneralLecture (2)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
       
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -234,11 +1484,19 @@ target=&quot;_blank&quot; title=&quot;点击直达微信公众号～～&quot;&am
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
       
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#论文精读&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;论文精读 (1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#PaperReview&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;PaperReview (1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
       
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
           &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#OriginManuals&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;OriginManuals (2)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#LaTexManuals&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;LaTexManuals (1)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+      
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-item&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+          &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;category-list-link&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/category/#ConvexOptimization&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;ConvexOptimization (2)&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
       
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
@@ -276,13 +1534,22 @@ target=&quot;_blank&quot; title=&quot;点击直达微信公众号～～&quot;&am
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Science Paper&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 18pt; color: #000;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Science Paper&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
     
     
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Essential and Professional Course&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 11.5pt; color: #777;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Essential and Professional Course&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Essential and Professional Course&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 12.5pt; color: #666;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Essential and Professional Course&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
     
     
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Python&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 10pt; color: #888;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Python&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
     
     
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Efficient Application&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 9.5pt; color: #888;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Efficient Application&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    
+    
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Broaden Horizons&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 9pt; color: #999;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Broaden Horizons&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#LaTex&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 9pt; color: #999;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;LaTex&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    
+    
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/tags/#Comprehensive Quality&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;nofollow&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-size: 9pt; color: #999;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Comprehensive Quality&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
     
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
@@ -6071,6 +7338,8 @@ git push origin master#把本地仓库提交到远程仓库
         
         <category>Python</category>
         
+        <category>Efficient Application</category>
+        
         
       </item>
     
@@ -6091,7 +7360,7 @@ git push origin master#把本地仓库提交到远程仓库
         <category>Science Paper</category>
         
         
-        <category>论文精读</category>
+        <category>PaperReview</category>
         
       </item>
     
@@ -6728,760 +7997,6 @@ git push origin master#把本地仓库提交到远程仓库
         
         <category>Essential and Professional Course</category>
         
-        
-      </item>
-    
-      <item>
-        <title>中科大《文献管理与信息分析》结课总结</title>
-        <description>&lt;h1 id=&quot;中科大文献管理与信息分析结课总结&quot;&gt;中科大《文献管理与信息分析》结课总结&lt;/h1&gt;
-
-&lt;p&gt;​		本课程的学习大概花费了一周的时间，包括在慕课上看视频，记笔记，以及整理成博客。每周的课我都花了两三个小时去学习整理，特别是Endnote那一节，花了四个多小时，去自己亲手实践并且截图记录。这不仅仅是为了让我多动手时间，更是一种分享，一种为以后可能会忘做准备。&lt;/p&gt;
-
-&lt;p&gt;​		罗老师讲的我觉得真的算是很良心了，分享了很多他做科研时遇到的问题和解决方法，怎么去思考。这个对得起花这么多时间去学习。&lt;/p&gt;
-
-&lt;p&gt;​		我觉得从这门课中学到的最多的就是：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;工具意识：老师一直在强调，不要跟计算机抢饭碗，能交给计算机去做的事情就交给计算机去做。并且如果做什么事情比较重复枯燥，就要想想，这个事能不能交给计算机去做。&lt;/p&gt;
-
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;p&gt;时间投资意识：花一定的时间去学习某样技能，绝对会给你带来更大的价值。&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;科研选题、了解导师中，从&lt;a href=&quot;https://www.letpub.com.cn/index.php?page=grant&quot;&gt;国家自然科学基金&lt;/a&gt;、申请指南、新闻报道、&lt;a href=&quot;http://www.hiresearch.cn/&quot;&gt;海沿全球科研项目数据库&lt;/a&gt;等渠道获取信息。&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;六顶思考帽，这个真的是大开眼界，能够很全面的去分析解决一个问题。&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;牛人意识，跟着大佬走，能少走很多弯路&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;流程化学习，比如去了解一个课题，进行文献调研，以及寻找创意。这都是课堂上讲的，其他在学习生活中的方方面面，如果将做的事情流程化，就会使你思路很清晰，效率特别高。&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;分享意识，分享是知识转化为自己的东西的最快的途径。&lt;/p&gt;
-
-        &lt;p&gt;其来源于哈佛案例教学法&lt;/p&gt;
-
-        &lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-31/hafo.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;最后，将本课程学到的东西总结成了思维导图，供自己以后查看。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-31/zongjiexmind.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;内容太多，没办法清晰的贴上，请见谅。&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 31 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/31/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%BB%93%E8%AF%BE%E6%80%BB%E7%BB%93/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/31/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%BB%93%E8%AF%BE%E6%80%BB%E7%BB%93/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>文献管理与信息分析</category>
-        
-      </item>
-    
-      <item>
-        <title>中科大《文献管理与信息分析》第十二周笔记——六顶思考帽与课程总结</title>
-        <description>&lt;h1 id=&quot;中科大文献管理与信息分析第十二周笔记六顶思考帽与课程总结&quot;&gt;中科大《文献管理与信息分析》第十二周笔记——六顶思考帽与课程总结&lt;/h1&gt;
-
-&lt;h3 id=&quot;一思维方法的重要性&quot;&gt;一、思维方法的重要性&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;思维质量决定了我们的高度&lt;/li&gt;
-  &lt;li&gt;把一个洞挖的再深也不可能变成两个洞&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;常见的思维误区&quot;&gt;常见的思维误区&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;只从自身的角度进行考虑，只从片面的角度进行考虑
-    &lt;ul&gt;
-      &lt;li&gt;对抗性思维，争论，缺乏建设性和创新&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;情绪会影响思维的效率，无法跳出情绪的干扰&lt;/li&gt;
-  &lt;li&gt;同时考虑太多的因素，导致思维混乱&lt;/li&gt;
-  &lt;li&gt;误以为天马行空会更有创造力
-    &lt;ul&gt;
-      &lt;li&gt;有序的思维工作方式并不会扼杀灵感及创造力，反而会助长灵感及创造力产生&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;常用的思维方法&quot;&gt;常用的思维方法&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SWOT分析法，确定企业自身的竞争优势，竞争劣势，机会和威胁&lt;/li&gt;
-  &lt;li&gt;5W2H，广泛应用于企业管理和技术活动&lt;/li&gt;
-  &lt;li&gt;鱼骨分析法，适合问题分析，快速找到原因&lt;/li&gt;
-  &lt;li&gt;金字塔原理，重点突出，逻辑清晰，主次分明的逻辑思路，表达方式和规范动作&lt;/li&gt;
-  &lt;li&gt;思维导图，发散性思考，头脑风暴&lt;/li&gt;
-  &lt;li&gt;麦肯锡七步分析法，缜密而系统化思维&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;这些都是比较有名的分析问题的方法，感兴趣的可以自行了解。我觉得下面的六顶思考帽就足够了。所以这些方法暂时不详细了解了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;二六顶思考帽&quot;&gt;二、六顶思考帽&lt;/h3&gt;
-
-&lt;h4 id=&quot;什么是六顶思考帽&quot;&gt;什么是六顶思考帽？&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;六顶思考帽是一种平行思维方法&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;平性思维是一个管理我们思维本身的一种方法&lt;/li&gt;
-  &lt;li&gt;它将我们的思维从不同的侧面和角度进行分解，分别进行考虑，而不是同时考虑很多因素&lt;/li&gt;
-  &lt;li&gt;避免思维混乱，提升思考效率&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;蓝帽思维系统与控制&quot;&gt;蓝帽思维——系统与控制&lt;/h4&gt;
-
-&lt;p&gt;蓝色是冷静的，也是天空的颜色。蓝帽思维代表思维过程的控制与组织，它可以控制其他思维帽。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;功能：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;阐述目的，陈述问题并做总结&lt;/li&gt;
-  &lt;li&gt;控制讨论节奏&lt;/li&gt;
-  &lt;li&gt;思考如何高效组织思考&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;一般要解决的问题：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;我们应当从哪里开始？&lt;/li&gt;
-  &lt;li&gt;我们的目标是什么？&lt;/li&gt;
-  &lt;li&gt;议程是怎样的？&lt;/li&gt;
-  &lt;li&gt;应该用哪些帽子&lt;/li&gt;
-  &lt;li&gt;我们怎样去总结&lt;/li&gt;
-  &lt;li&gt;下一步该怎么做&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;白帽思维资料与信息&quot;&gt;白帽思维——资料与信息&lt;/h4&gt;
-
-&lt;p&gt;白帽显得中立且客观，白帽思维代表客观的事实和数字，只提供事实，背景知识，无需解读，中立的立场&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;一般要解决的问题：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;我们拥有哪些信息？&lt;/li&gt;
-  &lt;li&gt;我们希望拥有哪些信息？&lt;/li&gt;
-  &lt;li&gt;我们如何获得信息？调研？实地考察？&lt;/li&gt;
-  &lt;li&gt;这个领域的研究背景&lt;/li&gt;
-  &lt;li&gt;有哪些公司在从事这方面的业务&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;绿帽思维创新与冒险&quot;&gt;绿帽思维——创新与冒险&lt;/h4&gt;
-
-&lt;p&gt;绿色代表生机，绿帽思维代表创造力，产生新的想法。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;目的：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;寻求创意、寻求解决问题的方法，头脑风暴&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;一般要解决的问题：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;我们有什么新的想法、建议和假设是什么？&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;我们还有其他方法做这件事情吗？&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;黄帽思维积极与乐观&quot;&gt;黄帽思维——积极与乐观&lt;/h4&gt;
-
-&lt;p&gt;黄色代表阳光和乐观的，黄帽思维包含着希望与正面思想，积极寻找实物的闪光点。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;一般要解决的问题：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;这样做的优点是什么？&lt;/li&gt;
-  &lt;li&gt;这样做会带来什么积极正面的影响&lt;/li&gt;
-  &lt;li&gt;这个结果是否有好的地方？&lt;/li&gt;
-  &lt;li&gt;这个思路值得肯定的是什么？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;黑帽思维逻辑与批判&quot;&gt;黑帽思维——逻辑与批判&lt;/h4&gt;
-
-&lt;p&gt;黑色是阴沉、负面的。黑帽思维考虑的是事物的负面因素，它是对事物的负面因素进行逻辑判断和评估。负面、消极、批判、危险，通过识别出不利的局面，减少坏情况出现的可能性。或者找到思维缺陷，考虑不周全的地方。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;一般要解决的问题：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;他会起副作用吗？缺点是什么？&lt;/li&gt;
-  &lt;li&gt;为什么不能这样做？&lt;/li&gt;
-  &lt;li&gt;这样做会存在什么危险？&lt;/li&gt;
-  &lt;li&gt;这个思路会不会行不通？&lt;/li&gt;
-  &lt;li&gt;哪些情况可能会导致失败？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;红帽思维直觉与感情&quot;&gt;红帽思维——直觉与感情&lt;/h4&gt;
-
-&lt;p&gt;红色暗示着愤怒、狂暴与情感。红色思考帽代表情绪上的感觉、直觉和预感。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;我现在有什么感受？&lt;/li&gt;
-  &lt;li&gt;我的感觉告诉我什么？&lt;/li&gt;
-  &lt;li&gt;我的直觉反应是什么？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;六顶思考帽与头脑风暴的异同&quot;&gt;六顶思考帽与头脑风暴的异同&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;头脑风暴注重创意&lt;/li&gt;
-  &lt;li&gt;六顶思考帽注重全面性&lt;/li&gt;
-  &lt;li&gt;两者侧重点不同，相互关联&lt;/li&gt;
-  &lt;li&gt;需要相互借鉴&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;使用帽子顺序可以根据需要进行调整&quot;&gt;使用帽子顺序可以根据需要进行调整&lt;/h4&gt;
-
-&lt;p&gt;常规次序：蓝帽-&amp;gt;白帽-&amp;gt;绿帽-&amp;gt;黑帽/黄帽/红帽-&amp;gt;蓝帽&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;一般从蓝帽开始，蓝帽结束&lt;/li&gt;
-  &lt;li&gt;开场场面主题，明确任务&lt;/li&gt;
-  &lt;li&gt;结尾总结讨论成果落实任务&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;六顶思考帽在科研中的应用-选题&quot;&gt;六顶思考帽在科研中的应用-选题&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;蓝帽子：讨论某个选题&lt;/li&gt;
-  &lt;li&gt;白帽子：这个方向的研究背景，进展，文献数量，团队，公司等；还需要什么资料？&lt;/li&gt;
-  &lt;li&gt;绿帽子：这个研究方向，有哪些问题，如何解决&lt;/li&gt;
-  &lt;li&gt;黄帽子：这个方案或研究方向的意义，好处，优点等&lt;/li&gt;
-  &lt;li&gt;黑帽子：这个思路有什么不足？真有创新性吗？设计严密吗？还有哪些因素？&lt;/li&gt;
-  &lt;li&gt;红帽子：你的直觉？可行吗？&lt;/li&gt;
-  &lt;li&gt;蓝帽子：总结&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 31 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/31/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%91%A8%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/31/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%91%A8%E7%AC%94%E8%AE%B0/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>文献管理与信息分析</category>
-        
-      </item>
-    
-      <item>
-        <title>通识讲座——如何高效完成论文写作</title>
-        <description>&lt;h1 id=&quot;通识讲座如何高效完成论文写作&quot;&gt;通识讲座——如何高效完成论文写作&lt;/h1&gt;
-
-&lt;p&gt;这是在中科院张老师的公众平台听的公开讲座。其实还是给他的收费课做宣传的。但是对于科研小白来说，还是收获了点论文初稿的撰写知识的。&lt;/p&gt;
-
-&lt;p&gt;这节课的目标就是：&lt;strong&gt;一节课归纳论文写作重难点，几招探讨把握初稿完成小技巧。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;一初稿提笔前的准备工作&quot;&gt;一、初稿提笔前的准备工作&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;确定的的研究问题&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;这一点其实也是贯穿整个科研工作始终的问题，一定要明确你要探究的是什么问题，然后才能针对性的进行研究，撰写。并且要在论文开始处提出问题，结论处回答这些问题。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;主要数据和图表的制备&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;开始撰写论文的时候，这些东西就准备好了，还有公式推导呀这些东西。然后就可以专注在写论文上了。
-  	&amp;gt;
-  	&amp;gt;图表要直观、明了、有说服性
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;回顾和更新参考文献&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;这也是学习EndNote文献管理的用处，你到底参考了哪些文献。不要弄错了。
-  	&amp;gt;
-  	&amp;gt;不要直接照搬开题报告中的文献综述
-  	&amp;gt;
-  	&amp;gt;梳理并添加相关的最新文献
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;明确读者群体/明确论文的类型&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;比如要投杂志，就要去看看杂志对，论文结构格式，论文文字格式，图表格式，参考文献格式等等的要求。
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;二imrd论文结构&quot;&gt;二、IMRD论文结构&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-30/structure.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;这里我直接借鉴了讲课的PPT，因为这只是参考。不同会议，期刊的要求其实不一样的。最主要的还是自己去找曾经投在这个会议，期刊的论文，去看他们的结构，内容。&lt;/p&gt;
-
-&lt;p&gt;比如我接下来准备投的IEEE ICASSP，就是直接去官网，他们有曾经的论文和模板。要搞清楚他们需要的是什么论文！学位论文也是一样，一般都有论文指南，一定要先看好要求。&lt;/p&gt;
-
-&lt;h3 id=&quot;三初稿推荐的写作顺序&quot;&gt;三、初稿推荐的写作顺序&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-30/order.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;也就是先写方法和结果，这才是你这篇论文你最熟悉的地方，可能几个月的工作全部都在方法上。而不是先绞尽脑汁的编介绍。然后再去写介绍，摘要，可能你整理完你的方法结果后，会对你的论文有更加清晰的认识，会让你写起来如鱼得水的。&lt;/p&gt;
-
-&lt;h3 id=&quot;四论文的写作流程&quot;&gt;四、论文的写作流程&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;D:/_MINE_/code/AlbertYZP.github.io/_posts/images/posts/2019-07-30/liucheng.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;由此可以看出，初稿和修改画的时间最多，一定要给自己和导师足够的时间修改润色论文。&lt;/p&gt;
-
-&lt;p&gt;这五个流程不可能都一帆风顺，很可能在初稿与修改之间反复，甚至被导师推翻全部重新开题。科研就是一样，不断的尝试，可能有失败，也会有成功。&lt;/p&gt;
-
-&lt;p&gt;因此，做写作规划时，我们应该：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;五个写作流程面面俱到，缺一不可&lt;/li&gt;
-  &lt;li&gt;单位时间论文工作量的制定要结合章节特征和论文准备工作情况。&lt;/li&gt;
-  &lt;li&gt;准备工作要做扎实、充分，更要注意“与时俱进”&lt;/li&gt;
-  &lt;li&gt;留给导师修改的时间一定要尽可能的充足&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;五初稿写作tips&quot;&gt;五、初稿写作Tips&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;告别拖延，立刻动笔&lt;/li&gt;
-  &lt;li&gt;尽量一气呵成！初稿完成以后再来修改&lt;/li&gt;
-  &lt;li&gt;写作提纲优点多
-    &lt;ul&gt;
-      &lt;li&gt;让导师把关梳理文章重点&lt;/li&gt;
-      &lt;li&gt;可根据提纲进一步细分工作任务&lt;/li&gt;
-      &lt;li&gt;写作中断后再次回到初搞能够很快进入写作状态&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;写作中寻求指导和帮助
-    &lt;ul&gt;
-      &lt;li&gt;同僚、师兄师姐&lt;/li&gt;
-      &lt;li&gt;校外和平台&lt;/li&gt;
-      &lt;li&gt;导师——前期准备阶段，初稿创作阶段，修改编辑阶段。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-</description>
-        <pubDate>Tue, 30 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/30/%E9%80%9A%E8%AF%86%E8%AE%B2%E5%BA%A7-%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%AE%8C%E6%88%90%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/30/%E9%80%9A%E8%AF%86%E8%AE%B2%E5%BA%A7-%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%AE%8C%E6%88%90%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>通识讲座</category>
-        
-      </item>
-    
-      <item>
-        <title>中科大《文献管理与信息分析》第十周笔记——趋势与选题</title>
-        <description>&lt;h1 id=&quot;中科大文献管理与信息分析第十周笔记趋势与选题&quot;&gt;中科大《文献管理与信息分析》第十周笔记——趋势与选题&lt;/h1&gt;
-
-&lt;h3 id=&quot;一创新的衡量标准与趋势&quot;&gt;一、创新的衡量标准与趋势&lt;/h3&gt;
-
-&lt;h4 id=&quot;什么是好的用户体验&quot;&gt;什么是好的用户体验？&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;可以全品操作，不要用局部操作&lt;/li&gt;
-  &lt;li&gt;可以单手，不要双手&lt;/li&gt;
-  &lt;li&gt;可以闭眼操作的，不要睁眼操作，如翻转静音&lt;/li&gt;
-  &lt;li&gt;能不费脑子，就尽量不要努力思考，如导航（降低认知负荷）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;创新与用户体验的衡量标准&quot;&gt;创新与用户体验的衡量标准&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;省时、省钱、爽&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;不仅仅适用于创业创新上，技术创新，产品创新上，还可以用在管理创新、社会创新，如：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;政府机关的一站式服务&lt;/li&gt;
-  &lt;li&gt;学校的不等候报账&lt;/li&gt;
-  &lt;li&gt;饭卡充值，从指定时间人工现金到支付宝随时随地&lt;/li&gt;
-  &lt;li&gt;互联网+、共享经济、滴滴等&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;中国新四大发明 网购、支付宝、高铁、共享单车&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;二创业选题与科研选题&quot;&gt;二、创业选题与科研选题&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;提出一个问题往往比解决一个问题更重要。      ——爱因斯坦&lt;/p&gt;
-
-  &lt;p&gt;看到需求是一个人的智慧，二满足需求则是一个人的能力。  ——罗绍峰&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;什么是需求&quot;&gt;什么是需求？&lt;/h4&gt;
-
-&lt;p&gt;每一个抱怨的背后都隐藏着一个未被满足的需求，而每一个需求的背后必然隐藏着一个不可忽视的市场！&lt;/p&gt;
-
-&lt;p&gt;需求是对人性深刻的洞察&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;亨利.福特：如果我当年去问顾客他们需要什么，他们一定会说:”请给我一批更快的马”&lt;/li&gt;
-  &lt;li&gt;乔布斯：人们不知道自己想要的是什么，直到我把它摆在他们面前，正因如此，我从不依靠市场研究。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;需求来自哪里人性&quot;&gt;需求来自哪里？人性&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;马斯洛的层次需求理论&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;生理上的需要&lt;/li&gt;
-      &lt;li&gt;安全上的需要&lt;/li&gt;
-      &lt;li&gt;情感和归属的需要&lt;/li&gt;
-      &lt;li&gt;尊重的需要&lt;/li&gt;
-      &lt;li&gt;自我实现的需要&lt;/li&gt;
-      &lt;li&gt;自我超越的需要&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;总之就是&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;人对快乐的追求(美)&lt;/li&gt;
-      &lt;li&gt;人对恐惧的逃避&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;创新意识&quot;&gt;创新意识&lt;/h4&gt;
-
-&lt;p&gt;对需求的把握，创新的把握，归根结底就是意识问题！&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;你从来就没想过，世界可以由我们来改变。&lt;/li&gt;
-  &lt;li&gt;根本没有想过，对于这个世界来说，你可以做很多有价值的事&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;三科研选题中的省时省钱爽&quot;&gt;三、科研选题中的“省时省钱爽”&lt;/h3&gt;
-
-&lt;h4 id=&quot;江雷院士总结的原创科研选题的八条准则&quot;&gt;江雷院士总结的“”原创科研选题的八条准则&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;教科书和文献上的东西不一定总是对的&lt;/li&gt;
-  &lt;li&gt;以往的科学研究遗漏的挑战&lt;/li&gt;
-  &lt;li&gt;总结前人或自己的研究成果，提出普适规律&lt;/li&gt;
-  &lt;li&gt;研制新功能仪器&lt;/li&gt;
-  &lt;li&gt;解决人民生活/国民经济/国防建设重大需求的关键技术&lt;/li&gt;
-  &lt;li&gt;科研过程中偶然发现&lt;/li&gt;
-  &lt;li&gt;探索新理论方法，即现有实验无法探测的物理化学过程的理论解释方法。&lt;/li&gt;
-  &lt;li&gt;学习自然是原创科研的必由之路&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;其实这些标准对于学生来说，离得太远，看似面面俱到，实则面面不到&lt;/p&gt;
-
-  &lt;p&gt;所以罗老师提出了下面的几个途径&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;科研选题的来源&quot;&gt;科研选题的来源&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;从社会生活和现实生活所面临的的问题中选题&lt;/li&gt;
-  &lt;li&gt;从科研规划和招标课题中选题(申请指南)&lt;/li&gt;
-  &lt;li&gt;从科学前沿和研究热点中选题，推荐关注各类新闻&lt;/li&gt;
-  &lt;li&gt;从已有课题的延伸中选题&lt;/li&gt;
-  &lt;li&gt;从学科渗透、交叉发展中选题&lt;/li&gt;
-  &lt;li&gt;从不同学术观点的学术争论中选题&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;这些题目来源就比较贴近学生了。等以后我面临选题的时候一定要多回来看看。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;科研选题建议采用逆推法&quot;&gt;科研选题建议采用逆推法&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;这个领域的目标是什么？这个领域的研究有什么用？（新闻、网站、广告）。最理想的状态你认为应该是什么样的？&lt;/li&gt;
-  &lt;li&gt;然后思考这些能实现吗？为什么不能实现？有什么困难？&lt;/li&gt;
-  &lt;li&gt;还存在什么问题？成本太高？周期太长？步骤太多？太复杂？&lt;/li&gt;
-  &lt;li&gt;如何简化？如何降低成本？&lt;/li&gt;
-  &lt;li&gt;真能实现吗？普适吗？便宜吗？方便吗？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;老师自己选题的血泪教训&quot;&gt;老师自己选题的血泪教训&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;无知者无畏——凭直觉选题（对所做的方向缺乏了解）&lt;/li&gt;
-  &lt;li&gt;缺乏指导（没有向牛人学习的意识，一切依靠自己摸索）&lt;/li&gt;
-  &lt;li&gt;虚荣心，闭门造车，不敢暴露自己的缺点&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 30 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/30/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E5%91%A8%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/30/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E5%91%A8%E7%AC%94%E8%AE%B0/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>文献管理与信息分析</category>
-        
-      </item>
-    
-      <item>
-        <title>中科大《文献管理与信息分析》第十一周笔记——问题解决与头脑风暴</title>
-        <description>&lt;h1 id=&quot;中科大文献管理与信息分析第十一周笔记问题解决与头脑风暴&quot;&gt;中科大《文献管理与信息分析》第十一周笔记——问题解决与头脑风暴&lt;/h1&gt;
-
-&lt;h3 id=&quot;一如何解决问题&quot;&gt;一、如何解决问题&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;自己解决：自己的经验范围之内，知道如何解决&lt;/li&gt;
-  &lt;li&gt;别人解决：自己不知道如何解决，但别人知道&lt;/li&gt;
-  &lt;li&gt;创新解决：迄今为止无人知道如何解决&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;一个问题的解决方式无非就这三种情况。但其中最主要的还是如果你不会解决，你怎么去知道别人会不会解决，这个就很难把握了，一方面去搜集同行的文献看看谁在做这个，然后去咨询，另一方面，实在找不到，只能自己创新解决了。&lt;/p&gt;
-
-  &lt;p&gt;但要记住，不要重复发明轮子。遇到问题先去搜索是否有解决方法。不需要自己在任何方面都自己创新着去研究。并且，其实我们每个人碰到的问题巨大部分都有人知道如何解决，就看缘分能不能让你遇得到这个人。最重要的还是，提高搜商，非常有利于解决问题&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;问题解决思路&quot;&gt;问题解决思路&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;网上检索、精准检索、关联检索、图片搜索&lt;/li&gt;
-  &lt;li&gt;与人交流进行思维碰撞（交流意识思路的整理过程）&lt;/li&gt;
-  &lt;li&gt;头脑风暴，冥想，尝试在不同事物之间建立关联&lt;/li&gt;
-  &lt;li&gt;找最牛的人去交流&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;科研中遇到问题解决方案&quot;&gt;科研中遇到问题解决方案&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;逆向分析法&lt;/li&gt;
-  &lt;li&gt;穷举所有的可能（认知盲区）&lt;/li&gt;
-  &lt;li&gt;借鉴法（参考文献、咨询牛人）&lt;/li&gt;
-  &lt;li&gt;讨论与头脑风暴&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;解决超出自己认知范围盲点的问题&quot;&gt;解决超出自己认知范围（盲点）的问题&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;搜索往往也很难解决（太真实了，稍微深点的问题根本就搜不出来）&lt;/li&gt;
-  &lt;li&gt;大量浏览有可能找到解决途径（有点太耗费时间）&lt;/li&gt;
-  &lt;li&gt;交流或请教专家可能是最有效的方法（要注意，最好不要频繁，或者问简单的问题，遭人烦）&lt;/li&gt;
-  &lt;li&gt;信念，相信方法总比问题多（哈哈哈，佛系科研）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;二反馈与学习&quot;&gt;二、反馈与学习&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;为什么你的联系进步很慢？因为缺少练习&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;提升学习效率，科研效率，反馈是关键，正确的反馈才能知道改进的方向，如果没有反馈，改进往往是盲目的改进或重复。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;反馈简单的来说就是有一个标准去评判你做的对不对。就向考研题，做完之后对答案，对完答案的结果就是对你这段学习的反馈，根据你的对错情况进行修正复习节奏。对于科研来说，导师所给的反馈就是最重要的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;三头脑风暴&quot;&gt;三、头脑风暴&lt;/h3&gt;
-
-&lt;h4 id=&quot;头脑风暴的基本原则&quot;&gt;头脑风暴的基本原则&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;要有明确的目标&lt;/li&gt;
-  &lt;li&gt;延迟评判原则&lt;/li&gt;
-  &lt;li&gt;不拒绝任何想法&lt;/li&gt;
-  &lt;li&gt;适度的压力能让人保持专注&lt;/li&gt;
-  &lt;li&gt;相互启发，又要避免相互干扰&lt;/li&gt;
-  &lt;li&gt;禁止交流&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;影响头脑风暴的因素&quot;&gt;影响头脑风暴的因素&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;主持人很重要&lt;/li&gt;
-  &lt;li&gt;主题明确&lt;/li&gt;
-  &lt;li&gt;了解背景&lt;/li&gt;
-  &lt;li&gt;适度引导&lt;/li&gt;
-  &lt;li&gt;延迟评判&lt;/li&gt;
-  &lt;li&gt;适度压力&lt;/li&gt;
-  &lt;li&gt;时间限制&lt;/li&gt;
-  &lt;li&gt;相互启发&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;头脑风暴的形式&quot;&gt;头脑风暴的形式&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;随机发言的方法&lt;/li&gt;
-  &lt;li&gt;递纸条（创意接龙）&lt;/li&gt;
-  &lt;li&gt;便利贴&lt;/li&gt;
-  &lt;li&gt;思维导图软件法&lt;/li&gt;
-  &lt;li&gt;在线协作的方法&lt;/li&gt;
-  &lt;li&gt;一个人的头脑风暴&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;头脑风暴简单的来说就是对所有想到的东西都写出来，相互启发从而获取到创新点，再进一步整理，就可以得到一个很好的结果。是一个很好的创新的方法。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;四noteexpress简介&quot;&gt;四、NoteExpress简介&lt;/h3&gt;
-
-&lt;p&gt;这也是一个文献管理软件，是国内开发的，收费的，它最突出的优点就是中文文献支持比较好，能获取Cnki数据库的资源；还有就是支持富文本记笔记（富文本就是像Word那样能插入图片，修改字号什么的）。这个对于记笔记来说就非常好用。&lt;/p&gt;
-
-&lt;p&gt;但是我不准备同时用两个软件，我不需要对中文数据库那么好的支出，也暂时不需要记录富文本笔记。所以暂时不用，等以后需要的话再去下载安装吧。使用方法与EndNote几乎一模一样，也不用太专门学。&lt;/p&gt;
-
-&lt;h4 id=&quot;五同步协作一起写&quot;&gt;五、同步协作——一起写&lt;/h4&gt;
-
-&lt;p&gt;这个是老师推荐的，但，其实里面的功能。。。腾讯文档里面都有，如果想要比较纯粹的同步协作可以用这个网站试试。就是同时编辑Word，Excel，收集信息到Excel。&lt;/p&gt;
-</description>
-        <pubDate>Tue, 30 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/30/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E4%B8%80%E5%91%A8%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/30/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%8D%81%E4%B8%80%E5%91%A8%E7%AC%94%E8%AE%B0/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>文献管理与信息分析</category>
-        
-      </item>
-    
-      <item>
-        <title>中科大《文献管理与信息分析》第九周笔记——利用HistCite快速定位关键文献</title>
-        <description>&lt;h1 id=&quot;中科大文献管理与信息分析第九周笔记利用histcite快速定位关键文献&quot;&gt;中科大《文献管理与信息分析》第九周笔记——利用HistCite快速定位关键文献&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;注第八周是一个测验，即6个小时时间内对一个领域进行了解，并形成开题报告&lt;/p&gt;
-
-  &lt;p&gt;我觉得任务很繁重，但不失为一个练习学习的工具、提升自己能力的很好的机会。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;快速锁定核心文献&quot;&gt;快速锁定核心文献&lt;/h3&gt;
-
-&lt;p&gt;文献调研的策略与目的有关&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;追踪进展&lt;/li&gt;
-  &lt;li&gt;特定参考&lt;/li&gt;
-  &lt;li&gt;全面调研：开题，新领域，基金申请，论文投稿&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如何快速了解一个领域 ？&lt;/p&gt;
-
-&lt;p&gt;综述、专著、教材、专家&lt;/p&gt;
-
-&lt;p&gt;如何获得重要文献？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;专家推荐，如导师、师兄师姐、同行专家&lt;/li&gt;
-  &lt;li&gt;文献检索，数据库网站检索并分析&lt;/li&gt;
-  &lt;li&gt;文献分析，文献管理软件分析，文本分析工具，引文分析工具&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;引文分析的价值？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;因为相关所以引用，引用相当于投票&lt;/li&gt;
-  &lt;li&gt;共引即相关-Related Article&lt;/li&gt;
-  &lt;li&gt;引文分析实为汇聚了全体作者的智慧&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;HistCite的功能？&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;快速绘制一个领域的发展脉络&lt;/li&gt;
-  &lt;li&gt;快速锁定某个领域的重要文献&lt;/li&gt;
-  &lt;li&gt;快速锁定某个领域的重要科学家和机构&lt;/li&gt;
-  &lt;li&gt;洞察某个领域的最新进展&lt;/li&gt;
-  &lt;li&gt;找出无指定关键词的重要文献&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;histcite的使用&quot;&gt;HistCite的使用&lt;/h3&gt;
-
-&lt;p&gt;首先、在这下载&lt;a href=&quot;https://zhuanlan.zhihu.com/p/20902898&quot;&gt;文献引文分析利器 HistCite 详细使用教程暨 HistCite Pro 首发页面&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;其次、得到一个免安装版本的HistCite&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/folder.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;再其次，去WOS数据库导出你搜索的数据&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/histciteexport.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;共1734个结果，一次最多导出500个，所以要导出4次&lt;/p&gt;
-
-&lt;p&gt;得到四个txt文件，并放在上述提到的TXT文件夹&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/histciteexportres.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;再再其次、点击main.exe（它默认读取TXT文件夹内的所有文件）&lt;/p&gt;
-
-&lt;p&gt;运行后是这样的&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/Hres1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;它会自动弹出浏览器，打开http://127.0.0.1:1925/，如果没有自动弹出，自己手动在浏览器地址栏输入即可。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/Hres2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;点击绘图&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/Hres3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;就可以得到引用网络了&lt;/p&gt;
-
-&lt;p&gt;就能看出来哪个被是比较重要的文献（被”同行”引用的比较多）&lt;/p&gt;
-
-&lt;h3 id=&quot;histcite中几个参数的解释&quot;&gt;HistCite中几个参数的解释&lt;/h3&gt;
-
-&lt;p&gt;GCS：全球被引用次数&lt;/p&gt;
-
-&lt;p&gt;LCS：本地被引用次数&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;注：全球即WOS数据库中所有文献&lt;/p&gt;
-
-  &lt;p&gt;​        本地即为你导出的这些文献&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;CR：引用的所有参考文献数&lt;/p&gt;
-
-&lt;p&gt;LCR：引用的本地的参考文献数&lt;/p&gt;
-
-&lt;p&gt;LCS/t：LCS值除以发行以来的年份&lt;/p&gt;
-
-&lt;p&gt;LCSx：去除自引&lt;/p&gt;
-
-&lt;p&gt;GCS/t：GCS值除以发行以来的年份&lt;/p&gt;
-
-&lt;p&gt;NA：作者数&lt;/p&gt;
-
-&lt;p&gt;LCSb：文章刚发表头三年引用次数&lt;/p&gt;
-
-&lt;p&gt;LCSe：文章发表后三年引用次数&lt;/p&gt;
-
-&lt;p&gt;LCS(e/b)：LCSe/LCSb代表最近收到的关注程度&lt;/p&gt;
-
-&lt;p&gt;更形象的表示如下&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/posts/2019-07-29/Heg.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 29 Jul 2019 00:00:00 -0700</pubDate>
-        <link>http://localhost:4000/2019/07/29/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E4%B9%9D%E5%91%A8%E7%AC%94%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/07/29/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E4%B9%9D%E5%91%A8%E7%AC%94%E8%AE%B0/</guid>
-        
-        <category>Science Paper</category>
-        
-        
-        <category>文献管理与信息分析</category>
         
       </item>
     

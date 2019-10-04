@@ -14,8 +14,8 @@ typora-root-url: ..
 ### What’s mathematical optimization problem
 
 $$\begin{array}{*{20}{c}}
-  {{\text{minimize}}}&{{f_0}\left( x \right)} \\ 
-  {{\text{subject to}}}&{{f_i}\left( x \right) \leqslant {b_i},i = 1,...,m} 
+  {{\text{minimize}}}& { { f_0}\left( x \right)} \\ 
+  {{\text{subject to}}}& { { f_i}\left( x \right) \leqslant {b_i},i = 1,...,m} 
 \end{array}$$
 
 这里

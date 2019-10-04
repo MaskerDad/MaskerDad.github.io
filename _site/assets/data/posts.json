@@ -2,6 +2,60 @@
 
 
 {
+"title": "Convex Optimization: Convex set",
+"url": "/2019/09/30/Convex-Optimization_convexset/",
+"date": "2019-09-30",
+"keywords": ["Essential and Professional Course"],
+"summary": "Affine and convex sets\n\n仿射集合和凸集\n\n1. Lines and line segments\n\n$y=\\theta x_1+(1-\\theta)x_2$，$x_1 \\ne x_2$。\n\n\n  \n    if ..."
+}, 
+
+
+{
+"title": "Convex Optimization: Introduction",
+"url": "/2019/09/19/Convex-Optimization_Introduction/",
+"date": "2019-09-19",
+"keywords": ["Essential and Professional Course"],
+"summary": "1. Mathematical optimization 数值优化\n\nWhat’s mathematical optimization problem\n\n\n\n这里\n\n\n  $x=(x_1,…,x_n)$: optimization v..."
+}, 
+
+
+{
+"title": "Recommended software: 欧陆词典",
+"url": "/2019/09/19/.Recommended-software_%E6%AC%A7%E9%99%86%E8%AF%8D%E5%85%B8/",
+"date": "2019-09-19",
+"keywords": ["Efficient Application"],
+"summary": "之前再英语口语班里老师就推荐过欧路词典。里面发音比较纯正，词典例句也很丰富。当时主要用来查单词音标。\n\n然后买了iPad之后，很多人推荐使用欧路词典，非常适合读英文文章，可以跨屏取词，直接copy就可以翻译。也使用了其中的生词本功能。..."
+}, 
+
+
+{
+"title": "三个工作面试问题+手机屏幕使用时间管理",
+"url": "/2019/09/17/%E5%B7%A5%E4%BD%9C%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98+%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E4%BD%BF%E7%94%A8%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/",
+"date": "2019-09-17",
+"keywords": ["Comprehensive Quality"],
+"summary": "三个考验解决问题思维的工作面试问题\n\n今天其实是听物光院推免情况的座谈会，刚开始老师讲了我们院推免人数，分配呀，推免系统报名呀这些基本情况。然后就一个物光院老师带着“政治认识”——推广物光院的研究生团队的任务给我们讲。讲物光院会给我们..."
+}, 
+
+
+{
+"title": "中科大《文献管理与信息分析》实战——卫星通信天线（地面端）",
+"url": "/2019/09/17/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E5%AE%9E%E6%88%98-%E5%8D%AB%E6%98%9F%E9%80%9A%E4%BF%A1%E5%A4%A9%E7%BA%BF-%E5%9C%B0%E9%9D%A2%E7%AB%AF/",
+"date": "2019-09-17",
+"keywords": ["Science Paper"],
+"summary": "上周现代天线概论老师留了一个作业，让我们每个人都讲一种天线，我被分配到的是卫星通信天线（地面端）。然后花了大概三四天的时间找资料整理资料，形成ppt。\n\n\n  当时中科大《文献管理与信息分析》课上老师是要求6个小时集中对一个题目进行调..."
+}, 
+
+
+{
+"title": "Latex+Beamer+Google File System Model to make slides",
+"url": "/2019/09/15/Latex+Beamer+Google-File-System-to-slides/",
+"date": "2019-09-15",
+"keywords": ["LaTex"],
+"summary": "这是我第一次用LaTex+Beamer做slides\n\n一、挑选使用的Beamer主题模板\n\n这里推荐LaTex开源小屋提供的模板，还是有一部分感觉很不错的。\n\n我挑选了The Google File System的beamer主题，..."
+}, 
+
+
+{
 "title": "更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统",
 "url": "/2019/09/12/%E6%9B%B4%E6%8D%A2%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/",
 "date": "2019-09-12",
@@ -59,7 +113,7 @@
 "title": "使用Python和bat批处理命令一键更新博客",
 "url": "/2019/08/21/%E4%BD%BF%E7%94%A8Python%E5%92%8Cbat%E6%89%B9%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E4%B8%80%E9%94%AE%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2/",
 "date": "2019-08-21",
-"keywords": ["Essential Skill","Python"],
+"keywords": ["Essential Skill","Python","Efficient Application"],
 "summary": "使用Python和bat批处理命令一键更新博客\n\n使用jekyll+GitHub Page/GiteePage打造自己的博客已经一段时间了。除了写博客，还要把写完的文件更新到远程仓库，这样的更新操作只是简单重复性工作，早就想着能不能自..."
 }, 
 
