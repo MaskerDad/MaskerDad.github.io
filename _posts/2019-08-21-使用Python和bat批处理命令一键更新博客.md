@@ -3,7 +3,7 @@ layout: post
 title: "使用Python和bat批处理命令一键更新博客"
 description: "使用Windows的bat命令和Python的selenium库调用websever，实现了一键将新增的博客部署到GitHub和Gitee远程库以及自动化更新部署GiteePage"
 categories: []
-tags: [Essential Skill,Python]
+tags: [Essential Skill,Python,Efficient Application]
 redirect_from:
   - /2019/08/21/
 typora-root-url: ..
