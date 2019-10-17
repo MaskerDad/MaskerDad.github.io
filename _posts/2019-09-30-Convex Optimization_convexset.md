@@ -9,6 +9,8 @@ redirect_from:
 typora-root-url: ..
 ---
 
+* Kramdown table of contents
+{:toc .toc}
 # Affine and convex sets
 
 仿射集合和凸集
@@ -25,7 +27,7 @@ $y=\theta x_1+(1-\theta)x_2$，$x_1 \ne x_2$。
 
 ## 2. Affine set  （仿射集）
 
-A set $C \in {{\bf{R}}^n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.
+A set $C \in R^n$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.
 
 对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$\theta \in R$都成立，则C就叫仿射集。
 
@@ -353,4 +355,85 @@ $X_{d \times n}^\prime =U_{d\times m}^TX_{m \times n}$
 > SVD作为一个很基本的算法，在很多机器学习算法中都有它的身影，特别是在现在的大数据时代，由于SVD可以实现并行化，因此更是大展身手。
 >
 > SVD的缺点是**分解出的矩阵解释性往往不强**，有点黑盒子的味道，不过这不影响它的使用。
+
+# Operations that preserve convexity (保凸运算)
+
+## 1. Intersection (交集)
+
+the intersection of (any nomber of) convex sets is convex
+
+> example:
+>
+> $S=\{ x\in R^m|\left| p(t)\right| \le1 for |t|\le\pi/3 \}=\cap_{|t|\le\pi/3}\{ x | |p(t)|\le 1\}$
+>
+> 其中$p(t)=x_1cost+x_2cos2t+\cdot\cdot\cdot +x_mcosmx$
+>
+> 1. 证明S(t)是凸的
+>
+> <img src="/images/posts/2019-09-30/intersection1.png" style="zoom:50%;" />
+>
+> 图中两个实线是随机选取的在$|t|\le\pi/3$时满足$|p(t)|\le 1$的曲线。相当于在集合中选取的两个点$(x,y)$，然后看$\theta x+(1-\theta)y$是否也满足$|p(t)|\le 1$，即也在集集合中。图中的虚线就是取的$\theta=1/2$时的情况，可以看到在$|t|\le\pi/3$仍然满足$|p(t)|\le 1$，即$\theta x+(1-\theta)y$也在集集合中。得证$S$是凸集
+>
+> 2. 下图绘制出了当$m=2$时的集合图
+>
+> $S=\{ x\in R^m|\left| x_1cost+x_2cos2t \right| \le1 for |t|\le\pi/3 \}$
+>
+> 其中$x_1cost+x_2cos2t$是一个line，$\left| x_1cost+x_2cos2t \right| \le1$就是两个line和中间的部分组成的slab(平板)。当$t$取值不同时，曲线的斜率也不同。就构成了无数个slabs。将这些slabs取交集便是$S$
+>
+> <img src="/images/posts/2019-09-30/intersection2.png" style="zoom:50%;" />
+
+## 2. Affine function
+
+$f:R^n  \to R^m$
+
+ $f(x)=Ax+b$, where $A \in R^{m \times n}, b\in R^m$
+
+**image:** $f(S)=\{ f(x)|x \in S\}$
+
+**inverse image: ** $f^{-1}(S)=\{ x|f(x) \in S\}$
+
+Both image and inverse image can peserve convexity
+
+> 这里f(x)也可以说是linear，但是linear是informal说法，affine比较正式
+
+**Examples**
+
+- **scalling:**  $\alpha S=\{\alpha x|x\in S\}$
+- **translation: **$S+a=\{x+a|x\in S\}$
+
+- **projection: ** $T=\{ x\in R^m|(x_1,x_2)\in S\sube R^m\times R^n \rm{for\ some\ } x_2\in R^n\}$
+- **sum: **$S_1+S_2=\{x+y|x\in S_1,y\in S_2\}$
+- **Cartesian product: **$S_1\times S_2=\{(x_1,x_2)|x_1\in S_1,x_2\in S_2\}$
+- **partial sum: ** $S=\{(x,y_1+y_2)|(x,y_1)\in S_1,(x,y_2)\in S_2\}$
+- **polyhedron: **$\{x|Ax \preceq b,Cx=d \}=\{ x|f(x)\in R_+^m\times\{ 0\} \}$, $f(x)=(b-Ax,d-Cx)$
+- **solution of linear matrix inequlity: **  $\{x|A(x) \preceq B\}=\{ x|f(x)\in R_+^m\}$, $f(x)=B-A(x),f:R^n \to R^m$
+- **Hyperbolic cone (双曲线锥)：**$\{x|x^TPx\le(c^Tx)^2, c^T x \ge 0 \}=f^{-1}(\{ (z,t)| z^Tz\le t^2,t \ge 0 \})$, where $P\in S_+^n,c\in R^n,f(x)=(P^{1/2}x,c^Tx)$.
+
+## 3. Linear-fractional and perspective function
+
+**perspective function: **$P:R^{n+1} \to R^n$ with domain **dom** $P=R^n \times R_{++}$,  $P(z,t)=z/t$
+
+- perspective function(透视函数) 也是保凸的
+
+- the inversr image is also convex $P^{-1}(C)={(x,t)\in R^{n+1}|x/t\in C,t>0}$
+
+- > 可将之形象的理解成小孔成像，将3D图像映射到2D底板上。
+  >
+  > <img src="/images/posts/2019-09-30/perspective1.png" style="zoom:50%;" />
+  >
+  > $x_3$相当于第$n+1$列的数值都变成了全部相同的数字，因此直接舍去。
+
+**Linear-fractional function**
+
+$g:R^n \to R^{m+1}$,  $g(x)=\left[ \begin{array}{l}{\rm{A}}\\{c^T}\end{array} \right]x + \left[ \begin{array}{l}b\\d\end{array} \right]$. where $A\in R^{m \times n},b\in R^m,c \in R^n$
+
+$f:R^n \to R^m, $$f=P \circ g$,  $f(x)=\frac{Ax+b}{c^Tx+d}, \mathbf{dom}f=\{ x|c^Tx+d >0\}$
+
+
+
+
+
+
+
+
 

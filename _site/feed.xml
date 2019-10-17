@@ -5,13 +5,34 @@
     <description>得之吾幸，失之我命。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 04 Oct 2019 08:45:43 -0700</pubDate>
-    <lastBuildDate>Fri, 04 Oct 2019 08:45:43 -0700</lastBuildDate>
+    <pubDate>Fri, 04 Oct 2019 09:01:19 -0700</pubDate>
+    <lastBuildDate>Fri, 04 Oct 2019 09:01:19 -0700</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
     
       <item>
         <title>Convex Optimization: Convex set</title>
-        <description>&lt;h1 id=&quot;affine-and-convex-sets&quot;&gt;Affine and convex sets&lt;/h1&gt;
+        <description>&lt;ul class=&quot;toc&quot; id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#affine-and-convex-sets&quot; id=&quot;markdown-toc-affine-and-convex-sets&quot;&gt;Affine and convex sets&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1-lines-and-line-segments&quot; id=&quot;markdown-toc-1-lines-and-line-segments&quot;&gt;1. Lines and line segments&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2-affine-set--仿射集&quot; id=&quot;markdown-toc-2-affine-set--仿射集&quot;&gt;2. Affine set  （仿射集）&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#3-convex-sets-凸集&quot; id=&quot;markdown-toc-3-convex-sets-凸集&quot;&gt;3. Convex sets (凸集)&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cones---锥&quot; id=&quot;markdown-toc-cones---锥&quot;&gt;Cones   (锥)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#some-important-examples&quot; id=&quot;markdown-toc-some-important-examples&quot;&gt;Some important examples&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#1-hyperplane-and-halfspace&quot; id=&quot;markdown-toc-1-hyperplane-and-halfspace&quot;&gt;1. Hyperplane and halfspace&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#2-euclidean-ball-and-ellipsoideuclidean-球和椭球&quot; id=&quot;markdown-toc-2-euclidean-ball-and-ellipsoideuclidean-球和椭球&quot;&gt;2. Euclidean ball and ellipsoid（Euclidean 球和椭球）&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#3-norm-balls-and-norm-cones&quot; id=&quot;markdown-toc-3-norm-balls-and-norm-cones&quot;&gt;3. Norm balls and norm cones&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#4-polyhedra&quot; id=&quot;markdown-toc-4-polyhedra&quot;&gt;4. Polyhedra&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#5-the-positive-semidefinite-cone-半正定锥&quot; id=&quot;markdown-toc-5-the-positive-semidefinite-cone-半正定锥&quot;&gt;5. The positive semidefinite cone （半正定锥）&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#remark1-positive-definite-matrices-and-positive-semidefinite-matrices&quot; id=&quot;markdown-toc-remark1-positive-definite-matrices-and-positive-semidefinite-matrices&quot;&gt;Remark1: Positive definite matrices and Positive semidefinite matrices&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#remark-2--various-norms&quot; id=&quot;markdown-toc-remark-2--various-norms&quot;&gt;Remark 2:  Various norms&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#remark3-singular-matrix-and-nonsingular-matrix&quot; id=&quot;markdown-toc-remark3-singular-matrix-and-nonsingular-matrix&quot;&gt;Remark3: Singular matrix and Nonsingular matrix&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#remark4-singular-value-decompositionsvd&quot; id=&quot;markdown-toc-remark4-singular-value-decompositionsvd&quot;&gt;Remark4 :Singular Value Decomposition（SVD）&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;affine-and-convex-sets&quot;&gt;Affine and convex sets&lt;/h1&gt;
 
 &lt;p&gt;仿射集合和凸集&lt;/p&gt;
 
@@ -32,7 +53,7 @@
 
 &lt;h2 id=&quot;2-affine-set--仿射集&quot;&gt;2. Affine set  （仿射集）&lt;/h2&gt;
 
-&lt;p&gt;A set $C \in ^n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.&lt;/p&gt;
+&lt;p&gt;A set $C \in R^n$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. if for any $x_1, x_2 ∈ C$ and  $\theta \in R$, we have $\theta x_1+(1-\theta)x_2 \in C$.&lt;/p&gt;
 
 &lt;p&gt;对于集合C中的任意两个不相同的点$x_1,\ x_2$, 点$\theta x_1+(1-\theta)x_2$也在集合C中，且对于$\theta \in R$都成立，则C就叫仿射集。&lt;/p&gt;
 
@@ -595,6 +616,7 @@
   &lt;p&gt;SVD的缺点是&lt;strong&gt;分解出的矩阵解释性往往不强&lt;/strong&gt;，有点黑盒子的味道，不过这不影响它的使用。&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;p&gt;$\bf{A}$ $\mathbf{A}$&lt;/p&gt;
 </description>
         <pubDate>Mon, 30 Sep 2019 00:00:00 -0700</pubDate>
         <link>http://localhost:4000/2019/09/30/Convex-Optimization_convexset/</link>

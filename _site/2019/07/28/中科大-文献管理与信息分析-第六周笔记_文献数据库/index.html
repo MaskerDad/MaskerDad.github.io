@@ -1,0 +1,827 @@
+<!--又在偷看源码啦？
+Congratulations！
+You've just open a treasure!
+Yet no award for you……
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--Google Adsense, details at: "https://www.google.com/adsense/new/u/0/pub-3980406043325966/home" 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3980406043325966",
+            enable_page_level_ads: true
+        });
+    </script>-->
+
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130856615-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-130856615-1');
+    </script>-->
+
+
+    <!-- Google Tag Manager 
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PW3MXPD');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+
+    <title>中科大《文献管理与信息分析》第六周笔记——文献数据库简介 | Personal Blog</title>
+
+    <!--live2d function-->
+    <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/assets/live2dw/assets/koharu.model.json"},
+        "display": {"position": "right", "width": 65, "height": 90, "hOffset": 60, "vOffset": -10,},
+        "mobile": {"show": true, "scale": 1,},
+        "log": false
+    });</script>
+
+
+    <meta name="keywords"
+          content="yzp">
+    <meta name="description"
+          content="中科大《文献管理与信息分析》第六周笔记——文献数据库简介文献检索的前中后  检索前          去哪儿检索？需要了解哪些数据库？数据库与SE的异同？      不同数据库的定位不同，WOS      检索的目标：了解？全面调研？追踪？综述？寻找新思路？      文献酵素的一些基本概念：JCR、IF    ...">
+    <!--<meta name="baidu-site-verification" content="fjE6fa4d3J"/>-->
+    <meta name="author" content="Yang Zhanpeng">
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png">
+    <link rel="alternate" type="application/rss+xml" title="Zhan Peng’s Bolg" href="
+    /feed.xml">
+
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="
+    /assets/css/style.css?v=1514870841">
+
+    <!--use mathJax to edit formulas in LaTex grammar.-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+              inlineMath: [['$','$']]
+            }
+          });
+
+
+
+
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+    <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/tongji.baidu.js"></script>
+
+</head>
+
+<body>
+
+<!-- Google Tag Manager (noscript) 
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW3MXPD"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<div class="body_container">
+    <div id="header">
+        <div class="site-name">
+            <h1 class="hidden">中科大《文献管理与信息分析》第六周笔记——文献数据库简介</h1>
+            <a id="logo" href="/.">Zhan Peng’s Bolg</a>
+            <p class="description">Personal Blog</p>
+        </div>
+        <div id="nav-menu">
+            
+            <a href="/."><i class="icon-home"> 首页</i></a>
+            
+            <a href="/archives/"><i class="icon-archive"> 归档</i></a>
+            
+            <a href="/tags/"><i class="icon-tags"> 标签</i></a>
+            
+            <a href="/guestbook/"><i class="icon-guestbook"> 留言版</i></a>
+            
+        </div>
+        <script type="text/javascript">
+            var menus = document.getElementById('nav-menu');
+            var ishome = true;
+            for (var i = 1; i < menus.childElementCount; i++) {
+                var path = location.href;
+                var current = path.startsWith(menus.children[i].href);
+                if (current) {
+                    menus.children[i].className = 'current';
+                    ishome = false;
+                    break;
+                }
+            }
+            if (ishome) {
+                menus.children[0].className = 'current';
+            }
+        </script>
+    </div>
+
+    <div id="layout" class="pure-g">
+        <div class="pure-u-1 pure-u-md-3-4">
+            <div class="content_container">
+                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">中科大《文献管理与信息分析》第六周笔记——文献数据库简介</h1>
+        <p class="post-meta">
+            <time datetime="2019-07-28T00:00:00-07:00" itemprop="datePublished">
+                <i class="icon-post-date">Jul 28, 2019</i>
+            </time>
+             |
+            <span class="post-category">
+            <i class="icon-post-category">
+            
+                <a href="/category/#文献管理与信息分析">文献管理与信息分析</a>
+            
+            </i>
+        </span>   |
+            <span class="post-tag">
+            <i class="icon-post-tag">
+            
+                <a href="/tags/#Science Paper">Science Paper</a>
+            
+            </i>
+        </span>
+
+
+            <!-- 阅读量统计， id 将作为查询条件 -->
+            <span id=/2019/07/28/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E5%85%AD%E5%91%A8%E7%AC%94%E8%AE%B0_%E6%96%87%E7%8C%AE%E6%95%B0%E6%8D%AE%E5%BA%93/ class="leancloud-visitors" data-flag-title=中科大《文献管理与信息分析》第六周笔记——文献数据库简介>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text">阅读量 </span>
+                <span class="leancloud-visitors-count"></span>
+            </span>
+        </p>
+
+    </header>
+
+    <div class="post-content" itemprop="articleBody">
+        <h1 id="中科大文献管理与信息分析第六周笔记文献数据库简介">中科大《文献管理与信息分析》第六周笔记——文献数据库简介</h1>
+
+<h3 id="文献检索的前中后">文献检索的前中后</h3>
+
+<ul>
+  <li>检索前
+    <ul>
+      <li>去哪儿检索？需要了解哪些数据库？数据库与SE的异同？</li>
+      <li>不同数据库的定位不同，WOS</li>
+      <li>检索的目标：了解？全面调研？追踪？综述？寻找新思路？</li>
+      <li>文献酵素的一些基本概念：JCR、IF</li>
+    </ul>
+  </li>
+  <li>检索中
+    <ul>
+      <li>选择数据可，如何检索（基本使用技巧），逻辑关系，检索命令，通配符</li>
+      <li>关键词的选取</li>
+      <li>检索完还能做什么？精炼与分析</li>
+    </ul>
+  </li>
+  <li>检索后
+    <ul>
+      <li>如何处理检索到的文献，如何阅读，如何管理</li>
+      <li>文献的评价：如何选择需要阅读的文献</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="检索前理解数据库">检索前——理解数据库</h3>
+
+<h4 id="1寻找解决问题的方法">1、寻找解决问题的方法</h4>
+
+<ul>
+  <li>目标清晰</li>
+  <li>广而精确，同时要识别信息来源的可靠性</li>
+  <li>Google 百度 数据库</li>
+  <li>书籍：一个领域的新方法，另一个领域可能已经非常成熟了（近些年生命科学的交叉）</li>
+  <li>要注意关键词的多种表述形式，你用的关键词可能不准确</li>
+</ul>
+
+<h4 id="2了解一个技术发展趋势">2、了解一个技术发展趋势</h4>
+
+<ul>
+  <li>直接检索+分析</li>
+  <li>引文检索，查看这篇文章被引用的情况</li>
+</ul>
+
+<h4 id="3综合了解一个领域的情况">3、综合了解一个领域的情况</h4>
+
+<ul>
+  <li>关键词的确定-从混沌到明确，关键词分析</li>
+  <li>Topic检索+分析（重点：理解数据库如何帮助我们快速找到文献）</li>
+</ul>
+
+<blockquote>
+  <p>数据库不是搜索引擎的子集，很多数据库搜索引擎并没有权限收集，所以只能说数据库与SE有交集</p>
+</blockquote>
+
+<h4 id="数据库导航-不同专业应该了解的数据库">数据库导航-不同专业应该了解的数据库</h4>
+
+<p><img src="/images/posts/2019-07-28/shujukudaohang.png" alt="" /></p>
+
+<h3 id="检索中数据库使用方法">检索中——数据库使用方法</h3>
+
+<h4 id="检索提问式">检索提问式</h4>
+
+<ul>
+  <li>布尔逻辑符    AND、OR、NOT</li>
+  <li>Wildcards通配符
+    <ul>
+      <li>*：代表零或多个字符，比如lo*就可以代表love、logistic等等</li>
+      <li>$：代表零或一个字符，比如hell$就可以代表hell、hello等等</li>
+      <li>?：只代表一个字符，比如compu?er，就会搜索compu?er导数第三个字符不确定的所有关键词</li>
+    </ul>
+  </li>
+  <li>Exact Search近似检索
+    <ul>
+      <li>词组检索：“”  （跟搜索引擎一样，检索词组）</li>
+      <li>SAME：SAME算符连接的关键词必须在同一句话内，但出现的前后书序不变</li>
+    </ul>
+  </li>
+  <li>逻辑算符的先后顺序  ()&gt;SAME&gt;NOT&gt;AND&gt;OR</li>
+</ul>
+
+<p>这个的使用也很简单，以在<a href="http://apps.webofknowledge.com/UA_GeneralSearch_input.do?product=UA&amp;search_mode=GeneralSearch&amp;SID=6AI7VeijguhvnIO8sxp&amp;preferencesSaved=">Web of Science</a>数据库中搜索为例</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(SGD OR QSGD) SAME ((ReLu OR logistic) AND convergence)
+</code></pre></div></div>
+
+<p><img src="/images/posts/2019-07-28/WOC.png" alt="" /></p>
+
+<p>就是寻找用的SGD或QSGD算法研究ReLu或logistic函数的收敛性的文章，因为要用的是Topic搜索，因此他搜索了标题，摘要，关键词等等。</p>
+
+<p>搜索结果为</p>
+
+<p><img src="/images/posts/2019-07-28/WOCres.png" alt="" /></p>
+
+<p>还是挺符合预期的</p>
+
+<h4 id="如何选择关键词">如何选择关键词</h4>
+
+<ul>
+  <li>搜索引擎大致了解，敲定关键词</li>
+  <li>初步检索</li>
+  <li>关键词统计分析(后来会讲到)</li>
+  <li>由一篇重要文献出发</li>
+  <li>未来的趋势，可能就不需要关键词，利用自然语言处理技术，描述一段话即可。</li>
+</ul>
+
+<h4 id="推荐几个下载论文全文的工具">推荐几个下载论文全文的工具</h4>
+
+<p>1、SCI-HUB</p>
+
+<p>一个漂亮小姐姐觉得那些期刊数据库管理商太黑了，如果个人要买的话，一篇文章要几美元或者几十美元，超级贵。所以就开发了一个搜集数据库文献的爬虫，使用买了数据库权限的学校的网络下载了大部分论文全文，提供全世界的科研工作者下载</p>
+
+<blockquote>
+  <p>这个种行为从法律上来说侵犯知识产权，违法的，所以它的域名经常被封。</p>
+
+  <p>但从学术发展上来说，这无疑是推动科研发展的巨大引擎，因为由于数据库管理商的垄断，如果要买论文，实在是太贵了。如果这个工具没出现，可能很多论文都下载不了。</p>
+</blockquote>
+
+<p>这里有个<a href="http://tool.yovisun.com/scihub/">检测SCI-HUB可用域名的网站</a>或者自行Google</p>
+
+<p>2、Kopernio插件</p>
+
+<p><a href="kopernio.com/invite/86977490">Kopernio</a>可以在国内访问，在官网上就可以直接安装插件</p>
+
+<blockquote>
+  <p>插件安装的时候需要访问Google扩展商店，这一步需要翻墙，但在搜索引擎那一周笔记中已经介绍了怎么访问Google系网站，可以直接安装</p>
+</blockquote>
+
+<p>如果不能再网上直接安装直接搜索kopernio install manually，第一个就是教怎么手动安装的。</p>
+
+<p><img src="/images/posts/2019-07-28/kopernio.png" alt="" /></p>
+
+<blockquote>
+  <p>安装完就会弹出注册界面，需要填邮箱，最重要的是填学校</p>
+
+  <p>这个插件的原理是点击论文之后，利用你们学校的校园网搜索全文的，如果你们学校买的数据库里有这个论文，就能获得全文，如果没有，他回去开源数据库找，如果真没有，就获取不到全文。</p>
+
+  <p>所以这个是合法的，被Web of Science收购了。在Web of Science,Google Scholar，PubMed等数千个学术网站都能使用。</p>
+</blockquote>
+
+<h4 id="论文检索实战演示">论文检索实战演示</h4>
+
+<p><img src="/images/posts/2019-07-28/search.png" alt="" /></p>
+
+<p><img src="/images/posts/2019-07-28/searchres.png" alt="" /></p>
+
+<p><img src="/images/posts/2019-07-28/searchresdet.png" alt="" /></p>
+
+<p>其他的功能还是得自己多用用，多点点。</p>
+
+<h4 id="几个指标">几个指标</h4>
+
+<h5 id="jcrjournal-citation-report期刊引用报告">JCR(Journal Citation Report,期刊引用报告)</h5>
+
+<p>JCR=引用数/文章数</p>
+
+<h5 id="h-index">h-Index</h5>
+
+<p>有几篇论文的引用次数超过了几次</p>
+
+<h5 id="sjrscimago-journal-rank">SJR(SCImago Journal Rank)</h5>
+
+<p>使用的是期刊引证报告JCR的原始数据,计算公式比较复杂</p>
+
+<h4 id="scopus数据库">SCOPUS数据库</h4>
+
+<p>和Web of Science一样，也是一个全科数据库</p>
+
+<p>SCOPUS数据库号称是最大的摘要和引用数据库，它拥有更多新的、不同分类的期刊，也使更多期刊能被纳入科学期刊排名的范围。相对于web of science数据库，SCOPUS数据库收录了大量的非英语期刊，全部期刊数已经接近20000种。</p>
+
+<p>使用方式与Web of Science差不多，但很遗憾，我们学校没有买这个数据库。如果买了的话也一定非常好用。</p>
+
+<h3 id="前沿在哪里什么课题值得做">前沿在哪里？什么课题值得做？</h3>
+
+<ul>
+  <li>新闻报道</li>
+  <li>Hot paper(近两年高引文章)</li>
+  <li>自然科学基金资助项目</li>
+  <li>国家发布的科研课题申请指南</li>
+  <li>海沿全球科研项目数据库</li>
+  <li>跟踪牛人实验室（高产，高影响力，首席，特邀报告人）</li>
+  <li>参加高质量学术会议</li>
+</ul>
+
+
+    </div>
+<!--
+    <div id="donate" >
+        <a href="/donate/" style="text-decoration: none" title="点击直达打赏页面～" >
+            <button>客官~对小店满意的话，<mark>赏个铜板</mark>再走啊🐼</button>
+        </a>
+    </div>
+-->
+
+    <div class="post-nav">
+        
+        <a href="/2019/07/28/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E4%BA%94%E5%91%A8%E7%AC%94%E8%AE%B0_%E5%8D%81%E5%A4%A7%E4%BF%A1%E6%81%AF%E6%BA%90/" class="pre"><i class="icon-post-pre"> 中科大《文献管理与信息分析》第五周笔记——十大信息源及图书馆资源</i></a>
+         
+        <a href="/2019/07/29/%E4%B8%AD%E7%A7%91%E5%A4%A7-%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90-%E7%AC%AC%E4%B8%83%E5%91%A8%E7%AC%94%E8%AE%B0_Endnote/" class="next">中科大《文献管理与信息分析》第七周笔记——文献管理软件Endnote X9快速入门 <i
+                class="icon-post-next"></i></a>
+        
+    </div>
+
+
+    <!--valine comment function-->
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <p><br/>对本文有任何问题，请在下面评论：</p>
+    <div id="valine_comment" class="fb_comments_container"></div>
+    <script>
+        var notify = 'false' === true;
+        var verify = 'false.>' === true;
+        var visitor = 'true.>' === true;
+
+        new Valine({
+            av: AV,
+            el: '#valine_comment',
+            notify: notify,
+            verify: verify,
+            // smiles_url: '/smiles',
+            visitor: true,
+            app_id: 'yPxItE7bwrQBFHzHIQIfFXCG-MdYXbMMI',
+            app_key: 'rrUOPcAJyjIaA7iMYSIXepE8',
+            placeholder: 'say something~~\n - 昵称 为你所要显示的评论的ID；\n - 邮箱 只有后台可见，仅供讨论过程中是否需要交流邮件而设置，请放心填写;\n - 网址 为你的评论的昵称的超链接。\n以上都可以不写，评论依然会显示……\n这里支持MarkDown语法哦！回复前可以预览一下。',
+            avatar: 'retro',
+        });
+    </script>
+
+
+</article>
+
+            </div>
+        </div>
+
+        <div class="pure-u-1-4">
+            <div id="sidebar">
+                <div class="widget">
+    <form id="search-form" class="search-form">
+      <input id="query" type="text" placeholder="Search" class="search-form-input">
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+    function find_posts(words, posts_data) {
+        var matched_posts = [];
+
+        posts_data.forEach(function(post) {
+            var content = (new Array(post["title"], post["keywords"])).join(" ");
+            words.forEach(function (word) {
+                if (word === null || word === undefined || word == "") {
+                    return;  // continue
+                }
+                var regex = new RegExp(word, 'i');
+                if (content.match(regex) != null) {
+                    matched_posts.push(post);
+                }
+            });
+        });
+
+        return matched_posts;
+    }
+
+    function show_posts(posts) {
+        var html = '';
+        if (posts.length > 0) {
+            for (var i = 0; i < posts.length; i++) {
+                post = posts[i];
+                html += '<div class="post">';
+                html += '<h2 class="post-title">';
+                html += '<a href="' + post.url + '">' + post.title + '</a>';
+                html += '</h2>';
+                html += '<div class="post-meta"><i class="icon-post-date">';
+                html += ' ' + post.date;
+                html += '</i></div>';
+                html += '<div class="post-content">' + post.summary + '</div>';
+                html += '<p class="readmore">';
+                html += '<a href="' + post.url + '">阅读更多</a>';
+                html += '</p>';
+                html += '</div>';
+            }
+        } else {
+            html += "<h4>Whoops,您输入的关键词没有搜索结果，请更换关键词！ O(∩_∩)O~</h4>"
+        }
+        $('.content_container').html(html);
+        $('.content_container').show();
+    }
+
+    $('#search-form').submit(function() {
+        var query = $('#query').val();
+        var words = query.split(" ")
+
+        $('#query').blur().attr('disabled', true);
+        $('.content_container').hide();
+
+        $.ajax({
+            url: "/assets/data/posts.json",
+            dataType: "json",
+            timeout: 6000,  // 6 sec
+            success: function(data) {
+                matched_posts = find_posts(words, data);
+                show_posts(matched_posts);
+            }
+        });
+
+        $('#query').blur().attr('disabled', false);
+
+        return false;
+    });
+});
+</script>
+
+				
+                <!-- <div class="widget">
+    <div class="widget-title"><i class="icon-edit"> 心情随笔</i></div><ul></ul>
+        我梦扬州,便想到扬州梦我。<br>
+
+        幸会。<br><br>
+<td style="text-align: center"><a style="color: slategrey"></a>
+
+        微信公众号:
+
+<a href="https://mp.weixin.qq.com/s/dCxGcuv5ngyR6U-uBYVI9Q"
+                   style="color: darkorange;"
+target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b></u></a>
+            </td>
+</div>
+ -->
+
+                <div class="widget">
+    <div class="widget-title"><i class="icon-category"> 文章分类</i></div>
+    <ul class="category-list">
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#文献管理与信息分析">文献管理与信息分析 (13)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#GeneralLecture">GeneralLecture (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PythonManuals">PythonManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#PaperReview">PaperReview (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#OriginManuals">OriginManuals (2)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#LaTexManuals">LaTexManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#ConvexOptimization">ConvexOptimization (2)</a>
+        </li>
+      
+    </ul>
+</div>
+
+
+                <!--<div class="widget">
+    <div class="widget-title"><i class="icon-star"> 推荐文章</i></div>
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/10/11/S3FD-Single-Shot-Scale-invariant-Face-Detector/">S3FD:Single Shot Scale-invariant Face Detector</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/29/live2D_installation/">给自己的jekyll博客安装live2D看板娘</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/11/20/process_of_blog_setting-up/">博客搭建历程</a></li>
+    </ul>
+
+    <ul class="post-list">
+        <li class="post-list-item"><a class="post-list-link" href="https://www.oukohou.wang/2018/12/06/autumn_poems/">寒事今牢落，人生亦有初</a></li>
+    </ul>
+</div>
+-->
+				<div class="widget">
+    <div class="widget-title">标签云</div>
+    <div class="tagcloud">
+        
+    
+    
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 12pt; color: #666;">Essential Skill</a>
+    
+    
+    <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
+    
+    
+    <a href="/tags/#Essential and Professional Course" rel="nofollow" style="font-size: 12.5pt; color: #666;">Essential and Professional Course</a>
+    
+    
+    <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
+    
+    
+    <a href="/tags/#Efficient Application" rel="nofollow" style="font-size: 9.5pt; color: #888;">Efficient Application</a>
+    
+    
+    <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
+    
+    
+    <a href="/tags/#LaTex" rel="nofollow" style="font-size: 9pt; color: #999;">LaTex</a>
+    
+    
+    <a href="/tags/#Comprehensive Quality" rel="nofollow" style="font-size: 9pt; color: #999;">Comprehensive Quality</a>
+    
+    </div>
+</div>
+
+
+                <!-- <div class="widget">
+  <div class="widget-title"><i class="icon-code-hub"> 代码仓库</i></div>
+  <ul class="codehub-list">
+  
+    <li class="codehub-list-item"><a href="" title="" target="_blank"></a></li>
+  
+  </ul>
+</div>
+ -->
+
+                <!--<div class="widget">
+  <div class="widget-title"><i class="icon-link"> 友情链接</i></div>
+  <ul class="link-list">
+  
+    <li class="link-list-item"><a href="http://jekyllcn.com/" title="Jekyll blog system" target="_blank">Jekyll blog system</a></li>
+  
+  </ul>
+</div>
+-->
+
+                <div class="widget post-toc hide">
+    <div class="widget-title"><i class="icon-post-toc"> 文章目录</i></div><ul></ul>
+</div>
+<script type="text/javascript">
+function TOCize(toc, content, matchHeightTo) {
+    if (!(toc && content && matchHeightTo)) return false
+
+    var cnt = 0;
+
+    var make = function(tag) {
+        return document.createElement(tag)
+    }
+
+    var aniscroll = {
+        to: function(top) {
+            aniscroll.target = top;
+            if (aniscroll.running) return;
+            aniscroll.running = setInterval(aniscroll.tick, 20);
+        },
+        target: 0,
+        running: 0,
+        getTop: function() {
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        },
+        setTop: function(value) {
+            (window['scrollTo'] && window.scrollTo(window.scrollX, value))
+        },
+        tick: function() {
+            var oldST = aniscroll.getTop(), newST = ~~((oldST + aniscroll.target) / 2);
+            aniscroll.setTop(newST);
+            if (aniscroll.getTop() < newST || Math.abs(newST - aniscroll.target) < 10) {
+                aniscroll.setTop(aniscroll.target);
+                clearInterval(aniscroll.running)
+                aniscroll.running = 0
+            }
+        }
+    }
+
+    function scrollToHeader(header, hash, ev) {
+        var y = header.getBoundingClientRect().top + aniscroll.getTop();
+        if (window.history['pushState']) {
+            window.history.pushState({}, header.textContent, "#" + hash);
+            aniscroll.to(y);
+            ev.preventDefault();
+        } else {
+            var y2 = aniscroll.getTop();
+            setTimeout(function() {
+                aniscroll.setTop(y2);
+                aniscroll.to(y);
+            }, 0);
+        }
+    }
+
+    var generateLink = function(h) {
+        var q = make('a');
+        cnt++;
+        var hash = h.getAttribute('id');
+        if (!hash) {
+            hash = ('generated-hash-' + cnt);
+            h.setAttribute('id', hash);
+        }
+        q.textContent = h.textContent;
+        q.setAttribute('href', '#' + hash );
+        q.addEventListener('click', scrollToHeader.bind(this, h, hash), false);
+        return q;
+    };
+
+    var hs = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    var cul = null, plevel = 1;
+    var uls = [make('ul')];
+    for (var i=0;i<hs.length;i++) {
+        var level = +hs[i].tagName.substr(1);
+        var hi = hs[i];
+        var ti = make('li');
+        ti.appendChild(generateLink(hi));
+        if (plevel < level) {
+            do {
+                uls.push(make('ul'));
+                uls[uls.length-2].appendChild(uls[uls.length-1]);
+            } while (++plevel < level);
+        } else if (plevel > level) {
+            do {
+                cul = uls.pop();
+            } while (--plevel > level);
+        }
+        cul = uls[uls.length-1];
+        cul.appendChild(ti);
+    }
+    while(true) {
+        var chs = uls[0].children;
+        if (chs.length == 1 && chs[0].tagName == 'UL')
+            uls.shift();
+        else
+            break;
+    }
+
+    if (!cnt) return false;
+
+    var scrolldummy=make('div');
+    toc.appendChild(scrolldummy);
+    toc.appendChild(uls[0]);
+    toc.style.display = 'block';
+
+    var maxHeightTOC = '';
+    var ppc = document.querySelector('.post');
+    var s1 = function(){
+        var scrollTop=aniscroll.getTop(), dummyClientTop=scrolldummy.getBoundingClientRect().top,
+            margin = 10,c,d; // c = dummyHeight, d = TOC.maxHeight (+'px')
+        if ((c = -dummyClientTop + margin) < 0) c = 0;
+        if (c) {
+            var wh = window.innerHeight
+                || document.documentElement.clientHeight
+                || document.body.clientHeight,
+            cbox = matchHeightTo.getBoundingClientRect(),
+            vq = cbox.bottom - dummyClientTop - uls[0].offsetHeight;
+            if (c>vq) c=vq;
+            d = (wh - (margin<<1)) + 'px';
+        } else {
+            d = "";
+        }
+        if (d != maxHeightTOC) { //status lock.
+            maxHeightTOC = d;
+            if (d) {
+                uls[0].setAttribute('style', 'max-height:' + d + '; width:' + (toc.offsetWidth-20) + "px" );
+            } else {
+                uls[0].setAttribute("style","");
+            }
+        }
+        scrolldummy.style.height = (c+'px');
+    };
+    window.addEventListener('scroll', s1, false);
+    window.addEventListener('resize', s1, false);
+}
+
+TOCize(
+    document.querySelector('.post-toc'),
+    document.querySelector('.post-content'),
+    document.querySelector('.post')
+);
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        Copyright &copy; 2015-<span id="cur_year"></span> Albert - All Rights
+        Reserved.
+        Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ Github.com
+        <script type="text/javascript">var cur_date = new Date();
+        document.getElementById("cur_year").innerHTML = cur_date.getFullYear();</script>
+        
+    </div>
+
+    <a id="rocket" href="#top" class="show"></a>
+    <script src="/assets/js/totop.js" type="text/javascript"></script>
+</div>
+
+<!--<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+-->
+
+
+</body>
+
+
+</html>

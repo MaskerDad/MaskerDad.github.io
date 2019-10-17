@@ -2,8 +2,8 @@
 layout: post
 title: "Latex+Beamer+Google File System Model to make slides"
 description: ""
-categories: [LaTexManuals]
-tags: [LaTex]
+categories: [LaTeXManuals]
+tags: [LaTeX]
 redirect_from:
   - /2019/09/15/
 typora-root-url: ..
