@@ -429,11 +429,82 @@ $g:R^n \to R^{m+1}$,  $g(x)=\left[ \begin{array}{l}{\rm{A}}\\{c^T}\end{array} \r
 
 $f:R^n \to R^m, $$f=P \circ g$,  $f(x)=\frac{Ax+b}{c^Tx+d}, \mathbf{dom}f=\{ x|c^Tx+d >0\}$
 
+# Generalized inequalities
+
+## 1. proper cone（正常锥）
+
+- $K$ is convex
+- $K$ is closed
+- $K$ is solid, which means it has nonempty interior.(实心的)
+- $K$ is pointed, which means that it contains no line（尖的）
+
+so, $K \sube R^n$ is called a **proper cone**
+
+## 2. partical ordering（偏序）
+
+- partical ordering：$x \preceq_K y \Leftrightarrow y-x \in K$
+- strict partical ordering：$x \prec_K y \Leftrightarrow y-x \in {\mathbf{int}}K$
+- componentwise inequality
+- matrix inequality:
+  - $S_+^n$ is a proper cone in $S^n$ : positive semidefinite cone
+  - $X \preceq_K Y \Leftrightarrow Y-X$ is a positive semidefinite
+  - $X \prec_K Y \Leftrightarrow Y-X$  is a positive definite
+
+## 3. properties of generalized inequlities
+
+A generalized inequality $\preceq_K$ satisfies many properties
+
+- $\preceq_K$ is preserved under addition（加法保序）
+- $\preceq_K$ is transitive （传递性）
+-  $\preceq_K$ is preserved under nonnegative scaling （非负数乘保序）
+- $\preceq_K$  is reflexive: $x\preceq_K x$ (自反性)
+- $\preceq_K$  is antisymmetric: if $x\preceq_K y$ and $y\preceq_K x$, then $x=y$（反对称性）
+- $\preceq_K$  is preserved under limits（极限运算保序）
+
+A strict generalized inequality $\prec_K$  satisfies
+
+- if $x\prec_K y$ then $x\preceq_K y$ 
+- if $x\prec_K y$  and $u\prec_K v$  then $x+u\prec_K y+v$ 
+- if $x\prec_K y$ and $\alpha > 0$ then $\alpha x\prec_K \alpha y$ 
+- $x\nprec_K y$ 
+- if $x\prec_K y$ , then for $u$ and $v$ small enough,$x+u\prec_K y+v$ .
+
+### 4. minimum and minimal elements（最小和极小元）
+
+- $x \in S$ is the minimum element of $S$ with respect to $\preceq_K$ if $y\in S \Rightarrow x \preceq_K y$
+- $x \in S$ is the minimal element of $S$ with respect to $\preceq_K$ if $y\in S , y\preceq_K x\Rightarrow y=x$
+
+> 可以对照最小值与极小值的概念理解
+
+# Separating and supporting hyperplanes( 分离和支持超平面)
+
+## 1. Separating hyperplane theorem
+
+Suppose $C$ and $D$ are nonempty disjoint convex sets, i.e., $C \cap D = \emptyset$. Then there exist $a \ne 0$ and $b$ such that $a^T x \le b$f or all $x \in C$ and $a^T x \ge b$ for all $x \in D$. In other words, the affine function $a^T x−b$ is nonpositive on $C$ and nonnegative on $D$. The hyperplane $\{x | a^T x = b\}$ is called a separating hyperplane for the sets $C$ and $D$, or is said to separate the sets $C $and $D$.
+
+- proof of separating hyperplane theorem
+- strict separation
+
+### 2. supporting hyperplane theorem
+
+Suppose $C\sube R^n$, and $x_0$ is a point in its boundary $\mathbf{bd} C$, i.e.,
+$x_0 \in \mathbf{bd}C = \mathbf{cl}C \backslash \mathbf{int}C$.
+If $a \ne 0$ satisfies $a^T x ≤ a^T x_0$ for all $x\in C$, then the hyperplane$\{ x | a^T x = a^T x_0\}$ is called a supporting hyperplane to $C$ at the point $x_0$.
+
+# Dual cones and generalized inequalities(对偶锥)
+
+## 1. Dual cones
+
+$K^* = \{y | x^T y ≥ 0 {\rm{\ \ for\ all\ }} x \in K\}$ is called the **dual cone** of K, which is a  cone.
+
+## 2.Dual generalized inequalities
+
+- $x \preceq _K y$ if and only if $\lambda ^T x \le \lambda^T y$ for all $λ \ \succeq_{K^*} 0$.
+- $x \prec _K y$ if and only if $\lambda ^T x < \lambda^T y$ for all $λ \ \succeq_{K^*} 0$, $\lambda \ne0$.
 
 
 
-
-
+> 课后习题我也做了EE364a的作业，emmm....自己做真的是什么都不会，不知道怎么下手，我是看了看答案理解了再自己写一遍。贴上来没啥意思。就不贴习题了。
 
 
 

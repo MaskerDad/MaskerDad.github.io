@@ -2,6 +2,33 @@
 
 
 {
+"title": "给博客添加网页鼠标点击特效功能",
+"url": "/2019/10/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E7%BD%91%E9%A1%B5%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%89%B9%E6%95%88%E5%8A%9F%E8%83%BD/",
+"date": "2019-10-16",
+"keywords": ["Essential Skill"],
+"summary": "今天浏览到一个网站，发现在网页上点击的时候，会依次出现社会主义核心价值观。觉的很有意思，就把代码偷过来了。就是一个JavaScript脚本。\n\n然后把它添加到博客的模板文件里。\n\n一般在_includes或者_layouts文件夹里。..."
+}, 
+
+
+{
+"title": "Windows Subsystem for Linux+VMware palyer+Ubuntu",
+"url": "/2019/10/16/Windows_subsystem_for_linux+VMware-palyer+Ubuntu/",
+"date": "2019-10-16",
+"keywords": ["Essential Skill"],
+"summary": "自从Win10更新之后，我之前装的VMware workstation就不能用了，必须更新。所以今晚不想学习就搞了一下，并且发现了Windows Subsystem for Linux这个好玩意。\n\n1.下载安装VMware和Ubun..."
+}, 
+
+
+{
+"title": "LaTeX基础使用手册",
+"url": "/2019/10/15/LaTex%E5%9F%BA%E7%A1%80%E6%89%8B%E5%86%8C/",
+"date": "2019-10-15",
+"keywords": ["LaTeX"],
+"summary": "\n  一、 LaTeX基本概念    \n      1.文档类\n      2. 宏包\n      3. LaTeX用到的文件\n      4.文件的组织方式\n      5 .只编译排查错误, 不生成文件\n      6.澄清几个概..."
+}, 
+
+
+{
 "title": "Convex Optimization: Convex set",
 "url": "/2019/09/30/Convex-Optimization_convexset/",
 "date": "2019-09-30",
@@ -50,7 +77,7 @@
 "title": "Latex+Beamer+Google File System Model to make slides",
 "url": "/2019/09/15/Latex+Beamer+Google-File-System-to-slides/",
 "date": "2019-09-15",
-"keywords": ["LaTex"],
+"keywords": ["LaTeX"],
 "summary": "这是我第一次用LaTex+Beamer做slides\n\n一、挑选使用的Beamer主题模板\n\n这里推荐LaTex开源小屋提供的模板，还是有一部分感觉很不错的。\n\n我挑选了The Google File System的beamer主题，..."
 }, 
 

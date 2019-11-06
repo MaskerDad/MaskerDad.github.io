@@ -125,7 +125,7 @@ textreturn.decode('UTF-8')
 
 ### 2、完整代码
 
-```
+```python
 import time,subprocess
 
 class ADBCMD():
@@ -253,7 +253,7 @@ ADB，即 [Android Debug Bridge](https://developer.android.com/studio/command-li
 
 Other languages: [:gb: English](./README.en.md)
 
-# ![Table of Contents](/images/posts/2019-09-06/toc.png)
+![Table of Contents](/images/posts/2019-09-06/toc.png)
 
 <!-- vim-markdown-toc GFM -->
 

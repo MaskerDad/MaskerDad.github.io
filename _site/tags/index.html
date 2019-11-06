@@ -1,9 +1,3 @@
-<!--又在偷看源码啦？
-Congratulations！
-You've just open a treasure!
-Yet no award for you……
--->
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -170,7 +164,7 @@ Yet no award for you……
                 <div id="tags">
   <ul id="label_box">
   
-    <li><a href="/tags/#Essential Skill">Essential Skill <span>6</span></a></li>
+    <li><a href="/tags/#Essential Skill">Essential Skill <span>8</span></a></li>
   
     <li><a href="/tags/#Science Paper">Science Paper <span>17</span></a></li>
   
@@ -182,7 +176,7 @@ Yet no award for you……
   
     <li><a href="/tags/#Broaden Horizons">Broaden Horizons <span>1</span></a></li>
   
-    <li><a href="/tags/#LaTex">LaTex <span>1</span></a></li>
+    <li><a href="/tags/#LaTeX">LaTeX <span>2</span></a></li>
   
     <li><a href="/tags/#Comprehensive Quality">Comprehensive Quality <span>1</span></a></li>
   
@@ -192,6 +186,10 @@ Yet no award for you……
   
   <h3 id="Essential Skill">Essential Skill</h3>
   <ul>
+      
+          <li><span class="date">October 16, 2019</span><a href="/2019/10/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E7%BD%91%E9%A1%B5%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%89%B9%E6%95%88%E5%8A%9F%E8%83%BD/">给博客添加网页鼠标点击特效功能</a></li>
+      
+          <li><span class="date">October 16, 2019</span><a href="/2019/10/16/Windows_subsystem_for_linux+VMware-palyer+Ubuntu/">Windows Subsystem for Linux+VMware palyer+Ubuntu</a></li>
       
           <li><span class="date">September 12, 2019</span><a href="/2019/09/12/%E6%9B%B4%E6%8D%A2%E5%8D%9A%E5%AE%A2%E6%A8%A1%E6%9D%BF/">更换Jekyll模板——更简洁明了，增加侧边栏、目录栏、评论系统</a></li>
       
@@ -292,8 +290,10 @@ Yet no award for you……
       
   </ul>
   
-  <h3 id="LaTex">LaTex</h3>
+  <h3 id="LaTeX">LaTeX</h3>
   <ul>
+      
+          <li><span class="date">October 15, 2019</span><a href="/2019/10/15/LaTex%E5%9F%BA%E7%A1%80%E6%89%8B%E5%86%8C/">LaTeX基础使用手册</a></li>
       
           <li><span class="date">September 15, 2019</span><a href="/2019/09/15/Latex+Beamer+Google-File-System-to-slides/">Latex+Beamer+Google File System Model to make slides</a></li>
       
@@ -433,7 +433,7 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
         </li>
       
         <li class="category-list-item">
-          <a class="category-list-link" href="/category/#LaTexManuals">LaTexManuals (1)</a>
+          <a class="category-list-link" href="/category/#LaTeXManuals">LaTeXManuals (2)</a>
         </li>
       
         <li class="category-list-item">
@@ -469,7 +469,7 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
         
     
     
-    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 12pt; color: #666;">Essential Skill</a>
+    <a href="/tags/#Essential Skill" rel="nofollow" style="font-size: 13pt; color: #555;">Essential Skill</a>
     
     
     <a href="/tags/#Science Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
@@ -487,7 +487,7 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
     <a href="/tags/#Broaden Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
     
     
-    <a href="/tags/#LaTex" rel="nofollow" style="font-size: 9pt; color: #999;">LaTex</a>
+    <a href="/tags/#LaTeX" rel="nofollow" style="font-size: 9.5pt; color: #888;">LaTeX</a>
     
     
     <a href="/tags/#Comprehensive Quality" rel="nofollow" style="font-size: 9pt; color: #999;">Comprehensive Quality</a>
@@ -690,7 +690,74 @@ TOCize(
 })();
 </script>
 -->
-
+<script>
+		(function(window,document,undefined){
+			var hearts = [];
+			window.requestAnimationFrame = (function(){
+				return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame ||
+				window.msRequestAnimationFrame ||
+				function (callback){
+					setTimeout(callback,1000/60);
+				}
+			})();
+			init();
+			function init(){
+				css(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+				attachEvent();
+				gameloop();
+			}
+			function gameloop(){
+				for(var i=0;i<hearts.length;i++){
+					if(hearts[i].alpha <=0){
+						document.body.removeChild(hearts[i].el);
+						hearts.splice(i,1);
+						continue;
+					}
+					hearts[i].y--;
+					hearts[i].scale += 0.004;
+					hearts[i].alpha -= 0.013;
+					hearts[i].el.style.cssText = "left:"+hearts[i].x+"px;top:"+hearts[i].y+"px;opacity:"+hearts[i].alpha+";transform:scale("+hearts[i].scale+","+hearts[i].scale+") rotate(45deg);background:"+hearts[i].color;
+				}
+				requestAnimationFrame(gameloop);
+			}
+			function attachEvent(){
+				var old = typeof window.οnclick==="function" && window.onclick;
+				window.onclick = function(event){
+					old && old();
+					createHeart(event);
+				}
+			}
+			function createHeart(event){
+				var d = document.createElement("div");
+				d.className = "heart";
+				hearts.push({
+					el : d,
+					x : event.clientX - 5,
+					y : event.clientY - 5,
+					scale : 1,
+					alpha : 1,
+					color : randomColor()
+				});
+				document.body.appendChild(d);
+			}
+			function css(css){
+				var style = document.createElement("style");
+				style.type="text/css";
+				try{
+					style.appendChild(document.createTextNode(css));
+				}catch(ex){
+					style.styleSheet.cssText = css;
+				}
+				document.getElementsByTagName('head')[0].appendChild(style);
+			}
+			function randomColor(){
+				return "rgb("+(~~(Math.random()*255))+","+(~~(Math.random()*255))+","+(~~(Math.random()*255))+")";
+			}
+		})(window,document);
+</script>-->
 
 </body>
 
