@@ -20,8 +20,8 @@ typora-root-url: ..
 - Affine set : $x_1,x_2 \in C,\theta \in R\Rightarrow x=\theta x_1+(1-\theta x_2)\in C$ (Line)
 - Convex set : $x_1,x_2 \in C,\theta \in [0,1]\Rightarrow x=\theta x_1+(1-\theta x_2)\in C$ (Line segment)
 - Hyperplane : $\{x|a^Tx=b\}$
-- Polyhedra :  $\{ {\mathbf{x}}| {\mathbf{A}}{\mathbf{x}}\preceq{\mathbf{b}}\},{\mathbf{C}}{\mathbf{x}}={\mathbf{d}}\}$ ($A\in R^{m\times n},C\in R^{p\times n},\preceq$ is componentwise inequality)
-- Euclidean Ball :$B(x_c,r)=\{x|{\left\| {x - {x_c}} \right\|_2} \le r\}=\{x_c+ru|{\left\| u\right\|_2} \le 1\}$
+- Polyhedra :  $\{ {\mathbf{x} }| {\mathbf{A} }{\mathbf{x} }\preceq{\mathbf{b} }\},{\mathbf{C} }{\mathbf{x} }={\mathbf{d} }\}$ ($A\in R^{m\times n},C\in R^{p\times n},\preceq$ is componentwise inequality)
+- Euclidean Ball :$B(x_c,r)=\{x|{\left\| {x - {x_c} } \right\|_2} \le r\}=\{x_c+ru|{\left\| u\right\|_2} \le 1\}$
 - Ellipsoid : $E(x_c,P)=\{x|(x-x_c)^TP^{-1}(x-x_c) \le 1\}=\{x_c+Au|{\left\| u\right\|_2} \le 1\}$, $P\in S^n_{++}$
 - Norm: a function $\left\| {\cdot } \right\|$ that satifies
   - $\left\| {x} \right\| \ge 0$; $\left\| {x} \right\| = 0$ if and only if $x=0$
@@ -80,34 +80,34 @@ typora-root-url: ..
   - local minimum and gobal minimum
   - Saddle point: if $\mathbf{x}$ is a stationary opint and for any neighborhood $B \subseteq R^n $ exist $\mathbf{y},\mathbf{z} \in B$ such that $f(\mathbf{z})\le f(\mathbf{x})\le f(\mathbf{y})$ and $\lambda_{\min}(\nabla^2f(x))\le0$
 - Convex Optimization problem
-  - $\begin{array}{*{20}{c}}
-    {{\rm{minimize}}}&{{f_0}(x)}&{}\\
-    {{\rm{subject\ to}}}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}\\
-    {}&{{\bf{Ax}} = {\bf{b}}}&{}
+  - $\begin{array}{*{20}{c} }
+    {{\rm{minimize} }}&{ {f_0} (x)}&{}\\
+    {{\rm{subject\ to} }}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}\\
+    {}&{{\bf{Ax} } = {\bf{b} }}&{}
     \end{array}$
   - $f_0,f_1,\cdots,f_m$ are convex and equality constraints are affine
 - Oprimality Criterion
   - Minimum principle: $\nabla f_0(\mathbf{x^*})^T(\mathbf{y}-\mathbf{x}^*)\ge0 $ for all feasible $\mathbf{y}$
   - Unconstrained problem:  $\nabla f_0(\mathbf{x^*})=0,x^*\in {\rm dom\ }f$
   - Equality constrained problem $\mathbf{A}\mathbf{x^*}=\mathbf{b},\nabla f_0(\mathbf{x^*})+\mathbf{A}\mathbf{v}=0$
-  - minimization over nonnegative orthant:$x \succeq0,\left\{ {\begin{array}{*{20}{c}}
+  - minimization over nonnegative orthant:$x \succeq0,\left\{ {\begin{array}{*{20}{c} }
     {{\nabla _i}{f_0}(x) \ge 0}&{{x_i} = 0}\\
     {{\nabla _i}{f_0}(x) = 0}&{{x_i} > 0}
-    \end{array}} \right.$
+    \end{array} } \right.$
 - Equivalent Reformulations
-  - Introducing slack variables for linear inequalities$\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{x,s}}&{{f_0}(x)}&{}\\
-    {{\rm{subject\ to}}}&{{\mathbf{a}_i}\mathbf{x} +s_i=b_i}&{i = 1, \cdots ,m}\\
+  - Introducing slack variables for linear inequalities$\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{x,s} }&{{f_0}(x)}&{}\\
+    {{\rm{subject\ to} }}&{{\mathbf{a}_i}\mathbf{x} +s_i=b_i}&{i = 1, \cdots ,m}\\
     {}&{s_i\ge0}&{}
     \end{array}$
-  - epigraph form$\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{x,t}}&{t}&{}\\
-    {{\rm{subject\ to}}}&{f_0(x)-t\le0}&{}\\{}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}\\
-    {}&{\bf{Ax}} = {\bf{b}}&{}
+  - epigraph form$\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{x,t} }&{t}&{}\\
+    {{\rm{subject\ to} }}&{f_0(x)-t\le0}&{}\\{}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}\\
+    {}&{\bf{Ax} } = {\bf{b} }&{}
     \end{array}$
-  - minimizing over some variables$\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{x}}&{{{\tilde f}_0}(\mathbf{x})}&{}\\
-    {{\rm{subject\ to}}}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}
+  - minimizing over some variables$\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{x} }&{{{\tilde f}_0}(\mathbf{x})}&{}\\
+    {{\rm{subject\ to} }}&{{f_i}(\mathbf{x}) \le 0}&{i = 1, \cdots ,m}
     \end{array}$ where ${{{\tilde f}_0}(\mathbf{x})}={\rm inf}_yf_0(\mathbf{x},\mathbf{y})$
   - Quasi-convex  optmization: $f_0$ is quasiconvex, and $f_1,\cdots,f_m$ are convex
 - Classes of Convex Problem
@@ -115,26 +115,26 @@ typora-root-url: ..
   - QP(Quadratic Programming): convex quadratic objective and affine constraint function
   - QCQP(Quadratically Constrained Quadratic Programming), inequality constraint function is quadratic
   - SOCP(Second-Order Cone Programming): linear objective and second-order cone inequality constrains $\left\| A_ix+b\right\|_2\le c_i^Tx+d_i\ \ \ i=1,\cdots,m$
-  - SDP(Semi-Definite Programming)$\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{x}}&{\mathbf{c}^T\mathbf{x}}&{}\\
-    {{\rm{subject\ to}}}&{x_1\mathbf{F}_1+\cdots+x_n\mathbf{F}_n\preceq\mathbf{G}}&{}\\{}&{\mathbf{A}\mathbf{x}=\mathbf{b}}\end{array}$ 
+  - SDP(Semi-Definite Programming)$\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{x} }&{\mathbf{c}^T\mathbf{x} }&{}\\
+    {{\rm{subject\ to} }}&{x_1\mathbf{F}_1+\cdots+x_n\mathbf{F}_n\preceq\mathbf{G} }&{}\\{}&{\mathbf{A}\mathbf{x}=\mathbf{b} }\end{array}$ 
 
 ## Lagrange Duality
 
-- Primal problem:  $\begin{array}{*{20}{c}}
-  {\mathop {\rm{minimize}}\limits_{x}}&{f_0(\mathbf{x})}&{}\\
-  {{\rm{subject\ to}}}&{f_i(x)\le0}&{i = 1, \cdots ,m}\\{}&{{h_i}(\mathbf{x}) == 0}&{i = 1, \cdots ,p}
+- Primal problem:  $\begin{array}{*{20}{c} }
+  {\mathop {\rm{minimize} }\limits_{x} }&{f_0(\mathbf{x})}&{}\\
+  {{\rm{subject\ to} }}&{f_i(x)\le0}&{i = 1, \cdots ,m}\\{}&{{h_i}(\mathbf{x}) == 0}&{i = 1, \cdots ,p}
   \end{array}$
 
-- Lagrangian $L(\mathbf{x},\mathbf{\lambda},\mathbf{v})=f_0(\mathbf{x})+\sum\limits_{i = 1}^m {{{\bf{\lambda }}_i}{f_i}({\bf{x}})}+\sum\limits_{i = 1}^p {{{\bf{v}}_i}{h_i}({\bf{x}})}$
+- Lagrangian $L(\mathbf{x},\mathbf{\lambda},\mathbf{v})=f_0(\mathbf{x})+\sum\limits_{i = 1}^m {{{\bf{\lambda } }_i}{f_i}({\bf{x} })}+\sum\limits_{i = 1}^p {{{\bf{v} }_i}{h_i}({\bf{x} })}$
 
 - Dual function: $g(\mathbf{\lambda},\mathbf{v})=\mathop{\rm inf}\limits_{x\in D}L(\mathbf{x},\mathbf{\lambda},\mathbf{v})$, concave
 
   $f_0(x)\ge L(\mathbf{x},\mathbf{\lambda},\mathbf{v}) \ge g(\mathbf{\lambda},\mathbf{v})$
 
-- Lagrange dual problem: $\begin{array}{*{20}{c}}
-  {\mathop {\rm{maximize}}\limits_{\mathbf{\lambda},\mathbf{v}}}&{g(\mathbf{\lambda},\mathbf{v})}&{}\\
-  {{\rm{subject\ to}}}&{\mathbf{\lambda}\succeq 0}&{}
+- Lagrange dual problem: $\begin{array}{*{20}{c} }
+  {\mathop {\rm{maximize} }\limits_{\mathbf{\lambda},\mathbf{v} }}&{g(\mathbf{\lambda},\mathbf{v})}&{}\\
+  {{\rm{subject\ to} }}&{\mathbf{\lambda}\succeq 0}&{}
   \end{array}$
 
 - Duality
@@ -154,16 +154,16 @@ typora-root-url: ..
   1. primial feasibility: $f_i(x)\le0,i=1,\cdots,m,h_i(x)=0,i=1,\cdots,p$
   2. dual feasibility: $\lambda\succeq0$
   3. complementary slackness: $\lambda_i^*f_i(x^*)=0$ for $i=1,\cdots,m$
-  4. zero gradient of Lagrangian with respect to $\mathbf{x}$ : $\nabla f_0(\mathbf{x})+\sum\limits_{i = 1}^m {{{\bf{\lambda }}_i}{\nabla f_i}({\bf{x}})}+\sum\limits_{i = 1}^p {{{\bf{v}}_i}{\nabla h_i}({\bf{x}})}=0$
+  4. zero gradient of Lagrangian with respect to $\mathbf{x}$ : $\nabla f_0(\mathbf{x})+\sum\limits_{i = 1}^m {{{\bf{\lambda } }_i}{\nabla f_i}({\bf{x} })}+\sum\limits_{i = 1}^p {{{\bf{v} }_i}{\nabla h_i}({\bf{x} })}=0$
 
   - We already known that if strong duality holds and $x,\lambda,v$ are optimal, then they must satisfy the KKT condition.
   - If $x^*,\lambda ^*,v^*$ satisfy the KKT conditions for a convex problem, then they are optimal.
 
 ## Constructive Convex Analysis and Disciplined Convex Programming
 
-- Conic program: $\begin{array}{*{20}{c}}
-  {{\rm{minimize}}}&{c^Tx}&{}\\
-  {{\rm{subject\ to}}}&{Ax=b}&{x\in K}
+- Conic program: $\begin{array}{*{20}{c} }
+  {{\rm{minimize} }}&{c^Tx}&{}\\
+  {{\rm{subject\ to} }}&{Ax=b}&{x\in K}
   \end{array}$,where $K$ is convex cone.
 
   - the modern canonical form
@@ -276,14 +276,14 @@ typora-root-url: ..
 
   1. for $t=0,1,\cdots$ do
 
-  2. ​      $x^{t+1}=\mathcal{P}_{\mathcal{C}}(x^t-\eta_t\nabla f(x^t))$ 
+  2. ​      $x^{t+1}=\mathcal{P}_{\mathcal{C} }(x^t-\eta_t\nabla f(x^t))$ 
 
-     where $\mathcal{P}_{\mathcal{C}}(x)=\arg\min_{z\in \mathcal{C}}\left\|x-z\right\|_2$ is Euclidean projection onto $\mathcal{C}$
+     where $\mathcal{P}_{\mathcal{C} }(x)=\arg\min_{z\in \mathcal{C} }\left\|x-z\right\|_2$ is Euclidean projection onto $\mathcal{C}$
 
   - Projection theorem
     - Let  $\mathcal{C}$ be closed convex set, Then $x_\mathcal{C}$ is projection of $x$ onto $\mathcal{C}$ iff $(x-x_\mathcal{C})^T(z-x_\mathcal{C})\le0,\forall z\in \mathcal{C}$
     - $-\nabla f(x^t)^T(x^{t+1}-x^t)\ge 0$
-    - Nonexpansicness of projection: $\left\|\mathcal{P}_{\mathcal{C}}(x)- \mathcal{P}_{\mathcal{C}}(z)\right\|_2\le \left\|x-z\right\|_2$
+    - Nonexpansicness of projection: $\left\|\mathcal{P}_{\mathcal{C} }(x)- \mathcal{P}_{\mathcal{C} }(z)\right\|_2\le \left\|x-z\right\|_2$
 
 | problem                                                      | algorithm    | stepsize rule            | convergence rate                                             | iteration complexity              |
 | ------------------------------------------------------------ | ------------ | ------------------------ | ------------------------------------------------------------ | --------------------------------- |
@@ -305,7 +305,7 @@ typora-root-url: ..
 
   > 主要就是为了解决不可导的点的问题的
 
-  - $x^{t+1}=\mathcal{P}_{\mathcal{C}}(x^t-\eta_tg^t)$ , where $g^t$ is any subgradient of $f$ at $x^t$
+  - $x^{t+1}=\mathcal{P}_{\mathcal{C} }(x^t-\eta_tg^t)$ , where $g^t$ is any subgradient of $f$ at $x^t$
 
 - Subgradient
 
@@ -318,38 +318,38 @@ typora-root-url: ..
     - chain rule: $\partial (g\circ f)=g'(f(x))\partial f(x)$
     - composition: suppose $f(x)=h(f_1(x),\cdots,f_n(x)),q=\nabla h(y)|_{y=[f_1(x),\cdots,f_n(x)]},g_i\in \partial f_i(x)$. then   $q_1g_1+\cdots+q_ng_n\in \partial f(x)$
     - pointwise maximum: $f(x)=\max_{1\le i\le k}f_i(x)$, then $\partial f(x)={\rm conv}\{ \cup \{\partial f_i(x)|f_i(x)=f(x)\}\}$
-    - pointwise supremum :  $f(x)=\sup_{\alpha\in \mathcal{F}}f_\alpha(x)$, then $\partial f(x)={\rm closure}({\rm conv}\{ \cup \{\partial f_\alpha(x)|f_\alpha(x)=f(x)\}\})$
+    - pointwise supremum :  $f(x)=\sup_{\alpha\in \mathcal{F} }f_\alpha(x)$, then $\partial f(x)={\rm closure}({\rm conv}\{ \cup \{\partial f_\alpha(x)|f_\alpha(x)=f(x)\}\})$
   - negative subgradent is not necessarily descent direction (lack of continuity)
     - $f^{{\rm best},t}:=\mathop \min\limits_{1\le i\le t} f(x^i)$
     - $f^{\rm opt}:=\min_x f(x)$
 
 - Lipschitz function : $|f(x)-f(z)|\le L_f\|x-z\|_2, \forall x,z$
 
-- Projected subgradient update：$x^{t+1}=\mathcal{P}_{\mathcal{C}}(x^t-\eta_tg^t)$
+- Projected subgradient update：$x^{t+1}=\mathcal{P}_{\mathcal{C} }(x^t-\eta_tg^t)$
 
 - majorizing function: $\|x^{t+1}-x^*\|_2^2\le\|x^{t}-x^*\|_2^2-2\eta_t(f(x^t)-f^{\rm opt})+\eta^2_t\|g^t\|_2^2$
 
-  - Polyak’s stepsize rule: $\eta_t=\frac{f(x^t)-f^{\rm opt}}{\|g^t\|_2^2}\Rightarrow \|x^{t+1}-x^*\|_2^2\le\|x^{t}-x^*\|_2^2-\frac{(f(x^t)-f^{\rm opt})^2}{\|g^t\|_2^2}$
+  - Polyak’s stepsize rule: $\eta_t=\frac{f(x^t)-f^{\rm opt} }{\|g^t\|_2^2}\Rightarrow \|x^{t+1}-x^*\|_2^2\le\|x^{t}-x^*\|_2^2-\frac{(f(x^t)-f^{\rm opt})^2}{\|g^t\|_2^2}$
 
   - > 必须知道$f^{\rm opt}$, 所以并不实用
 
 | problem                             | algorithm                    | stepsize rule               | convergence rate                                             | iteration complexity      |
 | ----------------------------------- | ---------------------------- | --------------------------- | ------------------------------------------------------------ | ------------------------- |
-| convex & Lipschitz problem          | projected subgradient method | $\eta_t=\frac{1}{\sqrt{t}}$ | $f^{{\rm best}，t}\mathbin{\lower.3ex\hbox{$\buildrel<\over{\smash{\scriptstyle\sim}\vphantom{_x}}$}} \frac{\|x^0-x^*\|_2^2+L_f\log t}{\sqrt{t}}$<br />$O(\frac{1}{\sqrt{t}})$ | $O(\frac{1}{\epsilon^2})$ |
+| convex & Lipschitz problem          | projected subgradient method | $\eta_t=\frac{1}{\sqrt{t} }$ | $f^{{\rm best}，t}\mathbin{\lower.3ex\hbox{$\buildrel<\over{\smash{\scriptstyle\sim}\vphantom{_x} }$} } \frac{\|x^0-x^*\|_2^2+L_f\log t}{\sqrt{t} }$<br />$O(\frac{1}{\sqrt{t} })$ | $O(\frac{1}{\epsilon^2})$ |
 | strongly convex & Lipschitz problem | projected subgradient method | $\eta_t=\frac{2}{\mu(t+1)}$ | $f^{{\rm best},t}-f^{\rm opt}\le \frac{2L_f^2}{\mu}\cdot\frac{1}{t+1}$<br />$O(\frac{1}{t})$ | $O(\frac{1}{\epsilon})$   |
 
 ## Proximal gradient methods
 
-- composite models : $\begin{array}{*{20}{c}}
-  {{\rm{minimize}}_x}&{F(x):=f(x)+h(x)}&{}\\
-  {{\rm{subject\ to}}}&{x\in R^n}&{}
+- composite models : $\begin{array}{*{20}{c} }
+  {{\rm{minimize} }_x}&{F(x):=f(x)+h(x)}&{}\\
+  {{\rm{subject\ to} }}&{x\in R^n}&{}
   \end{array}$, f convex and smooth, h convex$F^{\rm opt}:=\min_x F(x)$
 
-  - $\mathcal{l}_1 $regularized minimization $\begin{array}{*{20}{c}}
-    {{\rm{minimize}}_x}&{f(x)+\|x\|_1}
+  - $\mathcal{l}_1 $regularized minimization $\begin{array}{*{20}{c} }
+    {{\rm{minimize} }_x}&{f(x)+\|x\|_1}
     \end{array}$,use $\mathcal{l}_1 $ regularization to promote sparsity.
-  - nuclear norm  regularized minimization $\begin{array}{*{20}{c}}
-    {{\rm{minimize}}_x}&{f(x)+\|x\|_*}
+  - nuclear norm  regularized minimization $\begin{array}{*{20}{c} }
+    {{\rm{minimize} }_x}&{f(x)+\|x\|_*}
     \end{array}$,use nuclear norm regularization to promote low-rank structure.
 
 - Proximal gradient descent
@@ -362,10 +362,10 @@ typora-root-url: ..
 
     ​         $=\arg \min _x \left\{ \frac{1}{2}\|x-(x^t-\eta_t \nabla f(x^t))\|_2^2+\eta_t c(x) \right\}$
 
-    where $\mathbb{L}_\mathcal{C}(x)=\left\{ {\begin{array}{*{20}{c}}
-      0&{{\rm{if\ }}x \in \mathcal{C}} \\ 
-      \infty &{{\text{else}}} 
-    \end{array}} \right.$
+    where $\mathbb{L}_\mathcal{C}(x)=\left\{ {\begin{array}{*{20}{c} }
+      0&{{\rm{if\ } }x \in \mathcal{C} } \\ 
+      \infty &{{\text{else} }} 
+    \end{array} } \right.$
 
 - proximal operator
 
@@ -404,7 +404,7 @@ typora-root-url: ..
     >
     > generalization of orthogonal decomposition
 
-    - $x=\mathcal{P}_\mathcal{K}(x)+\mathcal{P}_\mathcal{K^{\circ}}(x)$, where $K^{\circ}:=\{x|\lang x,z\rang \le 0, \forall z \in \mathcal{K}\}$
+    - $x=\mathcal{P}_\mathcal{K}(x)+\mathcal{P}_\mathcal{K^{\circ} }(x)$, where $K^{\circ}:=\{x|\lang x,z\rang \le 0, \forall z \in \mathcal{K}\}$
 
     - extended Moreau decomposition
 
@@ -424,7 +424,7 @@ typora-root-url: ..
 
 | problem                          | algorithm                    | stepsize rule        | convergence rate                                             | iteration complexity              |
 | -------------------------------- | ---------------------------- | -------------------- | ------------------------------------------------------------ | --------------------------------- |
-| convex & smooth problem          | proximal GD                  | $\eta_t=\frac{1}{L}$ | $F(x^t)-F^{\rm opt}\le \frac{L\|x^0-x^*\|_2^2}{2t}$<br />$O(\frac{1}{{t}})$ | $O(\frac{1}{\epsilon})$           |
+| convex & smooth problem          | proximal GD                  | $\eta_t=\frac{1}{L}$ | $F(x^t)-F^{\rm opt}\le \frac{L\|x^0-x^*\|_2^2}{2t}$<br />$O(\frac{1}{{t} })$ | $O(\frac{1}{\epsilon})$           |
 | strongly convex & smooth problem | projected subgradient method | $\eta_t=\frac{1}{L}$ | $\|x^t-x^*\|_2^2\le \left( 1- \frac{\mu}{L}\right)^t \|x^0-x^*\|_2^2$<br />$O((1-\frac{1}{\kappa})^t)$ | $O(\kappa\log\frac{1}{\epsilon})$ |
 
 ## Accelerated gradient methods
@@ -438,14 +438,14 @@ typora-root-url: ..
   - $x^{t+1}=x^{t}-\eta_t \nabla f(x^t)+\theta_t(x^t-x^{t-1})$
   - add inertia to the “ball ” (i.e. include momentum term) to mitigate zigzagging
   - System matrix$\left[ \begin{gathered}
-      {x^{t + 1}} - {x^*} \hfill \\
+      {x^{t + 1} } - {x^*} \hfill \\
       {x^t} - {x^*} \hfill \\ 
-    \end{gathered}  \right] = \left[ {\begin{array}{*{20}{c}}
-      {(1 + \theta ){\mathbf{I}} - {\eta _t}\int_0^1 {{\nabla ^2}f({x_\tau }){\text{d}}\tau } }&{ - {\theta _t}{\mathbf{I}}} \\ 
-      {\mathbf{I}}&0 
-    \end{array}} \right]\left[ \begin{gathered}
+    \end{gathered}  \right] = \left[ {\begin{array}{*{20}{c} }
+      {(1 + \theta ){\mathbf{I} } - {\eta _t}\int_0^1 {{\nabla ^2}f({x_\tau }){\text{d} }\tau } }&{ - {\theta _t}{\mathbf{I} }} \\ 
+      {\mathbf{I} }&0 
+    \end{array} } \right]\left[ \begin{gathered}
       {x^t} - {x^*} \hfill \\
-      {x^{t - 1}} - {x^*} \hfill \\ 
+      {x^{t - 1} } - {x^*} \hfill \\ 
     \end{gathered}  \right]$
 
 - Nesterov’s accelerated gradient methods
@@ -464,23 +464,23 @@ typora-root-url: ..
 
   - $x^{t+1}={\rm prox}_{\eta_t h}(y^t-\eta_t\nabla f(y^t))$ 
 
-    $y^{t+1}=x^{t+1}+\frac{\theta_t-1}{\theta_{t+1}}(x^{t+1}-x^t)$
+    $y^{t+1}=x^{t+1}+\frac{\theta_t-1}{\theta_{t+1} }(x^{t+1}-x^t)$
 
-    where $y^0=x^0,\theta_0=1$ and $\theta_{t+1}=\frac{1+\sqrt{1+4\theta_t^2}}{2}$ (momentum coefficient)
+    where $y^0=x^0,\theta_0=1$ and $\theta_{t+1}=\frac{1+\sqrt{1+4\theta_t^2} }{2}$ (momentum coefficient)
 
-  - Rippling behavior: take $y^{t+1}=x^{t+1}+\frac{1-\sqrt{q}}{1+\sqrt{q}}(x^{t+1}-x^t)$ $q^*=1/\kappa$  
+  - Rippling behavior: take $y^{t+1}=x^{t+1}+\frac{1-\sqrt{q} }{1+\sqrt{q} }(x^{t+1}-x^t)$ $q^*=1/\kappa$  
 
     - when $q>q^*$ : we underestimate momentum $\rightarrow$ slower convergence
 
-    - when $q<q^*$ : we overestimate momentum ($\frac{1-\sqrt{q}}{1+\sqrt{q}}$ is large) $\rightarrow$ overshooting/ rippling behavior
+    - when $q<q^*$ : we overestimate momentum ($\frac{1-\sqrt{q} }{1+\sqrt{q} }$ is large) $\rightarrow$ overshooting/ rippling behavior
 
     - >  $q=q^*$是最好的，但是由于$u,L$很难计算，导致$\kappa,p^*$很难计算，所以实际使用时需要自己调试
 
   - Adaptive restart
 
-    - When certain criterion is met , restart running FISTA with $\begin{array}{*{20}{c}}
-        {{x^0} \leftarrow {x^t}} \\ 
-        {{y^0} \leftarrow {x^t}} \\ 
+    - When certain criterion is met , restart running FISTA with $\begin{array}{*{20}{c} }
+        {{x^0} \leftarrow {x^t} } \\ 
+        {{y^0} \leftarrow {x^t} } \\ 
         {{\theta _0} \leftarrow 1} 
       \end{array}$
     - function scheme: restart when $f(x^t)>f(x^{t-1})$
@@ -488,10 +488,10 @@ typora-root-url: ..
 
 | problem                        | algorithm                               | stepsize rule                                                | convergence rate                                             | iteration complexity                     |
 | ------------------------------ | --------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| strong convex & smooth problem | Heavy-ball method                       | $\eta_t=\frac{4}{(\sqrt{L}+\sqrt{\mu})^2}$<br />$\theta_t=\max\{|1-\sqrt{\eta_tL}|,|1-\sqrt{\eta_t\mu}|\}^2$ | $\left\| \left[ \begin{gathered}  {x^{t + 1}} - {x^*} \hfill \\  {x^t} - {x^*} \hfill \\ \end{gathered}  \right] \right \|_2 \leqslant {\left( {\frac{{\sqrt \kappa   - 1}}{{\sqrt \kappa   + 1}}} \right)^t}\left \| \left[ \begin{gathered}{x^1} - {x^*} \hfill \\  {x^0} - {x^*} \hfill \\ \end{gathered}  \right]\right \|_2$ | $O(\sqrt{\kappa}\log\frac{1}{\epsilon})$ |
-| convex & smooth problem        | Nesterov’s accelerated gradient methods | $\eta_t=\frac{1}{L}$                                         | $f(x^t)-f^{\rm opt}\le  \frac{2L\|x^0-x^*\|_2^2}{(t+1)^2}$<br />$O(\frac{1}{t^2})$ | $O(\frac{1}{\sqrt{\epsilon}})$           |
-| convex & smooth problem        | FISTA                                   | $\eta_t=\frac{1}{L}$                                         | $F(x^t)-F^{\rm opt}\le  \frac{2L\|x^0-x^*\|_2^2}{(t+1)^2}$<br />$O(\frac{1}{t^2})$ | $O(\frac{1}{\sqrt{\epsilon}})$           |
-| strong convex & smooth problem | FISTA                                   | $\eta_t=\frac{1}{L}$                                         | $F(x^t)-F^{\rm opt}\le\left( 1-\frac{1}{\sqrt{\kappa}}\right )^t\left( F(x^0)-F^{\rm opt}+\frac{\mu \|x^0-x^*\|_2^2}{2}\right ) $<br />$O((1-\frac{1}{\sqrt{\kappa}})^t)$ | $O(\sqrt{\kappa}\log\frac{1}{\epsilon})$ |
+| strong convex & smooth problem | Heavy-ball method                       | $\eta_t=\frac{4}{(\sqrt{L}+\sqrt{\mu})^2}$<br />$\theta_t=\max\{|1-\sqrt{\eta_tL}|,|1-\sqrt{\eta_t\mu}|\}^2$ | $\left\| \left[ \begin{gathered}  {x^{t + 1} } - {x^*} \hfill \\  {x^t} - {x^*} \hfill \\ \end{gathered}  \right] \right \|_2 \leqslant {\left( {\frac{{\sqrt \kappa   - 1} }{{\sqrt \kappa   + 1} }} \right)^t}\left \| \left[ \begin{gathered}{x^1} - {x^*} \hfill \\  {x^0} - {x^*} \hfill \\ \end{gathered}  \right]\right \|_2$ | $O(\sqrt{\kappa}\log\frac{1}{\epsilon})$ |
+| convex & smooth problem        | Nesterov’s accelerated gradient methods | $\eta_t=\frac{1}{L}$                                         | $f(x^t)-f^{\rm opt}\le  \frac{2L\|x^0-x^*\|_2^2}{(t+1)^2}$<br />$O(\frac{1}{t^2})$ | $O(\frac{1}{\sqrt{\epsilon} })$           |
+| convex & smooth problem        | FISTA                                   | $\eta_t=\frac{1}{L}$                                         | $F(x^t)-F^{\rm opt}\le  \frac{2L\|x^0-x^*\|_2^2}{(t+1)^2}$<br />$O(\frac{1}{t^2})$ | $O(\frac{1}{\sqrt{\epsilon} })$           |
+| strong convex & smooth problem | FISTA                                   | $\eta_t=\frac{1}{L}$                                         | $F(x^t)-F^{\rm opt}\le\left( 1-\frac{1}{\sqrt{\kappa} }\right )^t\left( F(x^0)-F^{\rm opt}+\frac{\mu \|x^0-x^*\|_2^2}{2}\right ) $<br />$O((1-\frac{1}{\sqrt{\kappa} })^t)$ | $O(\sqrt{\kappa}\log\frac{1}{\epsilon})$ |
 
 ## Smoothing for nonsmooth optimization
 
@@ -509,10 +509,10 @@ typora-root-url: ..
   here, $f_\mu$ is called $\frac{1}{\mu}$-smooth approximation of f with parameter $(\alpha,\beta)$, $\mu$ is tradeoff between approximation accuracy and smoothness 
 
   - Examples
-    - $\|x\|_1 \Rightarrow f_\mu(x):=\sum\nolimits_{i = 1}^n {{h_\mu }({x_i})} ,{h_\mu }(z) = \left\{ {\begin{array}{*{20}{c}}
-        {{z^2}/2\mu }&{{\text{if }}|z|\le \mu} \\ 
-        {|z| - \mu /2}&{{\text{else}}} 
-      \end{array}} \right.$(Huber function)
+    - $\|x\|_1 \Rightarrow f_\mu(x):=\sum\nolimits_{i = 1}^n {{h_\mu }({x_i})} ,{h_\mu }(z) = \left\{ {\begin{array}{*{20}{c} }
+        {{z^2}/2\mu }&{{\text{if } }|z|\le \mu} \\ 
+        {|z| - \mu /2}&{{\text{else} }} 
+      \end{array} } \right.$(Huber function)
     - $\|x\|_2 \Rightarrow f_\mu(x):=\sqrt{\|x\|_2^2+\mu^2}-\mu$
     - $\max_i{x_i}\Rightarrow f_\mu(x):=\mu \log (\sum\nolimits_{i = 1}^ne^{x^i/\mu})-\mu \log n$
   - basic rules
@@ -554,27 +554,27 @@ typora-root-url: ..
 
 ## Dual and primal-dual methods
 
-- Dual formulation $\begin{array}{*{20}{c}}
-  {\mathop {\rm{minimize}}\limits_{x}}&{f(x)+h(Ax)}&{}\\
-  \end{array} \Rightarrow \begin{array}{*{20}{c}}
-  {\mathop {\rm{minimize}}\limits_{x,z}}&{f(x)+h(z)}&{}\\
-  {{\rm{subject\ to}}}&{Ax=z}&{}\\
-  \end{array} \Rightarrow \begin{array}{*{20}{c}}
-  {{\rm{maximize}}_\lambda \mathop \min \limits_{x,z}}&{f(x)+h(z)+\lang \lambda, Ax-z\rang}&{}
+- Dual formulation $\begin{array}{*{20}{c} }
+  {\mathop {\rm{minimize} }\limits_{x} }&{f(x)+h(Ax)}&{}\\
+  \end{array} \Rightarrow \begin{array}{*{20}{c} }
+  {\mathop {\rm{minimize} }\limits_{x,z} }&{f(x)+h(z)}&{}\\
+  {{\rm{subject\ to} }}&{Ax=z}&{}\\
+  \end{array} \Rightarrow \begin{array}{*{20}{c} }
+  {{\rm{maximize} }_\lambda \mathop \min \limits_{x,z} }&{f(x)+h(z)+\lang \lambda, Ax-z\rang}&{}
   \end{array}$
 
   $\Rightarrow 
-  {{\rm{maximize}}_\lambda \mathop \min \limits_{x,z}}\{\lang A^T\lambda, x\rang+f(x)\}+{\mathop \min \limits_{z}}\{h(z)-\lang \lambda, z\rang\} $
+  {{\rm{maximize} }_\lambda \mathop \min \limits_{x,z} }\{\lang A^T\lambda, x\rang+f(x)\}+{\mathop \min \limits_{z} }\{h(z)-\lang \lambda, z\rang\} $
 
-  $\Rightarrow \begin{array}{*{20}{c}}
-  {{\rm{minimize}}_\lambda}&{f^*(-A^T\lambda)-h^*(\lambda)}
+  $\Rightarrow \begin{array}{*{20}{c} }
+  {{\rm{minimize} }_\lambda}&{f^*(-A^T\lambda)-h^*(\lambda)}
   \end{array}$
 
-  - primal : $\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{x}}&{f(x)+h(Ax)}&{}\\
+  - primal : $\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{x} }&{f(x)+h(Ax)}&{}\\
     \end{array}$
-  - dual: $\Rightarrow \begin{array}{*{20}{c}}
-    {{\rm{minimize}}_\lambda}&{f^*(-A^T\lambda)-h^*(\lambda)}
+  - dual: $\Rightarrow \begin{array}{*{20}{c} }
+    {{\rm{minimize} }_\lambda}&{f^*(-A^T\lambda)-h^*(\lambda)}
     \end{array}$
     - if $f^*$ is smooth or strongly convex
     - proximal operator w.r.t. h is cheap
@@ -594,21 +594,21 @@ typora-root-url: ..
 
   1. for $t=0,1,\cdots$ do
   2. ​      $\lambda^{t+1}={\rm prox}_{\eta_th^*}(w^t+\eta_tA\nabla f^*(-A^Tw^t))$
-  3. ​      $\theta_{t+1}=\frac{1+\sqrt{1+4\theta^3_t}}{2}$
-  4. ​       $w^{t+1}=\lambda^{t+1}+\frac{\theta_t-1}{\theta_{t+1}}(\lambda^{t+1}-\lambda^{t})$
+  3. ​      $\theta_{t+1}=\frac{1+\sqrt{1+4\theta^3_t} }{2}$
+  4. ​       $w^{t+1}=\lambda^{t+1}+\frac{\theta_t-1}{\theta_{t+1} }(\lambda^{t+1}-\lambda^{t})$
 
 - Primal representation of accelerated  dual proximal gradient algorithm
 
   1. for $t=0,1,\cdots$ do
   2. ​    $x^t=\arg \min_x\{f(x)+\lang A^T\lambda^t, x\rang\}$
   3. ​    $\lambda^{t+1}=w^t+\eta_tAx^t-\eta_t{\rm prox}_{\eta_t^{-1}h^*}(\eta_t^{-1}w^t+Ax^t)$
-  4. ​    $\theta_{t+1}=\frac{1+\sqrt{1+4\theta^3_t}}{2}$
-  5. ​     $w^{t+1}=\lambda^{t+1}+\frac{\theta_t-1}{\theta_{t+1}}(\lambda^{t+1}-\lambda^{t})$
+  4. ​    $\theta_{t+1}=\frac{1+\sqrt{1+4\theta^3_t} }{2}$
+  5. ​     $w^{t+1}=\lambda^{t+1}+\frac{\theta_t-1}{\theta_{t+1} }(\lambda^{t+1}-\lambda^{t})$
 
 - Primal-dual proximal gradient method
 
-  $\begin{array}{*{20}{c}}
-  {\mathop {\rm{minimize}}\limits_{x}}&{f(x)+h(Ax)}&{}\\
+  $\begin{array}{*{20}{c} }
+  {\mathop {\rm{minimize} }\limits_{x} }&{f(x)+h(Ax)}&{}\\
   \end{array}$where $f$ and $h$ are closed and convex, both $f$ and $h$ might be non-smooth, both $f$ and $h$ admit inexpensive proximal operators
 
   > 我们仅仅已经讨论了proximal method (resp. dual proximal method) ,但是他们只能更新primal(resp. dual )变量。我们能利用${\rm prox}_f$ 和${\rm prox}_h$从而同时更新primal和dual变量吗？
@@ -617,10 +617,10 @@ typora-root-url: ..
 
     > saddle points : $\forall x\in X,y\in Y, f(x^*,y)\le f(x^*,y^*)\le f(x,y^*)$
 
-    - optimality condition $0 \in \left[ {\begin{array}{*{20}{c}}
-        {}&{{A^T}} \\ 
+    - optimality condition $0 \in \left[ {\begin{array}{*{20}{c} }
+        {}&{{A^T} } \\ 
         { - A}&{} 
-      \end{array}} \right]\left[ \begin{gathered}
+      \end{array} } \right]\left[ \begin{gathered}
         x \hfill \\
         \lambda  \hfill \\ 
       \end{gathered}  \right] + \left[ \begin{gathered}
@@ -632,10 +632,10 @@ typora-root-url: ..
 
       > issue: 计算$(\mathcal{I}+\eta\mathcal{F})^{-1}$太难了
 
-    - $\mathcal{A}(x,\lambda):=\left[ {\begin{array}{*{20}{c}}
-        {}&{{A^T}} \\ 
+    - $\mathcal{A}(x,\lambda):=\left[ {\begin{array}{*{20}{c} }
+        {}&{{A^T} } \\ 
         { - A}&{} 
-      \end{array}} \right]\left[ \begin{gathered}
+      \end{array} } \right]\left[ \begin{gathered}
         x \hfill \\
         \lambda  \hfill \\ 
       \end{gathered}  \right]$, $\mathcal{B}(x,\lambda):=\left[ \begin{gathered}
@@ -663,44 +663,44 @@ typora-root-url: ..
     
         > expilcit expression (更清晰的阐释)
         >
-        > $x^{t+\frac{1}{2}}=\mathcal{R}_\mathcal{B}(z^t)$
+        > $x^{t+\frac{1}{2} }=\mathcal{R}_\mathcal{B}(z^t)$
         >
-        > $z^{t+\frac{1}{2}}=2x^{t+\frac{1}{2}}-z^t$
+        > $z^{t+\frac{1}{2} }=2x^{t+\frac{1}{2} }-z^t$
         >
-        > $x^{t+1}=\mathcal{R}_\mathcal{A}(z^{t+\frac{1}{2}})$
+        > $x^{t+1}=\mathcal{R}_\mathcal{A}(z^{t+\frac{1}{2} })$
         >
-        > $z^{t+1}=\frac{1}{2}(z^t+2x^{t+1}-z^{t+\frac{1}{2}})=z^t+x^{t+1}-x^{t+\frac{1}{2}}$
+        > $z^{t+1}=\frac{1}{2}(z^t+2x^{t+1}-z^{t+\frac{1}{2} })=z^t+x^{t+1}-x^{t+\frac{1}{2} }$
         >
-        > 其中$x^{t+\frac{1}{2}},z^{t+\frac{1}{2}}$都是辅助变量
+        > 其中$x^{t+\frac{1}{2} },z^{t+\frac{1}{2} }$都是辅助变量
     
         applying Douglas-Rachford splitting to optimality condition
     
-        $x^{t+\frac{1}{2}}={\rm prox}_{\eta f}(p^t)$
+        $x^{t+\frac{1}{2} }={\rm prox}_{\eta f}(p^t)$
     
-        $\lambda^{t+\frac{1}{2}}={\rm prox}_{\eta h^*}(q^t)$
+        $\lambda^{t+\frac{1}{2} }={\rm prox}_{\eta h^*}(q^t)$
     
         $\left[ \begin{gathered}
-          {x^{t + 1}} \hfill \\
-          {\lambda ^{t + 1}} \hfill \\ 
-        \end{gathered}  \right] = {\left[ {\begin{array}{*{20}{c}}
-          I&{\mu {A^T}} \\ 
+          {x^{t + 1} } \hfill \\
+          {\lambda ^{t + 1} } \hfill \\ 
+        \end{gathered}  \right] = {\left[ {\begin{array}{*{20}{c} }
+          I&{\mu {A^T} } \\ 
           { - \eta A}&I 
-        \end{array}} \right]^{ - 1}}  \left[ \begin{gathered}
-          2{x^{t + \frac{1}{2}}} - {p^t} \hfill \\
-          2{\lambda ^{t + \frac{1}{2}}} - {q^t} \hfill \\ 
+        \end{array} } \right]^{ - 1} }  \left[ \begin{gathered}
+          2{x^{t + \frac{1}{2} }} - {p^t} \hfill \\
+          2{\lambda ^{t + \frac{1}{2} }} - {q^t} \hfill \\ 
         \end{gathered}  \right]$
     
-        $p^{t+1}=p^t+x^{t+1}-x^{t+\frac{1}{2}}$
+        $p^{t+1}=p^t+x^{t+1}-x^{t+\frac{1}{2} }$
     
-        $q^{t+1}=q^t+\lambda^{t+1}-\lambda^{t+\frac{1}{2}}$
+        $q^{t+1}=q^t+\lambda^{t+1}-\lambda^{t+\frac{1}{2} }$
 
 ## Alternating direction method of multipliers (ADMM)
 
 - Two-block problem
 
-   $\begin{array}{*{20}{c}}
-  {\mathop {\rm{minimize}}\limits_{x,z}}&{F(x,z):=f_1(x)+f_2(z)}&{}\\
-  {{\rm{subject\ to}}}&{Ax+Bz=b}&{}\\
+   $\begin{array}{*{20}{c} }
+  {\mathop {\rm{minimize} }\limits_{x,z} }&{F(x,z):=f_1(x)+f_2(z)}&{}\\
+  {{\rm{subject\ to} }}&{Ax+Bz=b}&{}\\
   \end{array}$
 
   > 这也可以用Douglas-Rachford splitting求解
@@ -741,9 +741,9 @@ typora-root-url: ..
   
   - convex programing
   
-    $\begin{array}{*{20}{c}}
-    {\mathop {\rm{minimize}}\limits_{L,S}}&{\|L\|_*+\lambda\|S\|_1}&{}\\
-    {{\rm{subject\ to}}}&{L+S=M}&{}\\
+    $\begin{array}{*{20}{c} }
+    {\mathop {\rm{minimize} }\limits_{L,S} }&{\|L\|_*+\lambda\|S\|_1}&{}\\
+    {{\rm{subject\ to} }}&{L+S=M}&{}\\
     \end{array}$
   
     where $\|L\|_*:=\sum\nolimits_{i = 1}^n {{\sigma _i}(L)} $ is nuclear norm, and $\|S\|_1:=\sum\nolimits_{i,j} {|S_{i,j}|} $ is enteywise $l_1$ norm
@@ -758,9 +758,9 @@ typora-root-url: ..
   
     - is equivalent to 
   
-      $ L^{t+1}={\rm SVT}_{\rho^{-1}}\left(M-S^t-\frac{1}{\rho}\Lambda^t\right) $    (singular value thresholding)
+      $ L^{t+1}={\rm SVT}_{\rho^{-1} }\left(M-S^t-\frac{1}{\rho}\Lambda^t\right) $    (singular value thresholding)
   
-      $ S^{t+1}={\rm ST}_{\lambda \rho^{-1}}\left(M-L^{t+1}-\frac{1}{\rho}\Lambda^t\right) $   (soft thresholding)
+      $ S^{t+1}={\rm ST}_{\lambda \rho^{-1} }\left(M-L^{t+1}-\frac{1}{\rho}\Lambda^t\right) $   (soft thresholding)
   
       $\Lambda^{t+1}=\Lambda^{t}+\rho(L^{t+1}+S^{t+1}-M)$
   
@@ -768,17 +768,17 @@ typora-root-url: ..
   
       ${\rm SVT}_{\tau}(X)=U{\rm diag}(\{(\sigma_i-\tau)_+\})V^T$ and
   
-      ${({\text{S}}{{\text{T}}_\tau }(X))_{i,j}} = \left\{ {\begin{array}{*{20}{c}}
-        {{X_{i,j}} - \tau }&{{\text{if }}{X_{i,j}} > \tau } \\ 
-        0&{{\text{if |}}{X_{i,j}}| \leqslant \tau } \\ 
-        {{X_{i,j}} + \tau }&{{\text{if }}{X_{i,j}} <  - \tau } 
-      \end{array}} \right.$
+      ${({\text{S} }{{\text{T} }_\tau }(X))_{i,j} } = \left\{ {\begin{array}{*{20}{c} }
+        {{X_{i,j} } - \tau }&{{\text{if } }{X_{i,j} } > \tau } \\ 
+        0&{{\text{if |} }{X_{i,j} }| \leqslant \tau } \\ 
+        {{X_{i,j} } + \tau }&{{\text{if } }{X_{i,j} } <  - \tau } 
+      \end{array} } \right.$
   
   - other examples 
   
-    - graphical lasso $\begin{array}{*{20}{c}}
-      {\mathop {\rm{minimize}}\limits_{\Theta}}&{-\log \det\Theta+\lang\Theta ,S\rang+\lambda\|\Theta\|_1}&{}\\
-      {{\rm{subject\ to}}}&{\Theta \succeq 0}&{}\\
+    - graphical lasso $\begin{array}{*{20}{c} }
+      {\mathop {\rm{minimize} }\limits_{\Theta} }&{-\log \det\Theta+\lang\Theta ,S\rang+\lambda\|\Theta\|_1}&{}\\
+      {{\rm{subject\ to} }}&{\Theta \succeq 0}&{}\\
       \end{array}$(估计稀疏高斯图形模型)
     - consensus optimization（共识优化）
   
@@ -851,11 +851,11 @@ typora-root-url: ..
 | problem                        | algorithm | stepsize rule                                            | convergence rate                                             | iteration complexity                     |
 | ------------------------------ | --------- | -------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------- |
 | strong convex & smooth problem | SGD       | $\eta_t<\frac{1}{Lc_g}$                                  | $\mathbb{E}[F(x^t)-F(x^*)] \le \frac{\eta L \sigma_g^2}{2\mu}+(1-\eta \mu)^t(F(x^0)-F(x^*))$ | $O(\sqrt{\kappa}\log\frac{1}{\epsilon})$ |
-| strongly convex problem        | SGD       | $\eta_t=\frac{\theta}{t+1}$ for $\theta >\frac{1}{2\mu}$ | $\mathbb{E}[\|x^t-x^*\|_2^2] \le \frac{c_\theta}{t+1}$<br />where $c_\theta=\max\{\frac{2\theta^2 \sigma_g^2}{2\mu\theta-1},\|x^0-x^*\|_2^2\}$ | $O(\frac{1}{\sqrt{\epsilon}})$           |
+| strongly convex problem        | SGD       | $\eta_t=\frac{\theta}{t+1}$ for $\theta >\frac{1}{2\mu}$ | $\mathbb{E}[\|x^t-x^*\|_2^2] \le \frac{c_\theta}{t+1}$<br />where $c_\theta=\max\{\frac{2\theta^2 \sigma_g^2}{2\mu\theta-1},\|x^0-x^*\|_2^2\}$ | $O(\frac{1}{\sqrt{\epsilon} })$           |
 
 
 
-需要整理
+待整理：
 
 1. norm
 2. 线性收敛，log收敛速度,算法复杂度
@@ -863,9 +863,9 @@ typora-root-url: ..
 
 $\max x_i \le f(\mathbf{x})\le \max x_i+\log n, f(\mathbf{x})=(\prod\nolimits_{i = 0}^n x_i )^{1/n}$
 
-Gradient: $\nabla f(\mathbf{x})=[\frac{{\delta f(\mathbf{x})}}{{\delta x_1}} \cdots \frac{{\delta f(\mathbf{x})}}{{\delta x_n}}]^T\in R^n$
+Gradient: $\nabla f(\mathbf{x})=[\frac{{\delta f(\mathbf{x})} }{{\delta x_1} } \cdots \frac{{\delta f(\mathbf{x})} }{{\delta x_n} }]^T\in R^n$
 
-Hessian: $\nabla^2f(\mathbf{x})=\left (\frac{{\delta^2 f(\mathbf{x})}}{{\delta x_i\delta x_j}}\right )_{ij}\in R^{n\times n}$
+Hessian: $\nabla^2f(\mathbf{x})=\left (\frac{{\delta^2 f(\mathbf{x})} }{{\delta x_i\delta x_j} }\right )_{ij}\in R^{n\times n}$
 
 Taylor series $f(\mathbf{x}+ \mathbf{\delta})=f(x)+\nabla f(\mathbf{x})^T\mathbf{\delta}+\frac{1}{2}\mathbf{\delta}^T\nabla^2f(\mathbf{x})\mathbf{\delta}+o(\left\|\mathbf{\delta}\right\|^2)$
 
