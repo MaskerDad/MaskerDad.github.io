@@ -3,7 +3,7 @@ layout: post
 title: "Windows Subsystem for Linux+VMware palyer+Ubuntu"
 description: ""
 categories: []
-tags: [Essential Skill]
+tags: [Essential Skill,Linux]
 redirect_from:
   - /2019/10/17/
 typora-root-url: ..

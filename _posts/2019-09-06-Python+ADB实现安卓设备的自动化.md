@@ -138,15 +138,11 @@ class ADBCMD():
         if "Android Debug Bridge version" in str(version):
             print("ADB安装正常")
             print("如果手机与电脑连接完成，手机端USB调试功能打开")
-            i=input("请输入Y开始执行自动化程序，否则输入N退出程序:")
-            if i is 'Y' or i is 'y':
-                devices=subprocess.check_output('adb devices')
-                if len(devices) > 28:
-                    print("设备",devices[26:42].decode('utf-8'),"加载成功")
-                else:
-                    print("没有找到设备，请重新连接")
-                    exit(0)
+            devices=subprocess.check_output('adb devices')
+            if len(devices) > 28:
+                print("设备",devices[26:42].decode('utf-8'),"加载成功")
             else:
+                print("没有找到设备，请重新连接")
                 exit(0)
         else:
             print("ADB没有正常加载，请检查环境变量或当前文件夹\n"+"Error: "+version)
@@ -154,7 +150,10 @@ class ADBCMD():
     def swipe(self,x1=500,y1=1200,x2=500,y2=600):
         '''滑动屏幕'''
         subprocess.check_output("adb shell input swipe "+str(x1)+" "+str(y1)+" "+str(x2)+" "+str(y2))
-     
+    def swipe_up(self):
+        self.swipe(x1=500,y1=1200,x2=500,y2=600)
+    def swipe_down(self):
+        self.swipe(x1=500,y1=600,x2=500,y2=1200) 
     def click_power(self):
         '''点击电源键'''
         subprocess.check_output( "adb shell input keyevent 26")
@@ -175,58 +174,29 @@ def zhangyu99(android):
     '''
     这个函数就是傻瓜式的一步一步模拟人对手机进行操作
     '''
-    #以下就是针对每个任务进行自动化操作
-    for i in range(3):#主会场只允许刷三次
-        android.click(0x3c9,0x71f)#点击赚更多聚星
-        print("点击赚更多聚星")
-        time.sleep(0.5)#等一下缓冲一下，防止还没加载好
-        android.click(0x373,0x48d)#点进主会场任务
-        print("点击了进主会场")
-        time.sleep(5)
-        android.swipe()#等5秒就滑动一下，防止手机觉得我们没在看
-        time.sleep(6)
-        android.back()#过了10秒之后点击返回
     
-    for i in range(8):
-        android.click(0x3c9,0x71f)#赚更多聚星
+    def shua15s(x,y,i):
+        print("正在点击",x,y,"第",i,"次")
         time.sleep(0.5)
-        android.click(0x381,0x692)#进分会场1
-        time.sleep(5)
-        android.swipe()
+        android.click(x,y)
+        time.sleep(2)
+        android.swipe_up()
         time.sleep(6)
+        android.swipe_up()
+        time.sleep(5)
+        android.swipe_down()
+        time.sleep(5)
         android.back()
-    for i in range(9):
-        android.click(0x37c,0x731)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x38b,0x729)#进分会场2
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(8):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x397,0x7d0)#进分会场3
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(9):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x398,0x86f)#进分会场4
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(20):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x391,0x5f5)#进划算店铺
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back() 
+        
+    [shua15s(0x387,0x4bc,i) for i in range(1)]
+    [shua15s(0x379,0x578,i) for i in range(8)]
+    [shua15s(0x376,0x63e,i) for i in range(3)]
+    [shua15s(0x362,0x6e6,i) for i in range(5)]
+    [shua15s(0x375,0x79b,i) for i in range(25)]
+    
+    
+      
+
 
 if __name__=='__main__':
     android=ADBCMD()#获得一个ADB命令实例
