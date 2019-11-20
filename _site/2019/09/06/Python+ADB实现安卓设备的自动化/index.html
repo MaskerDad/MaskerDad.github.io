@@ -217,10 +217,6 @@
         </ul>
       </li>
       <li><a href="#%E4%BA%94adb%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8" id="markdown-toc-五adb命令大全">五、ADB命令大全</a></li>
-    </ul>
-  </li>
-  <li>
-<a href="#" id="markdown-toc-"><img src="/images/posts/2019-09-06/toc.png" alt="Table of Contents"></a>    <ul>
       <li>
 <a href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95" id="markdown-toc-基本用法">基本用法</a>        <ul>
           <li><a href="#%E5%91%BD%E4%BB%A4%E8%AF%AD%E6%B3%95" id="markdown-toc-命令语法">命令语法</a></li>
@@ -505,112 +501,82 @@
 
 <h3 id="2完整代码">2、完整代码</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import time,subprocess
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span><span class="p">,</span><span class="n">subprocess</span>
 
-class ADBCMD():
-    '''
+<span class="k">class</span> <span class="nc">ADBCMD</span><span class="p">():</span>
+    <span class="s">'''
     将所有ADB命令封装成一个类，更直观简洁的进行操作，和以后的使用
-    '''
-    def __init__(self):
-        '''初始化ADB,包括检查ADB是否正确安装，设备是否正确连接'''
-        version=subprocess.check_output('adb version')
-        if "Android Debug Bridge version" in str(version):
-            print("ADB安装正常")
-            print("如果手机与电脑连接完成，手机端USB调试功能打开")
-            i=input("请输入Y开始执行自动化程序，否则输入N退出程序:")
-            if i is 'Y' or i is 'y':
-                devices=subprocess.check_output('adb devices')
-                if len(devices) &gt; 28:
-                    print("设备",devices[26:42].decode('utf-8'),"加载成功")
-                else:
-                    print("没有找到设备，请重新连接")
-                    exit(0)
-            else:
-                exit(0)
-        else:
-            print("ADB没有正常加载，请检查环境变量或当前文件夹\n"+"Error: "+version)
+    '''</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'''初始化ADB,包括检查ADB是否正确安装，设备是否正确连接'''</span>
+        <span class="n">version</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">'adb version'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s">"Android Debug Bridge version"</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">version</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"ADB安装正常"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"如果手机与电脑连接完成，手机端USB调试功能打开"</span><span class="p">)</span>
+            <span class="n">devices</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">'adb devices'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">28</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"设备"</span><span class="p">,</span><span class="n">devices</span><span class="p">[</span><span class="mi">26</span><span class="p">:</span><span class="mi">42</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">),</span><span class="s">"加载成功"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"没有找到设备，请重新连接"</span><span class="p">)</span>
+                <span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"ADB没有正常加载，请检查环境变量或当前文件夹</span><span class="se">\n</span><span class="s">"</span><span class="o">+</span><span class="s">"Error: "</span><span class="o">+</span><span class="n">version</span><span class="p">)</span>
  
-    def swipe(self,x1=500,y1=1200,x2=500,y2=600):
-        '''滑动屏幕'''
-        subprocess.check_output("adb shell input swipe "+str(x1)+" "+str(y1)+" "+str(x2)+" "+str(y2))
+    <span class="k">def</span> <span class="nf">swipe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y1</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span><span class="n">x2</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y2</span><span class="o">=</span><span class="mi">600</span><span class="p">):</span>
+        <span class="s">'''滑动屏幕'''</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">"adb shell input swipe "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y1</span><span class="p">)</span><span class="o">+</span><span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span><span class="o">+</span><span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y2</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">swipe_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swipe</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y1</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span><span class="n">x2</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y2</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">swipe_down</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">swipe</span><span class="p">(</span><span class="n">x1</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y1</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span><span class="n">x2</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span><span class="n">y2</span><span class="o">=</span><span class="mi">1200</span><span class="p">)</span> 
+    <span class="k">def</span> <span class="nf">click_power</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'''点击电源键'''</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span> <span class="s">"adb shell input keyevent 26"</span><span class="p">)</span>
      
-    def click_power(self):
-        '''点击电源键'''
-        subprocess.check_output( "adb shell input keyevent 26")
+    <span class="k">def</span> <span class="nf">click</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="s">'''点击屏幕中某个点'''</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">"adb shell input tap "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="s">" "</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
      
-    def click(self,x,y):
-        '''点击屏幕中某个点'''
-        subprocess.check_output("adb shell input tap "+str(x)+" "+str(y))
-     
-    def click_home(self):
-        '''点击Home键'''
-        subprocess.check_output("adb shell input keyevent 3")
-    def back(self):
-        '''点击返回键'''
-        subprocess.check_output("adb shell input keyevent 4")
+    <span class="k">def</span> <span class="nf">click_home</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'''点击Home键'''</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">"adb shell input keyevent 3"</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">back</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">'''点击返回键'''</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s">"adb shell input keyevent 4"</span><span class="p">)</span>
         
         
-def zhangyu99(android):
-    '''
+<span class="k">def</span> <span class="nf">zhangyu99</span><span class="p">(</span><span class="n">android</span><span class="p">):</span>
+    <span class="s">'''
     这个函数就是傻瓜式的一步一步模拟人对手机进行操作
-    '''
-    #以下就是针对每个任务进行自动化操作
-    for i in range(3):#主会场只允许刷三次
-        android.click(0x3c9,0x71f)#点击赚更多聚星
-        print("点击赚更多聚星")
-        time.sleep(0.5)#等一下缓冲一下，防止还没加载好
-        android.click(0x373,0x48d)#点进主会场任务
-        print("点击了进主会场")
-        time.sleep(5)
-        android.swipe()#等5秒就滑动一下，防止手机觉得我们没在看
-        time.sleep(6)
-        android.back()#过了10秒之后点击返回
+    '''</span>
     
-    for i in range(8):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x381,0x692)#进分会场1
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(9):
-        android.click(0x37c,0x731)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x38b,0x729)#进分会场2
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(8):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x397,0x7d0)#进分会场3
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(9):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x398,0x86f)#进分会场4
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back()
-    for i in range(20):
-        android.click(0x3c9,0x71f)#赚更多聚星
-        time.sleep(0.5)
-        android.click(0x391,0x5f5)#进划算店铺
-        time.sleep(5)
-        android.swipe()
-        time.sleep(6)
-        android.back() 
+    <span class="k">def</span> <span class="nf">shua15s</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"正在点击"</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s">"第"</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s">"次"</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="n">swipe_up</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="n">swipe_up</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="n">swipe_down</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">android</span><span class="o">.</span><span class="n">back</span><span class="p">()</span>
+        
+    <span class="p">[</span><span class="n">shua15s</span><span class="p">(</span><span class="mh">0x387</span><span class="p">,</span><span class="mh">0x4bc</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">shua15s</span><span class="p">(</span><span class="mh">0x379</span><span class="p">,</span><span class="mh">0x578</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">shua15s</span><span class="p">(</span><span class="mh">0x376</span><span class="p">,</span><span class="mh">0x63e</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">shua15s</span><span class="p">(</span><span class="mh">0x362</span><span class="p">,</span><span class="mh">0x6e6</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="p">[</span><span class="n">shua15s</span><span class="p">(</span><span class="mh">0x375</span><span class="p">,</span><span class="mh">0x79b</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+    
+    
+      
 
-if __name__=='__main__':
-    android=ADBCMD()#获得一个ADB命令实例
-    zhangyu99(android)#执行对聚划算99养章鱼活动的脚本
-</code></pre></div></div>
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">android</span><span class="o">=</span><span class="n">ADBCMD</span><span class="p">()</span><span class="c1">#获得一个ADB命令实例
+</span>    <span class="n">zhangyu99</span><span class="p">(</span><span class="n">android</span><span class="p">)</span><span class="c1">#执行对聚划算99养章鱼活动的脚本
+</span></code></pre></div></div>
 
 <blockquote>
   <p>tips:</p>
@@ -636,7 +602,7 @@ if __name__=='__main__':
 
 <p>Other languages: <a href="./README.en.md"><img class="emoji" title=":gb:" alt=":gb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f1ec-1f1e7.png" height="20" width="20"> English</a></p>
 
-<h1><img src="/images/posts/2019-09-06/toc.png" alt="Table of Contents"></h1>
+<p><img src="/images/posts/2019-09-06/toc.png" alt="Table of Contents"></p>
 
 <!-- vim-markdown-toc GFM -->
 
@@ -4173,7 +4139,7 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
         </li>
       
         <li class="category-list-item">
-          <a class="category-list-link" href="/category/#GeneralLecture">GeneralLecture (2)</a>
+          <a class="category-list-link" href="/category/#GeneralLecture">GeneralLecture (3)</a>
         </li>
       
         <li class="category-list-item">
@@ -4189,11 +4155,19 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
         </li>
       
         <li class="category-list-item">
-          <a class="category-list-link" href="/category/#LaTeXManuals">LaTeXManuals (2)</a>
+          <a class="category-list-link" href="/category/#LaTeXManuals">LaTeXManuals (3)</a>
         </li>
       
         <li class="category-list-item">
-          <a class="category-list-link" href="/category/#ConvexOptimization">ConvexOptimization (2)</a>
+          <a class="category-list-link" href="/category/#ConvexOptimization">ConvexOptimization (5)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#LinuxManuals">LinuxManuals (1)</a>
+        </li>
+      
+        <li class="category-list-item">
+          <a class="category-list-link" href="/category/#BlockChainLearning">BlockChainLearning (1)</a>
         </li>
       
     </ul>
@@ -4225,13 +4199,13 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
         
     
     
-    <a href="/tags/#Essential%20Skill" rel="nofollow" style="font-size: 13pt; color: #555;">Essential Skill</a>
+    <a href="/tags/#Essential%20Skill" rel="nofollow" style="font-size: 14pt; color: #444;">Essential Skill</a>
     
     
     <a href="/tags/#Science%20Paper" rel="nofollow" style="font-size: 18pt; color: #000;">Science Paper</a>
     
     
-    <a href="/tags/#Essential%20and%20Professional%20Course" rel="nofollow" style="font-size: 12.5pt; color: #666;">Essential and Professional Course</a>
+    <a href="/tags/#Essential%20and%20Professional%20Course" rel="nofollow" style="font-size: 14pt; color: #444;">Essential and Professional Course</a>
     
     
     <a href="/tags/#Python" rel="nofollow" style="font-size: 10pt; color: #888;">Python</a>
@@ -4243,10 +4217,16 @@ target="_blank" title="点击直达微信公众号～～"><u><b>璇珠杂俎</b>
     <a href="/tags/#Broaden%20Horizons" rel="nofollow" style="font-size: 9pt; color: #999;">Broaden Horizons</a>
     
     
-    <a href="/tags/#LaTeX" rel="nofollow" style="font-size: 9.5pt; color: #888;">LaTeX</a>
+    <a href="/tags/#LaTeX" rel="nofollow" style="font-size: 10pt; color: #888;">LaTeX</a>
     
     
     <a href="/tags/#Comprehensive%20Quality" rel="nofollow" style="font-size: 9pt; color: #999;">Comprehensive Quality</a>
+    
+    
+    <a href="/tags/#Linux" rel="nofollow" style="font-size: 10pt; color: #888;">Linux</a>
+    
+    
+    <a href="/tags/#BlockChain" rel="nofollow" style="font-size: 9.5pt; color: #888;">BlockChain</a>
     
     </div>
 </div>
@@ -4447,74 +4427,43 @@ TOCize(
 })();
 </script>
 -->
-<script>
-		(function(window,document,undefined){
-			var hearts = [];
-			window.requestAnimationFrame = (function(){
-				return window.requestAnimationFrame ||
-				window.webkitRequestAnimationFrame ||
-				window.mozRequestAnimationFrame ||
-				window.oRequestAnimationFrame ||
-				window.msRequestAnimationFrame ||
-				function (callback){
-					setTimeout(callback,1000/60);
-				}
-			})();
-			init();
-			function init(){
-				css(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
-				attachEvent();
-				gameloop();
-			}
-			function gameloop(){
-				for(var i=0;i<hearts.length;i++){
-					if(hearts[i].alpha <=0){
-						document.body.removeChild(hearts[i].el);
-						hearts.splice(i,1);
-						continue;
-					}
-					hearts[i].y--;
-					hearts[i].scale += 0.004;
-					hearts[i].alpha -= 0.013;
-					hearts[i].el.style.cssText = "left:"+hearts[i].x+"px;top:"+hearts[i].y+"px;opacity:"+hearts[i].alpha+";transform:scale("+hearts[i].scale+","+hearts[i].scale+") rotate(45deg);background:"+hearts[i].color;
-				}
-				requestAnimationFrame(gameloop);
-			}
-			function attachEvent(){
-				var old = typeof window.οnclick==="function" && window.onclick;
-				window.onclick = function(event){
-					old && old();
-					createHeart(event);
-				}
-			}
-			function createHeart(event){
-				var d = document.createElement("div");
-				d.className = "heart";
-				hearts.push({
-					el : d,
-					x : event.clientX - 5,
-					y : event.clientY - 5,
-					scale : 1,
-					alpha : 1,
-					color : randomColor()
-				});
-				document.body.appendChild(d);
-			}
-			function css(css){
-				var style = document.createElement("style");
-				style.type="text/css";
-				try{
-					style.appendChild(document.createTextNode(css));
-				}catch(ex){
-					style.styleSheet.cssText = css;
-				}
-				document.getElementsByTagName('head')[0].appendChild(style);
-			}
-			function randomColor(){
-				return "rgb("+(~~(Math.random()*255))+","+(~~(Math.random()*255))+","+(~~(Math.random()*255))+")";
-			}
-		})(window,document);
-</script>--&gt;
+
+<script type="text/javascript">
+/* 鼠标点击特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var a = new Array("❤Yang❤","❤Zhan❤","❤Peng❤","❤欢迎你❤","❤加油❤","❤努力❤","❤奋斗❤","❤拼搏❤","❤Albert❤","❤聪明❤","❤机智❤","❤活泼❤","❤可爱❤");
+        var $i = $("<span></span>").text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css({
+            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255*Math.random())+","+~~(255*Math.random())+","+~~(255*Math.random())+")"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $i.remove();
+        });
+    });
+});
+</script>
+
+<section></section>
+<script type="text/javascript">
+/* 鼠标环绕特效 */
+!function () { function o(w, v, i) { return w.getAttribute(v) || i } function j(i) { return document.getElementsByTagName(i) } function l() { var i = j("script"), w = i.length, v = i[w - 1]; return { l: w, z: o(v, "zIndex", -1), o: o(v, "opacity", 0.5), c: o(v, "color", "0,0,0"), n: o(v, "count", 99) } } function k() { r = u.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth, n = u.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight } function b() { e.clearRect(0, 0, r, n); var w = [f].concat(t); var x, v, A, B, z, y; t.forEach(function (i) { i.x += i.xa, i.y += i.ya, i.xa *= i.x > r || i.x <0 ? -1 : 1, i.ya *=i.y>n || i.y <0 ? -1 : 1, e.fillRect(i.x - 0.5, i.y - 0.5, 1, 1); for (v=0; v < w.length; v++) { x = w[v]; if (i !== x &&null !== x.x &&null !== x.y) { B = i.x - x.x, z = i.y - x.y, y = B * B + z * z; y <x.max && (x=== f && y>= x.max / 2 &&(i.x -= 0.03 * B, i.y -= 0.03 * z), A = (x.max - y) / x.max, e.beginPath(), e.lineWidth = A / 2, e.strokeStyle = "rgba(" + s.c + "," + (A + 0.2) + ")", e.moveTo(i.x, i.y), e.lineTo(x.x, x.y), e.stroke()) } } w.splice(w.indexOf(i), 1) }), m(b) } var u = document.createElement("canvas"),  s = l(), c = "c_n" + s.l, e = u.getContext("2d"), r, n, m = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (i) { window.setTimeout(i, 1000 / 45) }, a = Math.random, f = { x: null, y: null, max: 20000 }; u.id = c; u.className = "hidden-xs hidden-sm my_canvas"; u.style.cssText = "position:fixed;top:0;left:0;z-index:" + s.z + ";opacity:" + s.o; j("body")[0].appendChild(u); k(), window.onresize = k; window.onmousemove = function (i) { i = i || window.event, f.x = i.clientX, f.y = i.clientY }, window.onmouseout = function () { f.x = null, f.y = null }; for (var t = [], p = 0; s.n > p; p++) { var h = a() * r, g = a() * n, q = 2 * a() - 1, d = 2 * a() - 1; t.push({ x: h, y: g, xa: q, ya: d, max: 6000 }) } setTimeout(function () { b() }, 100) }();
+</script>
 
 </body>
 

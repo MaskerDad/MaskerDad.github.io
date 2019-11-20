@@ -38,6 +38,6 @@ alert.accept()
 
 #等待部署完成
 
-time.sleep(30)
+time.sleep(60)
 
 driver.quit()

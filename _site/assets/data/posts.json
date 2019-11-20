@@ -2,6 +2,87 @@
 
 
 {
+"title": "U盘做启动盘并安装Ubuntu系统",
+"url": "/2019/11/19/U%E7%9B%98%E5%81%9A%E5%90%AF%E5%8A%A8%E7%9B%98%E5%B9%B6%E5%AE%89%E8%A3%85Ubuntu%E7%B3%BB%E7%BB%9F/",
+"date": "2019-11-19",
+"keywords": ["Essential Skill"],
+"summary": "一、U盘启动盘安装Ubuntu系统\n\n准备：\n\n\n  \n    没有重要资料的U盘（因为制作过程中需要格式化）\n  \n  \n    下载rufus, Windows端用来做启动盘的软件\n\n    \n      YUMI等启动盘制作软件..."
+}, 
+
+
+{
+"title": "Ubuntu下安装TexLive+TexStudio+LanguageTool",
+"url": "/2019/11/19/Ubuntu%E4%B8%8B%E5%AE%89%E8%A3%85TexLive+TexStudio+LanguageTool/",
+"date": "2019-11-19",
+"keywords": ["LaTeX"],
+"summary": "\n  今天在办公室电脑上安装好了ubuntu系统，其中需要配置写论文的环境。特此记录一下。\n\n\nTexLive和TexStudio的配置完全按照的 Install-LaTeX.pdf, 感谢大佬的奉献，此处不再赘述。\n\nLanguag..."
+}, 
+
+
+{
+"title": "实用APP工具集",
+"url": "/2019/11/15/%E5%AE%9E%E7%94%A8APP%E5%B7%A5%E5%85%B7%E9%9B%86/",
+"date": "2019-11-15",
+"keywords": ["Essential Skill"],
+"summary": "\n  Web    \n      1. 奶牛快传——临时传输大文件\n      2. Pastebin——临时粘贴文本代码        \n          3.坚果云——全平台支持的同步文件夹工具\n        \n      \n..."
+}, 
+
+
+{
+"title": "中科大凸优化视频笔记",
+"url": "/2019/11/13/%E4%B8%AD%E7%A7%91%E5%A4%A7%E5%87%B8%E4%BC%98%E5%8C%96%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0/",
+"date": "2019-11-13",
+"keywords": ["Essential and Professional Course"],
+"summary": "\n  我花了大概四天的时间在B站上看完了中科大的凸优化课，算是入了门。但是中科大的课这是面对研究生的专业基础课，感觉讲的有点浅。重在打基础，所以后面的算法基本都是一带而过。感觉完全不懂的人用来入门还是挺好的，如果有基础想提高不建议用这..."
+}, 
+
+
+{
+"title": "Convex optimization notes from Yuanming Shi",
+"url": "/2019/11/13/Convex-optimization-notes-from-Yuanming-Shi/",
+"date": "2019-11-13",
+"keywords": ["Essential and Professional Course"],
+"summary": "\n  这篇博客只记录每章我认为需要记忆的一些名词定义和公式。这套课件是我导师自己写的，吸收了各家之长，知识更广泛，更贴近于科研需要的知识。\n\n  注意：这个笔记只用来整理知识架构，备忘，所以里面有些公式因为在Markdown里面不能完..."
+}, 
+
+
+{
+"title": "区块链环境搭建Ubuntu+Nodejs+truffle+testrpc+anaconda",
+"url": "/2019/11/07/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%9F%BA%E4%BA%8EUbuntu/",
+"date": "2019-11-07",
+"keywords": ["BlockChain","Linux"],
+"summary": "在Windows Subsystem for Linux+VMware palyer+Ubuntu中已经说完了在虚拟机里安装Ubuntu。有了系统之后就可以搭建区块链的环境了\n\n\n  Windows也可以搭建，但是推荐在Linux下搭..."
+}, 
+
+
+{
+"title": "Linux使用手册",
+"url": "/2019/11/07/Linux%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/",
+"date": "2019-11-07",
+"keywords": ["Linux"],
+"summary": "配置环境变量\n\n参考在Linux里设置环境变量的方法（export PATH）\n\n1. 临时使用用export命令\n\nexport PATH=$PATH:/home/albert/anaconda3/bin\n\n\n2.修改profile..."
+}, 
+
+
+{
+"title": "通识讲座——区块链简单介绍，以比特币为例",
+"url": "/2019/10/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/",
+"date": "2019-10-29",
+"keywords": ["BlockChain"],
+"summary": "这个小讲座是B站李永乐讲的。感觉讲的很容易理解。推荐闲来无事看看。\n\n\n  下面是我听的时候的笔记。。。自动忽略字体。。。\n\n  之后我会做区块链相关技术。这个讲座是个开始。\n\n\n\n\n\n"
+}, 
+
+
+{
+"title": "Convex Optimization: Convex Function",
+"url": "/2019/10/26/Convex-Optimization_convexfunction/",
+"date": "2019-10-26",
+"keywords": ["Essential and Professional Course"],
+"summary": "\n  Basic properties and examples\n  Operations that preserve convexity\n  The conjugate function( 共轭函数)\n\nBasic properti..."
+}, 
+
+
+{
 "title": "给博客添加网页鼠标点击特效功能",
 "url": "/2019/10/16/%E7%BB%99%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E7%BD%91%E9%A1%B5%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB%E7%89%B9%E6%95%88%E5%8A%9F%E8%83%BD/",
 "date": "2019-10-16",
@@ -14,7 +95,7 @@
 "title": "Windows Subsystem for Linux+VMware palyer+Ubuntu",
 "url": "/2019/10/16/Windows_subsystem_for_linux+VMware-palyer+Ubuntu/",
 "date": "2019-10-16",
-"keywords": ["Essential Skill"],
+"keywords": ["Essential Skill","Linux"],
 "summary": "自从Win10更新之后，我之前装的VMware workstation就不能用了，必须更新。所以今晚不想学习就搞了一下，并且发现了Windows Subsystem for Linux这个好玩意。\n\n1.下载安装VMware和Ubun..."
 }, 
 
