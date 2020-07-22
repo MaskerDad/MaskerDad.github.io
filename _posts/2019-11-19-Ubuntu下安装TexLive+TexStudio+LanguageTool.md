@@ -84,3 +84,12 @@ java -cp languagetool-server.jar org.languagetool.sever.HTTPServer -p 8081
 
 1. java环境是否添加到环境变量，刚才安装的时候一般会自己弄好的，小概率出现这种问题。如果没办法，可以把java的绝对路径放到设置中`java`那一行
 2. languagetool-server.jar的绝对路径是否正确
+
+
+
+**注：**macOS的跟Ubuntu的差不多，在命令行运行同样的命令即可。
+
+如果没有java环境，在` https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html `下载安装。
+
+运行成功后跟上面Ubuntu下的的配置一模一样。mac端的设置是在`TeXstudio->preference`
+
