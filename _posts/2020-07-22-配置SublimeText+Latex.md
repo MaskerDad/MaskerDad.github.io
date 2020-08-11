@@ -92,7 +92,7 @@ TeXLive安装过程完全按照的 [Install-LaTeX.pdf](https://github.com/Osbert
 
 先配置一下
 
-1. 打开SumatraPDF点击`设置->选项`，
+1. 打开SumatraPDF点击`设置->选项`搜索命令行下面的框里输入
 
 2. 在`设置反向搜索命令行`下面的框里输入
 
@@ -101,6 +101,18 @@ TeXLive安装过程完全按照的 [Install-LaTeX.pdf](https://github.com/Osbert
    注意！！！
 
    sublime text的路径要用双引号括住，里面要用斜杠`/`分开，用反斜杠`\`就不行。都是踩的坑呀。
+   
+   > 2020.08.11更新
+   >
+   > 我发现有的时候安装，并没有`设置反向搜索命令行`这个选项，可能是版本问题？
+   >
+   > 解决方案：点击`设置->高级选项`，打开一个txt文本文件，在最后面加上一句
+   >
+   > ```shell
+   > InverseSearchCmdLine = "D:/Software/Sublime Text 3/sublime_text.exe"  "%f":"%l"
+   > ```
+   >
+   > 就好啦，效果跟上面是等价的。
 
 然后。在PDF文件里`双击`某个位置就好啦
 
@@ -119,3 +131,24 @@ TeXLive安装过程完全按照的 [Install-LaTeX.pdf](https://github.com/Osbert
 指定一下主tex文件是谁就好啦。
 
 > 注： ..的意思是上一层文件夹，所以../book.tex就是上一层文件夹的book.tex文件。根据自己的文件组织方式自行修改即可。
+
+### 2. 添加拼写检查
+
+点击`Preferences -> Settings`打开用户设置
+
+加上一行
+
+```shell
+"spell_check": true,
+```
+
+如果想改字体什么的加上
+
+```shell
+"caret_style": "phase",
+"font_face": "YaHei Consolas Hybrid",
+"font_size": 12,
+"highlight_line": true,
+"highlight_modified_tabs": true,
+```
+
