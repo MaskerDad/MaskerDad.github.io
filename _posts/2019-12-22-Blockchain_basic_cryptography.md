@@ -59,7 +59,19 @@ Blockchain is a linked list using hash pointers.
 
 Merkle tree就是把二分树(binary tree)的普通指针换成哈希指针的。对，没错，就这么简单。加上哈希值，就没办法篡改其中的内容了。
 
-
+> 2020.08.16更新
+>
+> 没时间更新这个课程的学习笔记了。
+>
+> 在这放上相关的学习资料，真的超级好的学习资料！！！北大肖臻老师讲的非常清楚
+>
+> B站视频：[www.bilibili.com/video/BV1Vt411X7JF](www.bilibili.com/video/BV1Vt411X7JF)
+>
+> 肖臻老师主页：[http://zhenxiao.com/](http://zhenxiao.com/) （有课件）
+>
+> 别人写的笔记：[https://www.bilibili.com/read/cv3915518](https://www.bilibili.com/read/cv3915518)  (真有毅力，有时间)
+>
+> 
 
 
 

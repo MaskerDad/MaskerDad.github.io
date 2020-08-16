@@ -120,7 +120,10 @@ typora-root-url: ..
    >
    > 如果真的用命令行版的向日葵，可以参考[向日葵LinuxTerminal帮助文档](https://service.oray.com/question/11017.html)
 
-   
+
+
+
+更多的配置参考[Ubuntu系统的安装与个性化配置](https://zpyang.gitee.io/2019/11/19/Ubuntu%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE/)
 
 
 
