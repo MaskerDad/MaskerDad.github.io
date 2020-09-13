@@ -36,6 +36,14 @@ C:\Program Files\Java\jre1.8.0_261\bin
 
 > 同样把bin文件夹添加到环境变量
 
+如果是2.44的版本，再在命令行中运行（之前的版本不需要）
+
+```
+dot -c
+```
+
+
+
 ### 3. 下载plantuml
 
 官网：[https://plantuml.com/zh/starting](https://plantuml.com/zh/starting)
