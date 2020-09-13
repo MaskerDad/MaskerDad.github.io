@@ -116,7 +116,7 @@ TeXLive安装过程完全按照的 [Install-LaTeX.pdf](https://github.com/Osbert
 
 然后。在PDF文件里`双击`某个位置就好啦
 
-### 四、使用技巧
+## 四、使用技巧
 
 ### 1. 分多个tex文件编写
 
@@ -152,3 +152,188 @@ TeXLive安装过程完全按照的 [Install-LaTeX.pdf](https://github.com/Osbert
 "highlight_modified_tabs": true,
 ```
 
+> 2020.8.27更新
+>
+> 发现写的太慢，找了点方便快捷的方法
+
+### 3. 添加补全命令
+
+也就是安装一个插件
+
+快捷键`Ctrl+Shift+P`->输入`install`->点击`Package Control: Install Package`->输入`LaTeX-cwl`->回车安装即可
+
+然后重启sublime就可以啦。按`\`后就有命令提醒啦
+
+![cwl](/images/posts/2020-07-22/cwl.png)
+
+### 4. 添加snippet代码段
+
+snippet就是实现了一个狸猫换太子，用一个单词就能插入一段代码
+
+1. 新建一个snippet
+
+![snippet1](/images/posts/2020-07-22/snippet1.png)
+
+2. 插入代码
+
+   ```html
+   <snippet>
+       <!-- 快速补全的内容 -->
+       <!-- 1表示第一个输入点，1后加冒号和字符表示默认值 -->
+       <!-- 如System.out.println(${1:"Hello World"})，可输入多行代码 -->
+        <!-- 比如我这里就设置了三行代码，光标放在中间，没有默认值 -->
+       <content><![CDATA[
+       	\begin{equation}  
+       	${1}
+       	\end{equation}
+       	]]></content>
+       <!-- 触发字符 -->
+       <!-- 这个输入前面equ也可以触发的 -->
+       <tabTrigger>equation</tabTrigger>
+       <!-- 指定的语法才会触发，可选 -->
+       <!-- 必须把完整的语言名写在后缀中 -->
+       <scope>text.tex</scope>
+       <!-- 触发时的提示 -->
+       <description>Latex equation</description>
+   </snippet>
+   ```
+
+   我也暂时试了这一个，之后再慢慢加其他。
+
+   注意`scope`指定语法还是很有必要的，我在本节最后收藏一下所有编程语言的关键字
+
+3. 保存这个snippet，注意文件的后缀名一定要是`.sublime-snippet`, 文件名可自行选择
+
+4. 重启后就可以使用啦
+
+
+
+`scope`关键字
+
+> ActionScript: source.actionscript.2
+>
+> AppleScript: source.applescript
+>
+> ASP: source.asp
+>
+> Batch FIle: source.dosbatch
+>
+> C#: source.cs
+>
+> C++: source.c++
+>
+> Clojure: source.clojure
+>
+> CoffeeScript: source.coffee
+>
+> CSS: source.css
+>
+> D: source.d
+>
+> Diff: source.diff
+>
+> Erlang: source.erlang
+>
+> Go: source.go
+>
+> GraphViz: source.dot
+>
+> Groovy: source.groovy
+>
+> Haskell: source.haskell
+>
+> HTML: text.html(.basic)
+>
+> JSP: text.html.jsp
+>
+> Java: source.java
+>
+> Java Properties: source.java-props
+>
+> Java Doc: text.html.javadoc
+>
+> JSON: source.json
+>
+> Javascript: source.js
+>
+> BibTex: source.bibtex
+>
+> Latex Log: text.log.latex
+>
+> Latex Memoir: text.tex.latex.memoir
+>
+> Latex: text.tex.latex
+>
+> LESS: source.css.less
+>
+> TeX: text.tex
+>
+> Lisp: source.lisp
+>
+> Lua: source.lua
+>
+> MakeFile: source.makefile
+>
+> Markdown: text.html.markdown
+>
+> Multi Markdown: text.html.markdown.multimarkdown
+>
+> Matlab: source.matlab
+>
+> Objective-C: source.objc
+>
+> Objective-C++: source.objc++
+>
+> OCaml campl4: source.camlp4.ocaml
+>
+> OCaml: source.ocaml
+>
+> OCamllex: source.ocamllex
+>
+> Perl: source.perl
+>
+> PHP: source.php
+>
+> Regular Expression(python): source.regexp.python
+>
+> Python: source.python
+>
+> R Console: source.r-console
+>
+> R: source.r
+>
+> Ruby on Rails: source.ruby.rails
+>
+> Ruby HAML: text.haml
+>
+> SQL(Ruby): source.sql.ruby
+>
+> Regular Expression: source.regexp
+>
+> RestructuredText: text.restructuredtext
+>
+> Ruby: source.ruby
+>
+> SASS: source.sass
+>
+> Scala: source.scala
+>
+> Shell Script: source.shell
+>
+> SQL: source.sql
+>
+> Stylus: source.stylus
+>
+> TCL: source.tcl
+>
+> HTML(TCL): text.html.tcl
+>
+> Plain text: text.plain
+>
+> Textile: text.html.textile
+>
+> XML: text.xml
+>
+> XSL: text.xml.xsl
+>
+> YAML: source.yaml
