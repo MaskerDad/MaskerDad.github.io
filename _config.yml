@@ -4,7 +4,7 @@ subtitle: Personal Blog
 keywords: yzp
 description: Never Give Up
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # 你的域名
+url: masker.org.edu.kg # 你的域名
 page_no_title: "Zq's blog" # 文章无标题时默认显示内容
 beian: # "备案号"
 author: Zhou Quan
@@ -70,13 +70,13 @@ links: # 友情链接
 
 # Google Analytics
 ga_track_id: #'UA-130856615-1'            # Format: UA-xxxxxx-xx
-ga_domain: #www.oukohou.wang              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+ga_domain: masker.org.edu.kg              # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 # Code hub settings
 codehub: # 代码仓库
   - title:# Github
-    url:# https://github.com/oukohou
+    url: https://github.com/MaskerDad
 
 
 valine:
