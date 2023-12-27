@@ -1,14 +1,14 @@
 # Site settings
-title: Zhan Peng’s Bolg
+title: Zq’s Bolg
 subtitle: Personal Blog
 keywords: yzp
-description: 得之吾幸，失之我命。
+description: Never Give Up
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # 你的域名
-page_no_title: "Zhan Peng's blog" # 文章无标题时默认显示内容
+page_no_title: "Zq's blog" # 文章无标题时默认显示内容
 beian: # "备案号"
-author: Yang Zhanpeng
-email: albert.yzp@gmail.com
+author: Zhou Quan
+email: zhouquan1511@163.com
 
 # Build settings
 permalink: /:year/:month/:day/:title/
