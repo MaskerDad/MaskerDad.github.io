@@ -76,7 +76,7 @@ ga_domain: masker.org.edu.kg              # 默认的是 auto, 这里我是自�
 # Code hub settings
 codehub: # 代码仓库
   - title:# Github
-    url: https://github.com/MaskerDad
+    url:# https://github.com/MaskerDad
 
 
 valine:
