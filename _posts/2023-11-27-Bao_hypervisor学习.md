@@ -3,9 +3,9 @@ title: Bao_hypervisor学习
 
 date: 2023-11-27 17:00:00 +0800
 
-categories: [开源项目, Bao_hypervisor]
+categories: [bao-project学习]
 
-tags: [Bao_hypervisor, riscv64]
+tags: [hypervisor]
 
 description: 
 ---
