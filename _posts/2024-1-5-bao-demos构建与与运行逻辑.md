@@ -30,7 +30,61 @@ bao 是一个轻量级的基于静态分区架构的 Type-I hypervisor，[论文
 
 # 1 bao-demos测试
 
-- [ ] TODO
+> 1）安装依赖
+
+```shell
+sudo apt install build-essential bison flex git libssl-dev ninja-build \
+    u-boot-tools pandoc libslirp-dev pkg-config libglib2.0-dev libpixman-1-dev \
+    gettext-base curl xterm cmake python3-pip xilinx-bootgen
+
+pip3 install pykwalify packaging pyelftools
+```
+
+> 2）下载并设置编译工具链
+
+RISC-V，使用 **riscv64-unknown-elf-** 工具链：[SiFive's Freedom Tools](https://github.com/sifive/freedom-tools/releases) 
+
+下载并安装，然后设置  **CROSS_COMPILE**  环境变量为工具链所在路径的前缀：
+
+```shell
+export CROSS_COMPILE=/path/to/toolchain/install/dir/bin/your-toolchain-prefix-
+```
+
+> 3）搭建基础编译环境
+
+```shell
+git clone https://github.com/bao-project/bao-demos
+cd bao-demos
+export PLATFORM=qemu-riscv64-virt
+export DEMO=baremetal
+```
+
+> 4）编译运行
+
+```shell
+make -j$(nproc)
+make run
+```
+
+---
+
+以上直接使用 `bao-demos` 提供的Makefile进行自动化构建，项目还提供了一个[step-by-step](https://github.com/bao-project/bao-demos#b-follow-the-step-by-step-guide)的文档。
+
+---
+
+看一下运行结果，以两种guest组合为例：`baremetal/linux+freertos`
+
+> DEMO=baremetal
+
+
+
+
+
+> DEMO=linux+freertos
+
+
+
+
 
 # 2 bao-demos构建运行逻辑
 

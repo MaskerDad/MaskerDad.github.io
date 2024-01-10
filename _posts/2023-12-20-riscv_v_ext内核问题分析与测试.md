@@ -3,9 +3,9 @@ title: riscv_v_ext内核问题分析与测试
 
 date: 2023-12-20 17:00:00 +0800
 
-categories: [linux内核学习, vector扩展系列]
+categories: [SIMD内核支持]
 
-tags: [virt, qemu, kvm]
+tags: [vector]
 
 description: 
 ---
