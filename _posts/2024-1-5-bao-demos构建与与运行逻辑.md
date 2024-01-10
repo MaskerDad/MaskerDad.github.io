@@ -72,23 +72,175 @@ make run
 
 ---
 
-看一下运行结果，以两种guest组合为例：`baremetal/linux+freertos`
+跑一遍编译运行过程，以两种guest组合为例：`baremetal/linux+freertos`
 
 > DEMO=baremetal
 
+`make -j$(nproc)`
 
+```shell
+make -C /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/baremetal PLATFORM=qemu-riscv64-virt  
+make[1]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+make[1]: Entering directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/baremetal'
+make[1]: Nothing to be done for 'all'.
+make[1]: Leaving directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/baremetal'
+cp /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/baremetal/build/qemu-riscv64-virt/baremetal.bin /home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/baremetal.bin
+cp -L /home/zq/contents/objs/bao-project/bao-demos/demos/baremetal/configs/qemu-riscv64-virt.c /home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/config/baremetal.c
+make -C /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/bao\
+	PLATFORM=qemu-riscv64-virt\
+	CONFIG_REPO=/home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/config\
+	CONFIG=baremetal \
+	CPPFLAGS=-DBAO_DEMOS_WRKDIR_IMGS=/home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal
+make[1]: Entering directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/bao'
+Creating directory	 build/qemu-riscv64-virt/baremetal/arch/riscv/inc
+Creating directory	 build/qemu-riscv64-virt/baremetal/scripts
+Creating directory	 build/qemu-riscv64-virt/baremetal/config
+Creating directory	 build/qemu-riscv64-virt/baremetal/platform
+Creating directory	 build/qemu-riscv64-virt/baremetal
+Creating directory	 build/qemu-riscv64-virt/baremetal/platform/drivers/sbi_uart
+Creating directory	 build/qemu-riscv64-virt/baremetal/platform/qemu-riscv64-virt
+Creating directory	 build/qemu-riscv64-virt/baremetal/core/mmu
+Creating directory	 build/qemu-riscv64-virt/baremetal/core
+Creating directory	 build/qemu-riscv64-virt/baremetal/lib
+Generating header	 build/qemu-riscv64-virt/baremetal/arch/riscv/inc/asm_defs.h
+Compiling generator	 build/qemu-riscv64-virt/baremetal/scripts/config_defs_gen
+Compiling generator	 build/qemu-riscv64-virt/baremetal/scripts/platform_defs_gen
+Generating header	 build/qemu-riscv64-virt/baremetal/config/config_defs_gen.h
+Generating header	 build/qemu-riscv64-virt/baremetal/platform/platform_defs_gen.h
+Creating dependency	 build/qemu-riscv64-virt/baremetal/config/baremetal
+Creating dependency	 build/qemu-riscv64-virt/baremetal/arch/riscv/inc/asm_defs.h
+Creating dependency	 src/linker.ld
+Creating dependency	 src/platform/drivers/sbi_uart/sbi_uart.c
+Creating dependency	 src/platform/qemu-riscv64-virt/virt_desc.c
+Creating dependency	 src/core/mmu/vm.c
+Creating dependency	 src/core/mmu/vmm.c
+Creating dependency	 src/core/mmu/io.c
+Creating dependency	 src/core/mmu/mem.c
+Creating dependency	 src/core/hypercall.c
+Creating dependency	 src/core/objpool.c
+Creating dependency	 src/core/ipc.c
+Creating dependency	 src/core/console.c
+Creating dependency	 src/core/config.c
+Creating dependency	 src/core/vm.c
+Creating dependency	 src/core/vmm.c
+Creating dependency	 src/core/cpu.c
+Creating dependency	 src/core/interrupts.c
+Creating dependency	 src/core/cache.c
+Creating dependency	 src/core/mem.c
+Creating dependency	 src/core/init.c
+Creating dependency	 src/lib/printk.c
+Creating dependency	 src/lib/bitmap.c
+Creating dependency	 src/lib/string.c
+Creating dependency	 src/arch/riscv/relocate.S
+Creating dependency	 src/arch/riscv/iommu.c
+Creating dependency	 src/arch/riscv/cache.c
+Creating dependency	 src/arch/riscv/cpu.c
+Creating dependency	 src/arch/riscv/sync_exceptions.c
+Creating dependency	 src/arch/riscv/vplic.c
+Creating dependency	 src/arch/riscv/interrupts.c
+Creating dependency	 src/arch/riscv/plic.c
+Creating dependency	 src/arch/riscv/vmm.c
+Creating dependency	 src/arch/riscv/vm.c
+Creating dependency	 src/arch/riscv/mem.c
+Creating dependency	 src/arch/riscv/page_table.c
+Creating dependency	 src/arch/riscv/sbi.c
+Creating dependency	 src/arch/riscv/root_pt.S
+Creating dependency	 src/arch/riscv/exceptions.S
+Creating dependency	 src/arch/riscv/boot.S
+Generating header	 build/qemu-riscv64-virt/baremetal/arch/riscv/inc/asm_defs.h
+Creating dependency	 src/arch/riscv/relocate.S
+Creating dependency	 src/arch/riscv/exceptions.S
+Creating dependency	 src/arch/riscv/boot.S
+Compiling source	 src/arch/riscv/boot.S
+Compiling source	 src/arch/riscv/exceptions.S
+Compiling source	 src/arch/riscv/root_pt.S
+Compiling source	 src/arch/riscv/sbi.c
+Compiling source	 src/arch/riscv/page_table.c
+Compiling source	 src/arch/riscv/mem.c
+Compiling source	 src/arch/riscv/vm.c
+Compiling source	 src/arch/riscv/vmm.c
+Compiling source	 src/arch/riscv/plic.c
+Compiling source	 src/arch/riscv/interrupts.c
+Compiling source	 src/arch/riscv/sync_exceptions.c
+Compiling source	 src/arch/riscv/vplic.c
+Compiling source	 src/arch/riscv/cpu.c
+Compiling source	 src/arch/riscv/cache.c
+Compiling source	 src/arch/riscv/iommu.c
+Compiling source	 src/arch/riscv/relocate.S
+Compiling source	 src/lib/string.c
+Compiling source	 src/lib/printk.c
+Compiling source	 src/lib/bitmap.c
+Compiling source	 src/core/init.c
+Compiling source	 src/core/mem.c
+Compiling source	 src/core/cache.c
+Compiling source	 src/core/interrupts.c
+Compiling source	 src/core/cpu.c
+Compiling source	 src/core/vmm.c
+Compiling source	 src/core/vm.c
+Compiling source	 src/core/config.c
+Compiling source	 src/core/console.c
+Compiling source	 src/core/ipc.c
+Compiling source	 src/core/objpool.c
+Compiling source	 src/core/hypercall.c
+Compiling source	 src/core/mmu/mem.c
+Compiling source	 src/core/mmu/io.c
+Compiling source	 src/core/mmu/vmm.c
+Compiling source	 src/core/mmu/vm.c
+Compiling source	 src/platform/qemu-riscv64-virt/virt_desc.c
+Compiling source	 src/platform/drivers/sbi_uart/sbi_uart.c
+Compiling source	/home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/config/baremetal.c
+Pre-processing		 src/linker.ld
+Creating directory	 bin/qemu-riscv64-virt/baremetal
+Linking			 bin/qemu-riscv64-virt/baremetal/bao.elf
+Generating binary	 bin/qemu-riscv64-virt/baremetal/bao.bin
+make[1]: Leaving directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/bao'
+cp /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/bao/bin/qemu-riscv64-virt/baremetal/bao.bin /home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/bao.bin
+make -C /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/opensbi PLATFORM=generic FW_PAYLOAD=y FW_PAYLOAD_FDT_ADDR=0x80100000 FW_PAYLOAD_PATH=/home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/bao.bin
+make[1]: warning: jobserver unavailable: using -j1.  Add '+' to parent make rule.
+make[1]: Entering directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/opensbi'
+ AS        platform/generic/firmware/fw_payload.o
+ ELF       platform/generic/firmware/fw_payload.elf
+ OBJCOPY   platform/generic/firmware/fw_payload.bin
+make[1]: Leaving directory '/home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/opensbi'
+cp /home/zq/contents/objs/bao-project/bao-demos/wrkdir/srcs/opensbi/build/platform/generic/firmware/fw_payload.elf /home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/opensbi.elf
 
+To start qemu execute "make PLATFORM=qemu-riscv64-virt DEMO=baremetal run"
+```
 
+`make run`
+
+```shell
+--------------------------------------------------------------------------------
+/bin/bash: line 1: pandoc: command not found
+--------------------------------------------------------------------------------
+qemu-system-riscv64 -nographic\
+	-M virt -cpu rv64 -m 4G -smp 4\
+	-bios /home/zq/contents/objs/bao-project/bao-demos/wrkdir/imgs/qemu-riscv64-virt/baremetal/opensbi.elf\
+	-device virtio-net-device,netdev=net0\
+	-netdev user,id=net0,net=192.168.42.0/24,hostfwd=tcp:127.0.0.1:5555-:22\
+	-device virtio-serial-device -chardev pty,id=serial3 -device virtconsole,chardev=serial3\
+	-S
+char device redirected to /dev/pts/4 (label serial3)
+...
+```
+
+开启一个新终端，然后建立连接：
+
+```shell
+pyserial-miniterm --filter=direct /dev/pts/4
+```
+
+在qemu窗口中按住 `CTRL + A + C`，可以看到：
+
+[Bao-Baremetal](https://asciinema.org/a/613609)
 
 > DEMO=linux+freertos
 
-
-
-
+[Bao-Baremetal + Linux](https://asciinema.org/a/620804)
 
 # 2 bao-demos构建运行逻辑
 
-`bao-demos` 跑起来只需要执行几条命令就好，但项目编译运行的过程中有大量依赖关系，将整个逻辑梳理清楚是非常必要的。
+`bao-demos` 跑起来只需要执行几条命令，但项目编译运行的过程中有着比较复杂的依赖关系，将整个逻辑梳理清楚是非常必要的。
 
 ## 2.1 项目结构
 
