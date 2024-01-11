@@ -196,7 +196,7 @@ arch  core  lib  linker.ld  platform
 
 ## 1.2 简单梳理
 
-先梳理一下主干吧，从 `arch/riscv/boot.S` 开始：
+先梳理一下主干，从 `arch/riscv/boot.S` 开始：
 
 ```assembly
 _reset_handler
@@ -251,7 +251,147 @@ init
     +-> vmm_init
 ```
 
+---
 
+### cpu_init
+
+```c
+// core/
+cpu_init
+    +-> cpu_arch_init
+    	+-> if (cpuid == CPU_MASTER)
+            +-> sbi_init
+            	+-> sbi_get_spec_version
+            	+-> sbi_probe_extension
+            	+-> interrupts_reserve
+            +-> for 0..paltform.cpu_num
+                	if cur.hartid is minior_hart:
+						sbi_hart_start(...)
+                        // wake up other harts!
+    +-> if (cpu_is_master())
+        // don't wake up other hart here!
+```
+
+唤醒从核。
+
+---
+
+### mem_init
+
+```c
+mem_init
+    +-> mem_port_init
+    +-> if(cpu_is_master)
+       	+-> mem_setup_root_pool
+        +-> mem_create_ppools
+    +-> cpu_sync_and_clear_msgs(&cpu_glb_sync);
+    /* Wait for master core to initialize memory management */
+```
+
+---
+
+### console_init
+
+```c
+void console_init()
+{
+    if (cpu_is_master()) {
+        if ((platform.console.base & PAGE_OFFSET_MASK) != 0) {
+            WARNING("console base must be page aligned");
+        }
+
+        uart = (void*)mem_alloc_map_dev(&cpu()->as, SEC_HYP_GLOBAL, INVALID_VA,
+            platform.console.base, NUM_PAGES(sizeof(*uart)));
+
+        fence_sync_write();
+
+        uart_init(uart);
+        uart_enable(uart);
+
+        console_ready = true;
+    }
+
+    cpu_sync_and_clear_msgs(&cpu_glb_sync);
+}
+```
+
+uart驱动
+
+---
+
+### interrupt_init
+
+```c
+interrupts_init
+    +-> interrupts_arch_init
+    	+-> if(cpu_is_master)
+            +-> irqc_init
+            	+-> aplic_init
+            +-> aclint_init
+      	/* Wait for master hart to finish irqc initialization */
+        +-> irqc_cpu_init
+           	+-> aplic_idc_init
+        +-> CSRS(sie, SIE_SEIE)
+    +-> interrupts_cpu_enable
+    	+-> interrupts_arch_enable
+```
+
+外部、本地中断控制器 `aplic/aclint` 初始化，中断使能。
+
+### vmm_init
+
+```c
+vmm_init
+    +-> vmm_arch_init
+    	* Delegate all interrupts and exceptions not meant to be dealt by the hypervisor
+    	* enable the stimer interrupt
+    +-> vmm_io_init
+    	+-> io_init
+    		+-> iommu_arch_init
+    			+-> rv_iommu_init()
+    			/* Init and enable RISC-V IOMMU. */
+    +-> ipc_init
+    	if(cpu_is_master)
+        +-> ipc_alloc_sheme()
+    /* vm */
+    +-> vmm_alloc_install_vm
+        +-> vmm_alloc_vm
+        +-> vmm_vm_install
+    +-> vm_init
+        +-> vm_allocation_init
+        +-> vm_master_init
+            /* Before anything else, initialize vm structure.c */
+        +-> vm_cpu_init
+            /* Initialize each core. */
+        +-> vm_vcpu_init
+            /* Initialize each virtual core. */
+        +-> vm_arch_init
+            /**
+     		 * Perform architecture dependent initializations. This includes, for example, setting the page
+             * table pointer and other virtualization extensions specifics.
+             */
+        +-> if(master)
+            /**
+     		 * Create the VM's address space according to configuration and where its image was loaded.
+             */
+            +-> vm_init_mem_regions
+            +-> vm_init_dev
+        	+-> vm_init_ipc
+    +-> vcpu_run(cpu()->vcpu)
+        +-> vcpu_arch_run
+            +-> vcpu_arch_entry
+            	+-> VM_ENTRY
+
+void vmm_vm_install(struct vm_install_info* install_info)
+{
+    pte_t* pte = pt_get_pte(&cpu()->as.pt, 0, (vaddr_t)install_info->base);
+    *pte = install_info->vm_section_pte;
+}
+```
+
+## 1.3 总结
+
+整体看了一下，bao-hypervisor的hart应该和guest存在一种绑定关系，不会出现guest在多个hart间迁移的情况，因此代码中并没有出现和 `vs_*` 寄存器相关的 `load/restore` 工作。后续准备看看相关论文、资料。
 
 
 
