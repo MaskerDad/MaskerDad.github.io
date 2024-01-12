@@ -21,7 +21,7 @@ description:
 
 # 1 背景
 
-这是一个关于在RISC-V Linux内核中添加向量支持的补丁集。在这个实现中，有一些假设：
+[[PATCH -next v21 00/27\] riscv: Add vector ISA support - Andy Chiu (kernel.org)](https://lore.kernel.org/all/20230605110724.21391-1-andy.chiu@sifive.com/)在这个实现中，有一些假设：
 
 1. 我们假设系统中的所有harts都具有相同的ISA。
 2. 默认情况下，我们在内核和用户空间中禁用向量。只有在一个非法指令陷阱（第一次使用陷阱）中，实际开始执行向量后，才启用用户的向量。
@@ -39,17 +39,6 @@ description:
 
 * vector的Trap处理
 * vector的上下文保存与恢复
-
-相关PATCH:
-
-* [Disable Vector Instructions for kernel itself](https://lore.kernel.org/all/20230518161949.11203-7-andy.chiu@sifive.com/)
-* [Introduce Vector enable/disable helpers](https://lore.kernel.org/all/20230518161949.11203-8-andy.chiu@sifive.com/)
-* [Introduce struct/helpers to save/restore per-task Vector state](https://lore.kernel.org/all/20230518161949.11203-10-andy.chiu@sifive.com/)
-* [Add task switch support for vector](https://lore.kernel.org/all/20230518161949.11203-11-andy.chiu@sifive.com/)
-* [Allocate user's vector context in the first-use trap](https://lore.kernel.org/all/20230518161949.11203-12-andy.chiu@sifive.com/)
-* [signal: Add sigcontext save/restore for vector](https://lore.kernel.org/all/20230518161949.11203-15-andy.chiu@sifive.com/)
-* [KVM: Add vector lazy save/restore support](https://lore.kernel.org/all/20230518161949.11203-20-andy.chiu@sifive.com/)
-* [Add documentation for Vector](https://lore.kernel.org/all/20230518161949.11203-25-andy.chiu@sifive.com/)
 
 # 2 解析
 

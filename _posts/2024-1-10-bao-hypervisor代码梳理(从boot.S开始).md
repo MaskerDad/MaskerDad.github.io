@@ -86,7 +86,7 @@ _reset_handler:
 _boot_lock:
     .4byte 0
 .popsection
-    la      t0, _boot_lock
+    la      t0, _boot_lock  
     li      t1, 1
 1:
     lr.w    t2, (t0)
@@ -99,12 +99,91 @@ _boot_lock:
 #endif
 ```
 
-这段代码是根据是否定义了 CPU_MASTER_FIXED 宏来选择不同的代码路径。
+[riscv原子指令分析 | Sherlock's blog (wangzhou.github.io)](https://wangzhou.github.io/riscv原子指令分析/)
 
-如果定义了 CPU_MASTER_FIXED 宏，将执行第一个代码块。在该代码块中，首先将 CPU_MASTER 地址加载到寄存器 t0 中，然后将 CPU_MASTER_FIXED 的值加载到寄存器 t1 中，最后将寄存器 t1 的值存储到寄存器 t0 所指向的地址中。
+以上代码片段用于 `master_hart` 的设置，其中 `lr/sc` 配合可以实现汇编级的锁操作：
 
-如果没有定义 CPU_MASTER_FIXED 宏，将执行第二个代码块。在该代码块中，首先定义一个名为 _boot_lock 的 4 字节变量，并将其初始化为 0。然后将 _boot_lock 的地址加载到寄存器 t0 中，将值 1 加载到寄存器 t1 中。
+* 如果定义了 `CPU_MASTER_FIXED`，即预先定义了主hart的ID，直接将 `CPU_MASTER_FIXED` 值写入 `CPU_MASTER` 变量中；
 
-接下来，使用 load-reserved/store-conditional（lr/sc）指令序列来尝试获取锁。首先使用 lr 指令将寄存器 t2 加载为寄存器 t0 所指向的地址的值，然后使用 bnez 指令检查寄存器 t2 的值是否为非零。如果非零，表示锁已被其他 hart 获取，跳转到标签 2: 处。如果为零，表示锁可用，使用 sc 指令尝试将寄存器 t1 的值存储到寄存器 t0 所指向的地址中。如果存储成功，跳转到标签 2: 处。如果存储失败，表示其他 hart 已经获取了锁，使用 bnez 指令跳转到标签 1: 处重新尝试获取锁。
+* 如果没定义 `CPU_MASTER_FIXED`，则写了一段汇编限制 “首先获取锁的hart” 作为主hart，具体实现：
 
-最后，跳转到标签 2: 处，将 a0 的值存储到 CPU_MASTER 地址中。如果未定义 CPU_MASTER_FIXED 宏，则该代码块将为首个获取锁的 hart 标记为 CPU_MASTER。
+  * 定义了 `_boot_lock` 变量并初始化为0，该变量表示主hart是否已经设置成功，为0表示未成功，为1表示成功；
+
+    * `bnez t2, 2f`，如果不是0就直接向后跳转到标签2处，无需执行主hart设置逻辑；
+
+    > 当然 `_boot_lock` 只能限制那些执行该指令前的harts，对于几乎同步执行 sc.w 的harts来说起不到限制。
+
+  * `lr.w/sc.w` 配合使用，`lr.w` 执行时会给加载地址打上一个flag，`sc.w` 首先会看这个flag是否被清除：
+
+    * 没有被清除就执行后续的保存动作，这里就是将t1的值保存到 `_boot_lock` 中，也就是说首个执行这条指令的hart被选中做了主hart，主hart设置成功，最后将t2设置为0表示指令执行成功；
+    * 如果flag被清除了， 则直接设置t2为一个非零值表示指令执行失败，其它harts执行该指令时都会失败；
+
+  * 然后，对于主hart的后续逻辑，将 `a0(hart_id)` 保存到 `CPU_MASTER` 中；对于其它harts则向前跳转至标签1；
+
+  * 对于那些重新回到标签1的harts，又会重新加载一遍 `_boot_lock` 的值，但此时该值已经被更新为1了，直接向后跳转至标签2；
+
+实际上，对于多hart执行流来说，其上代码限制了两种情况：
+
+1. 当主hart设置成功后，仍未执行 `lr.w` 的harts；
+2. 多个hart都执行了 `lr.w`，但还未执行 `sc.w`，它们读到的 `_boot_lock` 都是未修改的0，因此 `bnez t2, 2f`并不会跳转到标签2执行；
+
+至此，`CPU_MASTER` 被设置了唯一的主hart id，后续我们可以根据 `CPU_MASTER` 和 `a0` 寄存器的差异来执行不同的逻辑。
+
+---
+
+```assembly
+2:
+#endif
+   	/* Setup bootstrap page tables. Assuming sv39 support. */ 
+ 	/* Skip initialy global page tables setup if not hart */
+    LD_SYM  t0, CPU_MASTER
+	bne     a0, t0, wait_for_bsp   
+
+ 	la	    a3, _page_tables_start	
+	la	    a4, _page_tables_end	
+    add     a3, a3, s6
+    add     a4, a4, s6
+	call	clear		 
+
+    la          t0, root_l1_pt
+    add         t0, t0, s6
+    la          t1, root_l2_pt
+    add         t1, t1, s6
+    PTE_FILL    t1, t1, PTE_TABLE
+    li          t2, BAO_VAS_BASE
+    PTE_PTR     t2, t0, 1, t2
+    STORE       t1, 0(t2)
+
+
+    la          t0, root_l2_pt
+    add         t0, t0, s6
+    LD_SYM      t1, _image_start_sym
+    PTE_PTR     t1, t0, 2, t1
+    LD_SYM      t2, _image_load_end_sym
+    PTE_PTR     t2, t0, 2, t2
+
+    la          t0, _image_start
+    PTE_FILL    t0, t0, PTE_HYP_FLAGS | PTE_PAGE
+1:
+    bge     t1, t2, 2f
+    STORE   t0, 0(t1)
+    add     t1, t1, 8
+    add     t0, t0, 0x400
+    j       1b
+2:
+    la          t0, root_l2_pt
+    add         t0, t0, s6
+    LD_SYM      t2, _image_end_sym
+    PTE_PTR     t2, t0, 2, t2
+    bge         t1, t2, 3f
+    la          t0, _image_noload_start
+    PTE_FILL    t0, t0, PTE_HYP_FLAGS | PTE_PAGE
+    j 1b
+3:
+    fence   w, w
+    la      t0, _barrier
+    li      t1, 1
+    STORE   t1, 0(t0)
+    j       map_cpu
+```
+
