@@ -731,7 +731,7 @@ fn main() {
   - **break 可以单独使用，也可以带一个返回值**，有些类似 `return`
   - **loop 是一个表达式**，因此可以返回一个值
 
-## 2.4 //TODO: 模式匹配
+## 2.4 模式匹配
 
 ### match/if let
 
@@ -745,43 +745,132 @@ fn test_match() {
         ChangeRGB(u16, u16, u16),
     }
     
+    let actions = [
+        Action::Say(String::from("rust")),
+        Action::MoveTo(1, 2),
+        Action::ChangeRGB(6, 6, 6);
+    ];
     
+    for action in actions {
+        match action {
+            Action::say(x) => {
+                println!("say: {}", x);
+            }
+            Action::MOveTo(x, y) => {
+                println!("moveto: ({}, {})", x, y);
+            }
+            Action::ChangeRGB(x, y, z) => {
+                println!("change_rgb: ({}, {}, {})", x, y, z);
+            }
+        }
+    }
 }
 
 fn test_if_let() {
-    
+    let v = Some(3u8);
+    if let Some(3) = v {
+        println!("v = three");
+    }
 }
 ```
 
 * 对于 `match`，用于替代 `if/else if/else` 处理多分支情况过于繁琐:
   - `match` 的匹配必须要穷举出所有可能，因此这里用 `_` 来代表未列出的所有可能性
   - `match` 的每一个分支都必须是一个表达式，且所有分支的表达式最终返回值的类型必须相同
-* 对于 `if let`，用于只有一个模式的值需要被处理，其它值直接忽略的场景:
-  * 
+* 对于 `if let`，用于只有一个模式的值需要被处理，其它值直接忽略的场景；
+* `match` 最好不要使用同名，避免变量遮蔽；
 
-
-
-
-
-### 全模式列表
-
-
-
-
+### //TODO: 全模式列表
 
 
 
 ## 2.5 格式化输出
 
+`println!` 宏接受的是可变参数，第一个参数是一个字符串常量，它表示最终输出字符串的格式，包含其中形如 `{}` 的符号是**占位符**，会被 `println!` 后面的参数依次替换。
+
+```rust
+fn main() {
+    let s1 = "hello";
+    let s2 = format!("{}, rust", s1);
+    println!("{}", s2);
+}
+```
+
+### 关于占位符 {}/{:?}
+
+与其它语言常用的 `%d`，`%s` 不同，Rust 特立独行地选择了 `{}` 作为格式化占位符。它帮助用户减少了很多使用成本，你无需再为特定的类型选择特定的占位符，统一用 `{}` 来替代即可，剩下的类型推导等细节只要交给 Rust 去做。
+
+- `{}` 适用于实现了 `std::fmt::Display` 特征的类型，用来以更优雅、更友好的方式格式化文本，例如展示给用户；
+- `{:?}` 适用于实现了 `std::fmt::Debug` 特征的类型，用于调试场景；
+
+```rust
+//Debug
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+fn test_debug() {
+    let p = Person{name: "rust".to_string(), age: 6};
+    println!("{:?}", p);
+}
+
+//Display
+use std::fmt::{Display, Formatter, Result};
+impl Display for Person {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        write!(f, "name:{}, age:{}", self.name, self.age)
+    }
+}
+
+fn test_display() {
+    let p = Person{name: "rust", age: 6};
+    println!("{}", p);
+}
+```
+
+### 输出参数
+
+* 位置参数：还能让指定位置的参数去替换某个占位符
+* 具名参数：需要注意的是：**带名称的参数必须放在不带名称参数的后面**
+* 格式化参数：进制、指针地址、转义
+
+```rust
+fn main() {
+    println!("{1}{}{0}{}", 1, 2); //2112
+    println!("{name}{}", 1, name = 2) //21
+    println!("{:#x}", 27); //0x1b
+    println!("{:#X}", 27); //0x1B
+    
+    let v = vec![1, 2, 4];
+    println!("{:p}", v.as_ptr());
+    
+    println!("hello \"{{rust}}\" ");
+}
+```
 
 
 
+# 3 泛型和特征
 
-# 3 模块系统
+## 3.1 Generics
+
+## 3.2 Trait_0
+
+## 3.3 特征对象
+
+## 3.4 Trait_1
 
 
 
-# 4  生命周期
+# 4 生命周期
+
+## 4.1 初识
+
+## 4.2 深入
+
+## 4.3 关于static
 
 
 
@@ -794,3 +883,8 @@ fn test_if_let() {
 
 
 # 7 全局变量
+
+
+
+# 8 模块系统
+
