@@ -850,17 +850,230 @@ fn main() {
 }
 ```
 
-
-
 # 3 泛型和特征
 
 ## 3.1 Generics
 
+```rust
+//function
+fn add<T>(a: T, b: T) -> T 
+where
+	T: std::ops::Add<Output = T>
+{
+    a + b
+}
+
+//struct
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+fn test_struct() {
+    let p1 = Point {x: 1, y: 2};
+    let p2 = Ponit {x: 1.0, y: 2.0};
+}
+
+//methods
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+impl Point<f32> {
+    fn dis_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
+//const
+fn display_arr<T: std::fmt::Debug, const N: usize>(arr: [T; N]) {
+    println!("{:?}", arr);
+}
+
+fn test_const() {
+    let arr: [i32; 3] = [1, 2, 3];
+    display_arr(arr);
+    let arr: [i32; 2] = [1, 2];
+    display_arr(arr);
+}
+```
+
+* 函数：涉及操作符时注意添加特征约束
+* 枚举：`Option<T>/Result<T, E>`
+* 方法：
+  * 需要提前声明：`impl<T>`，只有提前声明了，我们才能在`Point<T>`中使用它，这样 Rust 就知道 `Point` 的尖括号中的类型是泛型而不是具体类型；
+  * 我们可以针对特定的泛型类型实现某个特定的方法，对于其它泛型类型则没有定义该方法；
+* 针对值的泛型，`const`
+
+---
+
+关于泛型的性能：
+
+在 Rust 中泛型是零成本的抽象，意味着你在使用泛型时，完全不用担心性能上的问题。
+
+但是任何选择都是权衡得失的，既然我们获得了性能上的巨大优势，那么又失去了什么呢？Rust 是在编译期为泛型对应的多个类型，生成各自的代码，因此损失了编译速度和增大了最终生成文件的大小。
+
 ## 3.2 Trait_0
 
-## 3.3 特征对象
+### 基本使用
+
+特征定义了**一组可以被共享的行为，只要实现了特征，你就能使用这组行为**。
+
+```rust
+pub trait Say {
+    fn saying(&self) -> String;
+}
+
+pub struct Speaker {
+    name: String,
+    age: u32,
+    word: String,
+}
+
+impl Say for Speaker {
+    fn saying(&self) -> String {
+        format!("name:{}, saying:{}", self.name, self.word)
+    }
+}
+
+pub struct Video {
+    id: u32,
+    content: String,
+}
+
+impl Say for Video {
+    fn saying(&self) -> String {
+        format!("video({self.id}), saying:{self.content}")
+    }
+}
+
+fn test_trait_base_use() {
+    let s1 = Speaker {
+        name: "tom".to_string(),
+        age: 16,
+        word: "rust".to_string(),
+    }
+    
+    let s2 = Video {
+        content: "jack".to_string(),
+        id: 666,
+    }
+    
+    println!("{}", s1.saying());
+    println!("{}", s2.saying());
+}
+```
+
+* 你可以在特征中定义具有**默认实现**的方法，这样其它类型无需再实现该方法，或者也可以选择重载该方法；
+
+### 特征约束
+
+```rust
+pub fn notify<T: Summary>(item1: &T, item2: &T) {}
+pub fn notify<T: Summary + Display>(item: &T) {}
+
+//where
+fn test_where<T: Display + Clone, U: Copy + Debug>(t: &T, u: &U) -> i32 {}
+fn test_where<T, U>(t: &T, u: &U) -> i32
+where T: Display + Clone
+	  U: Copy + Debug
+{}
+
+//example1: 为自定义类型实现加法(+)操作
+use std::ops::Add;
+#[derive(Debug)]
+struct Point<T: Add<T, Output=T>> {
+    x: T,
+    y: T,
+}
+
+impl<T: Add<T, Output=T>> Add for Point<T> {
+    type Output = Point<T>;
+    fn add(self, p: Point<T>) -> Point<T> {
+        x: self.x + p.x,
+        y: self.y + p.y,
+    }
+}
+
+fn add<T: Add<T, Output=T>>(a: T, b: T) -> T {
+    a + b
+}
+
+fn test_add_point() {
+    let p1 = Point {x: 1.1f32, y: 2.2f32};
+    let p2 = Point {x: 3.3f32, y: 4.4f32};
+    println!("{:?}", add(p1, p2));
+}
+
+//example2
+use std::fmt::{self, Display, Formatter, Result}
+
+#[derive(Debug)]
+enum FileState {
+    Open,
+    Closed,
+}
+
+impl Display for FileState {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        write!(f, 
+            match *self {
+                FileState::Open => "Open",
+                FileState::Closed => "Closed",
+            }
+        )
+    }
+}
+
+#[derive(Debug)]
+struct File {
+    name: String,
+    data: Vec<u8>,
+    state: FileState,
+}
+
+impl Display for File {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        write!(f, "<{}, ({})>", self.name, self.state)
+    }
+}
+
+impl File {
+    fn new(name: &str) -> Self {
+        Self {
+            name: name.to_string(),
+            data: Vec::new(),
+            state: FileState::Closed,
+        }
+    }
+}
+
+fn main() {
+    let f =  File::new("hello.txt");
+    println!("{:?}", f);
+    println!("{}", f);
+}
+```
+
+## 3.3 特征对象(动态分发)
+
+
+
+
+
+
 
 ## 3.4 Trait_1
+
+
+
+
+
+
+
+
 
 
 
