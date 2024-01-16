@@ -10,11 +10,25 @@ tags: [Rust]
 description: 
 ---
 
-# 0 参考
+
 
 > 本文用于记录学习Rust重要的语法与机制。
 
 * [Rust圣经](https://course.rs/about-book.html)
+
+
+
+# 0 Cargo与Rust模块系统
+
+## 0.1 Cargo
+
+
+
+
+
+## 0.2 模块系统
+
+
 
 
 
@@ -1059,21 +1073,99 @@ fn main() {
 
 ## 3.3 特征对象(动态分发)
 
+### 基本使用
+
+将多个对象渲染在屏幕上，这些对象属于不同的类型，存储在列表中，渲染的时候，需要循环该列表并顺序渲染每个对象，在 Rust 中的实现：
+
+```rust
+trait Draw {
+    fn draw(&self);
+}
+
+struct Screen {
+    components: Vec<Box<dyn Draw>>,
+}
+
+impl Screen {
+    fn run(&self) {
+        for x in self.components.iter() {
+            x.draw();
+        }
+    }
+}
+
+struct Button {
+    width: u32,
+    height: u32,
+    label: String,
+}
+
+impl Draw for Button {
+    fn draw(&self) {
+        println!("lablel: {}", self.label);
+    }
+}
+
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec<String>,
+}
+
+impl Draw for SelectBox {
+    fn draw(&self) {
+        for (i, v) in self.options.iter().enumerate() {
+            println!("option_{}: {}", i, v);
+        }
+    }
+}
+
+fn main() {
+    let screen = Screen {
+        components: vec![
+            Box::new(Button {
+                width: 10,
+                height: 20,
+                label: String::from("start"),
+            }),
+            Box::new(SelectBox {
+                width: 30,
+                height: 40,
+                options: vec![
+                    "OFF".to_string(),
+                    "INIT".to_string(),
+                    "DIRTY".to_string()
+                ],
+            }),
+        ],
+    };
+    
+    screen.run();
+}
+```
+
+### 动态分发
+
+Rust中的两种多态：泛型和特征对象。
+
+* 泛型是在编译期完成处理的：编译器会为每一个泛型参数对应的具体类型生成一份代码，这种方式是**静态分发(static dispatch)**，因为是在编译期完成的，对于运行期性能完全没有任何影响。
+* 与静态分发相对应的是**动态分发(dynamic dispatch)**，在这种情况下，直到运行时，才能确定需要调用什么方法。关键字 `dyn` 正是在强调这一“动态”的特点。
+
+![img](https://pic1.zhimg.com/80/v2-b771fe4cfc6ebd63d9aff42840eb8e67_1440w.jpg)
+
+>- **特征对象大小不固定**：这是因为，对于特征 `Draw`，类型 `Button` 可以实现特征 `Draw`，类型 `SelectBox` 也可以实现特征 `Draw`，因此特征没有固定大小；
+>- **几乎总是使用特征对象的引用方式**，如 `&dyn Draw`、`Box<dyn Draw>`；
+
+---
+
+注意，不是所有特征都能拥有特征对象，只有对象安全的特征才行。当一个特征的所有方法都有如下属性时，它的对象才是安全的：
+
+- 方法的返回类型不能是 `Self`
+- 方法没有任何泛型参数
 
 
 
-
-
-
-## 3.4 Trait_1
-
-
-
-
-
-
-
-
+## //TODO: 3.4 Trait_1
 
 
 
@@ -1089,9 +1181,318 @@ fn main() {
 
 # 5 闭包/迭代器
 
+## 5.1 Closure
 
+### 基本使用
+
+闭包是**一种匿名函数，它可以赋值给变量也可以作为参数传递给其它函数，不同于函数的是，它允许捕获调用者作用域中的值**。
+
+```rust
+/*
+	|param1, param2,...| {
+    	语句1;
+    	语句2;
+    	返回表达式
+	}
+*/
+
+fn main() {
+    let sum = |x, y| x + y;
+    let v = sum(1, 2);
+}
+```
+
+* 编译器在闭包的使用过程中会进行自动类型推导，但注意闭包不是泛型，**当编译器推导出一种类型后，它就会一直使用该类型**：
+
+  ```rust
+  // error 
+  let example_closure = |x| x;
+  
+  let s = example_closure(String::from("hello"));
+  let n = example_closure(5);
+  ```
+
+### 结构体的闭包使用
+
+假设我们要实现一个简易缓存，功能是获取一个值，然后将其缓存起来，那么可以这样设计：
+
+- 一个闭包用于获取值
+- 一个变量，用于存储该值
+
+调用 `value` 获取缓存中的值，如果有值则直接返回，没有值则将传入的参数 `arg` 存入：
+
+```rust
+struct Cacher<T, E> 
+where:
+	T: Fn(E) -> E,
+	E: Copy
+{
+    query: T,
+    value: Option<E>,
+}
+
+impl<T, E> Cacher<T, E>
+where
+	T: Fn(E) -> E,
+	E: Copy
+{
+    fn new(query: T) -> Cacher<T, E> {
+        Cacher {
+            query,
+            value: None,
+        }
+    }
+    
+    fn value(&mut self, arg: E) -> E {
+        match self.value {
+            Some(v) => v,
+            None => {
+                let v = (self.query)(arg);
+                self.value = Some(v);
+            }
+        }
+    }
+}
+
+fn main() {}
+
+#[test]
+fn test_closure() {
+    let mut cacher = Cacher::new(|a| a);
+    let v1 = cacher.value(1);
+    let v2 = cacher.value(2);
+    assert_eq!(v2, 1);
+}
+```
+
+### 捕获作用域的值
+
+闭包捕获变量有三种途径，恰好对应函数参数的三种传入方式：转移所有权、可变借用、不可变借用，因此相应的 `Fn` 特征也有三种：
+
+* `FnOnce`: 该类型的闭包会拿走被捕获变量的所有权
+* `FnMut`: 以可变借用的方式捕获环境中的值，因此可以修改该值
+* `Fn`: 以不可变借用的方式捕获环境中的值
+
+```rust
+//FnOnce
+fn fn_once<F>(func: F)
+where
+	F: FnOnce(usize) -> bool + Copy,
+{
+    println!("{}", func(3));
+    println!("{}", func(4));
+}
+
+//FnOnce/FnMut/Fn
+/*
+	实际上，一个闭包并不仅仅实现某一种 Fn 特征，规则如下：
+        所有的闭包都自动实现了 FnOnce 特征，因此任何一个闭包都至少可以被调用一次
+        没有移出所捕获变量的所有权的闭包自动实现了 FnMut 特征
+        不需要对捕获变量进行改变的闭包自动实现了 Fn 特征
+*/
+fn test_fn_fnmut_fnonce() {
+    let s = String::new();
+    let update_string = || println!("{}", s);
+    exec(update_string);
+    exec1(update_string);
+    exec2(update_string);
+}
+
+fn exec<F: FnOnce()>(f: F) {
+    f()
+}
+
+fn exec1<F: FnMut()>(f: F) {
+    f()
+}
+
+fn exec2<F: Fn()>(f: F) {
+    f()
+}
+
+///////////////////
+fn main() {
+    let x = vec![1, 2, 3];
+    fn_once(|z| {z == x.len()} )
+}
+```
+
+//闭包的所有权、闭包捕获变量的所有权转移
+
+**一个闭包实现了哪种 Fn 特征取决于该闭包如何使用被捕获的变量，而不是取决于闭包如何捕获它们**。
+
+#### 疑问
+
+> 这章感觉 [闭包 Closure - Rust语言圣经(Rust Course)](https://course.rs/advance/functional-programing/closure.html) 讲得并不清晰，尤其是后面将 `move` 和 `FnOnce/FnMut/Fn` 混在了一起，但后面的评论有一些高质量回答，这里总结一下。
+
+闭包相对于普通函数的一个优势在于：可以捕获同一作用域下的变量，关键在于捕获方式，当前环境中的变量的所有权是否转移到了闭包内部，或者只是以可变/不可变引用的方式进行捕获。Rust为闭包提供了三种trait: `FnOnce/FnMut/Fn`，三者是如何被闭包实现的文中提到过，`FnOnce` 被所有闭包默认实现，但并非所有闭包都以 "转移所有权“ 的方式捕获上下文环境中的变量，Rust有一些隐式实现完全取决于闭包内部的实际逻辑，以下闭包：
+
+* `|| return s;` 闭包内部将s所有权转移，意味着该闭包必须从上下文环境中获取到s的所有权，所以只实现了 `FnOnce`；
+* `|| s.push_str("xx");` 使用可变引用的方式即可实现闭包内部逻辑，那Rust默认以可变引用进行捕获；
+* `|| println!("{}", s);` 使用不可变引用即可实现闭包内逻辑，那Rust默认以不可变引用进行捕获；
+* 除了第一种只能转移所有权的闭包实现外，另外两种都存在以可变/不可变引用捕获变量的默认行为，那么可不可以改变这种行为呢？可以，这时候 `move` 关键字可以强制获取环境变量的所有权，改变了默认行为。 
+
+### 闭包作为函数返回值
+
+返回不同的闭包类型：
+
+```rust
+fn factory(x:i32) -> Box<dyn Fn(i32) -> i32> {
+    let num = 5;
+
+    if x > 1{
+        Box::new(move |x| x + num)
+    } else {
+        Box::new(move |x| x - num)
+    }
+}
+```
+
+## 5.2 Iterator
+
+[迭代器 Iterator - Rust语言圣经(Rust Course)](https://course.rs/advance/functional-programing/iterator.html)
+
+### 基本使用
+
+* for循环与迭代器
+
+* next方法
+
+* Iterator trait
+
+  * into_iter/iter/iter_mut
+
+* 消费者与适配器
+
+  * 消费者适配器
+
+    只要迭代器上的某个方法 `A` 在其内部调用了 `next` 方法，那么 `A` 就被称为**消费性适配器**。消费者适配器是消费掉迭代器，然后返回一个值；
+
+  * 迭代器适配器
+
+    那么迭代器适配器，顾名思义，会返回一个新的迭代器，这是实现链式方法调用的关键：`v.iter().map().filter()...`；
+
+    与消费者适配器不同，迭代器适配器是惰性的，意味着你**需要一个消费者适配器来收尾，最终将迭代器转换成一个具体的值**。
+
+    ```rust
+    let v1: Vec<i32> = vec![1, 2, 3];
+    let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+    assert_eq!(v2, vec![2, 3, 4]);
+    ```
+
+  * collect
+
+    使用它可以将一个迭代器中的元素收集到指定类型中，比如说 `Vec<_>/HashMap<_, _>`；
+
+  * 闭包作为迭代器适配器参数
+
+    使用闭包来作为迭代器适配器的参数，它最大的好处不仅在于可以就地实现迭代器中元素的处理，还在于可以捕获环境值：
+
+    ```rust
+    struct Shoe {
+        size: u32,
+        style: String,
+    }
+    
+    fn select_shoes_by_size(shoes: Vec<shoe>, shoe_size: usize) -> Vec<Shoe> {
+        shoes.into_iter().filter(|s| s.size == shoe_size).collect()
+    }
+    ```
+
+  * 迭代器获取索引 `enumerate`
+
+    首先 `v.iter()` 创建迭代器，其次 调用 `Iterator` 特征上的方法 `enumerate`，该方法产生一个新的迭代器，其中每个元素均是元组 `(索引，值)`：
+
+    ```rust
+    let v = vec![1, 2, 3, 4, 5, 6];
+    let val = v.iter()
+    	.enumerate()
+    	.filter(|&(idx,_)| idx % 2 == 0)
+    	.map(|(_, val)| val)
+    	.fold(0u64, |acc, x| acc + x);
+    ```
+
+### 为自定义类型实现Iterator
+
+```rust
+struct Counter {
+    count: i32,
+}
+
+impl Counter {
+    fn new() -> Self {
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+    
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn main() {
+    let mut counter1 = Counter::new();
+    
+    assert_eq!(counter.next(), Some(1));
+    assert_eq!(counter.next(), Some(2));
+    assert_eq!(counter.next(), Some(3));
+    assert_eq!(counter.next(), Some(4));
+    assert_eq!(counter.next(), Some(5));
+    assert_eq!(counter.next(), None);
+    
+    let sum: i32 = Counter::new()	 //[1, 2, 3, 4, 5]/[2, 3, 4, 5]
+    	.zip(Counter::new().skip(1)) //[(1,2),(2,3),(3,4),(4,5)]
+    	.map(|a, b| a * b)			 //[2,6,12,20]
+    	.filter(|x| x % 3 == 0)		 //[6,12]
+    	.sum();
+    assert_eq!(18, sum);
+}
+```
 
 # 6 智能指针
+
+Rust中的指针类型有三种：
+
+* **裸指针**：使用受限，需要使用unsafe封装
+
+* **引用：**仅借用数据，不拥有数据
+
+* **智能指针：**本质上是一个封装了裸指针的结构体，拥有数据，如 `String/Vec`都是容器类型的智能指针。
+
+  智能指针实现了 `Deref` 和 `Drop` 特征：
+
+  - `Deref` 可以让智能指针像引用那样工作，这样你就可以写出同时支持智能指针和引用的代码，例如 `*T`
+  - `Drop` 允许你指定智能指针超出作用域后自动执行的代码，例如做一些数据清除等收尾工作
+
+---
+
+Rust中常用的智能指针类型：
+
+- `Box<T>`，可以将值分配到堆上
+- `Rc<T>`，引用计数类型，允许多所有权存在
+- `Ref<T>/RefMut<T>`，允许将借用规则检查从编译期移动到运行期进行
+
+## 6.1 Box堆内存分配
+
+## 6.2 Deref解引用
+
+## 6.3 Drop资源释放
+
+## 6.4 Rc/Arc多所有权机制
+
+## 6.5 Cell/RefCell内部可变性
+
+## 6.6 Weak与循环引用
+
+
 
 
 
@@ -1099,5 +1500,5 @@ fn main() {
 
 
 
-# 8 模块系统
+
 
