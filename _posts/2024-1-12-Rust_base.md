@@ -1650,6 +1650,8 @@ fn main() {
 
 ## 6.4 *Rc/Arc多所有权机制
 
+### Rc<>
+
 > 如何理解所有权，资源所有权支持者和借用者在资源使用管理上有什么区别？
 >
 > * 对资源类型T，存在三种使用方式：`Box<T>/Rc<T>/&T`
@@ -1676,21 +1678,205 @@ fn main() {
 
 ---
 
-//TODO
+当我们**希望在堆上分配一个对象供程序的多个部分使用且无法确定哪个部分最后一个结束时，就可以使用 `Rc` 成为数据值的所有者**。
 
+> 考虑一个场景，有很多小工具，每个工具都有自己的主人，但是存在多个工具属于同一个主人的情况，此时使用 `Rc<T>` 就非常适合：
 
+```rust
+use std::rc::Rc;
 
+struct Owner {
+    name: string,
+}
 
+struct Gadget {
+    id: i32,
+    owner: Rc<Owner>,
+}
+
+fn main() {
+    let owner: Rc<Owner> = Rc::new(Owner {
+        name: "rust".to_string(),
+    });
+    
+    let g1 = Gadget {
+        id: 0,
+        owner: Rc::clone(&owner),
+    };
+    
+    let g1 = Gadget {
+        id: 1,
+        owner: Rc::clone(&owner),
+    };
+    
+    drop(owner);
+    println!("{}, {}", g1.id, g1.owner.name);
+    println!("{}, {}", g2.id, g2.owner.name);
+}
+```
+
+* 事实上，`Rc<T>` 是指向底层数据的不可变的引用，因此你无法通过它来修改数据，这也符合 Rust 的借用规则：要么存在多个不可变借用，要么只能存在一个可变借用；
+* `Rc<T>` 是一个智能指针，实现了 `Deref` 特征，因此你无需先解开 `Rc` 指针，再使用里面的 `T`，而是可以直接使用 `T`，例如上例中的 `gadget1.owner.name` ;
+* `Rc` 只能用于同一线程内部，想要用于线程之间的对象共享，你需要使用 `Arc`；
+  * 由于 `Rc<T>` 需要管理引用计数，但是该计数器并没有使用任何并发原语，因此无法实现原子化的计数操作，最终会导致计数错误；
+  * `Arc` 和 `Rc` 并没有定义在同一个模块，前者通过 `use std::sync::Arc` 来引入，后者通过 `use std::rc::Rc`；
+
+---
+
+### Arc<>
+
+`Arc` 和 `Rc` 拥有完全一样的API：
+
+```rust
+use std::sync:Arc;
+use std::thread;
+
+fn main() {
+    let s_arc = Arc::new(String::from("rust"));
+    for _ in 0..10 {
+        let s = Arc::clone(&s_arc);
+        let handle = thread::spawn(move || {
+            println!("{}". s)
+        });
+    }
+}
+```
 
 ## 6.5 *Cell/RefCell内部可变性
 
+> `Cell/RefCell` 在功能上没有区别，区别在于 `Cell<T>` 只适用于 `T` 实现 `Copy` 的情况，因此不常用。
+
+Rust的借用规则是极其严格的，它考虑到了几乎所有场景，但在用户定制化的场景下有些Rust认为的“unsafe”操作却是合理的，智能指针相当于Rust开辟的一块灵活性更强的“异世界”，在这里有很多规则得到了扩展，和Rust原本的世界很不一样：
+
+| Rust 规则                            | 智能指针带来的额外规则                  |
+| ------------------------------------ | --------------------------------------- |
+| 一个数据只有一个所有者               | `Rc/Arc`让一个数据可以拥有多个所有者    |
+| 要么多个不可变借用，要么一个可变借用 | `RefCell`实现编译期可变、不可变引用共存 |
+| 违背规则导致**编译错误**             | 违背规则导致**运行时`panic`**           |
+
+- 与 `Cell` 用于可 `Copy` 的值不同，`RefCell` 用于引用
+- `RefCell` 只是将借用规则从编译期推迟到程序运行期，并不能帮你绕过这个规则
+- `RefCell` 适用于编译期误报或者一个引用被在多处代码使用、修改以至于难于管理借用关系时
+- 使用 `RefCell` 时，违背借用规则会导致运行期的 `panic`
+
+### 内部可变性
+
+虽然基本借用规则是 Rust 的基石，然而在某些场景中，**一个值可以在其方法内部被修改，同时对于其它代码不可变，**是很有用的。
+
+```rust
+use std::cell::RefCell;
+
+// 定义在外部库中的特征
+pub trait Messenger {
+    fn send(&self, msg: String);
+}
+
+// --------------------------
+// 我们的代码中的数据结构和实现
+struct MsgQueue {
+    msg_cache: RefCell<Vec<String>>,
+}
+
+impl Messenger for MsgQueue {
+    fn send(&self, msg: String) {
+        self.msg_cache.borrow_mut().push(msg);
+    }
+}
+
+fn main() {
+    let mq = MsgQueue {
+        msg_cahce: Refcell::new(Vec::new());
+    };
+    mq.send("rust".to_string());
+}
+```
+
+这个 MQ 功能很弱，但是并不妨碍我们演示内部可变性的核心用法：通过包裹一层 `RefCell`，成功的让 `&self` 中的 `msg_cache` 成为一个可变值，然后实现对其的修改。
+
+### Rc+RefCell
+
+在 Rust 中，一个常见的组合就是 `Rc` 和 `RefCell` 在一起使用，前者可以实现一个数据拥有多个所有者，后者可以实现数据的可变性：
+
+```rust
+use std::cell::RefCell;
+use std::rc::Rc;
+
+fn main() {
+    let s = Rc::new(RefCell::new("rust".to_string()));
+    let s1 = s.clone(); //s1 = Rc::clone(&s);
+    let s2 = s.clone();
+    s2.borrow_mut().push_str("is best!");
+}
+```
+
+---
+
+* `RefCell` 适用于编译器误报或者一个引用被在多个代码中使用、修改以至于难于管理借用关系时，还有就是需要内部可变性时；
+* 从性能上看，`RefCell` 由于是非线程安全的，因此无需保证原子性，性能虽然有一点损耗，但是依然非常好；
+* `Rc` 跟 `RefCell` 结合使用可以实现多个所有者共享同一份数据，非常好用，但是潜在的性能损耗也要考虑；
+
 ## 6.6 *Weak与循环引用
 
+> 注意: Weak能优雅地解决循环引用问题，但其存在的意义不止于此。
 
+总的来说，Weak应用于以下两种场景：
 
+* 持有一个 `Rc` 对象的临时引用，并且不在乎引用的值是否依然存在**（更加常见）**
+* 阻止 `Rc` 导致的循环引用，因为 `Rc` 的所有权机制，会导致多个 `Rc` 都无法计数归零
 
+使用方式简单总结下：**对于父子引用关系，可以让父节点通过 `Rc` 来引用子节点，然后让子节点通过 `Weak` 来引用父节点**。
+
+---
+
+```rust
+use std::rc::Rc;
+
+fn main() {
+    // 创建Rc，持有一个值5
+    let five = Rc::new(5);
+
+    // 通过Rc，创建一个Weak指针
+    let weak_five = Rc::downgrade(&five);
+
+    // Weak引用的资源依然存在，取到值5
+    let strong_five: Option<Rc<_>> = weak_five.upgrade();
+    assert_eq!(*strong_five.unwrap(), 5);
+
+    // 手动释放资源`five`
+    drop(five);
+
+    // Weak引用的资源已不存在，因此返回None
+    let strong_five: Option<Rc<_>> = weak_five.upgrade();
+    assert_eq!(strong_five, None);
+}
+```
+
+* 通过 `use std::rc::Weak` 引入
+* 可访问，但没有所有权，不增加引用计数，因此不会影响被引用值的释放回收
+* 可由 `Rc<T>` 调用 `downgrade` 方法转换成 `Weak<T>`
+* `Weak<T>` 可使用 `upgrade` 方法转换成 `Option<Rc<T>>`，如果资源已经被释放，则 `Option` 的值是 `None`
 
 # 7 全局变量
+
+## 7.1 编译期初始化
+
+* 无论是常量还是静态变量，两者定义的时候必须赋值为**在编译期间就可以计算出来的值 (常量表达式/数学表达式)，而不能是运行时才能计算出的值 (如函数)。**
+
+
+
+## 7.2 运行期初始化
+
+
+
+
+
+# 8 Rust难点
+
+## 8.1 切片/切片引用
+
+
+
+## 8.2 Eq/PartialEq
 
 
 
