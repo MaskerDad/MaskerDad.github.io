@@ -1532,25 +1532,159 @@ fn main() {
 
 ## 6.2 Deref解引用
 
+> 这部分需要理解的是Rust的自动 (隐式) 解引用是怎么做的，这决定了你能否看懂或写出更简洁的Rust代码。
 
+自定义一个 “智能指针 `MyBox`”，并实现 `Deref` 特征：
 
+```rust
+use std::ops::Deref;
 
+struct MyBox<T>(T);
 
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
 
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+    fn deref(&self) -> &Self::Target {
+        &self.0s
+    }
+}
+
+fn main() {
+    let x = MyBox::new(666);
+    assert_eq!(*x, 666);
+}
+```
+
+* 关于Rust的自动解引用，[Deref 解引用 - Rust语言圣经(Rust Course)](https://course.rs/advance/smart-pointer/deref.html#函数和方法中的隐式-deref-转换) 讲的有点乱，首先自动解引用和 `Deref` 特征两者之间并没有直接的映射关系，Rust在使用方法 `methods` 的时候会对 `&mut T/&T` 进行自动解引用操作，这和 `T` 是否实现了 `Deref` 特征没关系，如：
+
+  ```rust
+  fn main() {
+      let x = 1;
+      let y = &x;
+      println!("{}", y); //*(&x)
+  }
+  ```
+
+  而你如果实现了 `Deref` 特征，那么就会出现 `*(y.deref())` 这样的隐式自动调用，如：
+
+  ```rust
+  fn main() {
+      let s = MyBox::new(String::from("hello world"));
+      display(&s)
+  }
+  
+  fn display(s: &str) {
+      println!("{}",s);
+  }
+  ```
 
 ## 6.3 Drop资源释放
 
+### 资源回收顺序
+
+```rust
+struct HasDrop1;
+struct HasDrop2;
+impl Drop for HasDrop1 {
+    fn drop(&mut self) {
+        println!("Dropping HasDrop1!");
+    }
+}
+impl Drop for HasDrop2 {
+    fn drop(&mut self) {
+        println!("Dropping HasDrop2!");
+    }
+}
+struct HasTwoDrops {
+    one: HasDrop1,
+    two: HasDrop2,
+}
+impl Drop for HasTwoDrops {
+    fn drop(&mut self) {
+        println!("Dropping HasTwoDrops!");
+    }
+}
+
+struct Foo;
+
+impl Drop for Foo {
+    fn drop(&mut self) {
+        println!("Dropping Foo!")
+    }
+}
+
+fn main() {
+    let _x = HasTwoDrops {
+        two: HasDrop2,
+        one: HasDrop1,
+    };
+    let _foo = Foo;
+    println!("Running!");
+}
+
+/*
+    Running!
+    Dropping Foo!
+    Dropping HasTwoDrops!
+    Dropping HasDrop1!
+    Dropping HasDrop2!
+*/
+```
+
+可以得出以下关于 `Drop` 顺序的结论
+
+- **变量级别，按照逆序的方式**，`_x` 在 `_foo` 之前创建，因此 `_x` 在 `_foo` 之后被 `drop`
+- **结构体内部，按照顺序的方式**，结构体 `_x` 中的字段按照定义中的顺序依次 `drop`
+
+### 手动回收
+
+* 对于 Rust 而言，不允许显式调用析构函数，因为Drop特征中的 `drop` 函数是以可变借用的方式处理回收逻辑，这有可能让后续代码访问到并不存在的数据。你可以尝试使用 `std::mem::drop` 以转移目标值所有权的方式进行回收，这种实现保证了后续的使用必定会导致编译错误，因此非常安全。
+* Rust的动态内存管理使用起来更加简洁，但相比于C隐藏起来更多细节，你甚至在定义堆对象的时候连分配堆内存的接口都是透明的，因为Rust将堆内存分配的操作都封装在各种动态类型 `Box/String/Vec::new()` 的内部；
+* 自定义 `Drop` 特征的情况较少，因为你无需担心堆内存回收工作，Rust默认的 `drop` 帮你完成了。除非存在一些特定的系统共享资源，例如文件描述符、网络 socket 等，当这些值超出作用域不再使用时，就需要进行关闭以释放相关的资源。
+* `Copy/Drop` 特征是互斥的：我们无法为一个类型同时实现 `Copy` 和 `Drop` 特征。因为实现了 `Copy` 的特征会被编译器隐式的复制，因此非常难以预测析构函数执行的时间和频率。因此这些实现了 `Copy` 的类型无法拥有析构函数。
+
+## 6.4 *Rc/Arc多所有权机制
+
+> 如何理解所有权，资源所有权支持者和借用者在资源使用管理上有什么区别？
+>
+> * 对资源类型T，存在三种使用方式：`Box<T>/Rc<T>/&T`
+>   * `&T`
+>     * 不涉及资源清理工作，引用也是有生命周期的，但引用销毁了仅仅是该引用结束了，资源依旧存在
+>   * `Box<T>`
+>     * 发生赋值拷贝动作时，资源所有权转移，从始至终资源持有者 `Box<T>` 只有一个，即Rust不允许第二个资源持有者 `Box<T>` 存在
+>     * 销毁时回收指向的内存资源
+>   * `Rc<T>`
+>     * 发生赋值拷贝动作时，资源的引用计数器+1，内部封装的指针也会指向资源（作了浅拷贝）。这种情况下，Rust允许多个 `Rc<T>` 真正的指向同一块内存。
+>     * 销毁时，资源的引用计数器+1，引用计数减至0时回收内存资源
+>
+> 以上就是Rust维护资源的三种常用方式，分析一下它们各自的使用场景：
+>
+> * `&T`：仅仅是访问需求，关于资源何时被回收、能否及时被回收，`&T` 并不关心；
+>
+> * `Box<T>`：可以确保唯一的资源持有者。
+>
+>   > ***加深对所有权的理解：***
+>   >
+>   > 之前有过一个疑问 `let x = Box::new(3); let mut y = &x;` 这样的代码中，`x/y` 都可以访问到资源，在使用的时候看起来一片和谐。实际上，`y` 的可访问时间段极其不自由，因为它完全却决于资源何时被释放掉，那么谁来管理资源释放呢？没错，正是这个资源持有者 (拥有资源所有权) 的 `x`，因此 `y` 是完全听命于 `x` 的。Rust系统规定引用生命周期总是短于资源生命周期，这的确保证了安全性(避免悬空引用)但也牺牲了灵活性，这意味着引用不能随处使用了，始终活在 `y` 资源持有者所圈定的区间中。
+>
+> * `Rc<T>`：允许存在多个资源持有者owner，owner之间互不干扰，他们可以随处访问资源，因为他们掌管资源。
+
+---
+
+//TODO
 
 
 
 
 
+## 6.5 *Cell/RefCell内部可变性
 
-## 6.4 Rc/Arc多所有权机制
-
-## 6.5 Cell/RefCell内部可变性
-
-## 6.6 Weak与循环引用
+## 6.6 *Weak与循环引用
 
 
 
