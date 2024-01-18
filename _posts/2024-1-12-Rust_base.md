@@ -20,7 +20,9 @@ description:
 
 # 0 Cargo与Rust模块系统
 
-## 0.1 Cargo
+## 0.1 //TODO: Cargo
+
+
 
 
 
@@ -28,9 +30,73 @@ description:
 
 ## 0.2 模块系统
 
+### Package/Crate
 
+>  `Package` 就是一个项目，因此它包含有独立的 `Cargo.toml` 文件，以及因为功能性被组织在一起的一个或多个包。一个 `Package` 只能包含**一个**库(library)类型的包，但是可以包含**多个**二进制可执行类型的包。
+>
+> 对于 Rust 而言，包 `crate` 是一个独立的可编译单元，它编译后会生成一个可执行文件或者一个库。一个包会将相关联的功能打包在一起，使得该功能可以很方便的在多个项目中分享。
 
+***典型的 `Package` 结构如下：***
 
+```rust
+.
+├── Cargo.toml
+├── Cargo.lock
+├── src
+│   ├── main.rs
+│   ├── lib.rs
+│   └── bin
+│       └── main1.rs
+│       └── main2.rs
+├── tests
+│   └── some_integration_tests.rs
+├── benches
+│   └── simple_bench.rs
+└── examples
+    └── simple_example.rs
+```
+
+* 一个真实项目中典型的 `Package`，会包含多个二进制包，这些包文件被放在 `src/bin` 目录下，每一个文件都是独立的二进制包，同时也会包含一个库包，该包只能存在一个 `src/lib.rs`；
+  *  Cargo 有一个惯例：**`src/main.rs` 是二进制包的根文件，该二进制包的包名跟所属 `Package` 相同**；
+  * 与 `src/main.rs` 一样，Cargo 知道，如果一个 `Package` 包含有 `src/lib.rs`，意味它包含有一个库类型的Package同名包，该包的根文件是 `src/lib.rs`；
+*  `Package` 和包很容易被混淆，因为你用 `cargo new` 创建的 `Package` 和它其中包含的包是同名的。
+
+### Module
+
+如果说包 `crate` 是Rust工程/项目的构成单元，那么模块 `mod` 就是Rust的代码构成单元。
+
+[【翻译】关于Rust模块系统的清晰解释 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/164556350)
+
+[Rust 模块系统 - 掘金 (juejin.cn)](https://juejin.cn/post/7324165965205078066)
+
+[Rust“与众不同”的地方 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/87514788)
+
+[使用 use 关键字将名称引入作用域 - Rust 程序设计语言 简体中文版 (bootcss.com)](https://rust.bootcss.com/ch07-04-bringing-paths-into-scope-with-the-use-keyword.html)
+
+* `pub mod`
+
+* `pub use`
+
+  use可以为当前作用域引入其他模块：类似 `use std::io`。不过 `pub use` 组合起来就可以公开你导入的模块，好处就是对外提供你use的模块的内容。此技术被称为 “重导出”（*re-exporting*），因为这样做将模块引入作用域并同时使其可供其他代码引入自己的作用域。
+
+  ```rust
+   mod aaa {
+      pub mod bbb {
+          pub fn bb() {
+              println!("bb");
+          }
+      }
+  }
+  
+  mod ccc {
+      pub use crate::aaa::bbb;
+      pub fn cc() {}
+  }
+  fn main(){
+      ccc::cc();
+      ccc::bbb::bb();
+  }
+  ```
 
 # 1  所有权与借用
 
@@ -863,6 +929,71 @@ fn main() {
     println!("hello \"{{rust}}\" ");
 }
 ```
+
+## 2.6 方法Method
+
+### 初识
+
+对比一下Rust和其它语言的结构/类与方法在层次上的区别：
+
+![img](https://pica.zhimg.com/80/v2-0d848e960f3279999eab4b1317f6538e_1440w.png)
+
+### 关联函数(普通方法)
+
+```rust
+struct Circle {
+    x: f64,
+    y: f64,
+    radius: f64,
+}
+
+impl Circle {
+    fn new(x: f64, y: f64, radius: f64) -> Circle {
+        Circle {
+            x,
+            y,
+            radius,
+        }
+    }
+    
+    fn area(&self) -> f64 {
+        std::f64::consts::PI * (self.radius * self.radius)
+    }
+    
+    fn add_size(&mut self, x: f64, y: f64, r: f64) {
+        self.x += x;
+        self.x += y;
+        self.radius += r;
+    }
+}
+
+fn main() {
+    let mut circle = Circle::new(1.1, 2.2, 3.3);
+    circle.add_size(1, 2, 3);
+    println!("area = {}", circle.area());
+}
+```
+
+* 在一个 `impl` 块内，`Self` 指代被实现方法的结构体类型，`self` 指代此类型的实例:
+  * `self` 表示 `Rectangle` 的所有权转移到该方法中，这种形式用的较少
+  * `&self` 表示该方法对 `Rectangle` 的不可变借用
+  * `&mut self` 表示可变借用
+* 可以看到 `Circle` 中的 `new` 函数，这种定义在 `impl` 中且没有 `self` 的函数被称之为**关联函数**。因为它没有 `self`，不能用 `circle.area()` 的形式调用，因此它是一个函数而不是方法，它又在 `impl` 中，与结构体紧密关联，因此称为关联函数。
+  * Rust 中有一个约定俗成的规则，使用 `new` 来作为构造器的名称，出于设计上的考虑，Rust 特地没有用 `new` 作为关键字；
+  * 因为是函数，所以不能用 `.` 的方式来调用，我们需要用 `::` 来调用，比如: `circle.area()`；
+
+### Rust方法调用: 自动引用和解引用
+
+Rust 有一个叫 **自动引用和解引用**的功能。方法调用是 Rust 中少数几个拥有这种行为的地方。
+
+他是这样工作的：当使用 `object.something()` 调用方法时，Rust 会自动为 `object` 添加 `&`、`&mut` 或 `*` 以便使 `object` 与方法签名匹配。也就是说，这些代码是等价的：
+
+```rust
+p1.distance(&p2);
+(&p1).distance(&p2);
+```
+
+第一行看起来简洁的多。这种自动引用的行为之所以有效，是因为方法有一个明确的接收者———— `self` 的类型。在给出接收者和方法名的前提下，Rust 可以明确地计算出方法是仅仅读取（`&self`），做出修改（`&mut self`）或者是获取所有权（`self`）。事实上，Rust 对方法接收者的隐式借用让所有权在实践中更友好。
 
 # 3 泛型和特征
 
@@ -1862,13 +1993,153 @@ fn main() {
 
 * 无论是常量还是静态变量，两者定义的时候必须赋值为**在编译期间就可以计算出来的值 (常量表达式/数学表达式)，而不能是运行时才能计算出的值 (如函数)。**
 
+  * 常量、字符串字面值无需 `static` 声明，它们已经被打包到二进制可执行文件中；
+
+    ```rust
+    const MAX_VALUE: usize = usize::MAX / 2;
+    fn main() {
+        println!("{}", MAX_VALUE);
+    }
+    ```
+
+  * 静态变量允许声明一个全局的变量，常用于全局数据统计：
+
+    ```rust
+    static mut GLOBAL_MUT: usize = 0;
+    fn main() {
+        unsafe {
+            GLOBAL_MUT += 1;
+        }
+    }
+    ```
+
+    为什么加 `unsafe`，因为Rust怀疑你可能在多线程场景下访问这个全局变量，这是不安全行为。如果你一定要这么做，且不像使用 `unsafe` 封装，可以使用原子类型：
+
+    ```rust
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    static REQUEST_RECV: AtomicUsize  = AtomicUsize::new(0);
+    fn main() {
+        for _ in 0..100 {
+            REQUEST_RECV.fetch_add(1, Ordering::Relaxed);
+        }
+    }
+    ```
+
+    如果面对不能使用 `std` 的场景，比如写一个裸机程序，可以选择用 `RefCell<T>` 来实现内部可变性。
+
+  * 静态变量和常量的区别？
+
+    * 静态变量不会被内联，在整个程序中，静态变量只有一个实例，所有的引用都会指向同一个地址
+    * 存储在静态变量中的值必须要实现 Sync trait
 
 
 ## 7.2 运行期初始化
 
+静态变量在声明时就必须进行初始化，且需要给出一个编译期就能确定的值，像通过函数初始化这种方式就不行。为什么不行？因为Rust 的借用和生命周期规则限制了我们做到这一点，试图将一个局部生命周期的变量赋值给全局生命周期的`CONFIG`，这明显是不安全的。
 
+> 全局变量在程序运行过程中存在随时被修改的需求可以理解，但初始化的时间节点为什么要在运行时，有这种场景吗？当然，**一个全局的动态配置，它在程序开始后，才加载数据进行初始化，最终可以让各个线程直接访问使用。**
 
+### lazy_static!
 
+静态变量的运行时初始化可以用 `lazy_static!` 实现：
+
+```rust
+use lazy_static::lazy_static;
+use std::collections::HashMap;
+
+lazy_static! {
+    static ref HASH_MAP: HashMap<u32, &str> = {
+        let mut hash = HashMap::new();
+        hash.insert(0, "a");
+        hash.insert(1, "b");
+        hash.insert(2, "c");
+        hash
+    }
+}
+
+fn main() {
+    println!("{}", HASH_MAP.get(&0).unwrap());
+}
+```
+
+### Box::leak
+
+`Rust` 还提供了 `Box::leak` 方法，但并不常用。它可以将一个变量从内存中泄漏，然后将其变为 `'static` 生命周期，最终该变量将和程序活得一样久，因此可以赋值给全局静态变量 `CONFIG`。
+
+```rust
+#[derive(Debug)]
+struct Config {
+    a: String,
+    b: String,
+}
+static mut CONFIG: Option<&mut Config> = None;
+
+fn init() -> Option<&'static mut Config> {
+    let c = Box::new(Config {
+        a: "hello".to_string(),
+        b: "rust".to_string(),
+    });
+    Some(Box::leak(c))
+}
+
+fn main() {
+    unsafe {
+        CONFIG = init();
+        println!("{:?}", CONFIG)
+    }
+}
+```
+
+### OnceCell
+
+ `cell::OnceCell` 和 `sync::OnceLock`，前者用于单线程，后者用于多线程，它们用来存储堆上的信息，并且具有最多只能赋值一次的特性。如实现一个多线程的日志组件 `Logger`：
+
+```rust
+use std::{syc::OnceLock, thread};
+
+#[derive(Debug)]
+struct Logger;
+
+static LOGGER: OnceLock<Logger> = OnceLock::new();
+
+impl Logger {
+    fn global() -> &'static Logger {
+        Logger.get_or_init(|| {
+            println!("Logger init");
+            Logger
+        })
+    }
+    
+    fn log(&self, info: String) {
+        println!("{}", info);
+    }
+}
+
+fn main() {
+    let logger = Logger::global();
+    logger.log("hello".to_string());
+    logger.log("rust".to_string());
+    
+    let handle = thread::spawn(|| {
+        let logger = Logger::global();
+        logger.log("thread info".to_string());
+    });
+    
+    handle.join().unwrap();
+}
+```
+
+---
+
+总结一下，全局变量可以分为两种：
+
+- 编译期初始化的全局变量
+  * `const`创建常量
+  * `static`创建静态变量
+  * `Atomic`创建原子类型
+- 运行期初始化的全局变量
+  * `lazy_static`用于懒初始化
+  * `Box::leak`利用内存泄漏将一个变量的生命周期变为`'static`
 
 # 8 Rust难点
 
