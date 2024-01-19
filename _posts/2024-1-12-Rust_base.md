@@ -1013,6 +1013,254 @@ p1.distance(&p2);
 
 第一行看起来简洁的多。这种自动引用的行为之所以有效，是因为方法有一个明确的接收者———— `self` 的类型。在给出接收者和方法名的前提下，Rust 可以明确地计算出方法是仅仅读取（`&self`），做出修改（`&mut self`）或者是获取所有权（`self`）。事实上，Rust 对方法接收者的隐式借用让所有权在实践中更友好。
 
+## 2.7 返回值和错误处理
+
+### Rust的错误哲学
+
+大多数编程语言 `Go/C` 采用显式获取并判断错误值的方式： `if err != null {}` ，这难免缺乏一些程序设计的美感，不过我倒是觉得这种简单的方式也有其好处，就是阅读代码时的流畅感很强，你不需要过多的思考各种语法是什么意思，而Rust则采用了更加简洁的错误处理方式。
+
+Rust 中的错误主要分为两类：
+
+- **可恢复错误 `Result<T, E>`**，通常用于从系统全局角度来看可以接受的错误，例如处理用户的访问、操作等错误，这些错误只会影响某个用户自身的操作进程，而不会对系统的全局稳定性产生影响；
+- **不可恢复错误 `panic!`**，刚好相反，该错误通常是全局性或者系统性的错误，例如数组越界访问，系统启动时发生了影响启动流程的错误等等，这些错误的影响往往对于系统来说是致命的；
+
+### 关于panic!
+
+#### panic被动/主动触发
+
+* **被动触发**
+
+  ```rust
+  fn main() {
+      let v = vec![1, 2, 3];
+      v[99];
+  }
+  ```
+
+  往往是程序开发过程中出现的问题，比如数组访问越界。
+
+* **主动触发**
+
+  ```rust
+  fn main() {
+      panic!("crash and burn");
+  }
+  ```
+
+  在某些特殊场景中，开发者想要主动抛出一个异常，例如开头提到的在系统启动阶段读取文件失败。对此，Rust 为我们提供了 `panic!` 宏，当调用执行该宏时，**程序会打印出一个错误信息，展开报错点往前的函数调用堆栈，最后退出程序**。
+
+---
+
+#### panic终止方式
+
+当出现 `panic!` 时，程序提供了两种方式来处理终止流程：**栈展开**和**直接终止**。
+
+* 默认的方式就是 `栈展开`，这意味着 Rust 会回溯栈上数据和函数调用，因此也意味着更多的善后工作，好处是可以给出充分的报错信息和栈调用信息，便于事后的问题复盘；
+* `直接终止`，顾名思义，不清理数据就直接退出程序，善后工作交与操作系统来负责。
+
+> ***线程 panic 后，程序是否会终止？***
+>
+> 如果是 `main` 线程，则程序会终止，如果是其它子线程，该线程会终止，但是不会影响 `main` 线程。
+
+---
+
+#### 程序中何时使用panic!
+
+我们会经常使用 `unwrap` ：成功则返回值，失败则 `panic`，总之不进行任何错误处理。
+
+```rust
+use std::net::IpAddr;
+let home: IpAddr = "127.0.0.1".parse().unwrap();
+```
+
+* ***直接 `panic!`***
+
+  * 例如上面的例子，`"127.0.0.1"` 就是 `ip` 地址，因此我们知道 `parse` 方法一定会成功，那么就可以直接用 `unwrap` 方法进行处理；
+
+  * 可能导致全局有害状态时，大致分为几类：
+    * 非预期的错误
+    * 后续代码的运行会受到显著影响
+    * 内存安全的问题
+
+* ***接收错误结果并处理：***
+
+  * 如果该字符串是来自于用户输入，那在实际项目中，就必须在代码中明确错误处理的方式，而不是 `unwrap`，否则你的程序一天要崩溃几十万次吧！
+  * 当错误预期会出现时，返回一个错误较为合适，例如解析器接收到格式错误的数据，HTTP 请求接收到错误的参数甚至该请求内的任何错误（不会导致整个程序有问题，只影响该次请求）。**因为错误是可预期的，因此也是可以处理的。**
+
+---
+
+### 返回值: Result/?
+
+假设，我们有一台消息服务器，每个用户都通过 websocket 连接到该服务器来接收和发送消息，该过程就涉及到 socket 文件的读写，那么此时，如果一个用户的读写发生了错误，显然不能直接 `panic`，否则服务器会直接崩溃，所有用户都会断开连接，因此我们需要一种更温和的错误处理方式：`Result<T, E>`。
+
+```rust
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+```
+
+#### match处理Result
+
+直接 `panic` 还是过于粗暴，因为实际上 IO 的错误有很多种，我们需要对部分错误进行特殊处理，而不是所有错误都直接崩溃：
+
+```rust
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open("rust");
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => match error.kind() {
+            Error::NotFound => match File::create("rust") {
+                Ok(fc) => fc,
+                Err(e) => paanic!("create file failed: {:?}", e),
+            }
+            other_error => panic!("open file failed: {:?}", other_error),
+        },
+    };
+}
+```
+
+---
+
+#### 失败则panic: unwrap/expect
+
+有时候我们不想使用 `match` 去匹配 `Result<T, E> `以获取其中的 `T` 值，因为 `match` 的穷尽匹配特性，你总要去处理下 `Err` 分支。那么有没有办法简化这个过程？
+
+有，答案就是 `unwrap` 和 `expect`。它们的作用就是，如果返回成功，就将 `Ok(T)` 中的值取出来，如果失败，就直接 `panic`，
+
+```rust
+use std::fs::File;
+
+fn main() {
+    let f1 = File::open("hello").unwrap();
+    let f2 = File::open("rust").expect("Failed to open rust");
+}
+```
+
+* `expect` 跟 `unwrap` 很像，也是遇到错误直接 `panic`, 但是会带上自定义的错误提示信息；
+* `expect` 相比 `unwrap` 能提供更精确的错误信息，在有些场景也会更加实用；
+
+---
+
+#### 将错误向上游传播: `?` 的使用
+
+咱们的程序几乎不太可能只有 `A->B` 形式的函数调用，一个设计良好的程序，一个功能涉及十几层的函数调用都有可能。而错误处理也往往不是哪里调用出错，就在哪里处理，实际应用中，大概率会**把错误层层上传然后交给调用链的上游函数进行处理，**错误传播将极为常见。
+
+```rust
+use std::fs::File;
+use std::io::{self, Read};
+
+//从文件中读取用户名，然后将结果进行返回
+fn read_username_from_file_origin() -> Result<String, io::Error> {
+    let f = File::open("rust");
+    let mut f = match f {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+    
+   	let mut s = String::new();
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
+    }
+}
+
+//用?升级上面的函数
+fn read_username_from_file_simple_1() -> Result<String, io::Error> {
+    let mut f = File::open("rust")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+//用？再次简化
+fn read_username_from_file_simple_2() -> Result<String, io::Error> {
+    let mut s = String::new();
+    File::open("rust")?.read_to_string(&mut s)?;
+    Ok(s)
+}
+
+//类型自动转换
+fn open_file() -> Result<File, Box<dyn std::error::Error>> {
+    let mut f = File::open("rust")?;
+    Ok(f)
+}
+```
+
+* `read_username_from_file_origin` 是一般的处理过程，比较啰嗦；
+
+* `read_username_from_file_simple_1` 是使用 `?` 简化过的处理，`?` 是一个宏，其作用和上面的match流程几乎一样；
+
+* 虽然 `?` 和 `match` 功能一致，但是事实上 `?` 会更胜一筹，为什么？
+
+  * 对于 `open_file`：
+
+    上面代码中 `File::open` 报错时返回的错误是 `std::io::Error` 类型，但是 `open_file` 函数返回的错误类型是 `std::error::Error` 的特征对象，可以看到一个错误类型通过 `?` 返回后，变成了另一个错误类型，这就是 `?` 的神奇之处。
+
+  * 对于 `read_username_from_file_simple_2` 
+
+    `?` 还能实现链式调用，`File::open` 遇到错误就返回，没有错误就将 `Ok` 中的值取出来用于下一个方法调用。
+
+---
+
+#### `?` 用于返回Option
+
+```rust
+enum Option<T> {
+    Some(T),
+    None
+}
+
+fn test_option(arr: &[i32]) -> Option<&i32> {
+    arr.get(0)
+}
+
+fn last_char_of_first_line(text: &str) -> Option<char> {
+    text.lines().next()?.chars().last()
+}
+
+//error
+fn test_option_error(arr: &[i32]) -> Option<&i32> {
+   arr.get(0)?
+}
+```
+
+* 对于 `test_option` 
+
+  `arr.get` 返回一个 `Option<&i32>` 类型，因为 `?` 的使用，如果 `get` 的结果是 `None`，则直接返回 `None`，如果是 `Some(&i32)`，则把里面的值赋给 `v`。
+
+* 对于 `test_option_error`
+
+  这段代码无法通过编译，切记：`?` 操作符需要一个变量来承载正确的值，这个函数只会返回 `Some(&i32)` 或者 `None`，只有错误值能直接返回，正确的值不行，所以如果数组中存在 0 号元素，那么函数第二行使用 `?` 后的返回类型为 `&i32` 而不是 `Some(&i32)`。因此 `?` 只能用于以下形式：
+
+  - `let v = xxx()?;`
+  - `xxx()?.yyy()?;`
+
+*  Rust 还支持另外一种形式的 `main` 函数：
+
+  ```rust
+  use std::error::Error;
+  use std::fs::File;
+  
+  fn main() -> Result<(), Box<dyn Error>> {
+      let f = File::open("hello.txt")?;
+      Ok(())
+  }
+  ```
+
+  这样就能使用 `?` 提前返回了，同时我们又一次看到了`Box<dyn Error>` 特征对象，因为 `std::error:Error` 是 Rust 中抽象层次最高的错误，其它标准库中的错误都实现了该特征，因此我们可以用该特征对象代表一切错误，就算 `main` 函数中调用任何标准库函数发生错误，都可以通过 `Box<dyn Error>` 这个特征对象进行返回。
+
+## //TODO: 2.8 类型转换
+
+
+
+
+
+
+
 # 3 泛型和特征
 
 ## 3.1 Generics
@@ -1320,11 +1568,213 @@ Rust中的两种多态：泛型和特征对象。
 
 # 4 生命周期
 
+一个泛型 + 特征约束 + 生命周期的例子：
+
+```rust
+use std::fmt::Display;
+
+fn longest_with_an_announcement<'a, T>(
+    x: &'a str,
+    y: &'a str,
+    ann: T,
+) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {}", ann);
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+```
+
 ## 4.1 初识
+
+> * 生命周期指的是**引用的有效作用域，**大多数情况下编译器会自动推导，当编译器没有足够的信息推导出某个引用的生命周期时，就需要我们去手动标注；
+> * 生命周期标注并不会改变任何引用的实际作用域，它用于告诉编译器多个引用之间的关系，**标记的生命周期只是为了取悦编译器，让编译器不要难为我们**；
+
+生命周期的主要作用是避免悬垂引用，它会导致程序访问一块未知的内存：
+
+```rust
+{
+    let r;                // ---------+-- 'a
+                          //          |
+    {                     //          |
+        let x = 5;        // -+-- 'b  |
+        r = &x;           //  |       |
+    }                     // -+       |
+                          //          |
+    println!("r: {}", r); //          |
+}                         // ---------+
+```
+
+在编译期，Rust 会比较两个变量的生命周期，结果发现 `r` 明明拥有生命周期 `'a`，但是却引用了一个小得多的生命周期 `'b`，在这种情况下，编译器会认为我们的程序存在风险，因此拒绝运行。
+
+### 生命周期消除
+
+> 实际上，对于编译器来说，每一个引用类型都有一个生命周期，那么为什么我们在使用过程中，很多时候无需标注生命周期？
+
+**编译器为了简化用户的使用，使用了生命周期消除。**如果函数的返回值是一个引用类型，那么该引用只有两种情况：
+
+- **从参数获取：**如果返回值的引用是获取自参数，这就意味着参数和返回值的生命周期是一样的
+- **从函数体内部新创建的变量获取：**出现悬垂引用，最终被编译器拒绝
+
+---
+
+编译器使用**三条消除规则**来确定哪些场景不需要显式地去标注生命周期。其中第一条规则应用在输入生命周期上，第二、三条应用在输出生命周期上。若编译器发现三条规则都不适用时，就会报错，提示你需要手动标注生命周期。
+
+1. **每一个引用参数都会获得独自的生命周期**
+
+   > 例如一个引用参数的函数就有一个生命周期标注: `fn foo<'a>(x: &'a i32)`，两个引用参数的有两个生命周期标注:`fn foo<'a, 'b>(x: &'a i32, y: &'b i32)`, 依此类推。
+
+2. **若只有一个输入生命周期(函数参数中只有一个引用类型)，那么该生命周期会被赋给所有的输出生命周期**，也就是所有返回值的生命周期都等于该输入生命周期
+
+   > 例如函数 `fn foo(x: &i32) -> &i32`，`x` 参数的生命周期会被自动赋给返回值 `&i32`，因此该函数等同于 `fn foo<'a>(x: &'a i32) -> &'a i32`
+
+3. **若存在多个输入生命周期，且其中一个是 `&self` 或 `&mut self`，则 `&self` 的生命周期被赋给所有的输出生命周期**
+
+   > 拥有 `&self` 形式的参数，说明该函数是一个 `方法`，该规则让方法的使用便利度大幅提升。
+
+### 函数中的生命周期
+
+```rust
+fn loggest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+
+fn main() {
+    let str1 = "hello".to_string(); //String
+    let str2 = "rust"; //&str
+    
+    let res = loggest(str1.as_str(), str2);
+}
+
+fn test_1() {
+    let string1 = String::from("long string is long");
+
+    {
+        let string2 = String::from("xyz");
+        let result = longest(string1.as_str(), string2.as_str());
+        println!("The longest string is {}", result);
+    }
+}
+
+//error
+fn test_2() {
+    let string1 = String::from("long string is long");
+    let result;
+    {
+        let string2 = String::from("xyz");
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!("The longest string is {}", result);
+}
+```
+
+* 当存在多个引用时，编译器有时会无法自动推导生命周期，此时就需要我们手动去标注；
+* 该函数签名表明对于某些生命周期 `'a`，函数的两个参数都至少跟 `'a` 活得一样久，同时函数的返回引用也至少跟 `'a` 活得一样久。
+  * 生命周期 `'a` 不代表生命周期等于 `'a`，而是大于等于 `'a`；
+  * 虽然两个参数的生命周期都是标注了 `'a`，但是实际上这两个参数的真实生命周期可能是不一样的；
+* 当把具体的引用传给 `longest` 时，那生命周期 `'a` 的大小就是 `x` 和 `y` 的作用域的重合部分，换句话说，`'a` 的大小将等于 `x` 和 `y` 中较小的那个。由于返回值的生命周期也被标记为 `'a`，因此返回值的生命周期也是 `x` 和 `y` 中作用域较小的那个。
+* 观察 `test_1/test_2`，当你在 `loggest`函数中进行显式生命周期标注时，编译器对输入、输出引用参数的处理方式不同：
+  * 对于入参 `x/y`，编译器在程序运行时 ( `loggest` 函数调用时) 对 `'a` 生命周期参数进行赋值，其值为 `x/y` 中最小的生命周期，注意 `'a` 和 `x/y` 本身的生命周期无关，类似于 `'a = min('x, 'y')`；
+  * 对于出参，编译器将 `'a` 和返回参数的生命周期进行绑定 (`'a` 已经被入参确定)，此时编译器认为返回值的生命周期等于 `'a`；
+
+### 结构体中的生命周期
+
+```rust
+#[derive(Debug)]
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
+fn main() {
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+    let i = ImportantExcerpt {
+        part: first_sentence,
+    };
+}
+
+//error
+fn test_struct_lifetime() {
+    let i;
+    {
+        let novel = String::from("Call me Ishmael. Some years ago...");
+        let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+        i = ImportantExcerpt {
+            part: first_sentence,
+        };
+    }
+    println!("{:?}",i);
+}
+```
+
+* 该生命周期标注说明，**结构体 `ImportantExcerpt` 所引用的字符串 `str` 必须比该结构体活得更久**；
+* 对于 `test_struct_lifetime`，显然结构体 `i` 比字符串活的更久，编译报错；
+
+### 方法中的生命周期
+
+```rust
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
+// ->&'a str
+impl<'a> ImportantExcerpt<'a> {
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {}", announcement);
+        self.part
+    }
+}
+
+// ->&'b str
+impl<'a> ImportantExcerpt<'a> {
+    fn announce_and_return_part<'b>(&'a self, announcement: &'b str) -> &'b str
+    where
+        'a: 'b,
+    {
+        println!("Attention please: {}", announcement);
+        self.part
+    }
+}
+```
+
+- `impl` 中必须使用结构体的完整名称，包括 `<'a>`，因为*生命周期标注也是结构体类型的一部分*！
+- 方法签名中，往往不需要标注生命周期，得益于生命周期消除的第一和第三规则
+- 如果你尝试将方法返回的生命周期改为`'b`，编译器会报错。如果你一定要这么做，就必须提供 `'a` 和 `'b` 的关系给编译器：  
+  - `'a: 'b`，是生命周期约束语法，跟泛型约束非常相似，用于说明 `'a` 必须比 `'b` 活得久
+  - 可以把 `'a` 和 `'b` 都在同一个地方声明，或者分开声明但通过 `where 'a: 'b` 约束生命周期关系，分开代码会更加清晰一点
+
+### 静态生命周期
+
+```rust
+let s: &'static str = "hello, rust";
+```
+
+- 生命周期 `'static` 意味着能和程序活得一样久，例如字符串字面量和特征对象
+- 实在遇到解决不了的生命周期标注问题，可以尝试 `T: 'static`，有时候它会给你奇迹
+- 事实上，关于 `'static`, 有两种用法: `&'static` 和 `T: 'static`
 
 ## 4.2 深入
 
+
+
+
+
+
+
 ## 4.3 关于static
+
+
+
+
 
 
 
@@ -2159,13 +2609,9 @@ fn main() {
   * `lazy_static`用于懒初始化
   * `Box::leak`利用内存泄漏将一个变量的生命周期变为`'static`
 
-# 8 Rust难点
-
-## 8.1 切片/切片引用
+# //TODO: 8 Unsafe Rust
 
 
-
-## 8.2 Eq/PartialEq
 
 
 
